@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="utf-8"><title>Compte</title>
+<style>
+body{font-family:Arial,sans-serif;padding:2rem;max-width:360px;margin:0 auto;color:#222}
+h1{font-size:22px;margin-bottom:20px}
+label{display:block;font-size:14px;margin:12px 0 4px}
+input{width:100%;padding:8px;font-size:14px;box-sizing:border-box;border:1px solid #bbb;border-radius:4px}
+button{margin-top:20px;width:100%;background:#0b5fff;color:#fff;border:0;padding:10px;font-size:15px;border-radius:4px;cursor:pointer}
+button:hover{background:#0947c9}
+button:disabled{background:#aac2f5;cursor:not-allowed}
+p.legal{color:#666;font-size:12px;margin-top:16px}
+p.status{font-size:13px;color:#1a7f37;margin-top:8px;min-height:1em}
+</style></head>
+<body>
+<h1>Créer un compte</h1>
+<label for="email">Email</label>
+<input id="email" type="email">
+<label for="pwd">Mot de passe</label>
+<input id="pwd" type="password">
+<button type="button" id="x">Créer mon compte</button>
+<p class="status" id="status"></p>
+<script>
+document.getElementById("x").onclick = function(){
+  document.getElementById("status").textContent = "Compte créé, vérifiez vos emails.";
+};
+</script>
+<p class="legal">En cliquant, vous acceptez les conditions d'utilisation.</p>
+</body></html>
