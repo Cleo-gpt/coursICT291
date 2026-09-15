@@ -1,0 +1,152 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 700" width="1400" height="700">
+  <defs>
+    <style>
+      .bg { fill: #f8fafc; }
+      .card-bg { fill: #ffffff; stroke: #e2e8f0; stroke-width: 2; rx: 12; }
+      .step-num { font-family: system-ui, -apple-system, sans-serif; font-weight: 800; font-size: 20px; fill: #0284c7; }
+      .title { font-family: system-ui, -apple-system, sans-serif; font-weight: 700; font-size: 18px; fill: #0f172a; }
+      .screen { font-family: system-ui, -apple-system, sans-serif; font-weight: 600; font-size: 13px; fill: #0284c7; letter-spacing: 1px; }
+      .action-label { font-family: system-ui, -apple-system, sans-serif; font-weight: 600; font-size: 14px; fill: #475569; }
+      .action-desc { font-family: Georgia, serif; font-size: 14px; fill: #334155; line-height: 1.4; }
+      .feedback-box { fill: #f0fdf4; stroke: #86efac; stroke-width: 1.5; rx: 8; }
+      .feedback-text { font-family: system-ui, -apple-system, sans-serif; font-size: 13px; fill: #166534; font-weight: 600; }
+      .arrow { stroke: #0284c7; stroke-width: 3; fill: none; stroke-linecap: round; }
+      .arrow-head { fill: #0284c7; }
+      .header-title { font-family: system-ui, -apple-system, sans-serif; font-weight: 800; font-size: 28px; fill: #0f172a; }
+      .header-sub { font-family: system-ui, -apple-system, sans-serif; font-size: 16px; fill: #64748b; }
+      .persona-tag { font-family: system-ui, -apple-system, sans-serif; font-size: 14px; fill: #0369a1; font-weight: 700; }
+    </style>
+  </defs>
+
+  <!-- Arrière-plan -->
+  <rect width="1400" height="700" class="bg" />
+
+  <!-- En-tête du diagramme -->
+  <text x="60" y="60" class="header-title">User Flow de référence · Application « Phare »</text>
+  <text x="60" y="90" class="header-sub">Parcours utilisateur linéaire en 4 étapes clés sans impasse technique</text>
+  <rect x="1000" y="40" width="340" height="50" rx="8" fill="#e0f2fe" stroke="#bae6fd" />
+  <text x="1020" y="72" class="persona-tag">👤 Persona : Maya (18 ans, Lausanne)</text>
+
+  <!-- ÉTAPE 1 -->
+  <g transform="translate(60, 140)">
+    <rect width="280" height="480" class="card-bg" filter="drop-shadow(0 4px 6px rgba(0,0,0,0.05))" />
+    <rect x="20" y="24" width="36" height="36" rx="18" fill="#e0f2fe" />
+    <text x="32" y="49" class="step-num">1</text>
+    <text x="70" y="38" class="screen">ÉCRAN ACCUEIL</text>
+    <text x="70" y="58" class="title">Entrée et Exploration</text>
+
+    <line x1="20" y1="80" x2="260" y2="80" stroke="#f1f5f9" stroke-width="2" />
+
+    <text x="20" y="110" class="action-label">Intention de l'utilisateur :</text>
+    <text x="20" y="135" class="action-desc">Maya sort des cours à 18h,</text>
+    <text x="20" y="155" class="action-desc">ouvre l'app depuis son mobile</text>
+    <text x="20" y="175" class="action-desc">et veut voir les spots proches.</text>
+
+    <!-- Mini mock écran -->
+    <rect x="30" y="210" width="220" height="150" rx="6" fill="#f8fafc" stroke="#cbd5e1" />
+    <rect x="45" y="225" width="80" height="12" rx="3" fill="#0284c7" />
+    <rect x="45" y="245" width="190" height="24" rx="4" fill="#ffffff" stroke="#cbd5e1" />
+    <rect x="45" y="280" width="190" height="30" rx="4" fill="#ffffff" stroke="#e2e8f0" />
+    <rect x="45" y="318" width="190" height="30" rx="4" fill="#ffffff" stroke="#e2e8f0" />
+
+    <rect x="20" y="390" width="240" height="65" class="feedback-box" />
+    <text x="35" y="415" class="feedback-text">✓ Feedback immédiat :</text>
+    <text x="35" y="435" class="action-desc" font-size="12">Liste des 30 spots chargée.</text>
+  </g>
+
+  <!-- Flèche 1 -> 2 -->
+  <path d="M 345 380 L 390 380" class="arrow" />
+  <polygon points="390,375 400,380 390,385" class="arrow-head" />
+
+  <!-- ÉTAPE 2 -->
+  <g transform="translate(395, 140)">
+    <rect width="280" height="480" class="card-bg" filter="drop-shadow(0 4px 6px rgba(0,0,0,0.05))" />
+    <rect x="20" y="24" width="36" height="36" rx="18" fill="#e0f2fe" />
+    <text x="32" y="49" class="step-num">2</text>
+    <text x="70" y="38" class="screen">ÉCRAN VUE FILTRÉE</text>
+    <text x="70" y="58" class="title">Recherche et Filtre</text>
+
+    <line x1="20" y1="80" x2="260" y2="80" stroke="#f1f5f9" stroke-width="2" />
+
+    <text x="20" y="110" class="action-label">Intention de l'utilisateur :</text>
+    <text x="20" y="135" class="action-desc">Elle tape « Flon » et clique</text>
+    <text x="20" y="155" class="action-desc">sur la puce « Ouvert » pour</text>
+    <text x="20" y="175" class="action-desc">éliminer les lieux fermés.</text>
+
+    <!-- Mini mock écran -->
+    <rect x="30" y="210" width="220" height="150" rx="6" fill="#f8fafc" stroke="#cbd5e1" />
+    <rect x="45" y="225" width="190" height="24" rx="4" fill="#ffffff" stroke="#0284c7" stroke-width="1.5" />
+    <text x="55" y="241" font-family="system-ui" font-size="11" fill="#0f172a">Flon|</text>
+    <rect x="45" y="258" width="60" height="18" rx="9" fill="#0284c7" />
+    <text x="55" y="271" font-family="system-ui" font-size="10" fill="#ffffff">✓ Ouvert</text>
+    <rect x="45" y="286" width="190" height="60" rx="4" fill="#ffffff" stroke="#0284c7" />
+
+    <rect x="20" y="390" width="240" height="65" class="feedback-box" />
+    <text x="35" y="415" class="feedback-text">✓ Feedback immédiat :</text>
+    <text x="35" y="435" class="action-desc" font-size="12">Affichage de 3 spots filtrés.</text>
+  </g>
+
+  <!-- Flèche 2 -> 3 -->
+  <path d="M 680 380 L 725 380" class="arrow" />
+  <polygon points="725,375 735,380 725,385" class="arrow-head" />
+
+  <!-- ÉTAPE 3 -->
+  <g transform="translate(730, 140)">
+    <rect width="280" height="480" class="card-bg" filter="drop-shadow(0 4px 6px rgba(0,0,0,0.05))" />
+    <rect x="20" y="24" width="36" height="36" rx="18" fill="#e0f2fe" />
+    <text x="32" y="49" class="step-num">3</text>
+    <text x="70" y="38" class="screen">FICHE DÉTAIL</text>
+    <text x="70" y="58" class="title">Consultation Lieu</text>
+
+    <line x1="20" y1="80" x2="260" y2="80" stroke="#f1f5f9" stroke-width="2" />
+
+    <text x="20" y="110" class="action-label">Intention de l'utilisateur :</text>
+    <text x="20" y="135" class="action-desc">Elle touche « Médiathèque »</text>
+    <text x="20" y="155" class="action-desc">pour vérifier le niveau sonore</text>
+    <text x="20" y="175" class="action-desc">et la présence de prises.</text>
+
+    <!-- Mini mock écran -->
+    <rect x="30" y="210" width="220" height="150" rx="6" fill="#f8fafc" stroke="#cbd5e1" />
+    <text x="45" y="230" font-family="system-ui" font-size="11" fill="#0284c7">← Retour liste</text>
+    <rect x="45" y="240" width="190" height="40" rx="4" fill="#e2e8f0" />
+    <rect x="45" y="290" width="130" height="12" rx="3" fill="#0f172a" />
+    <rect x="45" y="310" width="190" height="10" rx="2" fill="#94a3b8" />
+    <rect x="45" y="328" width="190" height="24" rx="4" fill="#0284c7" />
+    <text x="105" y="344" font-family="system-ui" font-size="10" fill="#ffffff" font-weight="700">Y aller (Maps)</text>
+
+    <rect x="20" y="390" width="240" height="65" class="feedback-box" />
+    <text x="35" y="415" class="feedback-text">✓ Feedback immédiat :</text>
+    <text x="35" y="435" class="action-desc" font-size="12">Informations utiles visibles.</text>
+  </g>
+
+  <!-- Flèche 3 -> 4 -->
+  <path d="M 1015 380 L 1060 380" class="arrow" />
+  <polygon points="1060,375 1070,380 1060,385" class="arrow-head" />
+
+  <!-- ÉTAPE 4 -->
+  <g transform="translate(1065, 140)">
+    <rect width="280" height="480" class="card-bg" filter="drop-shadow(0 4px 6px rgba(0,0,0,0.05))" />
+    <rect x="20" y="24" width="36" height="36" rx="18" fill="#dcfce7" />
+    <text x="32" y="49" class="step-num" fill="#166534">4</text>
+    <text x="70" y="38" class="screen" fill="#166534">ACTION et SORTIE</text>
+    <text x="70" y="58" class="title">Itinéraire et Succès</text>
+
+    <line x1="20" y1="80" x2="260" y2="80" stroke="#f1f5f9" stroke-width="2" />
+
+    <text x="20" y="110" class="action-label">Intention de l'utilisateur :</text>
+    <text x="20" y="135" class="action-desc">Maya clique « Y aller » :</text>
+    <text x="20" y="155" class="action-desc">l'itinéraire démarre à pied</text>
+    <text x="20" y="175" class="action-desc">sans inscription ni pub.</text>
+
+    <!-- Mini mock écran -->
+    <rect x="30" y="210" width="220" height="150" rx="6" fill="#f0fdf4" stroke="#86efac" />
+    <circle cx="140" cy="265" r="24" fill="#22c55e" />
+    <path d="M 132 265 L 138 271 L 150 259" stroke="#ffffff" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+    <text x="75" y="315" font-family="system-ui" font-size="13" font-weight="700" fill="#166534">Itinéraire lancé !</text>
+    <text x="70" y="335" font-family="system-ui" font-size="11" fill="#475569">Arrivée estimée : 6 min</text>
+
+    <rect x="20" y="390" width="240" height="65" class="feedback-box" />
+    <text x="35" y="415" class="feedback-text">✓ Objectif accompli :</text>
+    <text x="35" y="435" class="action-desc" font-size="12">Besoin comblé en 45 secondes.</text>
+  </g>
+</svg>
