@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics><meta name="design_doc_mode" content="canvas"><link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=IBM+Plex+Mono:wght@400;600&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet"><style>body{margin:0;background:#f3efe8;background-image:linear-gradient(135deg,rgba(196,120,120,.16) 0%,rgba(208,160,112,.15) 17%,rgba(206,194,128,.14) 34%,rgba(146,180,146,.14) 51%,rgba(134,166,196,.15) 68%,rgba(155,134,196,.17) 85%,rgba(186,140,178,.16) 100%);background-attachment:fixed;font-family:'Architects Daughter',system-ui,sans-serif}.dv-turn{padding:40px 44px 32px;border-bottom:1px solid rgba(0,0,0,.08);scroll-margin-top:16px}.dv-thd{display:flex;align-items:baseline;gap:10px;margin:0 0 20px}.dv-tid{font:600 10px 'IBM Plex Mono',monospace;padding:3px 7px;background:#1a1a1a;color:#fff;border-radius:4px;text-decoration:none}.dv-tname{font:600 13px/1.2 'IBM Plex Mono',monospace;color:#1a1a1a}.dv-opts{display:flex;flex-wrap:wrap;gap:28px;align-items:flex-start}.dv-opt{flex:none;display:flex;flex-direction:column;gap:9px;scroll-margin-top:16px}.dv-oid{font:600 10.5px 'IBM Plex Mono',monospace;padding:3px 7px;background:rgba(0,0,0,.08);color:#1a1a1a;border-radius:5px;text-decoration:none}.dv-olabel{display:flex;align-items:baseline;gap:8px;font:400 11px/1.3 'IBM Plex Mono',monospace;color:rgba(0,0,0,.55)}.dv-card{max-width:100%;background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.06);overflow:hidden}.dv-opt:target .dv-oid{background:#2a78d6;color:#fff}.dv-next{margin:22px 0 0;font:12px/1.5 'IBM Plex Mono',monospace;color:rgba(0,0,0,.5)}a{color:#2a78d6}a:hover{color:#175fae}</style></helmet>
+
+<section class="dv-turn" id="t3">
+<div class="dv-thd"><a class="dv-tid" href="#t3">3</a><span class="dv-tname">Direction révisée — Bricolage Grotesque + Instrument Serif, accent turquoise, signalétique des drapeaux</span></div>
+<div class="dv-opts">
+
+<div class="dv-opt" id="3a">
+<div class="dv-olabel"><a class="dv-oid" href="#3a">3a</a>Desktop — accueil, prints du mois</div>
+<div class="dv-card" style="width:800px;background:#fdf9f3;font-family:'Bricolage Grotesque',system-ui,sans-serif">
+<div style="background:#1f2422;padding:16px 24px;display:flex;align-items:center;justify-content:space-between">
+<div style="display:flex;align-items:center;gap:12px">
+<div style="width:26px;height:26px;border-radius:50%;background:conic-gradient(#e0796f,#e3a765,#dcc96f,#79ab84,#6fa3b8,#9280c9,#c37fa8,#e0796f)"></div>
+<span style="font-family:'Instrument Serif',serif;font-size:23px;color:#fdf9f3">Prisme</span>
+</div>
+<div style="display:flex;align-items:center;gap:20px;font-size:14px;color:#b9c2be">
+<span style="color:#fdf9f3;border-bottom:2px solid #47b3ab;padding-bottom:3px">Calendrier</span><span>Prints</span><span>Dico</span><span>Manifs</span><span>Voyager</span>
+<span style="border:1px solid #6d7a75;border-radius:20px;padding:5px 12px;font-size:12px;color:#fdf9f3">iel · mon espace</span>
+</div>
+</div>
+<div style="padding:26px 24px;display:flex;flex-direction:column;gap:24px">
+<div style="display:flex;gap:22px;align-items:flex-start">
+<div style="flex:1;display:flex;flex-direction:column;gap:10px">
+<div style="font:600 10px/1 'IBM Plex Mono',monospace;letter-spacing:.1em;color:#2f8f8a">PRINT DU JOUR · MAR 16 JUIN</div>
+<div style="font-family:'Instrument Serif',serif;font-size:38px;line-height:1.05;color:#1f2422">Une illustration par jour, tout le mois des fiertés.</div>
+<div style="font-size:14px;line-height:1.55;color:#4d564f;max-width:44ch">Chaque date du calendrier ouvre le print correspondant, avec son titre, son contexte et le crédit de l'illustratrice.</div>
+<div style="display:flex;gap:10px;margin-top:4px">
+<span style="background:#1f2422;color:#fdf9f3;border-radius:22px;padding:10px 18px;font-size:14px">Ouvrir le print</span>
+<span style="border:1.5px solid #1f2422;border-radius:22px;padding:10px 18px;font-size:14px;color:#1f2422">Voir la collection</span>
+</div>
+</div>
+<div style="flex:none;width:250px;border-radius:12px;overflow:hidden;border:1px solid #e2dacd">
+<div style="height:200px;background:repeating-linear-gradient(135deg,#eae2f5 0 8px,#f7f3fb 8px 16px);display:flex;align-items:center;justify-content:center;font:10px 'IBM Plex Mono',monospace;color:#6f6a7d">[ print du jour ]</div>
+<div style="background:#eef4f3;padding:10px 12px;font:10px 'IBM Plex Mono',monospace;color:#3d5450">crédit · compte de l'illustratrice</div>
+</div>
+</div>
+
+<div style="display:flex;gap:22px;align-items:flex-start">
+<div style="flex:1;border:1px solid #e2dacd;border-radius:12px;background:#fff;overflow:hidden">
+<div style="display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border-bottom:1px solid #eee6da">
+<span style="font-family:'Instrument Serif',serif;font-size:21px;color:#1f2422">Juin 2026</span>
+<span style="font:10px 'IBM Plex Mono',monospace;color:#2f8f8a">MOIS DES FIERTÉS</span>
+</div>
+<div style="display:grid;grid-template-columns:repeat(7,1fr);padding:8px 10px 0;font:600 9px 'IBM Plex Mono',monospace;color:#8d9490">
+<sc-for list="{{ dow }}" as="d" hint-placeholder-count="7"><div style="text-align:center;padding-bottom:6px">{{ d }}</div></sc-for>
+</div>
+<div style="display:grid;grid-template-columns:repeat(7,1fr);gap:5px;padding:0 10px 12px">
+<sc-for list="{{ cells }}" as="d" hint-placeholder-count="30">
+<div style="aspect-ratio:.86;border-radius:7px;overflow:hidden;border:1px solid #ece4d7;display:flex;flex-direction:column">
+<div style="flex:1;background:{{ d.bg }}"></div>
+<div style="display:flex;align-items:center;justify-content:space-between;padding:2px 4px;background:#fff">
+<span style="font:600 8px 'IBM Plex Mono',monospace;color:#6f7671">{{ d.n }}</span>
+<sc-if value="{{ d.tag }}" hint-placeholder-val="{{ true }}"><span style="width:5px;height:5px;border-radius:50%;background:#2f8f8a"></span></sc-if>
+</div>
+</div>
+</sc-for>
+</div>
+</div>
+<div style="flex:none;width:232px;display:flex;flex-direction:column;gap:12px">
+<div style="border:1px solid #e2dacd;border-radius:12px;background:#fff;padding:14px;display:flex;flex-direction:column;gap:10px">
+<div style="font:600 9px 'IBM Plex Mono',monospace;letter-spacing:.08em;color:#8d9490">À VENIR PRÈS DE TOI</div>
+<sc-for list="{{ upcoming }}" as="u" hint-placeholder-count="3">
+<div style="display:flex;gap:10px;align-items:flex-start;border-bottom:1px solid #f1eade;padding-bottom:9px">
+<span style="flex:none;width:4px;align-self:stretch;border-radius:2px;background:{{ u.c }}"></span>
+<div style="display:flex;flex-direction:column;gap:2px"><span style="font-size:13px;color:#1f2422">{{ u.t }}</span><span style="font:9px 'IBM Plex Mono',monospace;color:#8d9490">{{ u.s }}</span></div>
+</div>
+</sc-for>
+</div>
+<div style="border-radius:12px;background:#eef4f3;padding:14px;display:flex;flex-direction:column;gap:8px">
+<div style="font:600 9px 'IBM Plex Mono',monospace;letter-spacing:.08em;color:#2f8f8a">BESOIN DE PARLER ?</div>
+<div style="font-size:13px;line-height:1.5;color:#2c3532">Lignes d'écoute et associations, 24h/24, sans jugement.</div>
+<span style="align-self:flex-start;border:1.5px solid #1f2422;border-radius:20px;padding:6px 14px;font-size:12px;color:#1f2422">Voir les contacts</span>
+</div>
+</div>
+</div>
+</div>
+<div style="background:#1f2422;padding:14px 24px;display:flex;justify-content:space-between;align-items:center;font:10px 'IBM Plex Mono',monospace;color:#8f9a95">
+<span>MENTIONS · CONTACT · CRÉDITS ILLUSTRATIONS</span>
+<span style="color:#e0796f">SORTIE RAPIDE</span>
+</div>
+</div>
+</div>
+
+<div class="dv-opt" id="3b">
+<div class="dv-olabel"><a class="dv-oid" href="#3b">3b</a>Mobile — parcours complet</div>
+<div class="dv-card" style="padding:20px;background:#fdf9f3;display:flex;gap:14px;align-items:flex-start;font-family:'Bricolage Grotesque',system-ui,sans-serif">
+
+<div style="width:244px;border:1px solid #e2dacd;border-radius:22px;overflow:hidden;background:#fff;display:flex;flex-direction:column">
+<div style="background:#1f2422;padding:12px 14px;display:flex;align-items:center;justify-content:space-between">
+<span style="font-family:'Instrument Serif',serif;font-size:19px;color:#fdf9f3">Juin 2026</span>
+<span style="width:20px;height:20px;border-radius:50%;background:conic-gradient(#e0796f,#e3a765,#dcc96f,#79ab84,#6fa3b8,#9280c9,#c37fa8,#e0796f)"></span>
+</div>
+<div style="padding:13px 14px;display:flex;flex-direction:column;gap:11px;flex:1">
+<div style="border-radius:10px;overflow:hidden;border:1px solid #ece4d7">
+<div style="height:92px;background:repeating-linear-gradient(135deg,#eae2f5 0 7px,#f7f3fb 7px 14px);display:flex;align-items:center;justify-content:center;font:9px 'IBM Plex Mono',monospace;color:#6f6a7d">[ print du jour ]</div>
+<div style="padding:8px 10px;display:flex;justify-content:space-between;align-items:center"><span style="font-size:12px;color:#1f2422">Print du 16 juin</span><span style="font:9px 'IBM Plex Mono',monospace;color:#2f8f8a">OUVRIR</span></div>
+</div>
+<div style="display:grid;grid-template-columns:repeat(7,1fr);gap:4px">
+<sc-for list="{{ cells }}" as="d" hint-placeholder-count="30">
+<div style="aspect-ratio:1;border-radius:5px;background:{{ d.bg }};border:1px solid #ece4d7;display:flex;align-items:flex-end;justify-content:center;padding-bottom:1px;font:7px 'IBM Plex Mono',monospace;color:#5f6763">{{ d.n }}</div>
+</sc-for>
+</div>
+<div style="font:9px 'IBM Plex Mono',monospace;color:#8d9490">chaque case = son print</div>
+</div>
+<div style="border-top:1px solid #eee6da;display:grid;grid-template-columns:repeat(5,1fr);padding:9px 4px">
+<sc-for list="{{ tabs5 }}" as="t" hint-placeholder-count="5">
+<div style="display:flex;flex-direction:column;align-items:center;gap:4px"><span style="width:16px;height:16px;border:1.5px solid #4d564f;border-radius:5px"></span><span style="font:7px 'IBM Plex Mono',monospace;color:#4d564f">{{ t }}</span></div>
+</sc-for>
+</div>
+</div>
+
+<div style="width:244px;border:1px solid #e2dacd;border-radius:22px;overflow:hidden;background:#fff;display:flex;flex-direction:column">
+<div style="padding:11px 14px;display:flex;align-items:center;gap:9px;border-bottom:1px solid #eee6da"><span style="font-size:15px;color:#1f2422">‹</span><span style="font:9px 'IBM Plex Mono',monospace;color:#8d9490">PRINT · 16 JUIN</span></div>
+<div style="height:186px;background:repeating-linear-gradient(135deg,#eae2f5 0 8px,#f7f3fb 8px 16px);display:flex;align-items:center;justify-content:center;font:9px 'IBM Plex Mono',monospace;color:#6f6a7d">[ illustration ]</div>
+<div style="padding:13px 14px;display:flex;flex-direction:column;gap:10px;flex:1">
+<div style="font-family:'Instrument Serif',serif;font-size:22px;line-height:1.15;color:#1f2422">Titre de l'illustration</div>
+<div style="display:flex;flex-direction:column;gap:5px"><span style="height:6px;border-radius:3px;background:#f0e9dc"></span><span style="height:6px;border-radius:3px;background:#f0e9dc"></span><span style="height:6px;border-radius:3px;background:#f0e9dc;width:58%"></span></div>
+<div style="font:9px/1.6 'IBM Plex Mono',monospace;color:#8d9490">crédit auteur<span style="font-family:'IBM Plex Mono',monospace">·</span>ice<br />lien vers le compte d'origine</div>
+<div style="margin-top:auto;display:flex;gap:8px">
+<span style="flex:1;background:#1f2422;color:#fdf9f3;border-radius:20px;padding:9px;text-align:center;font-size:13px">Enregistrer</span>
+<span style="border:1.5px solid #1f2422;border-radius:20px;padding:9px 14px;font-size:13px;color:#1f2422">Partager</span>
+</div>
+</div>
+</div>
+
+<div style="width:244px;border:1px solid #e2dacd;border-radius:22px;overflow:hidden;background:#fff;display:flex;flex-direction:column">
+<div style="padding:11px 14px;border-bottom:1px solid #eee6da;display:flex;flex-direction:column;gap:9px">
+<span style="font-family:'Instrument Serif',serif;font-size:21px;color:#1f2422">Dico</span>
+<span style="border:1px solid #e2dacd;border-radius:20px;padding:8px 12px;font:10px 'IBM Plex Mono',monospace;color:#9aa19c">chercher un terme…</span>
+</div>
+<div style="padding:11px 14px;display:flex;flex-direction:column;flex:1">
+<sc-for list="{{ dicoPlus }}" as="w" hint-placeholder-count="6">
+<div style="display:flex;gap:9px;align-items:flex-start;padding:9px 0;border-bottom:1px solid #f1eade">
+<span style="flex:none;width:16px;height:10px;border-radius:2px;margin-top:3px;background:{{ w.c }}"></span>
+<div style="flex:1;display:flex;flex-direction:column;gap:4px">
+<span style="font:600 12px 'IBM Plex Mono',monospace;color:#1f2422">{{ w.n }}</span>
+<span style="height:5px;border-radius:3px;background:#f0e9dc;width:85%"></span>
+</div>
+</div>
+</sc-for>
+</div>
+</div>
+
+<div style="width:244px;border:1px solid #e2dacd;border-radius:22px;overflow:hidden;background:#fff;display:flex;flex-direction:column">
+<div style="padding:11px 14px;border-bottom:1px solid #eee6da;font-family:'Instrument Serif',serif;font-size:21px;color:#1f2422">Voyager</div>
+<div style="height:104px;background:repeating-linear-gradient(135deg,#e6f0ee 0 7px,#f4faf8 7px 14px);display:flex;align-items:center;justify-content:center;font:9px 'IBM Plex Mono',monospace;color:#5c7a76">[ carte · niveaux de vigilance ]</div>
+<div style="padding:12px 14px;display:flex;flex-direction:column;gap:9px;flex:1">
+<sc-for list="{{ countries }}" as="c" hint-placeholder-count="5">
+<div style="display:flex;align-items:center;gap:9px;border-bottom:1px solid #f1eade;padding-bottom:8px">
+<span style="flex:none;width:4px;height:26px;border-radius:2px;background:{{ c.c }}"></span>
+<div style="flex:1;display:flex;flex-direction:column;gap:2px"><span style="font-size:12px;color:#1f2422">{{ c.n }}</span><span style="font:8px 'IBM Plex Mono',monospace;color:#8d9490">{{ c.s }}</span></div>
+<span style="color:#2f8f8a">›</span>
+</div>
+</sc-for>
+</div>
+</div>
+
+<div style="width:244px;border:1px solid #e2dacd;border-radius:22px;overflow:hidden;background:#fff;display:flex;flex-direction:column">
+<div style="padding:11px 14px;border-bottom:1px solid #eee6da;font:9px 'IBM Plex Mono',monospace;color:#8d9490">MON ESPACE</div>
+<div style="padding:13px 14px;display:flex;flex-direction:column;gap:11px;flex:1">
+<div style="display:flex;align-items:center;gap:10px">
+<span style="width:40px;height:40px;border-radius:50%;background:conic-gradient(#e0796f,#e3a765,#dcc96f,#79ab84,#6fa3b8,#9280c9,#c37fa8,#e0796f)"></span>
+<div style="display:flex;flex-direction:column;gap:2px"><span style="font-family:'Instrument Serif',serif;font-size:19px;color:#1f2422">Mon profil</span><span style="font:9px 'IBM Plex Mono',monospace;color:#2f8f8a">iel · privé</span></div>
+</div>
+<sc-for list="{{ safety }}" as="s" hint-placeholder-count="3">
+<div style="display:flex;gap:10px;align-items:flex-start;border-bottom:1px solid #f1eade;padding-bottom:9px">
+<div style="flex:1;display:flex;flex-direction:column;gap:3px"><span style="font-size:12px;color:#1f2422">{{ s.t }}</span><span style="font:9px/1.5 'IBM Plex Mono',monospace;color:#8d9490">{{ s.d }}</span></div>
+<span style="flex:none;width:30px;height:17px;border-radius:9px;background:#2f8f8a;display:flex;align-items:center;justify-content:flex-end;padding:0 2px"><span style="width:13px;height:13px;border-radius:50%;background:#fff"></span></span>
+</div>
+</sc-for>
+<div style="margin-top:auto;display:flex;flex-direction:column;gap:8px">
+<span style="background:#1f2422;color:#fdf9f3;border-radius:20px;padding:9px;text-align:center;font-size:13px">Lignes d'écoute · 24/7</span>
+<span style="border:1.5px solid #e0796f;color:#c1543f;border-radius:20px;padding:8px;text-align:center;font:10px 'IBM Plex Mono',monospace">SORTIE RAPIDE</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+<p class="dv-next">Tour 3 = nouvelle direction visuelle (drapeaux en signalétique discrète, serif chaleureux, accent turquoise). Les tours 2 et 1 restent tels quels pour comparaison.</p>
+</section>
+
+<section class="dv-turn" id="t2">
+<div class="dv-thd"><a class="dv-tid" href="#t2">2</a><span class="dv-tname">Couleur beige / anthracite · print du jour · conseils par pays</span></div>
+<div class="dv-opts">
+
+<div class="dv-opt" id="2a">
+<div class="dv-olabel"><a class="dv-oid" href="#2a">2a</a>Desktop — calendrier, un print par jour</div>
+<div class="dv-card" style="width:780px;background:#f4efe6">
+<div style="height:5px;background:linear-gradient(90deg,#b87070,#c99a63,#c8bd72,#8aa882,#7f9fb8,#9b86c4,#b183a8)"></div>
+<div style="background:#2b2b2e;padding:15px 22px;display:flex;align-items:center;justify-content:space-between">
+<div style="font-size:19px;color:#f4efe6">LOGO</div>
+<div style="display:flex;gap:18px;font-size:15px;color:#cfc7b8"><span style="color:#f4efe6;border-bottom:2px solid #9b86c4;padding-bottom:2px">Calendrier</span><span>Dico</span><span>Manifs</span><span>Monde</span><span>S'informer</span></div>
+</div>
+<div style="padding:22px;display:flex;flex-direction:column;gap:20px">
+<div style="display:flex;align-items:center;justify-content:space-between;color:#2b2b2e">
+<span style="border:1.5px solid #2b2b2e;border-radius:4px;padding:2px 10px;font-size:15px">‹</span>
+<span style="font-size:21px">Juin 2026 — Mois des fiertés</span>
+<span style="border:1.5px solid #2b2b2e;border-radius:4px;padding:2px 10px;font-size:15px">›</span>
+</div>
+<div style="border:1.5px solid #2b2b2e;border-radius:6px;overflow:hidden;background:#fbf8f2">
+<div style="display:grid;grid-template-columns:repeat(7,1fr);background:#e3dac9;font:600 10px 'IBM Plex Mono',monospace;color:#5c5648">
+<sc-for list="{{ dow }}" as="d" hint-placeholder-count="7"><div style="padding:7px 0;text-align:center">{{ d }}</div></sc-for>
+</div>
+<sc-for list="{{ weeks }}" as="w" hint-placeholder-count="4">
+<div style="display:grid;grid-template-columns:repeat(7,1fr)">
+<sc-for list="{{ w }}" as="d" hint-placeholder-count="7">
+<div style="aspect-ratio:.92;border-right:1px solid #e3dac9;border-bottom:1px solid #e3dac9;padding:5px;display:flex;flex-direction:column;gap:4px">
+<div style="font:600 9px 'IBM Plex Mono',monospace;color:#8c8475">{{ d.n }}</div>
+<div style="flex:1;border:1px solid #cdc3b1;border-radius:3px;background:repeating-linear-gradient(45deg,#e4dbf3 0 4px,#f6f3fc 4px 8px);display:flex;align-items:flex-end;padding:3px">
+<div style="font:7px 'IBM Plex Mono',monospace;color:#8c8475">print</div>
+</div>
+<sc-if value="{{ d.tag }}" hint-placeholder-val="{{ true }}">
+<div style="height:4px;border-radius:2px;background:#9b86c4"></div>
+</sc-if>
+</div>
+</sc-for>
+</div>
+</sc-for>
+</div>
+<div style="display:flex;gap:18px;font:10px 'IBM Plex Mono',monospace;color:#6d6659"><span>▨ print du jour (illustration — compte de l'illustratrice)</span><span style="display:flex;align-items:center;gap:5px"><span style="width:14px;height:4px;background:#9b86c4;border-radius:2px"></span>date marquante / manif</span></div>
+<div style="display:flex;gap:18px;align-items:stretch">
+<div style="flex:1;border:1.5px solid #2b2b2e;border-radius:6px;background:#2b2b2e;color:#f4efe6;padding:16px;display:flex;gap:14px">
+<div style="flex:none;width:96px;border:1px solid #6d6659;border-radius:4px;background:repeating-linear-gradient(45deg,#43405c 0 5px,#33313f 5px 10px);display:flex;align-items:center;justify-content:center;font:8px 'IBM Plex Mono',monospace;color:#a8a093;text-align:center">[ print<br>du jour ]</div>
+<div style="display:flex;flex-direction:column;gap:7px">
+<div style="font:9px 'IBM Plex Mono',monospace;color:#a8a093">PRINT DU 13 JUIN</div>
+<div style="font-size:18px;line-height:1.25">Titre de l'illustration</div>
+<div style="display:flex;flex-direction:column;gap:4px;width:220px"><div style="height:6px;background:#4a4a4e;border-radius:3px"></div><div style="height:6px;background:#4a4a4e;border-radius:3px;width:70%"></div></div>
+<div style="margin-top:4px;display:flex;gap:8px"><span style="border:1.5px solid #f4efe6;border-radius:4px;padding:5px 11px;font-size:13px">Voir en grand</span><span style="border:1px dashed #6d6659;border-radius:4px;padding:5px 11px;font:10px 'IBM Plex Mono',monospace;color:#a8a093">source · créditer</span></div>
+</div>
+</div>
+<div style="flex:none;width:210px;border:1.5px solid #cdc3b1;border-radius:6px;background:#fbf8f2;padding:14px;display:flex;flex-direction:column;gap:9px">
+<div style="font:9px 'IBM Plex Mono',monospace;color:#8c8475">OÙ S'INFORMER ?</div>
+<sc-for list="{{ infos }}" as="i" hint-placeholder-count="3">
+<div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px dashed #ddd3c1;padding-bottom:6px;font-size:13px;color:#2b2b2e"><span>{{ i }}</span><span style="color:#7d6aa8">→</span></div>
+</sc-for>
+</div>
+</div>
+</div>
+<div style="background:#e3dac9;padding:14px 22px;display:flex;justify-content:space-between;font:10px 'IBM Plex Mono',monospace;color:#6d6659"><span>FOOTER — mentions, contact, crédits illustrations</span><span>aide · sortie rapide</span></div>
+</div>
+</div>
+
+<div class="dv-opt" id="2b">
+<div class="dv-olabel"><a class="dv-oid" href="#2b">2b</a>Mobile — print du jour → détail → agenda</div>
+<div class="dv-card" style="padding:20px;background:#f4efe6;display:flex;gap:16px">
+<div style="width:252px;border:1.5px solid #2b2b2e;border-radius:20px;overflow:hidden;background:#fbf8f2;display:flex;flex-direction:column">
+<div style="height:4px;background:linear-gradient(90deg,#b87070,#c99a63,#c8bd72,#8aa882,#7f9fb8,#9b86c4,#b183a8)"></div>
+<div style="background:#2b2b2e;padding:10px 14px;display:flex;justify-content:space-between;align-items:center"><span style="font-size:17px;color:#f4efe6">Juin 2026</span><span style="font:9px 'IBM Plex Mono',monospace;color:#a8a093">fiertés</span></div>
+<div style="padding:12px 14px;display:flex;flex-direction:column;gap:9px;flex:1">
+<div style="border:1.5px solid #2b2b2e;border-radius:8px;overflow:hidden">
+<div style="height:96px;background:repeating-linear-gradient(45deg,#e4dbf3 0 6px,#f6f3fc 6px 12px);display:flex;align-items:center;justify-content:center;font:9px 'IBM Plex Mono',monospace;color:#7a7288">[ print du jour ]</div>
+<div style="background:#2b2b2e;padding:7px 10px;display:flex;justify-content:space-between;align-items:center"><span style="font:9px 'IBM Plex Mono',monospace;color:#f4efe6">MAR 16 JUIN</span><span style="font:9px 'IBM Plex Mono',monospace;color:#b6a5d8">voir</span></div>
+</div>
+<div style="display:grid;grid-template-columns:repeat(7,1fr);gap:3px">
+<sc-for list="{{ days30 }}" as="d" hint-placeholder-count="30">
+<div style="aspect-ratio:1;border:1px solid #ddd3c1;border-radius:3px;background:repeating-linear-gradient(45deg,#e4dbf3 0 3px,#f6f3fc 3px 6px);display:flex;align-items:center;justify-content:center;font:7px 'IBM Plex Mono',monospace;color:#8c8475">{{ d }}</div>
+</sc-for>
+</div>
+<div style="font:8px 'IBM Plex Mono',monospace;color:#8c8475">chaque case = le print de ce jour</div>
+</div>
+<div style="background:#e3dac9;display:grid;grid-template-columns:repeat(5,1fr);padding:8px 4px">
+<sc-for list="{{ tabs }}" as="t" hint-placeholder-count="5">
+<div style="display:flex;flex-direction:column;align-items:center;gap:4px"><div style="width:15px;height:15px;border:1.5px solid #2b2b2e;border-radius:4px"></div><div style="font:7px 'IBM Plex Mono',monospace;color:#4a453b">{{ t }}</div></div>
+</sc-for>
+</div>
+</div>
+<div style="width:252px;border:1.5px solid #2b2b2e;border-radius:20px;overflow:hidden;background:#fbf8f2;display:flex;flex-direction:column">
+<div style="padding:10px 14px;display:flex;align-items:center;gap:8px;border-bottom:1px solid #e3dac9"><span style="font-size:15px;color:#2b2b2e">‹</span><span style="font:9px 'IBM Plex Mono',monospace;color:#8c8475">PRINT DU 16 JUIN</span></div>
+<div style="height:200px;background:repeating-linear-gradient(45deg,#e4dbf3 0 7px,#f6f3fc 7px 14px);display:flex;align-items:center;justify-content:center;font:9px 'IBM Plex Mono',monospace;color:#8c8475">[ illustration plein cadre ]</div>
+<div style="padding:13px 14px;display:flex;flex-direction:column;gap:9px;flex:1">
+<div style="font-size:17px;color:#2b2b2e;line-height:1.25">Titre de l'illustration</div>
+<div style="display:flex;flex-direction:column;gap:4px"><div style="height:6px;background:#e6ddcc;border-radius:3px"></div><div style="height:6px;background:#e6ddcc;border-radius:3px"></div><div style="height:6px;background:#e6ddcc;border-radius:3px;width:60%"></div></div>
+<div style="font:9px/1.5 'IBM Plex Mono',monospace;color:#8c8475">illustration · crédit auteur·ice<br />lien vers le compte d'origine</div>
+<div style="margin-top:auto;display:flex;flex-direction:column;gap:7px">
+<div style="background:#2b2b2e;color:#f4efe6;border-radius:6px;padding:9px;text-align:center;font-size:14px">Enregistrer ce print</div>
+<div style="border:1px solid #cdc3b1;border-radius:6px;padding:8px;text-align:center;font:10px 'IBM Plex Mono',monospace;color:#6d6659">partager</div>
+</div>
+</div>
+</div>
+<div style="width:252px;border:1.5px solid #2b2b2e;border-radius:20px;overflow:hidden;background:#fbf8f2;display:flex;flex-direction:column">
+<div style="padding:10px 14px;border-bottom:1px solid #e3dac9;display:flex;align-items:center;gap:8px"><span style="font-size:15px;color:#2b2b2e">‹</span><span style="font:9px 'IBM Plex Mono',monospace;color:#8c8475">MES PRINTS</span></div>
+<div style="padding:13px 14px;display:grid;grid-template-columns:1fr 1fr;gap:9px;flex:1;align-content:start">
+<sc-for list="{{ saved }}" as="s" hint-placeholder-count="6">
+<div style="display:flex;flex-direction:column;gap:4px">
+<div style="aspect-ratio:1;border:1px solid #cdc3b1;border-radius:5px;background:repeating-linear-gradient(45deg,#e4dbf3 0 5px,#f6f3fc 5px 10px)"></div>
+<div style="font:7px 'IBM Plex Mono',monospace;color:#8c8475">{{ s }}</div>
+</div>
+</sc-for>
+</div>
+<div style="background:#e3dac9;padding:10px 14px;font:9px 'IBM Plex Mono',monospace;color:#4a453b">collection enregistrée — jalon 4</div>
+</div>
+</div>
+</div>
+
+<div class="dv-opt" id="2c">
+<div class="dv-olabel"><a class="dv-oid" href="#2c">2c</a>Monde LGBT friendly — modèle conseils aux voyageurs</div>
+<div class="dv-card" style="padding:20px;background:#f4efe6;display:flex;gap:16px;align-items:flex-start">
+<div style="width:252px;border:1.5px solid #2b2b2e;border-radius:20px;overflow:hidden;background:#fbf8f2;display:flex;flex-direction:column">
+<div style="height:4px;background:linear-gradient(90deg,#b87070,#c99a63,#c8bd72,#8aa882,#7f9fb8,#9b86c4,#b183a8)"></div>
+<div style="background:#2b2b2e;padding:11px 14px;font-size:17px;color:#f4efe6">Monde LGBT friendly</div>
+<div style="padding:12px 14px;display:flex;flex-direction:column;gap:10px">
+<div style="border:1px solid #2b2b2e;border-radius:20px;padding:7px 12px;font:10px 'IBM Plex Mono',monospace;color:#9a9284">chercher un pays…</div>
+<div style="height:112px;border:1px solid #cdc3b1;border-radius:6px;background:repeating-linear-gradient(45deg,#efe7d9 0 6px,#fbf8f2 6px 12px);display:flex;align-items:center;justify-content:center;font:9px 'IBM Plex Mono',monospace;color:#8c8475">[ carte cliquable ]</div>
+<div style="display:flex;flex-direction:column;gap:5px;font:9px 'IBM Plex Mono',monospace;color:#6d6659">
+<sc-for list="{{ levels }}" as="l" hint-placeholder-count="4">
+<div style="display:flex;align-items:center;gap:7px"><span style="width:16px;height:9px;border-radius:2px;background:{{ l.c }}"></span><span>{{ l.t }}</span></div>
+</sc-for>
+</div>
+</div>
+<div style="padding:0 14px 14px;display:flex;flex-direction:column;gap:7px">
+<div style="font:9px 'IBM Plex Mono',monospace;color:#8c8475">PAYS</div>
+<sc-for list="{{ countries }}" as="c" hint-placeholder-count="5">
+<div style="display:flex;align-items:center;gap:9px;border-bottom:1px dashed #e0d6c4;padding-bottom:7px">
+<span style="flex:none;width:6px;height:26px;border-radius:3px;background:{{ c.c }}"></span>
+<div style="flex:1;display:flex;flex-direction:column;gap:2px"><span style="font-size:13px;color:#2b2b2e">{{ c.n }}</span><span style="font:8px 'IBM Plex Mono',monospace;color:#8c8475">{{ c.s }}</span></div>
+<span style="color:#7d6aa8">›</span>
+</div>
+</sc-for>
+</div>
+</div>
+<div style="width:252px;border:1.5px solid #2b2b2e;border-radius:20px;overflow:hidden;background:#fbf8f2;display:flex;flex-direction:column">
+<div style="padding:10px 14px;border-bottom:1px solid #e3dac9;display:flex;align-items:center;gap:8px"><span style="font-size:15px;color:#2b2b2e">‹</span><span style="font:9px 'IBM Plex Mono',monospace;color:#8c8475">FICHE PAYS</span></div>
+<div style="padding:13px 14px;display:flex;flex-direction:column;gap:11px;flex:1">
+<div style="display:flex;align-items:center;gap:9px"><span style="font-size:19px;color:#2b2b2e">Nom du pays</span></div>
+<div style="border-radius:6px;background:#d5cbec;padding:9px 11px;display:flex;flex-direction:column;gap:3px"><span style="font:9px 'IBM Plex Mono',monospace;color:#4a453b">NIVEAU DE VIGILANCE</span><span style="font-size:14px;color:#2b2b2e">Vigilance renforcée</span></div>
+<sc-for list="{{ sections }}" as="s" hint-placeholder-count="4">
+<div style="display:flex;flex-direction:column;gap:5px">
+<div style="font:600 10px 'IBM Plex Mono',monospace;color:#2b2b2e">{{ s }}</div>
+<div style="height:6px;background:#e6ddcc;border-radius:3px"></div>
+<div style="height:6px;background:#e6ddcc;border-radius:3px;width:78%"></div>
+</div>
+</sc-for>
+<div style="margin-top:auto;border:1px dashed #cdc3b1;border-radius:6px;padding:8px;font:9px/1.5 'IBM Plex Mono',monospace;color:#6d6659">source officielle · dernière mise à jour</div>
+</div>
+</div>
+<div style="width:252px;border:1.5px solid #2b2b2e;border-radius:20px;overflow:hidden;background:#fbf8f2;display:flex;flex-direction:column">
+<div style="padding:10px 14px;border-bottom:1px solid #e3dac9;font:9px 'IBM Plex Mono',monospace;color:#8c8475">COMPARER / PRÉPARER</div>
+<div style="padding:13px 14px;display:flex;flex-direction:column;gap:10px;flex:1">
+<div style="font-size:16px;color:#2b2b2e;line-height:1.3">Avant de partir</div>
+<sc-for list="{{ checks }}" as="c" hint-placeholder-count="5">
+<div style="display:flex;gap:9px;align-items:flex-start"><span style="flex:none;width:15px;height:15px;border:1.5px solid #2b2b2e;border-radius:3px"></span><span style="font:12px/1.45 'IBM Plex Mono',monospace;color:#413c33">{{ c }}</span></div>
+</sc-for>
+<div style="margin-top:auto;background:#2b2b2e;color:#f4efe6;border-radius:6px;padding:9px;text-align:center;font-size:14px">Numéros utiles sur place</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<div class="dv-opt" id="2d">
+<div class="dv-olabel"><a class="dv-oid" href="#2d">2d</a>Écrans inclusifs — identité, mode discret, sécurité</div>
+<div class="dv-card" style="padding:20px;background:#f4efe6;display:flex;gap:16px;align-items:flex-start">
+
+<div style="width:252px;border:1.5px solid #2b2b2e;border-radius:20px;overflow:hidden;background:#fbf8f2;display:flex;flex-direction:column">
+<div style="height:4px;background:linear-gradient(90deg,#b87070,#c99a63,#c8bd72,#8aa882,#7f9fb8,#9b86c4,#b183a8)"></div>
+<div style="padding:14px;display:flex;flex-direction:column;gap:12px;flex:1">
+<div style="font:9px 'IBM Plex Mono',monospace;color:#8c8475">BIENVENUE — 1/3</div>
+<div style="font-size:19px;color:#2b2b2e;line-height:1.25">Comment veux-tu qu'on te parle ?</div>
+<div style="display:flex;flex-wrap:wrap;gap:6px">
+<sc-for list="{{ pronouns }}" as="p" hint-placeholder-count="6">
+<span style="border:1.5px solid #2b2b2e;border-radius:20px;padding:5px 11px;font-size:12px;color:#2b2b2e">{{ p }}</span>
+</sc-for>
+</div>
+<div style="border:1px dashed #cdc3b1;border-radius:6px;padding:8px 10px;font:10px 'IBM Plex Mono',monospace;color:#8c8475">+ écrire mes pronoms</div>
+<div style="font:9px/1.5 'IBM Plex Mono',monospace;color:#8c8475">facultatif · modifiable à tout moment · jamais public</div>
+<div style="margin-top:auto;display:flex;flex-direction:column;gap:7px">
+<div style="background:#2b2b2e;color:#f4efe6;border-radius:6px;padding:9px;text-align:center;font-size:14px">Continuer</div>
+<div style="text-align:center;font:10px 'IBM Plex Mono',monospace;color:#7d6aa8">passer cette étape</div>
+</div>
+</div>
+</div>
+
+<div style="width:252px;border:1.5px solid #2b2b2e;border-radius:20px;overflow:hidden;background:#fbf8f2;display:flex;flex-direction:column">
+<div style="padding:10px 14px;border-bottom:1px solid #e3dac9;display:flex;align-items:center;gap:8px"><span style="font-size:15px;color:#2b2b2e">‹</span><span style="font:9px 'IBM Plex Mono',monospace;color:#8c8475">BIENVENUE — 2/3</span></div>
+<div style="padding:14px;display:flex;flex-direction:column;gap:11px;flex:1">
+<div style="font-size:18px;color:#2b2b2e;line-height:1.25">Ce qui t'intéresse</div>
+<div style="display:flex;flex-direction:column;gap:7px">
+<sc-for list="{{ identities }}" as="i" hint-placeholder-count="7">
+<div style="display:flex;align-items:center;gap:9px;border:1px solid #e0d6c4;border-radius:6px;padding:7px 9px">
+<span style="flex:none;width:18px;height:11px;border-radius:2px;background:{{ i.c }}"></span>
+<span style="flex:1;font:12px 'IBM Plex Mono',monospace;color:#2b2b2e">{{ i.n }}</span>
+<span style="width:14px;height:14px;border:1.5px solid #2b2b2e;border-radius:3px"></span>
+</div>
+</sc-for>
+</div>
+<div style="font:9px/1.5 'IBM Plex Mono',monospace;color:#8c8475">sert à trier le contenu, rien de plus</div>
+</div>
+</div>
+
+<div style="width:252px;border:1.5px solid #2b2b2e;border-radius:20px;overflow:hidden;background:#fbf8f2;display:flex;flex-direction:column">
+<div style="padding:10px 14px;border-bottom:1px solid #e3dac9;display:flex;align-items:center;gap:8px"><span style="font-size:15px;color:#2b2b2e">‹</span><span style="font:9px 'IBM Plex Mono',monospace;color:#8c8475">BIENVENUE — 3/3 · SÉCURITÉ</span></div>
+<div style="padding:14px;display:flex;flex-direction:column;gap:11px;flex:1">
+<div style="font-size:18px;color:#2b2b2e;line-height:1.25">Rester discret<span style="font-family:'IBM Plex Mono',monospace">·</span>e si besoin</div>
+<sc-for list="{{ safety }}" as="s" hint-placeholder-count="3">
+<div style="display:flex;gap:10px;align-items:flex-start;border-bottom:1px dashed #e0d6c4;padding-bottom:9px">
+<div style="flex:1;display:flex;flex-direction:column;gap:3px"><span style="font-size:13px;color:#2b2b2e">{{ s.t }}</span><span style="font:9px/1.5 'IBM Plex Mono',monospace;color:#8c8475">{{ s.d }}</span></div>
+<span style="flex:none;width:30px;height:17px;border:1.5px solid #2b2b2e;border-radius:9px;background:#d5cbec;display:flex;align-items:center;justify-content:flex-end;padding:0 2px"><span style="width:12px;height:12px;border-radius:50%;background:#2b2b2e"></span></span>
+</div>
+</sc-for>
+<div style="margin-top:auto;background:#2b2b2e;color:#f4efe6;border-radius:6px;padding:9px;text-align:center;font-size:14px">Entrer dans l'app</div>
+</div>
+</div>
+
+<div style="width:252px;border:1.5px solid #2b2b2e;border-radius:20px;overflow:hidden;background:#fbf8f2;display:flex;flex-direction:column">
+<div style="padding:10px 14px;border-bottom:1px solid #e3dac9;font:9px 'IBM Plex Mono',monospace;color:#8c8475">FICHE LIEU · SÉCURITÉ</div>
+<div style="padding:14px;display:flex;flex-direction:column;gap:11px;flex:1">
+<div style="font-size:18px;color:#2b2b2e;line-height:1.25">Nom du lieu</div>
+<div style="display:flex;flex-wrap:wrap;gap:6px">
+<sc-for list="{{ badges }}" as="b" hint-placeholder-count="4">
+<span style="border:1px solid #9b86c4;background:#efeaf8;border-radius:20px;padding:4px 10px;font:9px 'IBM Plex Mono',monospace;color:#413c33">{{ b }}</span>
+</sc-for>
+</div>
+<div style="display:flex;flex-direction:column;gap:5px"><div style="height:6px;background:#e6ddcc;border-radius:3px"></div><div style="height:6px;background:#e6ddcc;border-radius:3px;width:72%"></div></div>
+<div style="border:1px solid #cdc3b1;border-radius:6px;padding:9px 10px;display:flex;flex-direction:column;gap:4px"><span style="font:9px 'IBM Plex Mono',monospace;color:#8c8475">MODÉRATION</span><span style="font-size:12px;color:#2b2b2e">Signaler un lieu ou un contenu</span></div>
+<div style="margin-top:auto;display:flex;flex-direction:column;gap:7px">
+<div style="background:#2b2b2e;color:#f4efe6;border-radius:6px;padding:9px;text-align:center;font-size:14px">Lignes d'écoute · 24/7</div>
+<div style="border:1.5px solid #a55a4a;color:#a55a4a;border-radius:6px;padding:8px;text-align:center;font:10px 'IBM Plex Mono',monospace">SORTIE RAPIDE — ferme l'app</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p class="dv-next">Dis-moi si je garde un seul système de couleur (anthracite dominant vs beige dominant), et si je passe le tour 1 en couleur aussi.</p>
+</section>
+
+<section class="dv-turn" id="t1">
+<div class="dv-thd"><a class="dv-tid" href="#t1">1</a><span class="dv-tname">Premières pistes — app références LGBTQIA+</span></div>
+<div class="dv-opts">
+
+<div class="dv-opt" id="1a">
+<div class="dv-olabel"><a class="dv-oid" href="#1a">1a</a>Web / desktop — fidèle au croquis</div>
+<div class="dv-card" style="width:760px">
+<div style="border-bottom:2px solid #1a1a1a;padding:14px 20px;display:flex;align-items:center;justify-content:space-between">
+<div style="font-size:19px;color:#1a1a1a">LOGO</div>
+<div style="display:flex;gap:18px;font-size:15px;color:#3a3a3a"><span>Calendrier</span><span>Dico</span><span>Manifs</span><span>Monde</span><span>S'informer</span></div>
+</div>
+<div style="padding:22px 20px 26px;display:flex;flex-direction:column;gap:22px">
+<div style="display:flex;align-items:center;justify-content:space-between;font-size:16px;color:#1a1a1a"><span style="border:2px solid #1a1a1a;border-radius:4px;padding:2px 9px">‹</span><span style="font-size:20px">Juin 2026 — Mois des fiertés</span><span style="border:2px solid #1a1a1a;border-radius:4px;padding:2px 9px">›</span></div>
+<div style="border:2px solid #1a1a1a">
+<div style="display:grid;grid-template-columns:repeat(7,1fr);border-bottom:2px solid #1a1a1a;font-size:11px;font-family:'IBM Plex Mono',monospace;color:#5a5a5a">
+<div style="padding:6px 0;text-align:center">LU</div><div style="padding:6px 0;text-align:center">MA</div><div style="padding:6px 0;text-align:center">ME</div><div style="padding:6px 0;text-align:center">JE</div><div style="padding:6px 0;text-align:center">VE</div><div style="padding:6px 0;text-align:center">SA</div><div style="padding:6px 0;text-align:center">DI</div>
+</div>
+<sc-for list="{{ weeks }}" as="w" hint-placeholder-count="4">
+<div style="display:grid;grid-template-columns:repeat(7,1fr)">
+<sc-for list="{{ w }}" as="d" hint-placeholder-count="7">
+<div style="aspect-ratio:1.35;border-right:1px solid #cfcfcf;border-bottom:1px solid #cfcfcf;padding:5px 6px;display:flex;flex-direction:column;gap:4px">
+<div style="font:600 10px 'IBM Plex Mono',monospace;color:#8a8a8a">{{ d.n }}</div>
+<sc-if value="{{ d.tag }}" hint-placeholder-val="{{ true }}">
+<div style="height:11px;border-radius:3px;background:#dcdcdc;border:1px solid #9a9a9a"></div>
+</sc-if>
+<sc-if value="{{ d.tag2 }}" hint-placeholder-val="{{ false }}">
+<div style="height:11px;border-radius:3px;background:repeating-linear-gradient(45deg,#e8e8e8 0 4px,#fff 4px 8px);border:1px solid #9a9a9a"></div>
+</sc-if>
+</div>
+</sc-for>
+</div>
+</sc-for>
+</div>
+<div style="display:flex;gap:16px;font:11px 'IBM Plex Mono',monospace;color:#6a6a6a"><span>▢ jour de fierté</span><span>▨ manif / événement</span></div>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px">
+<div style="display:flex;flex-direction:column;align-items:center;gap:9px;text-align:center">
+<div style="width:74px;height:74px;border:2px solid #1a1a1a;border-radius:50%;background:repeating-linear-gradient(45deg,#f2f2f2 0 5px,#fff 5px 10px)"></div>
+<div style="font-size:16px;color:#1a1a1a">Monde LGBT friendly</div>
+<div style="font:10px 'IBM Plex Mono',monospace;color:#8a8a8a">[ pictogramme globe ]</div>
+</div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:9px;text-align:center">
+<div style="width:74px;height:74px;border:2px solid #1a1a1a;background:repeating-linear-gradient(45deg,#f2f2f2 0 5px,#fff 5px 10px)"></div>
+<div style="font-size:16px;color:#1a1a1a">Ça veut dire quoi ça ?</div>
+<div style="font:10px 'IBM Plex Mono',monospace;color:#8a8a8a">[ pictogramme livre ]</div>
+</div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:9px;text-align:center">
+<div style="width:74px;height:74px;border:2px solid #1a1a1a;background:repeating-linear-gradient(45deg,#f2f2f2 0 5px,#fff 5px 10px)"></div>
+<div style="font-size:16px;color:#1a1a1a">Les manifs dans le monde</div>
+<div style="font:10px 'IBM Plex Mono',monospace;color:#8a8a8a">[ pictogramme poing ]</div>
+</div>
+</div>
+<div style="display:flex;gap:22px;align-items:flex-start;border-top:1px dashed #9a9a9a;padding-top:18px">
+<div style="font-size:18px;color:#1a1a1a;flex:none;width:170px">Où s'informer ?</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:10px">
+<div style="height:12px;border-top:4px dashed #1a1a1a"></div>
+<div style="height:12px;border-top:4px dashed #1a1a1a"></div>
+<div style="height:12px;border-top:4px dashed #1a1a1a"></div>
+</div>
+</div>
+</div>
+<div style="border-top:2px solid #1a1a1a;padding:16px 20px;display:flex;justify-content:space-between;font:11px 'IBM Plex Mono',monospace;color:#7a7a7a"><span>FOOTER — mentions, contact</span><span>aide · sortie rapide</span></div>
+</div>
+</div>
+
+<div class="dv-opt" id="1b">
+<div class="dv-olabel"><a class="dv-oid" href="#1b">1b</a>Mobile — calendrier d'abord, 5 onglets</div>
+<div class="dv-card" style="padding:20px;display:flex;gap:16px">
+<div style="width:250px;border:2px solid #1a1a1a;border-radius:20px;display:flex;flex-direction:column;overflow:hidden">
+<div style="padding:10px 14px 6px;font:9px 'IBM Plex Mono',monospace;color:#9a9a9a">9:41</div>
+<div style="padding:2px 14px 10px;font-size:20px;color:#1a1a1a">Juin 2026</div>
+<div style="padding:0 14px 10px;font:11px 'IBM Plex Mono',monospace;color:#7a7a7a">Mois des fiertés</div>
+<div style="padding:0 14px;border-top:1px solid #d5d5d5">
+<div style="display:grid;grid-template-columns:repeat(7,1fr);padding:7px 0;font:8px 'IBM Plex Mono',monospace;color:#9a9a9a;text-align:center"><div>L</div><div>M</div><div>M</div><div>J</div><div>V</div><div>S</div><div>D</div></div>
+<div style="display:grid;grid-template-columns:repeat(7,1fr);gap:4px">
+<sc-for list="{{ days30 }}" as="d" hint-placeholder-count="30">
+<div style="aspect-ratio:1;border:1px solid #d5d5d5;border-radius:4px;display:flex;align-items:center;justify-content:center;font:8px 'IBM Plex Mono',monospace;color:#8a8a8a">{{ d }}</div>
+</sc-for>
+</div>
+</div>
+<div style="padding:14px;display:flex;flex-direction:column;gap:8px;flex:1">
+<div style="font:10px 'IBM Plex Mono',monospace;color:#9a9a9a">À VENIR</div>
+<div style="border:1px solid #1a1a1a;border-radius:6px;padding:8px 10px;display:flex;flex-direction:column;gap:3px"><div style="font-size:14px;color:#1a1a1a">Marche des fiertés</div><div style="font:10px 'IBM Plex Mono',monospace;color:#7a7a7a">sa 13.06 · 14h · Lausanne</div></div>
+<div style="border:1px dashed #9a9a9a;border-radius:6px;padding:8px 10px"><div style="font:10px 'IBM Plex Mono',monospace;color:#9a9a9a">autre événement…</div></div>
+</div>
+<div style="border-top:2px solid #1a1a1a;display:grid;grid-template-columns:repeat(5,1fr);padding:8px 4px">
+<sc-for list="{{ tabs }}" as="t" hint-placeholder-count="5">
+<div style="display:flex;flex-direction:column;align-items:center;gap:4px"><div style="width:16px;height:16px;border:1.5px solid #1a1a1a;border-radius:4px"></div><div style="font:7px 'IBM Plex Mono',monospace;color:#5a5a5a">{{ t }}</div></div>
+</sc-for>
+</div>
+</div>
+<div style="width:250px;border:2px solid #1a1a1a;border-radius:20px;display:flex;flex-direction:column;overflow:hidden">
+<div style="padding:10px 14px 8px;display:flex;align-items:center;gap:8px;border-bottom:1px solid #d5d5d5"><span style="font-size:15px">‹</span><span style="font:10px 'IBM Plex Mono',monospace;color:#7a7a7a">RETOUR AU CALENDRIER</span></div>
+<div style="padding:14px;display:flex;flex-direction:column;gap:12px;flex:1">
+<div style="font-size:19px;color:#1a1a1a;line-height:1.2">Marche des fiertés</div>
+<div style="display:flex;flex-direction:column;gap:6px;font:11px 'IBM Plex Mono',monospace;color:#3a3a3a"><div>JOUR · samedi 13 juin</div><div>HEURE · 14h00</div><div>LIEU · Place centrale, Lausanne</div></div>
+<div style="height:90px;border:1px solid #9a9a9a;border-radius:6px;background:repeating-linear-gradient(45deg,#f2f2f2 0 6px,#fff 6px 12px);display:flex;align-items:center;justify-content:center;font:9px 'IBM Plex Mono',monospace;color:#8a8a8a">[ carte du lieu ]</div>
+<div style="display:flex;flex-direction:column;gap:5px"><div style="height:8px;background:#e6e6e6;border-radius:3px"></div><div style="height:8px;background:#e6e6e6;border-radius:3px"></div><div style="height:8px;background:#e6e6e6;border-radius:3px;width:65%"></div></div>
+<div style="margin-top:auto;display:flex;flex-direction:column;gap:8px">
+<div style="border:2px solid #1a1a1a;border-radius:6px;padding:9px;text-align:center;font-size:14px;color:#1a1a1a">Ajouter à mon agenda</div>
+<div style="border:1px dashed #9a9a9a;border-radius:6px;padding:7px;text-align:center;font:10px 'IBM Plex Mono',monospace;color:#8a8a8a">partager · signaler</div>
+</div>
+</div>
+</div>
+<div style="width:250px;border:2px solid #1a1a1a;border-radius:20px;display:flex;flex-direction:column;overflow:hidden">
+<div style="padding:14px;display:flex;flex-direction:column;gap:12px;flex:1;align-items:center;justify-content:center;text-align:center">
+<div style="width:56px;height:56px;border:2px solid #1a1a1a;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px">✓</div>
+<div style="font-size:19px;color:#1a1a1a;line-height:1.25">C'est noté !</div>
+<div style="font:11px 'IBM Plex Mono',monospace;color:#7a7a7a;line-height:1.5">Marche des fiertés ajoutée<br>sa 13.06 · 14h · Lausanne<br>rappel 2h avant</div>
+<div style="border:2px solid #1a1a1a;border-radius:6px;padding:9px 16px;font-size:14px;color:#1a1a1a">Retour au calendrier</div>
+<div style="font:10px 'IBM Plex Mono',monospace;color:#9a9a9a">jalon 4 — feedback explicite</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="dv-opt" id="1c">
+<div class="dv-olabel"><a class="dv-oid" href="#1c">1c</a>Mobile — agenda en liste + dico cherchable</div>
+<div class="dv-card" style="padding:20px;display:flex;gap:16px">
+<div style="width:250px;border:2px solid #1a1a1a;border-radius:20px;display:flex;flex-direction:column;overflow:hidden">
+<div style="padding:12px 14px;display:flex;flex-direction:column;gap:10px;border-bottom:2px solid #1a1a1a">
+<div style="font-size:20px;color:#1a1a1a">Près de toi</div>
+<div style="border:1px solid #1a1a1a;border-radius:20px;padding:7px 12px;font:10px 'IBM Plex Mono',monospace;color:#9a9a9a">rechercher un mot, une ville…</div>
+<div style="display:flex;gap:6px;flex-wrap:wrap"><span style="border:1px solid #1a1a1a;border-radius:20px;padding:3px 9px;font:9px 'IBM Plex Mono',monospace">fiertés</span><span style="border:1px dashed #9a9a9a;border-radius:20px;padding:3px 9px;font:9px 'IBM Plex Mono',monospace;color:#8a8a8a">manifs</span><span style="border:1px dashed #9a9a9a;border-radius:20px;padding:3px 9px;font:9px 'IBM Plex Mono',monospace;color:#8a8a8a">dico</span></div>
+</div>
+<div style="padding:12px 14px;display:flex;flex-direction:column;gap:10px;flex:1">
+<sc-for list="{{ agenda }}" as="a" hint-placeholder-count="4">
+<div style="display:flex;gap:10px;align-items:flex-start;border-bottom:1px dashed #d5d5d5;padding-bottom:9px">
+<div style="flex:none;width:38px;border:1px solid #1a1a1a;border-radius:5px;padding:4px 0;text-align:center;font:9px/1.3 'IBM Plex Mono',monospace"><div style="font-weight:600">{{ a.d }}</div><div style="color:#8a8a8a">{{ a.m }}</div></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:3px"><div style="font-size:13px;color:#1a1a1a">{{ a.t }}</div><div style="font:9px 'IBM Plex Mono',monospace;color:#8a8a8a">{{ a.s }}</div></div>
+</div>
+</sc-for>
+</div>
+<div style="border-top:2px solid #1a1a1a;display:grid;grid-template-columns:repeat(4,1fr);padding:8px 4px">
+<sc-for list="{{ tabs4 }}" as="t" hint-placeholder-count="4">
+<div style="display:flex;flex-direction:column;align-items:center;gap:4px"><div style="width:16px;height:16px;border:1.5px solid #1a1a1a;border-radius:4px"></div><div style="font:7px 'IBM Plex Mono',monospace;color:#5a5a5a">{{ t }}</div></div>
+</sc-for>
+</div>
+</div>
+<div style="width:250px;border:2px solid #1a1a1a;border-radius:20px;display:flex;flex-direction:column;overflow:hidden">
+<div style="padding:12px 14px;border-bottom:1px solid #d5d5d5;display:flex;flex-direction:column;gap:9px"><div style="font-size:19px;color:#1a1a1a">Dico</div><div style="border:1px solid #1a1a1a;border-radius:20px;padding:7px 12px;font:10px 'IBM Plex Mono',monospace;color:#9a9a9a">chercher un terme…</div></div>
+<div style="padding:10px 14px;display:flex;flex-direction:column;flex:1">
+<sc-for list="{{ dico }}" as="w" hint-placeholder-count="6">
+<div style="padding:8px 0;border-bottom:1px dashed #d5d5d5;display:flex;flex-direction:column;gap:3px"><div style="font:13px 'IBM Plex Mono',monospace;color:#1a1a1a">{{ w }}</div><div style="height:6px;background:#e6e6e6;border-radius:3px;width:80%"></div></div>
+</sc-for>
+</div>
+</div>
+<div style="width:250px;border:2px solid #1a1a1a;border-radius:20px;display:flex;flex-direction:column;overflow:hidden">
+<div style="padding:12px 14px;border-bottom:1px solid #d5d5d5;font-size:19px;color:#1a1a1a">Monde LGBT friendly</div>
+<div style="height:120px;border-bottom:1px solid #d5d5d5;background:repeating-linear-gradient(45deg,#f2f2f2 0 6px,#fff 6px 12px);display:flex;align-items:center;justify-content:center;font:9px 'IBM Plex Mono',monospace;color:#8a8a8a">[ carte du monde ]</div>
+<div style="padding:10px 14px;display:flex;flex-direction:column;gap:9px;flex:1">
+<div style="font:9px 'IBM Plex Mono',monospace;color:#9a9a9a">FILTRER PAR PAYS / COMMUNE</div>
+<sc-for list="{{ places }}" as="p" hint-placeholder-count="4">
+<div style="display:flex;justify-content:space-between;align-items:center;border:1px solid #d5d5d5;border-radius:5px;padding:7px 9px"><span style="font-size:12px;color:#1a1a1a">{{ p.n }}</span><span style="font:9px 'IBM Plex Mono',monospace;color:#8a8a8a">{{ p.s }}</span></div>
+</sc-for>
+</div>
+</div>
+</div>
+</div>
+
+<div class="dv-opt" id="1d">
+<div class="dv-olabel"><a class="dv-oid" href="#1d">1d</a>User flow 4 jalons (sur la base de <a class="dv-oid" href="#1b">1b</a>)</div>
+<div class="dv-card" style="width:760px;padding:22px 20px">
+<div style="display:flex;gap:10px;align-items:stretch">
+<sc-for list="{{ flow }}" as="f" hint-placeholder-count="4">
+<div style="flex:1;display:flex;flex-direction:column;gap:8px">
+<div style="font:9px 'IBM Plex Mono',monospace;color:#9a9a9a">JALON {{ f.n }}</div>
+<div style="border:2px solid #1a1a1a;border-radius:8px;padding:10px;display:flex;flex-direction:column;gap:7px;min-height:150px">
+<div style="font-size:15px;color:#1a1a1a;line-height:1.2">{{ f.t }}</div>
+<div style="height:1px;background:#d5d5d5"></div>
+<div style="font:9px/1.5 'IBM Plex Mono',monospace;color:#6a6a6a">ACTION<br>{{ f.a }}</div>
+<div style="font:9px/1.5 'IBM Plex Mono',monospace;color:#6a6a6a">FEEDBACK<br>{{ f.fb }}</div>
+</div>
+<div style="font:9px 'IBM Plex Mono',monospace;color:#8a8a8a">↩ sortie : {{ f.out }}</div>
+</div>
+<sc-if value="{{ f.arrow }}" hint-placeholder-val="{{ true }}">
+<div style="align-self:center;font-size:20px;color:#1a1a1a">→</div>
+</sc-if>
+</sc-for>
+</div>
+<div style="margin-top:18px;border-top:1px dashed #9a9a9a;padding-top:12px;font:10px/1.6 'IBM Plex Mono',monospace;color:#7a7a7a">Test de l'impasse : chaque écran a un retour explicite · tâche accomplie en 3 clics · jalon 4 confirme la réussite.</div>
+</div>
+</div>
+
+</div>
+<p class="dv-next">Essaie ensuite : « garde <a class="dv-oid" href="#1b">1b</a> mais ajoute l'écran print / correspondance » · « décline <a class="dv-oid" href="#1c">1c</a> en version desktop » · « nouvelles directions pour l'accueil »</p>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    const tag = { 1: 1, 13: 1, 28: 1 }, tag2 = { 13: 1, 20: 1 };
+    const cells = [];
+    for (let i = 0; i < 28; i++) {
+      const n = i + 1;
+      cells.push({ n, tag: !!tag[n], tag2: !!tag2[n] });
+    }
+    const weeks = [0, 1, 2, 3].map(w => cells.slice(w * 7, w * 7 + 7));
+    return {
+      dow: ['LU', 'MA', 'ME', 'JE', 'VE', 'SA', 'DI'],
+      cells: Array.from({ length: 30 }, (_, i) => {
+        const flags = ['#f3e6e4', '#f7ede0', '#f6f1dd', '#e8f0e9', '#e4eef3', '#eae4f5', '#f4e6ee'];
+        return { n: i + 1, bg: flags[i % flags.length], tag: [1, 13, 17, 28].includes(i + 1) };
+      }),
+      tabs5: ['Calendrier', 'Prints', 'Dico', 'Voyager', 'Moi'],
+      upcoming: [
+        { t: 'Marche des fiertés', s: 'sa 13.06 · 14h · Lausanne', c: '#9280c9' },
+        { t: 'Permanence associative', s: 'di 21.06 · 18h · Yverdon', c: '#79ab84' },
+        { t: 'Projection & discussion', s: 've 26.06 · 20h · Genève', c: '#6fa3b8' }
+      ],
+      dicoPlus: [
+        { n: 'Asexuel\u00b7le', c: '#79ab84' },
+        { n: 'Bisexuel\u00b7le', c: '#9280c9' },
+        { n: 'Intersexe', c: '#e3a765' },
+        { n: 'Non-binaire', c: '#dcc96f' },
+        { n: 'Pansexuel\u00b7le', c: '#c37fa8' },
+        { n: 'Queer', c: '#6fa3b8' }
+      ],
+      pronouns: ['elle', 'il', 'iel', 'elle/iel', 'il/iel', 'pas de pronom'],
+      identities: [
+        { n: 'Lesbienne', c: '#b87070' },
+        { n: 'Gay', c: '#c99a63' },
+        { n: 'Bi / pan', c: '#9b86c4' },
+        { n: 'Trans', c: '#7f9fb8' },
+        { n: 'Non-binaire', c: '#c8bd72' },
+        { n: 'Intersexe', c: '#b183a8' },
+        { n: 'Asexuel·le / aro', c: '#8aa882' }
+      ],
+      safety: [
+        { t: 'Mode discret', d: 'icône et nom neutres sur l\u2019écran d\u2019accueil' },
+        { t: 'Verrouillage', d: 'code ou biométrie à l\u2019ouverture' },
+        { t: 'Sortie rapide', d: 'un geste ferme l\u2019app et vide l\u2019historique' }
+      ],
+      badges: ['accueil formé', 'toilettes neutres', 'accessible', 'sans alcool'],
+      infos: ['Associations', 'Lignes d\u2019écoute', 'Ressources & guides'],
+      saved: ['01.06', '05.06', '08.06', '13.06', '16.06', '20.06'],
+      levels: [
+        { c: '#8a9a7b', t: 'accueil favorable' },
+        { c: '#d8c88a', t: 'vigilance normale' },
+        { c: '#d79a63', t: 'vigilance renforcée' },
+        { c: '#a55a4a', t: 'zone à risque' }
+      ],
+      countries: [
+        { n: 'Canada', s: 'accueil favorable', c: '#8a9a7b' },
+        { n: 'Portugal', s: 'accueil favorable', c: '#8a9a7b' },
+        { n: 'Italie', s: 'vigilance normale', c: '#d8c88a' },
+        { n: 'Turquie', s: 'vigilance renforcée', c: '#d79a63' },
+        { n: 'Pays — législation hostile', s: 'zone à risque', c: '#a55a4a' }
+      ],
+      sections: ['Cadre légal', 'Attitudes et société', 'Sécurité au quotidien', 'En cas de problème'],
+      checks: [
+        'Vérifier le cadre légal en vigueur',
+        'Repérer les lieux et assos sur place',
+        'Noter l\u2019ambassade la plus proche',
+        'Adapter documents et papiers d\u2019identité',
+        'Prévenir un proche de l\u2019itinéraire'
+      ],
+      weeks,
+      days30: Array.from({ length: 30 }, (_, i) => i + 1),
+      tabs: ['Calendrier', 'Manifs', 'Dico', 'Monde', 'Infos'],
+      tabs4: ['Agenda', 'Dico', 'Monde', 'Moi'],
+      agenda: [
+        { d: '13', m: 'JUIN', t: 'Marche des fiertés', s: '14h · Lausanne' },
+        { d: '17', m: 'MAI', t: 'Journée contre l\u2019homophobie', s: 'toute la Suisse' },
+        { d: '21', m: 'JUIN', t: 'Permanence associative', s: '18h · Yverdon' },
+        { d: '28', m: 'JUIN', t: 'Stonewall — anniversaire', s: 'repère historique' }
+      ],
+      dico: ['Asexuel·le', 'Bisexuel·le', 'Intersexe', 'Non-binaire', 'Pansexuel·le', 'Queer'],
+      places: [
+        { n: 'Lausanne', s: 'accueil · 3 lieux' },
+        { n: 'Genève', s: 'accueil · 5 lieux' },
+        { n: 'Yverdon', s: 'accueil · 1 lieu' },
+        { n: 'Pays — vigilance', s: 'voir la carte' }
+      ],
+      flow: [
+        { n: '1', t: 'Entrée en scène', a: 'ouvre l\u2019app sur le calendrier du mois', fb: 'le mois en cours et les dates marquées sont visibles', out: 'onglets en bas', arrow: true },
+        { n: '2', t: 'Consultation', a: 'filtre par type (fierté / manif) ou change de mois', fb: 'la liste « à venir » se met à jour', out: 'retour au mois courant', arrow: true },
+        { n: '3', t: 'Sélection', a: 'ouvre la fiche : jour, heure, lieu, carte', fb: 'détail complet + bouton d\u2019action', out: 'flèche retour', arrow: true },
+        { n: '4', t: 'Conclusion', a: 'ajoute à son agenda', fb: 'écran de confirmation + rappel programmé', out: 'retour au calendrier', arrow: false }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>
