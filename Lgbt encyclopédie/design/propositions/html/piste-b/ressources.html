@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fr" data-piste="b">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ressources — Prisme</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600&family=Instrument+Serif&family=Libre+Caslon+Text:wght@400;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Nunito:wght@400;600;800&family=Schibsted+Grotesk:wght@400;500;700;800&display=swap">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/themes.css">
+<script src="../js/app.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#contenu">Aller au contenu</a>
+<div class="stripe" aria-hidden="true"></div>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true"></span>Prisme</a>
+    <nav class="main-nav" aria-label="Navigation principale">
+      <ul>
+        <li><a href="index.html">Calendrier</a></li>
+        <li><a href="prints.html">Prints</a></li>
+        <li><a href="dico.html">Dico</a></li>
+        <li><a href="manifs.html">Manifs</a></li>
+        <li><a href="voyager.html">Voyager</a></li>
+        <li><a href="ressources.html" aria-current="page">Ressources</a></li>
+        <li><a class="account" href="mon-espace.html">iel · mon espace</a></li>
+      </ul>
+    </nav>
+    <a class="help-link" href="ressources.html">Aide</a>
+  </div>
+</header>
+<main id="contenu">
+<div class="page-head">
+  <div class="stack"><h1>Ressources à contacter</h1><p class="lead">Écoute, santé, droits et associations. Anonyme et gratuit quand c'est indiqué.</p></div>
+  <form class="search" role="search"><label class="visually-hidden" for="res">Chercher une ressource</label><input id="res" type="search" placeholder="Chercher une ressource…"></form>
+</div>
+<section class="urgent" aria-labelledby="titre-urgence">
+  <p><span class="eyebrow" id="titre-urgence">En danger immédiat</span><br>Appelle directement les secours.</p>
+  <a href="tel:117">117 · Police</a><a href="tel:144">144 · Urgences</a><a href="tel:112">112</a>
+</section>
+<ul class="chips" data-chips aria-label="Filtrer par thème"><li><button class="chip" type="button" aria-pressed="true">Tout</button></li><li><button class="chip" type="button" aria-pressed="false">Écoute</button></li><li><button class="chip" type="button" aria-pressed="false">Jeunes</button></li><li><button class="chip" type="button" aria-pressed="false">Santé</button></li><li><button class="chip" type="button" aria-pressed="false">Juridique</button></li><li><button class="chip" type="button" aria-pressed="false">Associations</button></li></ul>
+<ul class="resources">
+  <li><article class="card"><p class="eyebrow">Écoute</p><h2 style="font-size:1.15rem">LGBT+ Helpline</h2><p class="muted">Écoute par des pairs : identité, coming out, discriminations.</p><p class="meta">téléphone · chat · anonyme</p><div class="btn-row"><a class="btn btn-primary btn-sm" href="#">Appeler</a><a class="btn btn-sm" href="#">Site web</a></div></article></li>
+  <li><article class="card"><p class="eyebrow">Écoute</p><h2 style="font-size:1.15rem">La Main Tendue — 143</h2><p class="muted">Écoute pour toute personne en difficulté.</p><p class="meta">24/7 · gratuit · anonyme</p><div class="btn-row"><a class="btn btn-primary btn-sm" href="#">Appeler</a><a class="btn btn-sm" href="#">Site web</a></div></article></li>
+  <li><article class="card"><p class="eyebrow">Jeunes</p><h2 style="font-size:1.15rem">Pro Juventute — 147</h2><p class="muted">Conseil pour enfants et jeunes par téléphone, SMS ou chat.</p><p class="meta">24/7 · gratuit · confidentiel</p><div class="btn-row"><a class="btn btn-primary btn-sm" href="#">Appeler</a><a class="btn btn-sm" href="#">Site web</a></div></article></li>
+  <li><article class="card"><p class="eyebrow">Santé</p><h2 style="font-size:1.15rem">Checkpoint</h2><p class="muted">Santé sexuelle, dépistage et accompagnement.</p><p class="meta">sur rendez-vous</p><div class="btn-row"><a class="btn btn-primary btn-sm" href="#">Appeler</a><a class="btn btn-sm" href="#">Site web</a></div></article></li>
+  <li><article class="card"><p class="eyebrow">Juridique</p><h2 style="font-size:1.15rem">Transgender Network Switzerland</h2><p class="muted">Identité de genre, changement d’état civil, droits.</p><p class="meta">e-mail · permanences</p><div class="btn-row"><a class="btn btn-primary btn-sm" href="#">Appeler</a><a class="btn btn-sm" href="#">Site web</a></div></article></li>
+  <li><article class="card"><p class="eyebrow">Associations</p><h2 style="font-size:1.15rem">Association locale</h2><p class="muted">Accueil, groupes de parole et événements près de chez toi.</p><p class="meta">selon la région</p><div class="btn-row"><a class="btn btn-primary btn-sm" href="#">Appeler</a><a class="btn btn-sm" href="#">Site web</a></div></article></li>
+</ul>
+<section class="soft" style="display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap"><p>Une ressource manque près de chez toi&nbsp;?</p><a class="btn btn-sm" href="#">Proposer une ressource</a></section>
+</main>
+<footer class="site-footer">
+  <div class="inner">
+    <p>Mentions · Contact · Crédits illustrations</p>
+    <button class="quick-exit" type="button" data-quick-exit>Sortie rapide</button>
+  </div>
+</footer>
+<nav class="tabbar" aria-label="Navigation mobile">
+  <ul>
+    <li><a href="index.html"><span class="ico" aria-hidden="true"></span>Calendrier</a></li>
+    <li><a href="prints.html"><span class="ico" aria-hidden="true"></span>Prints</a></li>
+    <li><a href="dico.html"><span class="ico" aria-hidden="true"></span>Dico</a></li>
+    <li><a href="voyager.html"><span class="ico" aria-hidden="true"></span>Voyager</a></li>
+    <li><a href="mon-espace.html"><span class="ico" aria-hidden="true"></span>Moi</a></li>
+  </ul>
+</nav>
+</body>
+</html>

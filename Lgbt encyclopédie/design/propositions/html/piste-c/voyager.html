@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="fr" data-piste="c">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Voyager — Prisme</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600&family=Instrument+Serif&family=Libre+Caslon+Text:wght@400;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Nunito:wght@400;600;800&family=Schibsted+Grotesk:wght@400;500;700;800&display=swap">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/themes.css">
+<script src="../js/app.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#contenu">Aller au contenu</a>
+<div class="stripe" aria-hidden="true"></div>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true"></span>Prisme</a>
+    <nav class="main-nav" aria-label="Navigation principale">
+      <ul>
+        <li><a href="index.html">Calendrier</a></li>
+        <li><a href="prints.html">Prints</a></li>
+        <li><a href="dico.html">Dico</a></li>
+        <li><a href="manifs.html">Manifs</a></li>
+        <li><a href="voyager.html" aria-current="page">Voyager</a></li>
+        <li><a href="ressources.html">Ressources</a></li>
+        <li><a class="account" href="mon-espace.html">iel · mon espace</a></li>
+      </ul>
+    </nav>
+    <a class="help-link" href="ressources.html">Aide</a>
+  </div>
+</header>
+<main id="contenu">
+<div class="page-head">
+  <div class="stack"><h1>Voyager en sécurité</h1><p class="lead">Cadre légal, attitudes, sécurité : sélectionne un pays sur la carte ou dans la liste.</p></div>
+  <form class="search" role="search"><label class="visually-hidden" for="pays">Chercher un pays</label><input id="pays" type="search" placeholder="Chercher un pays, une ville…"></form>
+</div>
+<div class="split" style="grid-template-columns:minmax(0,1fr) 320px">
+  <div class="stack">
+    <section class="card"><div class="placeholder map" role="img" aria-label="Carte du monde par niveau de vigilance">carte du monde cliquable</div>
+      <ul class="legend"><li class="lv1"><span class="swatch"></span>accueil favorable</li><li class="lv2"><span class="swatch"></span>vigilance normale</li><li class="lv3"><span class="swatch"></span>vigilance renforcée</li><li class="lv4"><span class="swatch"></span>zone à risque</li></ul>
+    </section>
+    <section class="card" aria-label="Liste des pays"><ul class="list country-list">
+      <li class="lv1"><a href="#"><span class="bar"></span>Canada<small>accueil favorable</small></a></li>
+      <li class="lv1"><a href="#"><span class="bar"></span>Portugal<small>accueil favorable</small></a></li>
+      <li class="lv2"><a href="#"><span class="bar"></span>Italie<small>vigilance normale</small></a></li>
+      <li class="lv3"><a href="#"><span class="bar"></span>Turquie<small>vigilance renforcée</small></a></li>
+      <li class="lv4"><a href="#"><span class="bar"></span>Pays — législation hostile<small>zone à risque</small></a></li>
+    </ul></section>
+  </div>
+  <article class="card stack">
+    <h2>Nom du pays</h2>
+    <div class="vigilance"><p class="meta">Niveau de vigilance</p><p>Vigilance renforcée</p></div>
+    <section><h3>Cadre légal</h3><p class="muted">Lois en vigueur, reconnaissance des couples, identité de genre.</p></section>
+    <section><h3>Attitudes et société</h3><p class="muted">Perception générale, différences entre villes et campagnes.</p></section>
+    <section><h3>Sécurité au quotidien</h3><p class="muted">Précautions pratiques pendant le séjour.</p></section>
+    <section><h3>En cas de problème</h3><p class="muted">Ambassade, contacts locaux, démarches.</p></section>
+    <a class="btn btn-primary" href="ressources.html">Numéros utiles sur place</a>
+    <p class="meta">Source officielle · dernière mise à jour</p>
+  </article>
+</div>
+</main>
+<footer class="site-footer">
+  <div class="inner">
+    <p>Mentions · Contact · Crédits illustrations</p>
+    <button class="quick-exit" type="button" data-quick-exit>Sortie rapide</button>
+  </div>
+</footer>
+<nav class="tabbar" aria-label="Navigation mobile">
+  <ul>
+    <li><a href="index.html"><span class="ico" aria-hidden="true"></span>Calendrier</a></li>
+    <li><a href="prints.html"><span class="ico" aria-hidden="true"></span>Prints</a></li>
+    <li><a href="dico.html"><span class="ico" aria-hidden="true"></span>Dico</a></li>
+    <li><a href="voyager.html" aria-current="page"><span class="ico" aria-hidden="true"></span>Voyager</a></li>
+    <li><a href="mon-espace.html"><span class="ico" aria-hidden="true"></span>Moi</a></li>
+  </ul>
+</nav>
+</body>
+</html>

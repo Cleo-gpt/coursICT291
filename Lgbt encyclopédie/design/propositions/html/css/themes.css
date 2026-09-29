@@ -1,0 +1,53 @@
+/* Piste A — Éditoriale & sobre */
+[data-piste="a"]{
+  --font-display:'Libre Caslon Text',Georgia,serif;--font-body:'Source Serif 4',Georgia,serif;--font-mono:'IBM Plex Mono',monospace;
+  --display-weight:400;--display-tracking:0;--brand-weight:400;--btn-weight:600;
+  --bg:#fbf8f2;--surface:#fff;--ink:#16213a;--ink-2:#4c5568;--muted:#6f7787;--line:#d9d6ce;--line-2:#e8e5de;
+  --head:#16213a;--head-ink:#fbf8f2;--head-sub:#aab2c3;--underline:#fbf8f2;--quick:#fbf8f2;
+  --accent:#1f3a68;--accent-ink:#fff;--accent-text:#1f3a68;--soft:#eceef2;--ph1:#e6e8ee;--ph2:#f6f6f8;
+  --logo:#1f3a68;--mark-radius:50%;--radius:3px;--radius-sm:2px;--radius-pill:3px;--border-w:1px;
+  --stripe:none;--stripe-display:none;
+  --cal-1:#eceef2;--cal-2:#e4e6eb;--cal-3:#f1f2f5;--cal-4:#eceef2;--cal-5:#e4e6eb;--cal-6:#f1f2f5;--cal-7:#e8eaef;
+  --tag-1:#1f3a68;--tag-2:#4f6690;--tag-3:#8ea0bf;--tag-4:#b9c4d6;--tag-5:#6f7787;--tag-6:#c9d3e3;
+  --level-1:#c9d3e3;--level-2:#8ea0bf;--level-3:#4f6690;--level-4:#16213a;
+}
+/* Piste B — Chaleureuse & terroir */
+[data-piste="b"]{
+  --font-display:'Nunito',system-ui,sans-serif;--font-body:'Nunito',system-ui,sans-serif;--font-mono:'Nunito',system-ui,sans-serif;
+  --display-weight:800;--display-tracking:0;--brand-weight:800;--btn-weight:700;
+  --bg:#f6f1e7;--surface:#fffdf8;--ink:#3b3129;--ink-2:#65584b;--muted:#7a6c5e;--line:#e2d6c3;--line-2:#ede4d6;
+  --head:#5f7c64;--head-ink:#fffdf8;--head-sub:#e6eee2;--underline:#f3c9a8;--quick:#fffdf8;
+  --accent:#b95f3f;--accent-ink:#fffdf8;--accent-text:#9e4f33;--soft:#e9efe4;--ph1:#ece2d2;--ph2:#faf5ec;
+  --logo:#c46a4a;--mark-radius:50%;--radius:20px;--radius-sm:10px;--radius-pill:999px;--border-w:1px;
+  --stripe:none;--stripe-display:none;
+  --cal-1:#e9efe4;--cal-2:#f3e1d6;--cal-3:#efe7d6;--cal-4:#dfe8e0;--cal-5:#f3e1d6;--cal-6:#e9efe4;--cal-7:#efe7d6;
+  --tag-1:#c46a4a;--tag-2:#7d9a82;--tag-3:#c9a36b;--tag-4:#a9c2a6;--tag-5:#d99a7b;--tag-6:#b8a58a;
+  --level-1:#a9c2a6;--level-2:#d9bf85;--level-3:#d08a62;--level-4:#8e3f2c;
+}
+/* Piste C — Moderne & pragmatique */
+[data-piste="c"]{
+  --font-display:'Schibsted Grotesk',system-ui,sans-serif;--font-body:'Schibsted Grotesk',system-ui,sans-serif;--font-mono:'IBM Plex Mono',monospace;
+  --display-weight:800;--display-tracking:-.03em;--brand-weight:800;--btn-weight:700;
+  --bg:#fff;--surface:#fff;--ink:#0b0b0b;--ink-2:#3a3a3a;--muted:#5e5e5e;--line:#0b0b0b;--line-2:#dcdcdc;
+  --head:#0b0b0b;--head-ink:#fff;--head-sub:#bdbdbd;--underline:#ff4a1c;--quick:#ff4a1c;
+  --accent:#ff4a1c;--accent-ink:#0b0b0b;--accent-text:#0b0b0b;--soft:#f2f2f2;--ph1:#e8e8e8;--ph2:#f7f7f7;
+  --logo:#ff4a1c;--mark-radius:0;--radius:0;--radius-sm:0;--radius-pill:0;--border-w:2px;
+  --stripe:none;--stripe-display:none;
+  --cal-1:#f4f4f4;--cal-2:#f4f4f4;--cal-3:#f4f4f4;--cal-4:#f4f4f4;--cal-5:#f4f4f4;--cal-6:#e6e6e6;--cal-7:#e6e6e6;
+  --tag-1:#ff4a1c;--tag-2:#0b0b0b;--tag-3:#9a9a9a;--tag-4:#ff4a1c;--tag-5:#0b0b0b;--tag-6:#9a9a9a;
+  --level-1:#d9d9d9;--level-2:#9a9a9a;--level-3:#ff4a1c;--level-4:#0b0b0b;
+}
+/* Piste D — Violet & arc-en-ciel */
+[data-piste="d"]{
+  --font-display:'Instrument Serif',Georgia,serif;--font-body:'Bricolage Grotesque',system-ui,sans-serif;--font-mono:'IBM Plex Mono',monospace;
+  --display-weight:400;--display-tracking:0;--brand-weight:400;--btn-weight:600;
+  --bg:#f6f1fc;--surface:#fff;--ink:#2a1845;--ink-2:#54456d;--muted:#6b5e82;--line:#ddd0f0;--line-2:#ebe3f7;
+  --head:#3a1f6b;--head-ink:#fbf8ff;--head-sub:#cbbde6;--underline:#f5d90a;--quick:#fbf8ff;
+  --accent:#6b3fd4;--accent-ink:#fff;--accent-text:#5a32bd;--soft:#ece3fa;--ph1:#e7dcf8;--ph2:#f8f4fd;
+  --logo:conic-gradient(#e5484d,#f5a524,#f5d90a,#3fb56b,#3b82d6,#6b3fd4,#d44fa8,#e5484d);--mark-radius:50%;
+  --radius:14px;--radius-sm:7px;--radius-pill:999px;--border-w:1px;
+  --stripe:linear-gradient(90deg,#e5484d,#f5a524,#f5d90a,#3fb56b,#3b82d6,#6b3fd4,#d44fa8);--stripe-display:block;
+  --cal-1:#fbe0df;--cal-2:#fde9d4;--cal-3:#fbf3cf;--cal-4:#dff1df;--cal-5:#dcebf8;--cal-6:#e7dffa;--cal-7:#f6def0;
+  --tag-1:#3fb56b;--tag-2:#6b3fd4;--tag-3:#f5a524;--tag-4:#e0c200;--tag-5:#d44fa8;--tag-6:#3b82d6;
+  --level-1:#3fb56b;--level-2:#f5d90a;--level-3:#f5a524;--level-4:#e5484d;
+}

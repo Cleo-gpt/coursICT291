@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr" data-piste="c">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mon espace — Prisme</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600&family=Instrument+Serif&family=Libre+Caslon+Text:wght@400;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Nunito:wght@400;600;800&family=Schibsted+Grotesk:wght@400;500;700;800&display=swap">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/themes.css">
+<script src="../js/app.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#contenu">Aller au contenu</a>
+<div class="stripe" aria-hidden="true"></div>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true"></span>Prisme</a>
+    <nav class="main-nav" aria-label="Navigation principale">
+      <ul>
+        <li><a href="index.html">Calendrier</a></li>
+        <li><a href="prints.html">Prints</a></li>
+        <li><a href="dico.html">Dico</a></li>
+        <li><a href="manifs.html">Manifs</a></li>
+        <li><a href="voyager.html">Voyager</a></li>
+        <li><a href="ressources.html">Ressources</a></li>
+        <li><a class="account" href="mon-espace.html" aria-current="page">iel · mon espace</a></li>
+      </ul>
+    </nav>
+    <a class="help-link" href="ressources.html">Aide</a>
+  </div>
+</header>
+<main id="contenu">
+<div class="account-layout">
+  <aside class="stack">
+    <div class="credit"><span class="brand-mark" style="width:46px;height:46px" aria-hidden="true"></span><div><h1 style="font-size:1.5rem">Mon profil</h1><p class="meta">iel · privé</p></div></div>
+    <nav class="card side-nav" aria-label="Mon espace"><ul class="list" style="display:block"><li style="padding:0;border:0;display:block"><a href="#identite">Identité</a></li><li style="padding:0;border:0;display:block"><a href="#securite">Sécurité</a></li><li style="padding:0;border:0;display:block"><a href="#prints">Prints enregistrés</a></li><li style="padding:0;border:0;display:block"><a href="manifs.html">Mon agenda</a></li><li style="padding:0;border:0;display:block"><a href="#">Notifications</a></li></ul></nav>
+  </aside>
+  <div class="stack">
+    <form class="card stack" id="identite">
+      <fieldset><legend class="eyebrow">Identité — visible par personne d'autre</legend>
+        <div class="chips"><label class="pick"><input type="radio" name="pronoms" value="elle"><span>elle</span></label><label class="pick"><input type="radio" name="pronoms" value="il"><span>il</span></label><label class="pick"><input type="radio" name="pronoms" value="iel" checked><span>iel</span></label><label class="pick"><input type="radio" name="pronoms" value="elle/iel"><span>elle/iel</span></label><label class="pick"><input type="radio" name="pronoms" value="il/iel"><span>il/iel</span></label><label class="pick"><input type="radio" name="pronoms" value="pas de pronom"><span>pas de pronom</span></label></div>
+      </fieldset>
+      <label class="stack" style="gap:6px"><span class="meta">Ou écrire mes pronoms</span><input type="search" placeholder="ex. ul, ille…"></label>
+    </form>
+    <section class="card" id="securite" aria-labelledby="titre-secu">
+      <h2 id="titre-secu" class="eyebrow">Sécurité et discrétion</h2>
+      <div class="switch-row"><label for="s0"><span>Mode discret</span><br><span class="meta">Icône et nom neutres sur l’écran d’accueil</span></label><input class="switch" id="s0" type="checkbox" checked></div>
+      <div class="switch-row"><label for="s1"><span>Verrouillage</span><br><span class="meta">Code ou biométrie à l’ouverture</span></label><input class="switch" id="s1" type="checkbox" checked></div>
+      <div class="switch-row"><label for="s2"><span>Sortie rapide</span><br><span class="meta">Un geste ferme l’app et vide l’historique</span></label><input class="switch" id="s2" type="checkbox" checked></div>
+    </section>
+    <div class="split" style="grid-template-columns:minmax(0,1fr) 260px">
+      <section class="card stack" id="prints"><h2 class="eyebrow">Prints enregistrés</h2><ul class="saved cycle"><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li></ul></section>
+      <section class="soft stack"><h2 class="eyebrow">Aide</h2><p>Lignes d'écoute et associations, 24h/24, sans jugement.</p><a class="btn btn-primary" href="ressources.html">Voir les contacts</a><button class="quick-exit" style="--quick:var(--ink)" type="button" data-quick-exit>Sortie rapide</button></section>
+    </div>
+  </div>
+</div>
+</main>
+<footer class="site-footer">
+  <div class="inner">
+    <p>Mentions · Contact · Crédits illustrations</p>
+    <button class="quick-exit" type="button" data-quick-exit>Sortie rapide</button>
+  </div>
+</footer>
+<nav class="tabbar" aria-label="Navigation mobile">
+  <ul>
+    <li><a href="index.html"><span class="ico" aria-hidden="true"></span>Calendrier</a></li>
+    <li><a href="prints.html"><span class="ico" aria-hidden="true"></span>Prints</a></li>
+    <li><a href="dico.html"><span class="ico" aria-hidden="true"></span>Dico</a></li>
+    <li><a href="voyager.html"><span class="ico" aria-hidden="true"></span>Voyager</a></li>
+    <li><a href="mon-espace.html" aria-current="page"><span class="ico" aria-hidden="true"></span>Moi</a></li>
+  </ul>
+</nav>
+</body>
+</html>
