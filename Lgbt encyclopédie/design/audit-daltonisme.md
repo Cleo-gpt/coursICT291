@@ -29,3 +29,6 @@
    - ✓ accueil favorable · ● vigilance normale · ▲ vigilance renforcée · ⛔ zone à risque
 2. **Interrupteurs :** écrire « Activé » / « Désactivé » à côté, et donner une bordure foncée à l'état éteint (contraste ≥ 3:1).
 3. **Règle pour la suite :** toute couleur qui veut dire quelque chose doit être accompagnée d'un texte, d'une icône ou d'une forme.
+
+
+Les couleurs changent mais le site reste assez similaire.
