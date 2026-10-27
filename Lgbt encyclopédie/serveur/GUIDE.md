@@ -16,11 +16,19 @@ Tout tient dans `site/api/` (un fichier PHP, aucune bibliothèque) et une base M
 Les réglages sont dans [`site/api/config.php`](../site/api/config.php). Les valeurs MAMP par défaut y sont déjà
 (utilisateur `root`, mot de passe `root`, port `8889`).
 
-### Les e-mails en local
+### Les e-mails : trois modes (dans `api/config.php`)
 
-MAMP n'envoie pas d'e-mails. Avec `'mode_email' => 'fichier'`, chaque e-mail est écrit dans
-`site/api/emails-dev/` : ouvre le fichier `.html` dans ton navigateur et clique sur le bouton
-(confirmation d'inscription, « Accepter », code du mot de passe…).
+- **`'popup'`** (réglé par défaut) : démo sur ton Mac. Au lieu d'être envoyé, l'e-mail s'affiche
+  dans une fenêtre sur le site, avec son bouton (« Confirmer mon adresse », « Accepter », le code…).
+  Ce mode est **refusé automatiquement** si le site n'est pas ouvert depuis ton ordinateur :
+  en ligne, n'importe qui verrait sinon les liens « mot de passe oublié » des autres.
+- **`'smtp'`** : vrais e-mails, même depuis MAMP. Remplis `smtp_hote`, `smtp_port`, `smtp_securite`,
+  `smtp_utilisateur`, `smtp_mot_de_passe` avec une vraie boîte mail :
+  - Infomaniak : `mail.infomaniak.com`, port `465`, `'ssl'`, ton adresse et son mot de passe.
+  - Gmail : `smtp.gmail.com`, port `465`, `'ssl'`, ton adresse Gmail et un
+    **mot de passe d'application** (Compte Google → Sécurité → Validation en deux étapes → Mots de passe des applications).
+  L'expéditeur (`expediteur`) doit être la même adresse que `smtp_utilisateur`, sinon l'e-mail est souvent refusé.
+- **`'mail'`** : vrais e-mails avec la fonction `mail()` de l'hébergeur (ne marche pas sur MAMP).
 
 ## Sur ton hébergement
 
@@ -34,7 +42,7 @@ MAMP n'envoie pas d'e-mails. Avec `'mode_email' => 'fichier'`, chaque e-mail est
    - `db_utilisateur`, `db_mot_de_passe` : ceux de la base
    - `site_url` : `https://ton-domaine.ch`
    - `expediteur` : une adresse de ton domaine, avec un nom neutre (`Calendrier P. <compte@ton-domaine.ch>`)
-   - `mode_email` : `'mail'`
+   - `mode_email` : `'smtp'` (recommandé, avec la boîte mail de ton domaine) ou `'mail'`
 4. Active le **HTTPS** (certificat gratuit Let's Encrypt chez presque tous les hébergeurs) :
    indispensable, sinon les mots de passe passent en clair.
 5. Vérifie que `https://ton-domaine.ch/api/config.php` affiche une erreur « Forbidden » :

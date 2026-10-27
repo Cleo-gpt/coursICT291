@@ -1435,6 +1435,37 @@ select.champ {
   color: var(--color-primary-hover);
 }
 
+/* Fenêtre « e-mail de démo » (mode popup sur MAMP) */
+.fenetre-email {
+  width: min(520px, calc(100% - 2 * var(--space-3)));
+}
+
+.email-demo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-2);
+  margin: var(--space-3) 0;
+  padding: var(--space-3);
+  border: 1px dashed var(--color-text-muted);
+  border-radius: var(--radius-card);
+}
+
+.email-demo h2 {
+  margin-bottom: 0;
+  font-size: 1.2rem;
+}
+
+.email-demo a:not(.btn-primaire) {
+  color: var(--color-primary-hover);
+}
+
+.email-code {
+  font-size: 1.8rem;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+}
+
 /* Bandeau sous l'en-tête quand on est connecté·e */
 .bandeau-session {
   padding: var(--space-2) var(--space-3);

@@ -14,7 +14,19 @@ return [
     // Expéditeur des e-mails : un nom neutre, pour ne outer personne
     'expediteur' => 'Calendrier P. <compte@ton-domaine.ch>',
 
-    // 'fichier' : les e-mails sont écrits dans api/emails-dev/ (MAMP n'envoie pas d'e-mails)
-    // 'mail'    : les e-mails partent vraiment (sur l'hébergement)
-    'mode_email' => 'fichier',
+    // Comment partent les e-mails :
+    //   'popup' : démo sur ton Mac. L'e-mail s'affiche dans une fenêtre sur le site,
+    //             avec son bouton. Refusé automatiquement si le site est en ligne.
+    //   'smtp'  : vrais e-mails, via une boîte mail (hébergeur, Gmail…). Remplis la partie SMTP.
+    //   'mail'  : vrais e-mails avec la fonction mail() de l'hébergeur.
+    'mode_email' => 'popup',
+
+    // SMTP (seulement pour 'smtp')
+    //   Infomaniak : mail.infomaniak.com, port 465, 'ssl', ton adresse et son mot de passe
+    //   Gmail      : smtp.gmail.com, port 465, 'ssl', ton adresse et un « mot de passe d'application »
+    'smtp_hote' => 'mail.infomaniak.com',
+    'smtp_port' => 465,
+    'smtp_securite' => 'ssl', // 'ssl' (port 465), 'tls' (port 587) ou '' (sans chiffrement)
+    'smtp_utilisateur' => '',
+    'smtp_mot_de_passe' => '',
 ];

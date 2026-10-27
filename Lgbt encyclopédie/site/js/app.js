@@ -99,7 +99,64 @@ async function api(action, donnees = {}) {
     }
     throw new Error(resultat && resultat.erreur ? resultat.erreur : "Le serveur ne répond pas correctement. MAMP est-il démarré ?");
   }
+  if (resultat.emails_demo) {
+    // Après le message de l'action, pour que la fenêtre de l'e-mail passe devant
+    setTimeout(function () { afficherEmailsDemo(resultat.emails_demo); }, 0);
+  }
   return resultat;
+}
+
+// ---------- Mode démo (MAMP) : l'e-mail s'affiche dans une fenêtre au lieu d'être envoyé ----------
+
+function afficherEmailsDemo(emails) {
+  let fenetreEmail = document.querySelector("#fenetre-email");
+  if (!fenetreEmail) {
+    fenetreEmail = creerElement("dialog", "fenetre fenetre-email");
+    fenetreEmail.id = "fenetre-email";
+    fenetreEmail.setAttribute("aria-label", "E-mail reçu (démo)");
+    document.body.append(fenetreEmail);
+  }
+  fenetreEmail.replaceChildren(creerElement("p", "surtitre", "Démo · e-mail qui serait envoyé"));
+
+  emails.forEach(function (email) {
+    const carte = creerElement("article", "email-demo");
+    carte.append(
+      creerElement("p", "petite-info", "À : " + email.a),
+      creerElement("h2", "", email.sujet),
+      creerElement("p", "", "Bonjour,"),
+      creerElement("p", "", email.message)
+    );
+    if (email.code) {
+      carte.append(creerElement("p", "email-code", email.code));
+    }
+    if (email.bouton) {
+      const bouton = creerElement("a", "btn-primaire", email.bouton[0]);
+      bouton.href = email.bouton[1];
+      carte.append(bouton);
+    }
+    if (email.autre) {
+      const phrase = creerElement("p", "", email.autre[0] + " ");
+      const lien = creerElement("a", "", email.autre[1]);
+      lien.href = email.autre[2];
+      phrase.append(lien);
+      carte.append(phrase);
+    }
+    if (email.note) {
+      carte.append(creerElement("p", "petite-info", email.note));
+    }
+    fenetreEmail.append(carte);
+  });
+
+  const fermer = creerElement("button", "btn-secondaire", "Fermer");
+  fermer.type = "button";
+  fermer.addEventListener("click", function () { fenetreEmail.close(); });
+  const rangee = creerElement("div", "rangee-boutons");
+  rangee.append(fermer);
+  fenetreEmail.append(rangee);
+
+  if (!fenetreEmail.open) {
+    fenetreEmail.showModal();
+  }
 }
 
 function appliquerDonnees(resultat) {

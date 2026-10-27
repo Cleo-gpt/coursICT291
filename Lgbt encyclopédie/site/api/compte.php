@@ -28,6 +28,10 @@ const DUREE_SESSION = '12 HOUR';
 
 function repondre(array $donnees, int $statut = 200)
 {
+    global $emailsDemo;
+    if (!empty($emailsDemo) && $statut === 200) {
+        $donnees['emails_demo'] = $emailsDemo;
+    }
     http_response_code($statut);
     echo json_encode($donnees, JSON_UNESCAPED_UNICODE);
     exit;
@@ -87,30 +91,117 @@ function limiter(PDO $bd, string $action, int $max = 10): void
 }
 
 // ---------- E-mails (neutres : jamais de détail sensible dedans) ----------
+// Un e-mail = ['message' => texte, 'bouton' => [texte, lien], 'code' => '123456',
+//              'autre' => [phrase, texte du lien, lien], 'note' => petit texte gris]
 
-function envoyerEmail(array $config, string $destinataire, string $sujet, string $html): void
+$emailsDemo = []; // mode « popup » : e-mails renvoyés au site au lieu d'être envoyés
+
+function envoyerEmail(array $config, string $destinataire, string $sujet, array $email): void
 {
-    if ($config['mode_email'] === 'fichier') {
-        // MAMP : on écrit l'e-mail dans un fichier pour pouvoir cliquer les liens
-        $nom = date('Y-m-d_H-i-s') . '_' . bin2hex(random_bytes(3)) . '.html';
-        $contenu = '<p><b>À :</b> ' . htmlspecialchars($destinataire) . '<br><b>Objet :</b> '
-            . htmlspecialchars($sujet) . '</p><hr>' . $html;
-        file_put_contents(__DIR__ . '/emails-dev/' . $nom, $contenu);
+    global $emailsDemo;
+    $mode = $config['mode_email'];
+
+    if ($mode === 'popup') {
+        $emailsDemo[] = ['a' => $destinataire, 'sujet' => $sujet] + $email;
+        return;
+    }
+    $html = emailEnHtml($email);
+    if ($mode === 'smtp') {
+        envoyerSmtp($config, $destinataire, $sujet, $html);
         return;
     }
     $entetes = "MIME-Version: 1.0\r\nContent-Type: text/html; charset=UTF-8\r\nFrom: " . $config['expediteur'];
-    mail($destinataire, '=?UTF-8?B?' . base64_encode($sujet) . '?=', $html, $entetes);
+    if (!mail($destinataire, '=?UTF-8?B?' . base64_encode($sujet) . '?=', $html, $entetes)) {
+        erreur('L\'e-mail n\'a pas pu être envoyé. Réessaie plus tard.', 502);
+    }
 }
 
-function gabarit(string $message, string $bouton = '', string $lien = '', string $apres = ''): string
+function emailEnHtml(array $email): string
 {
+    $h = function (string $texte): string {
+        return htmlspecialchars($texte, ENT_QUOTES, 'UTF-8');
+    };
     $html = '<div style="font-family: Arial, sans-serif; font-size: 16px; line-height: 1.5; color: #2a1845; max-width: 480px;">'
-        . '<p>Bonjour,</p><p>' . $message . '</p>';
-    if ($bouton !== '') {
-        $html .= '<p style="margin: 28px 0;"><a href="' . htmlspecialchars($lien) . '" style="background: #6b3fd4; color: #ffffff; '
-            . 'padding: 14px 28px; border-radius: 999px; text-decoration: none; font-weight: bold;">' . $bouton . '</a></p>';
+        . '<p>Bonjour,</p><p>' . $h($email['message']) . '</p>';
+    if (isset($email['code'])) {
+        $html .= '<p style="font-size: 26px; font-weight: bold; letter-spacing: 4px;">' . $h($email['code']) . '</p>';
     }
-    return $html . $apres . '</div>';
+    if (isset($email['bouton'])) {
+        $html .= '<p style="margin: 28px 0;"><a href="' . $h($email['bouton'][1]) . '" style="background: #6b3fd4; color: #ffffff; '
+            . 'padding: 14px 28px; border-radius: 999px; text-decoration: none; font-weight: bold;">' . $h($email['bouton'][0]) . '</a></p>';
+    }
+    if (isset($email['autre'])) {
+        $html .= '<p>' . $h($email['autre'][0]) . ' <a href="' . $h($email['autre'][2]) . '" style="color: #5a32bd;">'
+            . $h($email['autre'][1]) . '</a></p>';
+    }
+    if (isset($email['note'])) {
+        $html .= '<p style="color: #6b5e82; font-size: 14px;">' . $h($email['note']) . '</p>';
+    }
+    return $html . '</div>';
+}
+
+// Envoi par SMTP (boîte mail de l'hébergeur, Gmail…), sans bibliothèque
+function envoyerSmtp(array $config, string $destinataire, string $sujet, string $html): void
+{
+    $prefixe = $config['smtp_securite'] === 'ssl' ? 'ssl://' : '';
+    $connexion = @stream_socket_client($prefixe . $config['smtp_hote'] . ':' . $config['smtp_port'], $numero, $message, 15);
+    if ($connexion === false) {
+        erreur('Le serveur d\'e-mails est injoignable. Réessaie plus tard.', 502);
+    }
+    stream_set_timeout($connexion, 15);
+
+    // Lit la réponse (parfois sur plusieurs lignes) et vérifie le code attendu
+    $attendre = function (string $code) use ($connexion) {
+        $reponse = '';
+        while (($ligne = fgets($connexion, 515)) !== false) {
+            $reponse .= $ligne;
+            if (strlen($ligne) < 4 || $ligne[3] === ' ') {
+                break;
+            }
+        }
+        if (strpos($reponse, $code) !== 0) {
+            fclose($connexion);
+            erreur('L\'e-mail n\'a pas pu être envoyé. Vérifie les réglages SMTP.', 502);
+        }
+    };
+    $dire = function (string $commande, string $code) use ($connexion, $attendre) {
+        fwrite($connexion, $commande . "\r\n");
+        $attendre($code);
+    };
+
+    preg_match('/<([^>]+)>/', $config['expediteur'], $trouve);
+    $adresse = $trouve[1] ?? $config['expediteur'];
+    $nom = trim(preg_replace('/<[^>]+>/', '', $config['expediteur']));
+    $machine = parse_url($config['site_url'], PHP_URL_HOST) ?: 'localhost';
+
+    $attendre('220');
+    $dire('EHLO ' . $machine, '250');
+    if ($config['smtp_securite'] === 'tls') {
+        $dire('STARTTLS', '220');
+        stream_socket_enable_crypto($connexion, true, STREAM_CRYPTO_METHOD_TLS_CLIENT);
+        $dire('EHLO ' . $machine, '250');
+    }
+    if ($config['smtp_utilisateur'] !== '') {
+        $dire('AUTH LOGIN', '334');
+        $dire(base64_encode($config['smtp_utilisateur']), '334');
+        $dire(base64_encode($config['smtp_mot_de_passe']), '235');
+    }
+    $dire('MAIL FROM:<' . $adresse . '>', '250');
+    $dire('RCPT TO:<' . $destinataire . '>', '250');
+    $dire('DATA', '354');
+
+    $contenu = 'From: =?UTF-8?B?' . base64_encode($nom) . '?= <' . $adresse . ">\r\n"
+        . 'To: <' . $destinataire . ">\r\n"
+        . 'Subject: =?UTF-8?B?' . base64_encode($sujet) . "?=\r\n"
+        . 'Date: ' . date('r') . "\r\n"
+        . 'Message-ID: <' . bin2hex(random_bytes(12)) . '@' . $machine . ">\r\n"
+        . "MIME-Version: 1.0\r\n"
+        . "Content-Type: text/html; charset=UTF-8\r\n"
+        . "Content-Transfer-Encoding: base64\r\n\r\n"
+        . chunk_split(base64_encode($html));
+    $dire($contenu . "\r\n.", '250');
+    fwrite($connexion, "QUIT\r\n");
+    fclose($connexion);
 }
 
 function lienConfirmation(array $config, string $type, string $jeton, string $extra = ''): string
@@ -141,11 +232,11 @@ function lireJetonEmail(PDO $bd, string $hash, string $type): ?array
 function envoyerLienReset(PDO $bd, array $config, array $utilisateur): void
 {
     $jeton = creerJetonEmail($bd, (int) $utilisateur['id'], 'reset', '1 HOUR');
-    envoyerEmail($config, $utilisateur['email'], 'Choisis un nouveau mot de passe', gabarit(
-        'Pour choisir un nouveau mot de passe, touche le bouton ci-dessous.',
-        'Choisir un nouveau mot de passe', lienConfirmation($config, 'reset', $jeton),
-        '<p style="color: #6b5e82; font-size: 14px;">Ce lien expire dans 1 heure. Si tu n\'as rien demandé, ignore cet e-mail.</p>'
-    ));
+    envoyerEmail($config, $utilisateur['email'], 'Choisis un nouveau mot de passe', [
+        'message' => 'Pour choisir un nouveau mot de passe, touche le bouton ci-dessous.',
+        'bouton' => ['Choisir un nouveau mot de passe', lienConfirmation($config, 'reset', $jeton)],
+        'note' => 'Ce lien expire dans 1 heure. Si tu n\'as rien demandé, ignore cet e-mail.',
+    ]);
 }
 
 // ---------- Session ----------
@@ -226,6 +317,12 @@ if (random_int(1, 50) === 1) {
     $bd->exec('DELETE FROM jetons_email WHERE expire_le < NOW()');
 }
 
+// Mode « popup » : les liens s'affichent sur le site. Seulement en local, sinon
+// n'importe qui pourrait voir le lien « mot de passe oublié » d'une autre personne.
+if ($config['mode_email'] === 'popup' && !in_array($_SERVER['REMOTE_ADDR'] ?? '', ['127.0.0.1', '::1'], true)) {
+    erreur('Mode « popup » interdit en ligne : mets mode_email à « smtp » ou « mail » dans api/config.php.', 500);
+}
+
 $action = texte($entree, 'action', 30);
 
 // ---------- Actions ----------
@@ -256,17 +353,17 @@ switch ($action) {
             // Le mot de passe et le pseudo ne sont appliqués qu'au clic sur le lien :
             // seule la personne qui reçoit l'e-mail peut donc fixer le mot de passe
             $jeton = creerJetonEmail($bd, (int) $existant['id'], 'inscription', '24 HOUR', ['mdp' => $hash, 'pseudo' => $pseudo]);
-            envoyerEmail($config, $email, 'Confirme ton adresse e-mail', gabarit(
-                'Touche le bouton pour confirmer ton adresse et activer ton compte.',
-                'Confirmer mon adresse', lienConfirmation($config, 'inscription', $jeton),
-                '<p style="color: #6b5e82; font-size: 14px;">Ce lien expire dans 24 heures. Si tu n\'as rien demandé, ignore cet e-mail.</p>'
-            ));
+            envoyerEmail($config, $email, 'Confirme ton adresse e-mail', [
+                'message' => 'Touche le bouton pour confirmer ton adresse et activer ton compte.',
+                'bouton' => ['Confirmer mon adresse', lienConfirmation($config, 'inscription', $jeton)],
+                'note' => 'Ce lien expire dans 24 heures. Si tu n\'as rien demandé, ignore cet e-mail.',
+            ]);
         } else {
             // Compte déjà actif : on prévient la personne, sans rien révéler sur le site
-            envoyerEmail($config, $email, 'Tentative de création de compte', gabarit(
-                'Quelqu\'un a essayé de créer un compte avec ton adresse, alors que tu en as déjà un. '
-                . 'Si c\'est toi, connecte-toi simplement. Si tu as oublié ton mot de passe, utilise « Mot de passe oublié ».'
-            ));
+            envoyerEmail($config, $email, 'Tentative de création de compte', [
+                'message' => 'Quelqu\'un a essayé de créer un compte avec ton adresse, alors que tu en as déjà un. '
+                    . 'Si c\'est toi, connecte-toi simplement. Si tu as oublié ton mot de passe, utilise « Mot de passe oublié ».',
+            ]);
         }
         // Même réponse dans tous les cas : impossible de savoir si une adresse est inscrite
         repondre(['message' => 'Si cette adresse est valide, tu vas recevoir un e-mail pour activer ton compte.']);
@@ -326,13 +423,13 @@ switch ($action) {
         $attente = $orientation !== (string) $utilisateur['orientation'] || $ville !== (string) $utilisateur['ville'];
         if ($attente) {
             $jeton = creerJetonEmail($bd, (int) $utilisateur['id'], 'modif', '24 HOUR', ['orientation' => $orientation, 'ville' => $ville]);
-            envoyerEmail($config, $utilisateur['email'], 'Confirme une modification de ton compte', gabarit(
-                'Tu t\'apprêtes à changer un paramètre non obligatoire de ton profil. Peux-tu confirmer qu\'il s\'agit bien de toi&nbsp;?',
-                'Accepter', lienConfirmation($config, 'modif', $jeton),
-                '<p>Ce n\'est pas toi&nbsp;? <a href="' . htmlspecialchars(lienConfirmation($config, 'modif', $jeton, '&refus=1'))
-                . '" style="color: #5a32bd;">Annule le changement et réinitialise ton mot de passe</a>.</p>'
-                . '<p style="color: #6b5e82; font-size: 14px;">Ce lien expire dans 24 heures.</p>'
-            ));
+            envoyerEmail($config, $utilisateur['email'], 'Confirme une modification de ton compte', [
+                'message' => 'Tu t\'apprêtes à changer un paramètre non obligatoire de ton profil. Peux-tu confirmer qu\'il s\'agit bien de toi ?',
+                'bouton' => ['Accepter', lienConfirmation($config, 'modif', $jeton)],
+                'autre' => ['Ce n\'est pas toi ?', 'Annule le changement et réinitialise ton mot de passe',
+                    lienConfirmation($config, 'modif', $jeton, '&refus=1')],
+                'note' => 'Ce lien expire dans 24 heures.',
+            ]);
         }
         $requete = $bd->prepare('SELECT * FROM utilisateurs WHERE id = ?');
         $requete->execute([$utilisateur['id']]);
@@ -350,16 +447,16 @@ switch ($action) {
         }
         if (trouverParEmail($bd, $email) === null) {
             $jeton = creerJetonEmail($bd, (int) $utilisateur['id'], 'email', '24 HOUR', ['email' => $email]);
-            envoyerEmail($config, $email, 'Confirme ta nouvelle adresse', gabarit(
-                'Touche le bouton pour confirmer ta nouvelle adresse e-mail.',
-                'Confirmer cette adresse', lienConfirmation($config, 'email', $jeton),
-                '<p style="color: #6b5e82; font-size: 14px;">Ce lien expire dans 24 heures.</p>'
-            ));
+            envoyerEmail($config, $email, 'Confirme ta nouvelle adresse', [
+                'message' => 'Touche le bouton pour confirmer ta nouvelle adresse e-mail.',
+                'bouton' => ['Confirmer cette adresse', lienConfirmation($config, 'email', $jeton)],
+                'note' => 'Ce lien expire dans 24 heures.',
+            ]);
         }
-        envoyerEmail($config, $utilisateur['email'], 'Changement d\'adresse demandé', gabarit(
-            'Une demande de changement d\'adresse e-mail a été faite sur ton compte. Si ce n\'est pas toi, '
-            . 'choisis vite un nouveau mot de passe avec « Mot de passe oublié » sur le site.'
-        ));
+        envoyerEmail($config, $utilisateur['email'], 'Changement d\'adresse demandé', [
+            'message' => 'Une demande de changement d\'adresse e-mail a été faite sur ton compte. Si ce n\'est pas toi, '
+                . 'choisis vite un nouveau mot de passe avec « Mot de passe oublié » sur le site.',
+        ]);
         repondre(['message' => 'On a envoyé un lien de confirmation à ta nouvelle adresse. Ton ancienne adresse a été prévenue.']);
 
     case 'demander_code':
@@ -367,10 +464,11 @@ switch ($action) {
         limiter($bd, 'demander_code', 5);
         $code = (string) random_int(100000, 999999);
         creerJetonEmail($bd, (int) $utilisateur['id'], 'code', '15 MINUTE', null, $code);
-        envoyerEmail($config, $utilisateur['email'], 'Ton code de sécurité', gabarit(
-            'Voici ton code pour changer de mot de passe : <strong style="font-size: 22px; letter-spacing: 3px;">' . $code . '</strong>',
-            '', '', '<p style="color: #6b5e82; font-size: 14px;">Il expire dans 15 minutes. Si tu n\'as rien demandé, change ton mot de passe.</p>'
-        ));
+        envoyerEmail($config, $utilisateur['email'], 'Ton code de sécurité', [
+            'message' => 'Voici ton code pour changer de mot de passe :',
+            'code' => $code,
+            'note' => 'Il expire dans 15 minutes. Si tu n\'as rien demandé, change ton mot de passe.',
+        ]);
         repondre(['message' => 'Un code t\'a été envoyé par e-mail.']);
 
     case 'changer_mdp':
