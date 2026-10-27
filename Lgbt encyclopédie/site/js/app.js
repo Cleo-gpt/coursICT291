@@ -119,36 +119,4 @@ document.querySelectorAll("[data-enregistrer]").forEach(function (bouton) {
   });
 });
 
-// ---------- Partager en story Instagram ----------
-// Sur téléphone : le menu de partage s'ouvre avec l'image, on choisit Instagram → Story.
-// Sinon (ordinateur, ou partage impossible) : le lien ouvre le compte de l'artiste.
-
-document.querySelectorAll("[data-partager]").forEach(function (lien) {
-  lien.addEventListener("click", async function (evenement) {
-    if (!lien.dataset.image || !navigator.canShare) {
-      return; // le lien s'ouvre normalement
-    }
-    evenement.preventDefault();
-
-    try {
-      const reponse = await fetch(lien.dataset.image);
-      const image = await reponse.blob();
-      const fichier = new File([image], lien.dataset.image.split("/").pop(), { type: image.type });
-
-      if (!navigator.canShare({ files: [fichier] })) {
-        throw new Error("partage de fichier impossible");
-      }
-      await navigator.share({
-        files: [fichier],
-        title: lien.dataset.titre,
-        text: lien.dataset.titre + " · @la_lanterne_de_yuna"
-      });
-    } catch (erreur) {
-      if (erreur.name !== "AbortError") {
-        window.open(lien.href, "_blank", "noopener");
-      }
-    }
-  });
-});
-
 afficherCompte();
