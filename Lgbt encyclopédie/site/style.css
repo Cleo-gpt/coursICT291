@@ -1,0 +1,376 @@
+/* Design tokens — Prisme (piste D : violet & arc-en-ciel) */
+:root {
+  /* 60 % fond clair · 30 % violet foncé · 10 % violet vif */
+  --color-bg: #f6f1fc;            /* lavande très clair */
+  --color-surface: #ffffff;
+  --color-header: #3a1f6b;        /* violet foncé */
+  --color-header-text: #fbf8ff;   /* 12.6:1 sur le header */
+  --color-header-muted: #cbbde6;  /* 7.5:1 sur le header */
+  --color-text: #2a1845;          /* 14.4:1 sur le fond */
+  --color-text-muted: #6b5e82;    /* 5.3:1 sur le fond */
+  --color-primary: #6b3fd4;       /* violet vif, 6.4:1 avec texte blanc */
+  --color-primary-hover: #5a32bd;
+  --color-soft: #ece3fa;
+  --color-border: #ddd0f0;
+  --color-focus-header: #f5d90a;  /* jaune : 9.3:1 sur le header */
+  --color-error: #b91c1c;
+  --color-error-bg: #fef2f2;
+
+  /* Arc-en-ciel */
+  --rouge: #e5484d;
+  --orange: #f5a524;
+  --jaune: #f5d90a;
+  --vert: #3fb56b;
+  --bleu: #3b82d6;
+  --violet: #6b3fd4;
+  --rose: #d44fa8;
+  --arc-en-ciel: linear-gradient(90deg, var(--rouge), var(--orange), var(--jaune), var(--vert), var(--bleu), var(--violet), var(--rose));
+
+  /* Typo & espacements (base 8 px) */
+  --font-sans: "Nunito", system-ui, -apple-system, sans-serif;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 16px;
+  --space-4: 24px;
+  --space-5: 32px;
+  --radius-card: 14px;
+  --radius-btn: 999px;
+  --shadow-sm: 0 1px 3px rgba(58, 31, 107, 0.08);
+  --shadow-hover: 0 10px 15px -3px rgba(58, 31, 107, 0.15);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Lien « Aller au contenu » (visible seulement au clavier) */
+.lien-evitement {
+  position: absolute;
+  left: -9999px;
+}
+.lien-evitement:focus {
+  left: var(--space-3);
+  top: var(--space-3);
+  z-index: 10;
+  padding: var(--space-2) var(--space-3);
+  background: var(--color-surface);
+  color: var(--color-text);
+}
+
+/* Bande arc-en-ciel */
+.bande-arc-en-ciel {
+  height: 6px;
+  background: var(--arc-en-ciel);
+}
+
+/* En-tête (mobile : logo au-dessus, menu en dessous) */
+.header-site {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  background-color: var(--color-header);
+}
+
+.header-site :focus-visible {
+  outline-color: var(--color-focus-header);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--color-header-text);
+  text-decoration: none;
+}
+
+.logo-rond {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: conic-gradient(var(--rouge), var(--orange), var(--jaune), var(--vert), var(--bleu), var(--violet), var(--rose), var(--rouge));
+}
+
+.nav-site {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-3);
+}
+
+.nav-site .lien-nav {
+  padding: var(--space-1) 0;
+  color: var(--color-header-muted);
+  text-decoration: none;
+  font-weight: 600;
+  border-bottom: 2px solid transparent;
+}
+
+.nav-site .lien-nav:hover {
+  color: var(--color-header-text);
+}
+
+.nav-site .lien-nav.actif {
+  color: var(--color-header-text);
+  border-bottom-color: var(--jaune);
+}
+
+/* Corps principal */
+.contenu-principal {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: var(--space-4) var(--space-3);
+}
+
+.hero-section {
+  margin-bottom: var(--space-4);
+}
+
+.surtitre {
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  margin-bottom: var(--space-1);
+}
+
+.hero-section h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: var(--space-2);
+}
+
+.hero-intro {
+  color: var(--color-text-muted);
+  font-size: 1.1rem;
+}
+
+.titre-section {
+  font-size: 1.4rem;
+  margin-bottom: var(--space-3);
+}
+
+/* Recherche */
+.barre-recherche {
+  margin-bottom: var(--space-5);
+}
+
+.label-recherche {
+  display: block;
+  font-weight: 600;
+  margin-bottom: var(--space-1);
+}
+
+.champ-recherche {
+  width: 100%;
+  max-width: 480px;
+  min-height: 48px;
+  padding: 12px var(--space-3);
+  font: inherit;
+  border: 2px solid var(--color-text-muted);   /* 5.9:1 → bien visible */
+  border-radius: var(--radius-btn);
+  background-color: var(--color-surface);
+}
+
+/* Grille de cartes — Mobile First : 1 colonne */
+.cartes-grille {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-3);
+  margin-bottom: var(--space-5);
+}
+
+/* Carte */
+.carte {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-top: 6px solid var(--violet);
+  border-radius: var(--radius-card);
+  padding: var(--space-3);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Chaque carte a une couleur de l'arc-en-ciel (décoratif) */
+.carte:nth-child(6n+1) { border-top-color: var(--rouge); }
+.carte:nth-child(6n+2) { border-top-color: var(--orange); }
+.carte:nth-child(6n+3) { border-top-color: var(--vert); }
+.carte:nth-child(6n+4) { border-top-color: var(--bleu); }
+.carte:nth-child(6n+5) { border-top-color: var(--violet); }
+.carte:nth-child(6n+6) { border-top-color: var(--rose); }
+
+.carte:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+}
+
+.carte .date {
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--color-primary);
+}
+
+.carte h3 {
+  font-size: 1.25rem;
+  margin-bottom: var(--space-1);
+}
+
+.carte .commune {
+  font-weight: 600;
+  margin-bottom: var(--space-2);
+}
+
+.carte .description {
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+  margin-bottom: var(--space-3);
+}
+
+.carte .meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--color-border);
+  padding-top: var(--space-2);
+}
+
+.badge {
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-btn);
+  background: var(--color-soft);
+  color: var(--color-text);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.lien-carte {
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+/* Formulaire */
+.section-formulaire {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  padding: var(--space-4);
+}
+
+.section-formulaire h2 {
+  margin-bottom: var(--space-3);
+}
+
+.champ-groupe {
+  margin-bottom: var(--space-3);
+}
+
+.champ-groupe label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: var(--space-1);
+}
+
+.champ-groupe input {
+  width: 100%;
+  min-height: 48px;
+  padding: 10px 12px;
+  font: inherit;
+  border: 2px solid var(--color-text-muted);
+  border-radius: 8px;
+}
+
+.btn-primaire {
+  min-height: 48px;
+  padding: 12px 24px;
+  border: none;
+  border-radius: var(--radius-btn);
+  background-color: var(--color-primary);
+  color: #ffffff;
+  font: 600 1rem var(--font-sans);
+  cursor: pointer;
+}
+
+.btn-primaire:hover {
+  background-color: var(--color-primary-hover);
+}
+
+.alerte-erreur {
+  background-color: var(--color-error-bg);
+  color: var(--color-error);
+  padding: var(--space-2);
+  border-radius: 8px;
+  margin-bottom: var(--space-3);
+  font-weight: 600;
+}
+
+/* Pied de page */
+.footer-site {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-4) var(--space-3);
+  background: var(--color-header);
+  color: var(--color-header-muted);
+  font-size: 0.85rem;
+}
+
+.footer-site :focus-visible {
+  outline-color: var(--color-focus-header);
+}
+
+.sortie-rapide {
+  min-height: 44px;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--color-header-text);
+  border-radius: var(--radius-btn);
+  background: none;
+  color: var(--color-header-text);
+  font: 800 0.8rem var(--font-sans);
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+/* Tablette et ordinateur : à partir de 768 px */
+@media (min-width: 768px) {
+  .header-site {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-3) var(--space-4);
+  }
+
+  .hero-section h1 {
+    font-size: 2.75rem;
+  }
+
+  .cartes-grille {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Moins d'animations pour les personnes sensibles au mouvement */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition-duration: 0.01ms !important;
+    transform: none !important;
+  }
+}

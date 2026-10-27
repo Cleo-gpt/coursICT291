@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Prisme — Calendrier des fiertés</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&display=swap">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="lien-evitement" href="#contenu">Aller au contenu</a>
+  <div class="bande-arc-en-ciel" aria-hidden="true"></div>
+
+  <header class="header-site">
+    <a href="index.html" class="logo">
+      <span class="logo-rond" aria-hidden="true"></span>Prisme
+    </a>
+    <nav class="nav-site" aria-label="Navigation principale">
+      <a href="index.html" class="lien-nav actif" aria-current="page">Calendrier</a>
+      <a href="#" class="lien-nav">Prints</a>
+      <a href="#" class="lien-nav">Dico</a>
+      <a href="#liste-cartes" class="lien-nav">Manifs</a>
+      <a href="#" class="lien-nav">Voyager</a>
+    </nav>
+  </header>
+
+  <main id="contenu" class="contenu-principal">
+    <section class="hero-section">
+      <p class="surtitre">Juin 2026 · Mois des fiertés</p>
+      <h1>Une illustration par jour, tout le mois des fiertés.</h1>
+      <p class="hero-intro">Trouve les manifs près de chez toi et découvre le sens de chaque orientation.</p>
+    </section>
+
+    <!-- Zone de recherche (rendue dynamique en semaine 12) -->
+    <div class="barre-recherche">
+      <label for="recherche" class="label-recherche">Rechercher une manif :</label>
+      <input type="search" id="recherche" placeholder="Ex : Lausanne, Genève, marche…" class="champ-recherche">
+      <p id="recherche-vide" class="message-vide" hidden>Aucune manif ne correspond à ta recherche.</p>
+    </div>
+
+    <h2 class="titre-section">Manifs à venir</h2>
+    <section id="liste-cartes" class="cartes-grille" aria-live="polite">
+      <article class="carte">
+        <p class="date">Sa 13 juin · 14h</p>
+        <h3>Marche des fiertés</h3>
+        <p class="commune">Lausanne</p>
+        <p class="description">Départ place de la Riponne, parcours accessible PMR.</p>
+        <div class="meta"><span class="badge">Marche</span><a href="#" class="lien-carte">Voir le détail</a></div>
+      </article>
+
+      <article class="carte">
+        <p class="date">Sa 20 juin · 13h</p>
+        <h3>Marche des fiertés</h3>
+        <p class="commune">Genève</p>
+        <p class="description">Cortège dans la vieille ville, puis fête au parc.</p>
+        <div class="meta"><span class="badge">Marche</span><a href="#" class="lien-carte">Voir le détail</a></div>
+      </article>
+
+      <article class="carte">
+        <p class="date">Di 28 juin · 17h</p>
+        <h3>Rassemblement Stonewall</h3>
+        <p class="commune">Fribourg</p>
+        <p class="description">Rassemblement en mémoire des émeutes de 1969.</p>
+        <div class="meta"><span class="badge">Rassemblement</span><a href="#" class="lien-carte">Voir le détail</a></div>
+      </article>
+    </section>
+
+    <!-- Formulaire (rendu réactif plus tard) -->
+    <section id="formulaire-section" class="section-formulaire">
+      <h2>Proposer une manif</h2>
+      <form id="formulaire-ajout" novalidate>
+        <div class="champ-groupe">
+          <label for="champ-nom">Nom de la manif</label>
+          <input type="text" id="champ-nom" required minlength="3" placeholder="Ex : Pride Yverdon">
+        </div>
+        <div class="champ-groupe">
+          <label for="champ-commune">Commune</label>
+          <input type="text" id="champ-commune" required minlength="2" placeholder="Ex : Yverdon-les-Bains">
+        </div>
+        <p id="erreurs-formulaire" class="alerte-erreur" hidden></p>
+        <button type="submit" class="btn-primaire">Envoyer la manif</button>
+      </form>
+    </section>
+  </main>
+
+  <footer class="footer-site">
+    <p>&copy; 2026 Prisme · [Ton prénom]</p>
+    <button type="button" class="sortie-rapide">Sortie rapide</button>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
