@@ -1,4 +1,4 @@
-/* Design tokens — Prisme (piste D : violet & arc-en-ciel) */
+/* Design tokens — Prisme (couleurs piste D : violet & arc-en-ciel · typo piste B : Nunito) */
 :root {
   /* 60 % fond clair · 30 % violet foncé · 10 % violet vif */
   --color-bg: #f6f1fc;            /* lavande très clair */
@@ -24,16 +24,27 @@
   --bleu: #3b82d6;
   --violet: #6b3fd4;
   --rose: #d44fa8;
+  /* Cases du calendrier (pastels de l'arc-en-ciel) */
+  --cal-1: #fbe0df;
+  --cal-2: #fde9d4;
+  --cal-3: #fbf3cf;
+  --cal-4: #dff1df;
+  --cal-5: #dcebf8;
+  --cal-6: #e7dffa;
+  --cal-7: #f6def0;
   --arc-en-ciel: linear-gradient(90deg, var(--rouge), var(--orange), var(--jaune), var(--vert), var(--bleu), var(--violet), var(--rose));
 
   /* Typo & espacements (base 8 px) */
   --font-sans: "Nunito", system-ui, -apple-system, sans-serif;
+  --font-weight-titre: 800;
+  --font-weight-btn: 700;
   --space-1: 4px;
   --space-2: 8px;
   --space-3: 16px;
   --space-4: 24px;
   --space-5: 32px;
   --radius-card: 14px;
+  --radius-petit: 7px;
   --radius-btn: 999px;
   --shadow-sm: 0 1px 3px rgba(58, 31, 107, 0.08);
   --shadow-hover: 0 10px 15px -3px rgba(58, 31, 107, 0.15);
@@ -49,8 +60,19 @@ body {
   font-family: var(--font-sans);
   background-color: var(--color-bg);
   color: var(--color-text);
-  line-height: 1.6;
+  font-size: 16px;
+  line-height: 1.5;
 }
+
+/* Titres (piste B : Nunito 800, interlignage serré) */
+h1, h2, h3 {
+  font-weight: var(--font-weight-titre);
+  letter-spacing: 0;
+  text-wrap: balance;
+}
+h1 { font-size: clamp(2rem, 4vw, 3rem); line-height: 1.05; }
+h2 { font-size: 1.6rem; line-height: 1.15; }
+h3 { font-size: 1.1rem; line-height: 1.25; }
 
 :focus-visible {
   outline: 3px solid var(--color-primary);
@@ -96,6 +118,7 @@ body {
   gap: var(--space-2);
   font-size: 1.5rem;
   font-weight: 800;
+  line-height: 1;
   color: var(--color-header-text);
   text-decoration: none;
 }
@@ -117,6 +140,7 @@ body {
   padding: var(--space-1) 0;
   color: var(--color-header-muted);
   text-decoration: none;
+  font-size: 0.9rem;
   font-weight: 600;
   border-bottom: 2px solid transparent;
 }
@@ -132,13 +156,201 @@ body {
 
 /* Corps principal */
 .contenu-principal {
-  max-width: 1000px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: var(--space-4) var(--space-3);
 }
 
+/* Hero : texte + print du jour (mobile : l'un sous l'autre) */
 .hero-section {
-  margin-bottom: var(--space-4);
+  display: grid;
+  gap: var(--space-4);
+  margin-bottom: var(--space-5);
+}
+
+.hero-texte {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.rangee-boutons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.print-du-jour figcaption {
+  padding: 10px 12px;
+  background: var(--color-soft);
+  border-radius: 0 0 var(--radius-card) var(--radius-card);
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+}
+
+/* Zone hachurée en attendant les vraies illustrations */
+.image-attente {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 5 / 4;
+  background: repeating-linear-gradient(135deg, #e7dcf8 0 8px, #f8f4fd 8px 16px);
+  border-radius: var(--radius-card) var(--radius-card) 0 0;
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+}
+
+/* Calendrier + colonne latérale */
+.deux-colonnes {
+  display: grid;
+  gap: var(--space-4);
+  margin-bottom: var(--space-5);
+}
+
+.carte-bloc {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  padding: var(--space-3);
+}
+
+.calendrier {
+  padding: 0;
+  overflow: hidden;
+}
+
+.calendrier-entete {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px var(--space-3);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.calendrier-entete .surtitre {
+  margin-bottom: 0;
+}
+
+.jours-semaine,
+.grille-jours {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: var(--space-1);
+  padding: 0 10px;
+}
+
+.jours-semaine {
+  padding-top: 10px;
+  padding-bottom: 6px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: var(--color-text-muted);
+  text-align: center;
+}
+
+.grille-jours {
+  padding-bottom: 14px;
+}
+
+.jour a {
+  display: flex;
+  flex-direction: column;
+  aspect-ratio: 0.86;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-petit);
+  background: var(--color-surface);
+  color: var(--color-text-muted);
+  text-decoration: none;
+}
+
+.jour a:hover {
+  border-color: var(--color-primary);
+}
+
+.jour .vignette {
+  flex: 1;
+  background: var(--case);
+}
+
+.jour .num {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2px 5px;
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+.pastille {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-primary);
+}
+
+/* Chaque colonne de la semaine a sa couleur (décoratif) */
+.grille-jours li:nth-child(7n+1) { --case: var(--cal-1); }
+.grille-jours li:nth-child(7n+2) { --case: var(--cal-2); }
+.grille-jours li:nth-child(7n+3) { --case: var(--cal-3); }
+.grille-jours li:nth-child(7n+4) { --case: var(--cal-4); }
+.grille-jours li:nth-child(7n+5) { --case: var(--cal-5); }
+.grille-jours li:nth-child(7n+6) { --case: var(--cal-6); }
+.grille-jours li:nth-child(7n+7) { --case: var(--cal-7); }
+
+.colonne-laterale {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.liste-venir {
+  list-style: none;
+}
+
+.liste-venir li {
+  display: flex;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.liste-venir li:last-child {
+  border-bottom: 0;
+}
+
+.liste-venir a {
+  color: var(--color-primary-hover);
+  font-weight: 600;
+}
+
+.barre {
+  flex: none;
+  width: 4px;
+  min-height: 24px;
+  border-radius: 2px;
+}
+.barre-vert { background: var(--vert); }
+.barre-violet { background: var(--violet); }
+.barre-orange { background: var(--orange); }
+
+.petite-info {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+}
+
+.bloc-doux {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  padding: var(--space-3);
+  background: var(--color-soft);
+  border-radius: var(--radius-card);
+}
+
+.bloc-doux .surtitre {
+  margin-bottom: 0;
 }
 
 .surtitre {
@@ -151,9 +363,6 @@ body {
 }
 
 .hero-section h1 {
-  font-size: 2rem;
-  font-weight: 800;
-  line-height: 1.2;
   margin-bottom: var(--space-2);
 }
 
@@ -163,7 +372,6 @@ body {
 }
 
 .titre-section {
-  font-size: 1.4rem;
   margin-bottom: var(--space-3);
 }
 
@@ -265,59 +473,41 @@ body {
   font-weight: 600;
 }
 
-/* Formulaire */
-.section-formulaire {
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-card);
-  padding: var(--space-4);
-}
-
-.section-formulaire h2 {
-  margin-bottom: var(--space-3);
-}
-
-.champ-groupe {
-  margin-bottom: var(--space-3);
-}
-
-.champ-groupe label {
-  display: block;
-  font-weight: 600;
-  margin-bottom: var(--space-1);
-}
-
-.champ-groupe input {
-  width: 100%;
-  min-height: 48px;
-  padding: 10px 12px;
-  font: inherit;
-  border: 2px solid var(--color-text-muted);
-  border-radius: 8px;
-}
-
-.btn-primaire {
+/* Boutons */
+.btn-primaire,
+.btn-secondaire {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   min-height: 48px;
   padding: 12px 24px;
   border: none;
   border-radius: var(--radius-btn);
   background-color: var(--color-primary);
   color: #ffffff;
-  font: 600 1rem var(--font-sans);
+  font: var(--font-weight-btn) 1rem var(--font-sans);
+  text-decoration: none;
   cursor: pointer;
+}
+
+.btn-secondaire {
+  border: 1px solid var(--color-text);
+  background-color: transparent;
+  color: var(--color-text);
+}
+
+.btn-secondaire:hover {
+  background-color: var(--color-soft);
+}
+
+.btn-petit {
+  min-height: 40px;
+  padding: 6px 16px;
+  font-size: 0.85rem;
 }
 
 .btn-primaire:hover {
   background-color: var(--color-primary-hover);
-}
-
-.alerte-erreur {
-  background-color: var(--color-error-bg);
-  color: var(--color-error);
-  padding: var(--space-2);
-  border-radius: 8px;
-  margin-bottom: var(--space-3);
-  font-weight: 600;
 }
 
 /* Pied de page */
@@ -358,12 +548,25 @@ body {
     padding: var(--space-3) var(--space-4);
   }
 
-  .hero-section h1 {
-    font-size: 2.75rem;
-  }
-
   .cartes-grille {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .hero-section {
+    grid-template-columns: minmax(0, 1fr) 320px;
+    align-items: start;
+  }
+
+  .deux-colonnes {
+    grid-template-columns: minmax(0, 1fr) 300px;
+    align-items: start;
+  }
+
+  .jours-semaine,
+  .grille-jours {
+    gap: 6px;
+    padding-left: 12px;
+    padding-right: 12px;
   }
 }
 

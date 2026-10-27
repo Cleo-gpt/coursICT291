@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dico — Prisme</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="lien-evitement" href="#contenu">Aller au contenu</a>
+  <div class="bande-arc-en-ciel" aria-hidden="true"></div>
+
+  <header class="header-site">
+    <a href="index.html" class="logo">
+      <span class="logo-rond" aria-hidden="true"></span>Prisme
+    </a>
+    <nav class="nav-site" aria-label="Navigation principale">
+      <a href="index.html" class="lien-nav">Calendrier</a>
+      <a href="prints.html" class="lien-nav">Prints</a>
+      <a href="dico.html" class="lien-nav actif" aria-current="page">Dico</a>
+      <a href="manifs.html" class="lien-nav">Manifs</a>
+      <a href="voyager.html" class="lien-nav">Voyager</a>
+      <a href="ressources.html" class="lien-nav">Ressources</a>
+      <a href="mon-espace.html" class="lien-compte">iel · mon espace</a>
+    </nav>
+    <a href="ressources.html" class="lien-aide">Aide</a>
+  </header>
+
+  <main id="contenu" class="contenu-principal">
+    <div class="entete-page">
+      <h1>Ça veut dire quoi, ça&nbsp;?</h1>
+    <form class="recherche-entete" role="search">
+      <label class="visuellement-cache" for="terme">Chercher un terme</label>
+      <input type="search" id="terme" class="champ-recherche" placeholder="Chercher un terme…">
+    </form>
+    </div>
+
+    <nav aria-label="Index alphabétique">
+      <ul class="alphabet"><li><a href="#">A</a></li><li><a href="#">B</a></li><li><a href="#">C</a></li><li><a href="#">D</a></li><li><a href="#">E</a></li><li><a href="#">F</a></li><li><a href="#">G</a></li><li><a href="#">H</a></li><li><a href="#">I</a></li><li><a href="#">J</a></li><li><a href="#">K</a></li><li><a href="#">L</a></li><li><a href="#">M</a></li><li><a href="#">N</a></li><li><a href="#">O</a></li><li><a href="#">P</a></li><li><a href="#">Q</a></li><li><a href="#">R</a></li><li><a href="#">S</a></li><li><a href="#">T</a></li><li><a href="#">U</a></li><li><a href="#">V</a></li><li><a href="#">W</a></li><li><a href="#">X</a></li><li><a href="#">Y</a></li><li><a href="#">Z</a></li></ul>
+    </nav>
+
+    <div class="mise-en-page-dico">
+      <ul class="carte-bloc liste-termes">
+          <li><a href="#" aria-current="true"><span class="drapeau drapeau-vert"></span>Asexuel·le</a></li>
+          <li><a href="#"><span class="drapeau drapeau-violet"></span>Bisexuel·le</a></li>
+          <li><a href="#"><span class="drapeau drapeau-orange"></span>Intersexe</a></li>
+          <li><a href="#"><span class="drapeau drapeau-jaune"></span>Non-binaire</a></li>
+          <li><a href="#"><span class="drapeau drapeau-rose"></span>Pansexuel·le</a></li>
+          <li><a href="#"><span class="drapeau drapeau-bleu"></span>Queer</a></li>
+      </ul>
+      <article class="carte-bloc definition">
+        <h2>Asexuel·le</h2>
+        <p class="chapeau">Définition courte du terme, en une ou deux phrases simples.</p>
+        <section>
+          <h3>À savoir</h3>
+          <p class="texte-discret">Précisions, nuances et contexte d'usage.</p>
+        </section>
+        <section>
+          <h3>Ce qu'il vaut mieux éviter de dire</h3>
+          <p class="texte-discret">Formulations blessantes ou erronées, et ce qu'on peut dire à la place.</p>
+        </section>
+        <section>
+          <h3>Voir aussi</h3>
+          <p><a href="#">Aromantique</a> · <a href="#">Spectre ace</a></p>
+        </section>
+      </article>
+    </div>
+  </main>
+
+  <footer class="footer-site">
+    <p>Mentions · Contact · Crédits illustrations</p>
+    <button type="button" class="sortie-rapide">Sortie rapide</button>
+  </footer>
+
+  <!-- Barre d'onglets (mobile uniquement) -->
+  <nav class="barre-onglets" aria-label="Navigation mobile">
+    <ul>
+      <li><a href="index.html"><span class="icone" aria-hidden="true"></span>Calendrier</a></li>
+      <li><a href="prints.html"><span class="icone" aria-hidden="true"></span>Prints</a></li>
+      <li><a href="dico.html" aria-current="page"><span class="icone" aria-hidden="true"></span>Dico</a></li>
+      <li><a href="voyager.html"><span class="icone" aria-hidden="true"></span>Voyager</a></li>
+      <li><a href="mon-espace.html"><span class="icone" aria-hidden="true"></span>Moi</a></li>
+    </ul>
+  </nav>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

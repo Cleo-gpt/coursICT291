@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Manifs — Prisme</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="lien-evitement" href="#contenu">Aller au contenu</a>
+  <div class="bande-arc-en-ciel" aria-hidden="true"></div>
+
+  <header class="header-site">
+    <a href="index.html" class="logo">
+      <span class="logo-rond" aria-hidden="true"></span>Prisme
+    </a>
+    <nav class="nav-site" aria-label="Navigation principale">
+      <a href="index.html" class="lien-nav">Calendrier</a>
+      <a href="prints.html" class="lien-nav">Prints</a>
+      <a href="dico.html" class="lien-nav">Dico</a>
+      <a href="manifs.html" class="lien-nav actif" aria-current="page">Manifs</a>
+      <a href="voyager.html" class="lien-nav">Voyager</a>
+      <a href="ressources.html" class="lien-nav">Ressources</a>
+      <a href="mon-espace.html" class="lien-compte">iel · mon espace</a>
+    </nav>
+    <a href="ressources.html" class="lien-aide">Aide</a>
+  </header>
+
+  <main id="contenu" class="contenu-principal">
+    <div class="entete-page">
+      <div class="pile">
+        <h1>Manifestations</h1>
+        <p class="chapeau">Marches et rassemblements. Filtre par région, puis ajoute à ton agenda.</p>
+      </div>
+    <ul class="filtres" aria-label="Filtrer par région">
+      <li><button type="button" class="filtre" aria-pressed="true">Suisse romande</button></li>
+      <li><button type="button" class="filtre" aria-pressed="false">Suisse alémanique</button></li>
+      <li><button type="button" class="filtre" aria-pressed="false">Tessin</button></li>
+    </ul>
+    </div>
+
+    <div class="deux-colonnes">
+      <ul class="liste-manifs">
+      <li>
+        <article class="carte-bloc manif">
+          <p class="bloc-date"><strong>13</strong><span>juin</span></p>
+          <div class="manif-corps">
+            <h2>Marche des fiertés</h2>
+            <p class="petite-info">14h00 · Place de la Riponne, Lausanne</p>
+            <ul class="etiquettes"><li>marche</li><li>accès PMR</li></ul>
+          </div>
+          <button type="button" class="btn-secondaire btn-petit">Ajouter à l'agenda</button>
+        </article>
+      </li>
+      <li>
+        <article class="carte-bloc manif">
+          <p class="bloc-date"><strong>17</strong><span>mai</span></p>
+          <div class="manif-corps">
+            <h2>Rassemblement contre l’homophobie et la transphobie</h2>
+            <p class="petite-info">18h00 · Genève</p>
+            <ul class="etiquettes"><li>rassemblement</li><li>accès PMR</li></ul>
+          </div>
+          <button type="button" class="btn-secondaire btn-petit">Ajouter à l'agenda</button>
+        </article>
+      </li>
+      <li>
+        <article class="carte-bloc manif">
+          <p class="bloc-date"><strong>20</strong><span>juin</span></p>
+          <div class="manif-corps">
+            <h2>Marche des fiertés</h2>
+            <p class="petite-info">13h00 · Genève</p>
+            <ul class="etiquettes"><li>marche</li><li>accès PMR</li></ul>
+          </div>
+          <button type="button" class="btn-secondaire btn-petit">Ajouter à l'agenda</button>
+        </article>
+      </li>
+      <li>
+        <article class="carte-bloc manif">
+          <p class="bloc-date"><strong>28</strong><span>juin</span></p>
+          <div class="manif-corps">
+            <h2>Rassemblement Stonewall</h2>
+            <p class="petite-info">17h00 · Fribourg</p>
+            <ul class="etiquettes"><li>rassemblement</li><li>accès PMR</li></ul>
+          </div>
+          <button type="button" class="btn-secondaire btn-petit">Ajouter à l'agenda</button>
+        </article>
+      </li>
+      </ul>
+
+      <aside class="colonne-laterale">
+        <div class="carte-bloc bloc-carte-geo">
+          <div class="image-attente carte-geo" role="img" aria-label="Carte des manifestations">carte des manifestations</div>
+          <p class="petite-info">4 manifestations affichées</p>
+        </div>
+        <section class="bloc-doux" aria-labelledby="titre-securite">
+          <h2 id="titre-securite" class="surtitre">Y aller en sécurité</h2>
+          <p>Conseils avant d'y aller, contacts sur place, que faire en cas de problème.</p>
+          <a href="ressources.html" class="btn-secondaire btn-petit">Lire les conseils</a>
+        </section>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="footer-site">
+    <p>Mentions · Contact · Crédits illustrations</p>
+    <button type="button" class="sortie-rapide">Sortie rapide</button>
+  </footer>
+
+  <!-- Barre d'onglets (mobile uniquement) -->
+  <nav class="barre-onglets" aria-label="Navigation mobile">
+    <ul>
+      <li><a href="index.html"><span class="icone" aria-hidden="true"></span>Calendrier</a></li>
+      <li><a href="prints.html"><span class="icone" aria-hidden="true"></span>Prints</a></li>
+      <li><a href="dico.html"><span class="icone" aria-hidden="true"></span>Dico</a></li>
+      <li><a href="voyager.html"><span class="icone" aria-hidden="true"></span>Voyager</a></li>
+      <li><a href="mon-espace.html"><span class="icone" aria-hidden="true"></span>Moi</a></li>
+    </ul>
+  </nav>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

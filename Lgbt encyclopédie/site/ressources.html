@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ressources — Prisme</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="lien-evitement" href="#contenu">Aller au contenu</a>
+  <div class="bande-arc-en-ciel" aria-hidden="true"></div>
+
+  <header class="header-site">
+    <a href="index.html" class="logo">
+      <span class="logo-rond" aria-hidden="true"></span>Prisme
+    </a>
+    <nav class="nav-site" aria-label="Navigation principale">
+      <a href="index.html" class="lien-nav">Calendrier</a>
+      <a href="prints.html" class="lien-nav">Prints</a>
+      <a href="dico.html" class="lien-nav">Dico</a>
+      <a href="manifs.html" class="lien-nav">Manifs</a>
+      <a href="voyager.html" class="lien-nav">Voyager</a>
+      <a href="ressources.html" class="lien-nav actif" aria-current="page">Ressources</a>
+      <a href="mon-espace.html" class="lien-compte">iel · mon espace</a>
+    </nav>
+    <a href="ressources.html" class="lien-aide">Aide</a>
+  </header>
+
+  <main id="contenu" class="contenu-principal">
+    <div class="entete-page">
+      <div class="pile">
+        <h1>Ressources à contacter</h1>
+        <p class="chapeau">Écoute, santé, droits et associations. Anonyme et gratuit quand c'est indiqué.</p>
+      </div>
+    <form class="recherche-entete" role="search">
+      <label class="visuellement-cache" for="ressource">Chercher une ressource</label>
+      <input type="search" id="ressource" class="champ-recherche" placeholder="Chercher une ressource…">
+    </form>
+    </div>
+
+    <section class="urgence" aria-labelledby="titre-urgence">
+      <p><span class="surtitre" id="titre-urgence">En danger immédiat</span><br>Appelle directement les secours.</p>
+      <a href="tel:117">117 · Police</a>
+      <a href="tel:144">144 · Urgences</a>
+      <a href="tel:112">112</a>
+    </section>
+
+    <ul class="filtres" aria-label="Filtrer par thème">
+      <li><button type="button" class="filtre" aria-pressed="true">Tout</button></li>
+      <li><button type="button" class="filtre" aria-pressed="false">Écoute</button></li>
+      <li><button type="button" class="filtre" aria-pressed="false">Jeunes</button></li>
+      <li><button type="button" class="filtre" aria-pressed="false">Santé</button></li>
+      <li><button type="button" class="filtre" aria-pressed="false">Juridique</button></li>
+      <li><button type="button" class="filtre" aria-pressed="false">Associations</button></li>
+    </ul>
+
+    <ul class="grille-ressources">
+      <li>
+        <article class="carte-bloc ressource">
+          <p class="surtitre">Écoute</p>
+          <h2>LGBT+ Helpline</h2>
+          <p class="texte-discret">Écoute par des pairs : identité, coming out, discriminations.</p>
+          <p class="petite-info">téléphone · chat · anonyme</p>
+          <div class="rangee-boutons">
+            <a href="#" class="btn-primaire btn-petit">Appeler</a>
+            <a href="#" class="btn-secondaire btn-petit">Site web</a>
+          </div>
+        </article>
+      </li>
+      <li>
+        <article class="carte-bloc ressource">
+          <p class="surtitre">Écoute</p>
+          <h2>La Main Tendue — 143</h2>
+          <p class="texte-discret">Écoute pour toute personne en difficulté.</p>
+          <p class="petite-info">24/7 · gratuit · anonyme</p>
+          <div class="rangee-boutons">
+            <a href="#" class="btn-primaire btn-petit">Appeler</a>
+            <a href="#" class="btn-secondaire btn-petit">Site web</a>
+          </div>
+        </article>
+      </li>
+      <li>
+        <article class="carte-bloc ressource">
+          <p class="surtitre">Jeunes</p>
+          <h2>Pro Juventute — 147</h2>
+          <p class="texte-discret">Conseil pour enfants et jeunes par téléphone, SMS ou chat.</p>
+          <p class="petite-info">24/7 · gratuit · confidentiel</p>
+          <div class="rangee-boutons">
+            <a href="#" class="btn-primaire btn-petit">Appeler</a>
+            <a href="#" class="btn-secondaire btn-petit">Site web</a>
+          </div>
+        </article>
+      </li>
+      <li>
+        <article class="carte-bloc ressource">
+          <p class="surtitre">Santé</p>
+          <h2>Checkpoint</h2>
+          <p class="texte-discret">Santé sexuelle, dépistage et accompagnement.</p>
+          <p class="petite-info">sur rendez-vous</p>
+          <div class="rangee-boutons">
+            <a href="#" class="btn-primaire btn-petit">Appeler</a>
+            <a href="#" class="btn-secondaire btn-petit">Site web</a>
+          </div>
+        </article>
+      </li>
+      <li>
+        <article class="carte-bloc ressource">
+          <p class="surtitre">Juridique</p>
+          <h2>Transgender Network Switzerland</h2>
+          <p class="texte-discret">Identité de genre, changement d’état civil, droits.</p>
+          <p class="petite-info">e-mail · permanences</p>
+          <div class="rangee-boutons">
+            <a href="#" class="btn-primaire btn-petit">Appeler</a>
+            <a href="#" class="btn-secondaire btn-petit">Site web</a>
+          </div>
+        </article>
+      </li>
+      <li>
+        <article class="carte-bloc ressource">
+          <p class="surtitre">Associations</p>
+          <h2>Association locale</h2>
+          <p class="texte-discret">Accueil, groupes de parole et événements près de chez toi.</p>
+          <p class="petite-info">selon la région</p>
+          <div class="rangee-boutons">
+            <a href="#" class="btn-primaire btn-petit">Appeler</a>
+            <a href="#" class="btn-secondaire btn-petit">Site web</a>
+          </div>
+        </article>
+      </li>
+    </ul>
+
+    <section class="bloc-doux bloc-ligne">
+      <p>Une ressource manque près de chez toi&nbsp;?</p>
+      <a href="#" class="btn-secondaire btn-petit">Proposer une ressource</a>
+    </section>
+  </main>
+
+  <footer class="footer-site">
+    <p>Mentions · Contact · Crédits illustrations</p>
+    <button type="button" class="sortie-rapide">Sortie rapide</button>
+  </footer>
+
+  <!-- Barre d'onglets (mobile uniquement) -->
+  <nav class="barre-onglets" aria-label="Navigation mobile">
+    <ul>
+      <li><a href="index.html"><span class="icone" aria-hidden="true"></span>Calendrier</a></li>
+      <li><a href="prints.html"><span class="icone" aria-hidden="true"></span>Prints</a></li>
+      <li><a href="dico.html"><span class="icone" aria-hidden="true"></span>Dico</a></li>
+      <li><a href="voyager.html"><span class="icone" aria-hidden="true"></span>Voyager</a></li>
+      <li><a href="mon-espace.html"><span class="icone" aria-hidden="true"></span>Moi</a></li>
+    </ul>
+  </nav>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

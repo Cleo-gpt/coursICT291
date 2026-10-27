@@ -6,7 +6,7 @@
   <title>Prisme — Calendrier des fiertés</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -19,19 +19,93 @@
     </a>
     <nav class="nav-site" aria-label="Navigation principale">
       <a href="index.html" class="lien-nav actif" aria-current="page">Calendrier</a>
-      <a href="#" class="lien-nav">Prints</a>
-      <a href="#" class="lien-nav">Dico</a>
-      <a href="#liste-cartes" class="lien-nav">Manifs</a>
-      <a href="#" class="lien-nav">Voyager</a>
+      <a href="prints.html" class="lien-nav">Prints</a>
+      <a href="dico.html" class="lien-nav">Dico</a>
+      <a href="manifs.html" class="lien-nav">Manifs</a>
+      <a href="voyager.html" class="lien-nav">Voyager</a>
+      <a href="ressources.html" class="lien-nav">Ressources</a>
+      <a href="mon-espace.html" class="lien-compte">iel · mon espace</a>
     </nav>
+    <a href="ressources.html" class="lien-aide">Aide</a>
   </header>
 
   <main id="contenu" class="contenu-principal">
-    <section class="hero-section">
-      <p class="surtitre">Juin 2026 · Mois des fiertés</p>
-      <h1>Une illustration par jour, tout le mois des fiertés.</h1>
-      <p class="hero-intro">Trouve les manifs près de chez toi et découvre le sens de chaque orientation.</p>
+    <section class="hero-section" aria-labelledby="titre-jour">
+      <div class="hero-texte">
+        <p class="surtitre">Print du jour · mar 16 juin</p>
+        <h1 id="titre-jour">Une illustration par jour, tout le mois des fiertés.</h1>
+        <p class="hero-intro">Chaque date du calendrier ouvre le print correspondant, avec son titre, son contexte et le crédit de l'illustratrice.</p>
+        <div class="rangee-boutons">
+          <a href="print.html" class="btn-primaire">Ouvrir le print</a>
+          <a href="prints.html" class="btn-secondaire">Voir la collection</a>
+        </div>
+      </div>
+      <figure class="print-du-jour">
+        <div class="image-attente" role="img" aria-label="Print du jour">print du jour</div>
+        <figcaption>Crédit · compte de l'illustratrice</figcaption>
+      </figure>
     </section>
+
+    <div class="deux-colonnes">
+      <!-- Calendrier de juin 2026 (le 1er juin est un lundi) -->
+      <section class="carte-bloc calendrier" aria-labelledby="titre-cal">
+        <div class="calendrier-entete">
+          <h2 id="titre-cal">Juin 2026</h2>
+          <p class="surtitre">Mois des fiertés</p>
+        </div>
+        <ul class="jours-semaine" aria-hidden="true">
+          <li>LU</li><li>MA</li><li>ME</li><li>JE</li><li>VE</li><li>SA</li><li>DI</li>
+        </ul>
+        <ol class="grille-jours">
+          <li class="jour"><a href="print.html" aria-label="1 juin — voir le print"><span class="vignette"></span><span class="num">1</span></a></li>
+          <li class="jour"><a href="print.html" aria-label="2 juin — voir le print"><span class="vignette"></span><span class="num">2</span></a></li>
+          <li class="jour"><a href="print.html" aria-label="3 juin — voir le print"><span class="vignette"></span><span class="num">3</span></a></li>
+          <li class="jour"><a href="print.html" aria-label="4 juin — voir le print"><span class="vignette"></span><span class="num">4</span></a></li>
+          <li class="jour"><a href="print.html" aria-label="5 juin — voir le print"><span class="vignette"></span><span class="num">5</span></a></li>
+          <li class="jour"><a href="print.html" aria-label="6 juin — voir le print"><span class="vignette"></span><span class="num">6</span></a></li>
+          <li class="jour"><a href="print.html" aria-label="7 juin — voir le print"><span class="vignette"></span><span class="num">7</span></a></li>
+          <li class="jour"><a href="print.html" aria-label="8 juin — voir le print"><span class="vignette"></span><span class="num">8</span></a></li>
+          <li class="jour"><a href="print.html" aria-label="9 juin — voir le print"><span class="vignette"></span><span class="num">9</span></a></li>
+          <li class="jour"><a href="print.html" aria-label="10 juin — voir le print"><span class="vignette"></span><span class="num">10</span></a></li>
+          <li class="jour"><a href="print.html" aria-label="11 juin — voir le print"><span class="vignette"></span><span class="num">11</span></a></li>
+          <li class="jour"><a href="print.html" aria-label="12 juin — voir le print"><span class="vignette"></span><span class="num">12</span></a></li>
+          <li class="jour"><a href="print.html" aria-label="13 juin, manifestation — voir le print"><span class="vignette"></span><span class="num">13<span class="pastille" aria-hidden="true"></span></span></a></li>
+          <li class="jour"><a href="print.html" aria-label="14 juin — voir le print"><span class="vignette"></span><span class="num">14</span></a></li>
+          <li class="jour"><a href="print.html" aria-label="15 juin — voir le print"><span class="vignette"></span><span class="num">15</span></a></li>
+          <li class="jour"><a href="print.html" aria-label="16 juin — voir le print"><span class="vignette"></span><span class="num">16</span></a></li>
+          <li class="jour"><a href="print.html" aria-label="17 juin — voir le print"><span class="vignette"></span><span class="num">17</span></a></li>
+          <li class="jour"><a href="print.html" aria-label="18 juin — voir le print"><span class="vignette"></span><span class="num">18</span></a></li>
+          <li class="jour"><a href="print.html" aria-label="19 juin — voir le print"><span class="vignette"></span><span class="num">19</span></a></li>
+          <li class="jour"><a href="print.html" aria-label="20 juin, manifestation — voir le print"><span class="vignette"></span><span class="num">20<span class="pastille" aria-hidden="true"></span></span></a></li>
+          <li class="jour"><a href="print.html" aria-label="21 juin — voir le print"><span class="vignette"></span><span class="num">21</span></a></li>
+          <li class="jour"><a href="print.html" aria-label="22 juin — voir le print"><span class="vignette"></span><span class="num">22</span></a></li>
+          <li class="jour"><a href="print.html" aria-label="23 juin — voir le print"><span class="vignette"></span><span class="num">23</span></a></li>
+          <li class="jour"><a href="print.html" aria-label="24 juin — voir le print"><span class="vignette"></span><span class="num">24</span></a></li>
+          <li class="jour"><a href="print.html" aria-label="25 juin — voir le print"><span class="vignette"></span><span class="num">25</span></a></li>
+          <li class="jour"><a href="print.html" aria-label="26 juin — voir le print"><span class="vignette"></span><span class="num">26</span></a></li>
+          <li class="jour"><a href="print.html" aria-label="27 juin — voir le print"><span class="vignette"></span><span class="num">27</span></a></li>
+          <li class="jour"><a href="print.html" aria-label="28 juin, manifestation — voir le print"><span class="vignette"></span><span class="num">28<span class="pastille" aria-hidden="true"></span></span></a></li>
+          <li class="jour"><a href="print.html" aria-label="29 juin — voir le print"><span class="vignette"></span><span class="num">29</span></a></li>
+          <li class="jour"><a href="print.html" aria-label="30 juin — voir le print"><span class="vignette"></span><span class="num">30</span></a></li>
+        </ol>
+      </section>
+
+      <aside class="colonne-laterale">
+        <section class="carte-bloc" aria-labelledby="titre-venir">
+          <h2 id="titre-venir" class="surtitre">À venir près de toi</h2>
+          <ul class="liste-venir">
+            <li><span class="barre barre-vert"></span><div><a href="manifs.html">Marche des fiertés</a><p class="petite-info">sa 13.06 · 14h · Lausanne</p></div></li>
+            <li><span class="barre barre-violet"></span><div><a href="manifs.html">Marche des fiertés</a><p class="petite-info">sa 20.06 · 13h · Genève</p></div></li>
+            <li><span class="barre barre-orange"></span><div><a href="manifs.html">Rassemblement Stonewall</a><p class="petite-info">di 28.06 · 17h · Fribourg</p></div></li>
+          </ul>
+        </section>
+        <section class="bloc-doux" aria-labelledby="titre-parler">
+          <h2 id="titre-parler" class="surtitre">Besoin de parler ?</h2>
+          <p>Lignes d'écoute et associations, 24h/24, sans jugement.</p>
+          <a href="ressources.html" class="btn-secondaire btn-petit">Voir les contacts</a>
+        </section>
+      </aside>
+    </div>
 
     <!-- Zone de recherche (rendue dynamique en semaine 12) -->
     <div class="barre-recherche">
@@ -66,29 +140,23 @@
         <div class="meta"><span class="badge">Rassemblement</span><a href="#" class="lien-carte">Voir le détail</a></div>
       </article>
     </section>
-
-    <!-- Formulaire (rendu réactif plus tard) -->
-    <section id="formulaire-section" class="section-formulaire">
-      <h2>Proposer une manif</h2>
-      <form id="formulaire-ajout" novalidate>
-        <div class="champ-groupe">
-          <label for="champ-nom">Nom de la manif</label>
-          <input type="text" id="champ-nom" required minlength="3" placeholder="Ex : Pride Yverdon">
-        </div>
-        <div class="champ-groupe">
-          <label for="champ-commune">Commune</label>
-          <input type="text" id="champ-commune" required minlength="2" placeholder="Ex : Yverdon-les-Bains">
-        </div>
-        <p id="erreurs-formulaire" class="alerte-erreur" hidden></p>
-        <button type="submit" class="btn-primaire">Envoyer la manif</button>
-      </form>
-    </section>
   </main>
 
   <footer class="footer-site">
-    <p>&copy; 2026 Prisme · [Ton prénom]</p>
+    <p>Mentions · Contact · Crédits illustrations</p>
     <button type="button" class="sortie-rapide">Sortie rapide</button>
   </footer>
+
+  <!-- Barre d'onglets (mobile uniquement) -->
+  <nav class="barre-onglets" aria-label="Navigation mobile">
+    <ul>
+      <li><a href="index.html" aria-current="page"><span class="icone" aria-hidden="true"></span>Calendrier</a></li>
+      <li><a href="prints.html"><span class="icone" aria-hidden="true"></span>Prints</a></li>
+      <li><a href="dico.html"><span class="icone" aria-hidden="true"></span>Dico</a></li>
+      <li><a href="voyager.html"><span class="icone" aria-hidden="true"></span>Voyager</a></li>
+      <li><a href="mon-espace.html"><span class="icone" aria-hidden="true"></span>Moi</a></li>
+    </ul>
+  </nav>
 
   <script src="js/app.js"></script>
 </body>

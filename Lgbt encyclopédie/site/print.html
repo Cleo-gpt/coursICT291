@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Print du jour — Prisme</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="lien-evitement" href="#contenu">Aller au contenu</a>
+  <div class="bande-arc-en-ciel" aria-hidden="true"></div>
+
+  <header class="header-site">
+    <a href="index.html" class="logo">
+      <span class="logo-rond" aria-hidden="true"></span>Prisme
+    </a>
+    <nav class="nav-site" aria-label="Navigation principale">
+      <a href="index.html" class="lien-nav">Calendrier</a>
+      <a href="prints.html" class="lien-nav">Prints</a>
+      <a href="dico.html" class="lien-nav">Dico</a>
+      <a href="manifs.html" class="lien-nav">Manifs</a>
+      <a href="voyager.html" class="lien-nav">Voyager</a>
+      <a href="ressources.html" class="lien-nav">Ressources</a>
+      <a href="mon-espace.html" class="lien-compte">iel · mon espace</a>
+    </nav>
+    <a href="ressources.html" class="lien-aide">Aide</a>
+  </header>
+
+  <main id="contenu" class="contenu-principal">
+    <nav class="fil-ariane" aria-label="Fil d'Ariane"><a href="prints.html">Prints</a> · juin 2026 · 16</nav>
+
+    <article class="fiche-print">
+      <div class="image-attente carre" role="img" aria-label="Illustration du 16 juin">illustration plein cadre</div>
+      <div class="pile">
+        <p class="surtitre">Mardi 16 juin</p>
+        <h1>Titre de l'illustration</h1>
+        <p class="chapeau">Texte de contexte fourni avec l'illustration : ce qu'elle représente et pourquoi cette date.</p>
+        <div class="carte-bloc credit">
+          <span class="avatar" aria-hidden="true"></span>
+          <div>
+            <p>Illustratrice</p>
+            <p class="petite-info">Crédit · <a href="#">lien vers le compte d'origine</a></p>
+          </div>
+        </div>
+        <div class="rangee-boutons">
+          <button type="button" class="btn-primaire">Enregistrer</button>
+          <button type="button" class="btn-secondaire">Partager</button>
+          <button type="button" class="btn-secondaire btn-petit">Signaler</button>
+        </div>
+        <nav class="pagination" aria-label="Prints voisins">
+          <a href="print.html">‹ Print du 15</a>
+          <a href="print.html">Print du 17 ›</a>
+        </nav>
+      </div>
+    </article>
+  </main>
+
+  <footer class="footer-site">
+    <p>Mentions · Contact · Crédits illustrations</p>
+    <button type="button" class="sortie-rapide">Sortie rapide</button>
+  </footer>
+
+  <!-- Barre d'onglets (mobile uniquement) -->
+  <nav class="barre-onglets" aria-label="Navigation mobile">
+    <ul>
+      <li><a href="index.html"><span class="icone" aria-hidden="true"></span>Calendrier</a></li>
+      <li><a href="prints.html"><span class="icone" aria-hidden="true"></span>Prints</a></li>
+      <li><a href="dico.html"><span class="icone" aria-hidden="true"></span>Dico</a></li>
+      <li><a href="voyager.html"><span class="icone" aria-hidden="true"></span>Voyager</a></li>
+      <li><a href="mon-espace.html"><span class="icone" aria-hidden="true"></span>Moi</a></li>
+    </ul>
+  </nav>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

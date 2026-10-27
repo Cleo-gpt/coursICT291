@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Voyager — Prisme</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="lien-evitement" href="#contenu">Aller au contenu</a>
+  <div class="bande-arc-en-ciel" aria-hidden="true"></div>
+
+  <header class="header-site">
+    <a href="index.html" class="logo">
+      <span class="logo-rond" aria-hidden="true"></span>Prisme
+    </a>
+    <nav class="nav-site" aria-label="Navigation principale">
+      <a href="index.html" class="lien-nav">Calendrier</a>
+      <a href="prints.html" class="lien-nav">Prints</a>
+      <a href="dico.html" class="lien-nav">Dico</a>
+      <a href="manifs.html" class="lien-nav">Manifs</a>
+      <a href="voyager.html" class="lien-nav actif" aria-current="page">Voyager</a>
+      <a href="ressources.html" class="lien-nav">Ressources</a>
+      <a href="mon-espace.html" class="lien-compte">iel · mon espace</a>
+    </nav>
+    <a href="ressources.html" class="lien-aide">Aide</a>
+  </header>
+
+  <main id="contenu" class="contenu-principal">
+    <div class="entete-page">
+      <div class="pile">
+        <h1>Voyager en sécurité</h1>
+        <p class="chapeau">Cadre légal, attitudes, sécurité : sélectionne un pays sur la carte ou dans la liste.</p>
+      </div>
+    <form class="recherche-entete" role="search">
+      <label class="visuellement-cache" for="pays">Chercher un pays</label>
+      <input type="search" id="pays" class="champ-recherche" placeholder="Chercher un pays, une ville…">
+    </form>
+    </div>
+
+    <div class="deux-colonnes colonne-large">
+      <div class="pile">
+        <section class="carte-bloc">
+          <div class="image-attente carte-geo" role="img" aria-label="Carte du monde par niveau de vigilance">carte du monde cliquable</div>
+          <ul class="legende"><li><span class="echantillon niveau-1"></span>accueil favorable</li><li><span class="echantillon niveau-2"></span>vigilance normale</li><li><span class="echantillon niveau-3"></span>vigilance renforcée</li><li><span class="echantillon niveau-4"></span>zone à risque</li></ul>
+        </section>
+        <section class="carte-bloc" aria-label="Liste des pays">
+          <ul class="liste-pays">
+          <li><a href="#"><span class="barre niveau-1"></span>Canada<small>accueil favorable</small></a></li>
+          <li><a href="#"><span class="barre niveau-1"></span>Portugal<small>accueil favorable</small></a></li>
+          <li><a href="#"><span class="barre niveau-2"></span>Italie<small>vigilance normale</small></a></li>
+          <li><a href="#"><span class="barre niveau-3"></span>Turquie<small>vigilance renforcée</small></a></li>
+          <li><a href="#"><span class="barre niveau-4"></span>Pays — législation hostile<small>zone à risque</small></a></li>
+          </ul>
+        </section>
+      </div>
+
+      <article class="carte-bloc fiche-pays">
+        <h2>Nom du pays</h2>
+        <div class="vigilance">
+          <p class="petite-info">Niveau de vigilance</p>
+          <p>Vigilance renforcée</p>
+        </div>
+        <section><h3>Cadre légal</h3><p class="texte-discret">Lois en vigueur, reconnaissance des couples, identité de genre.</p></section>
+        <section><h3>Attitudes et société</h3><p class="texte-discret">Perception générale, différences entre villes et campagnes.</p></section>
+        <section><h3>Sécurité au quotidien</h3><p class="texte-discret">Précautions pratiques pendant le séjour.</p></section>
+        <section><h3>En cas de problème</h3><p class="texte-discret">Ambassade, contacts locaux, démarches.</p></section>
+        <a href="ressources.html" class="btn-primaire">Numéros utiles sur place</a>
+        <p class="petite-info">Source officielle · dernière mise à jour</p>
+      </article>
+    </div>
+  </main>
+
+  <footer class="footer-site">
+    <p>Mentions · Contact · Crédits illustrations</p>
+    <button type="button" class="sortie-rapide">Sortie rapide</button>
+  </footer>
+
+  <!-- Barre d'onglets (mobile uniquement) -->
+  <nav class="barre-onglets" aria-label="Navigation mobile">
+    <ul>
+      <li><a href="index.html"><span class="icone" aria-hidden="true"></span>Calendrier</a></li>
+      <li><a href="prints.html"><span class="icone" aria-hidden="true"></span>Prints</a></li>
+      <li><a href="dico.html"><span class="icone" aria-hidden="true"></span>Dico</a></li>
+      <li><a href="voyager.html" aria-current="page"><span class="icone" aria-hidden="true"></span>Voyager</a></li>
+      <li><a href="mon-espace.html"><span class="icone" aria-hidden="true"></span>Moi</a></li>
+    </ul>
+  </nav>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
