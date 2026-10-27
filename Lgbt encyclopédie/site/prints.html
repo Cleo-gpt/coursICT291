@@ -24,10 +24,40 @@
       <a href="manifs.html" class="lien-nav">Manifs</a>
       <a href="voyager.html" class="lien-nav">Voyager</a>
       <a href="ressources.html" class="lien-nav">Ressources</a>
-      <a href="mon-espace.html" class="lien-compte">iel · mon espace</a>
     </nav>
-    <a href="ressources.html" class="lien-aide">Aide</a>
+    <div class="zone-compte">
+      <button type="button" class="lien-compte" id="bouton-compte" aria-haspopup="dialog">Se connecter avec Instagram</button>
+      <a href="ressources.html" class="lien-aide">Aide</a>
+    </div>
   </header>
+  <!-- Connexion avec le nom d'utilisateur Instagram (sans mot de passe, gardé dans ce navigateur) -->
+  <dialog id="fenetre-connexion" class="fenetre" aria-label="Compte Instagram">
+    <div class="etat-deconnecte">
+      <h2>Se connecter avec Instagram</h2>
+      <p class="texte-discret">Indique ton nom d'utilisateur Instagram pour pouvoir enregistrer tes prints. Pas besoin de mot de passe.</p>
+      <form id="formulaire-connexion" novalidate>
+        <label for="pseudo-insta" class="label-recherche">Nom d'utilisateur</label>
+        <div class="champ-pseudo">
+          <span aria-hidden="true">@</span>
+          <input type="text" id="pseudo-insta" name="pseudo" autocomplete="username" autocapitalize="none" spellcheck="false" maxlength="31" required aria-describedby="erreur-connexion">
+        </div>
+        <p id="erreur-connexion" class="alerte-erreur" hidden></p>
+        <div class="rangee-boutons">
+          <button type="submit" class="btn-primaire">Se connecter</button>
+          <button type="button" class="btn-secondaire" data-fermer>Annuler</button>
+        </div>
+      </form>
+    </div>
+    <div class="etat-connecte" hidden>
+      <h2>Connecté·e : <span data-pseudo></span></h2>
+      <p class="texte-discret">Tes prints enregistrés restent dans ce navigateur.</p>
+      <div class="rangee-boutons">
+        <a href="mon-espace.html" class="btn-primaire">Mon espace</a>
+        <button type="button" class="btn-secondaire" id="bouton-deconnexion">Se déconnecter</button>
+        <button type="button" class="btn-secondaire" data-fermer>Fermer</button>
+      </div>
+    </div>
+  </dialog>
 
   <main id="contenu" class="contenu-principal">
     <div class="entete-page">

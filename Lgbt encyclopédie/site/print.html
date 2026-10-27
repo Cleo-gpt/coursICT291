@@ -24,10 +24,40 @@
       <a href="manifs.html" class="lien-nav">Manifs</a>
       <a href="voyager.html" class="lien-nav">Voyager</a>
       <a href="ressources.html" class="lien-nav">Ressources</a>
-      <a href="mon-espace.html" class="lien-compte">iel · mon espace</a>
     </nav>
-    <a href="ressources.html" class="lien-aide">Aide</a>
+    <div class="zone-compte">
+      <button type="button" class="lien-compte" id="bouton-compte" aria-haspopup="dialog">Se connecter avec Instagram</button>
+      <a href="ressources.html" class="lien-aide">Aide</a>
+    </div>
   </header>
+  <!-- Connexion avec le nom d'utilisateur Instagram (sans mot de passe, gardé dans ce navigateur) -->
+  <dialog id="fenetre-connexion" class="fenetre" aria-label="Compte Instagram">
+    <div class="etat-deconnecte">
+      <h2>Se connecter avec Instagram</h2>
+      <p class="texte-discret">Indique ton nom d'utilisateur Instagram pour pouvoir enregistrer tes prints. Pas besoin de mot de passe.</p>
+      <form id="formulaire-connexion" novalidate>
+        <label for="pseudo-insta" class="label-recherche">Nom d'utilisateur</label>
+        <div class="champ-pseudo">
+          <span aria-hidden="true">@</span>
+          <input type="text" id="pseudo-insta" name="pseudo" autocomplete="username" autocapitalize="none" spellcheck="false" maxlength="31" required aria-describedby="erreur-connexion">
+        </div>
+        <p id="erreur-connexion" class="alerte-erreur" hidden></p>
+        <div class="rangee-boutons">
+          <button type="submit" class="btn-primaire">Se connecter</button>
+          <button type="button" class="btn-secondaire" data-fermer>Annuler</button>
+        </div>
+      </form>
+    </div>
+    <div class="etat-connecte" hidden>
+      <h2>Connecté·e : <span data-pseudo></span></h2>
+      <p class="texte-discret">Tes prints enregistrés restent dans ce navigateur.</p>
+      <div class="rangee-boutons">
+        <a href="mon-espace.html" class="btn-primaire">Mon espace</a>
+        <button type="button" class="btn-secondaire" id="bouton-deconnexion">Se déconnecter</button>
+        <button type="button" class="btn-secondaire" data-fermer>Fermer</button>
+      </div>
+    </div>
+  </dialog>
 
   <main id="contenu" class="contenu-principal">
     <!-- Un print par jour : seul celui visé par le lien (#j01 à #j30) est affiché, le 16 par défaut -->
@@ -47,10 +77,10 @@
           </div>
         </div>
         <div class="rangee-boutons">
-          <button type="button" class="btn-primaire">Enregistrer</button>
-          <button type="button" class="btn-secondaire">Partager</button>
-          <button type="button" class="btn-secondaire btn-petit">Signaler</button>
+          <button type="button" class="btn-primaire" data-enregistrer="j01" aria-pressed="false" disabled>Enregistrer</button>
+          <a href="https://www.instagram.com/la_lanterne_de_yuna/" class="btn-secondaire" data-partager data-titre="Gay — La lanterne de Yuna" data-image="images/prints/01-gay.jpg" target="_blank" rel="noopener">Partager en story</a>
         </div>
+        <p class="petite-info note-connexion">Connecte-toi avec Instagram (en haut de la page) pour enregistrer ce print.</p>
         <nav class="pagination" aria-label="Prints voisins">
           <span></span>
           <a href="#j02">Print du 2 ›</a>
@@ -72,10 +102,10 @@
           </div>
         </div>
         <div class="rangee-boutons">
-          <button type="button" class="btn-primaire">Enregistrer</button>
-          <button type="button" class="btn-secondaire">Partager</button>
-          <button type="button" class="btn-secondaire btn-petit">Signaler</button>
+          <button type="button" class="btn-primaire" data-enregistrer="j02" aria-pressed="false" disabled>Enregistrer</button>
+          <a href="https://www.instagram.com/la_lanterne_de_yuna/" class="btn-secondaire" data-partager data-titre="Lesbienne — La lanterne de Yuna" data-image="images/prints/02-lesbienne.jpg" target="_blank" rel="noopener">Partager en story</a>
         </div>
+        <p class="petite-info note-connexion">Connecte-toi avec Instagram (en haut de la page) pour enregistrer ce print.</p>
         <nav class="pagination" aria-label="Prints voisins">
           <a href="#j01">‹ Print du 1</a>
           <a href="#j03">Print du 3 ›</a>
@@ -97,10 +127,10 @@
           </div>
         </div>
         <div class="rangee-boutons">
-          <button type="button" class="btn-primaire">Enregistrer</button>
-          <button type="button" class="btn-secondaire">Partager</button>
-          <button type="button" class="btn-secondaire btn-petit">Signaler</button>
+          <button type="button" class="btn-primaire" data-enregistrer="j03" aria-pressed="false" disabled>Enregistrer</button>
+          <a href="https://www.instagram.com/la_lanterne_de_yuna/" class="btn-secondaire" data-partager data-titre="Bisexuel·le — La lanterne de Yuna" data-image="images/prints/03-bisexuel.jpg" target="_blank" rel="noopener">Partager en story</a>
         </div>
+        <p class="petite-info note-connexion">Connecte-toi avec Instagram (en haut de la page) pour enregistrer ce print.</p>
         <nav class="pagination" aria-label="Prints voisins">
           <a href="#j02">‹ Print du 2</a>
           <a href="#j04">Print du 4 ›</a>
@@ -122,10 +152,10 @@
           </div>
         </div>
         <div class="rangee-boutons">
-          <button type="button" class="btn-primaire">Enregistrer</button>
-          <button type="button" class="btn-secondaire">Partager</button>
-          <button type="button" class="btn-secondaire btn-petit">Signaler</button>
+          <button type="button" class="btn-primaire" data-enregistrer="j04" aria-pressed="false" disabled>Enregistrer</button>
+          <a href="https://www.instagram.com/la_lanterne_de_yuna/" class="btn-secondaire" data-partager data-titre="Polysexuel·le — La lanterne de Yuna" data-image="images/prints/04-polysexuel.jpg" target="_blank" rel="noopener">Partager en story</a>
         </div>
+        <p class="petite-info note-connexion">Connecte-toi avec Instagram (en haut de la page) pour enregistrer ce print.</p>
         <nav class="pagination" aria-label="Prints voisins">
           <a href="#j03">‹ Print du 3</a>
           <a href="#j05">Print du 5 ›</a>
@@ -147,10 +177,10 @@
           </div>
         </div>
         <div class="rangee-boutons">
-          <button type="button" class="btn-primaire">Enregistrer</button>
-          <button type="button" class="btn-secondaire">Partager</button>
-          <button type="button" class="btn-secondaire btn-petit">Signaler</button>
+          <button type="button" class="btn-primaire" data-enregistrer="j05" aria-pressed="false" disabled>Enregistrer</button>
+          <a href="https://www.instagram.com/la_lanterne_de_yuna/" class="btn-secondaire" data-partager data-titre="Pansexuel·le — La lanterne de Yuna" data-image="images/prints/05-pansexuel.jpg" target="_blank" rel="noopener">Partager en story</a>
         </div>
+        <p class="petite-info note-connexion">Connecte-toi avec Instagram (en haut de la page) pour enregistrer ce print.</p>
         <nav class="pagination" aria-label="Prints voisins">
           <a href="#j04">‹ Print du 4</a>
           <a href="#j06">Print du 6 ›</a>
@@ -172,10 +202,10 @@
           </div>
         </div>
         <div class="rangee-boutons">
-          <button type="button" class="btn-primaire">Enregistrer</button>
-          <button type="button" class="btn-secondaire">Partager</button>
-          <button type="button" class="btn-secondaire btn-petit">Signaler</button>
+          <button type="button" class="btn-primaire" data-enregistrer="j06" aria-pressed="false" disabled>Enregistrer</button>
+          <a href="https://www.instagram.com/la_lanterne_de_yuna/" class="btn-secondaire" data-partager data-titre="Omnisexuel·le — La lanterne de Yuna" data-image="images/prints/06-omnisexuel.jpg" target="_blank" rel="noopener">Partager en story</a>
         </div>
+        <p class="petite-info note-connexion">Connecte-toi avec Instagram (en haut de la page) pour enregistrer ce print.</p>
         <nav class="pagination" aria-label="Prints voisins">
           <a href="#j05">‹ Print du 5</a>
           <a href="#j07">Print du 7 ›</a>
@@ -197,10 +227,10 @@
           </div>
         </div>
         <div class="rangee-boutons">
-          <button type="button" class="btn-primaire">Enregistrer</button>
-          <button type="button" class="btn-secondaire">Partager</button>
-          <button type="button" class="btn-secondaire btn-petit">Signaler</button>
+          <button type="button" class="btn-primaire" data-enregistrer="j07" aria-pressed="false" disabled>Enregistrer</button>
+          <a href="https://www.instagram.com/la_lanterne_de_yuna/" class="btn-secondaire" data-partager data-titre="Skoliosexuel·le — La lanterne de Yuna" data-image="images/prints/07-skoliosexuel.jpg" target="_blank" rel="noopener">Partager en story</a>
         </div>
+        <p class="petite-info note-connexion">Connecte-toi avec Instagram (en haut de la page) pour enregistrer ce print.</p>
         <nav class="pagination" aria-label="Prints voisins">
           <a href="#j06">‹ Print du 6</a>
           <a href="#j08">Print du 8 ›</a>
@@ -222,10 +252,10 @@
           </div>
         </div>
         <div class="rangee-boutons">
-          <button type="button" class="btn-primaire">Enregistrer</button>
-          <button type="button" class="btn-secondaire">Partager</button>
-          <button type="button" class="btn-secondaire btn-petit">Signaler</button>
+          <button type="button" class="btn-primaire" data-enregistrer="j08" aria-pressed="false" disabled>Enregistrer</button>
+          <a href="https://www.instagram.com/la_lanterne_de_yuna/" class="btn-secondaire" data-partager data-titre="Demisexuel·le — La lanterne de Yuna" data-image="images/prints/08-demisexuel.jpg" target="_blank" rel="noopener">Partager en story</a>
         </div>
+        <p class="petite-info note-connexion">Connecte-toi avec Instagram (en haut de la page) pour enregistrer ce print.</p>
         <nav class="pagination" aria-label="Prints voisins">
           <a href="#j07">‹ Print du 7</a>
           <a href="#j09">Print du 9 ›</a>
@@ -247,10 +277,10 @@
           </div>
         </div>
         <div class="rangee-boutons">
-          <button type="button" class="btn-primaire">Enregistrer</button>
-          <button type="button" class="btn-secondaire">Partager</button>
-          <button type="button" class="btn-secondaire btn-petit">Signaler</button>
+          <button type="button" class="btn-primaire" data-enregistrer="j09" aria-pressed="false" disabled>Enregistrer</button>
+          <a href="https://www.instagram.com/la_lanterne_de_yuna/" class="btn-secondaire" data-partager data-titre="Graysexuel·le — La lanterne de Yuna" target="_blank" rel="noopener">Partager en story</a>
         </div>
+        <p class="petite-info note-connexion">Connecte-toi avec Instagram (en haut de la page) pour enregistrer ce print.</p>
         <nav class="pagination" aria-label="Prints voisins">
           <a href="#j08">‹ Print du 8</a>
           <a href="#j10">Print du 10 ›</a>
@@ -272,10 +302,10 @@
           </div>
         </div>
         <div class="rangee-boutons">
-          <button type="button" class="btn-primaire">Enregistrer</button>
-          <button type="button" class="btn-secondaire">Partager</button>
-          <button type="button" class="btn-secondaire btn-petit">Signaler</button>
+          <button type="button" class="btn-primaire" data-enregistrer="j10" aria-pressed="false" disabled>Enregistrer</button>
+          <a href="https://www.instagram.com/la_lanterne_de_yuna/" class="btn-secondaire" data-partager data-titre="Asexuel·le — La lanterne de Yuna" target="_blank" rel="noopener">Partager en story</a>
         </div>
+        <p class="petite-info note-connexion">Connecte-toi avec Instagram (en haut de la page) pour enregistrer ce print.</p>
         <nav class="pagination" aria-label="Prints voisins">
           <a href="#j09">‹ Print du 9</a>
           <a href="#j11">Print du 11 ›</a>
@@ -297,10 +327,10 @@
           </div>
         </div>
         <div class="rangee-boutons">
-          <button type="button" class="btn-primaire">Enregistrer</button>
-          <button type="button" class="btn-secondaire">Partager</button>
-          <button type="button" class="btn-secondaire btn-petit">Signaler</button>
+          <button type="button" class="btn-primaire" data-enregistrer="j11" aria-pressed="false" disabled>Enregistrer</button>
+          <a href="https://www.instagram.com/la_lanterne_de_yuna/" class="btn-secondaire" data-partager data-titre="Polyamorie — La lanterne de Yuna" target="_blank" rel="noopener">Partager en story</a>
         </div>
+        <p class="petite-info note-connexion">Connecte-toi avec Instagram (en haut de la page) pour enregistrer ce print.</p>
         <nav class="pagination" aria-label="Prints voisins">
           <a href="#j10">‹ Print du 10</a>
           <a href="#j12">Print du 12 ›</a>
@@ -322,10 +352,10 @@
           </div>
         </div>
         <div class="rangee-boutons">
-          <button type="button" class="btn-primaire">Enregistrer</button>
-          <button type="button" class="btn-secondaire">Partager</button>
-          <button type="button" class="btn-secondaire btn-petit">Signaler</button>
+          <button type="button" class="btn-primaire" data-enregistrer="j12" aria-pressed="false" disabled>Enregistrer</button>
+          <a href="https://www.instagram.com/la_lanterne_de_yuna/" class="btn-secondaire" data-partager data-titre="Intersexe — La lanterne de Yuna" target="_blank" rel="noopener">Partager en story</a>
         </div>
+        <p class="petite-info note-connexion">Connecte-toi avec Instagram (en haut de la page) pour enregistrer ce print.</p>
         <nav class="pagination" aria-label="Prints voisins">
           <a href="#j11">‹ Print du 11</a>
           <a href="#j13">Print du 13 ›</a>
@@ -347,10 +377,10 @@
           </div>
         </div>
         <div class="rangee-boutons">
-          <button type="button" class="btn-primaire">Enregistrer</button>
-          <button type="button" class="btn-secondaire">Partager</button>
-          <button type="button" class="btn-secondaire btn-petit">Signaler</button>
+          <button type="button" class="btn-primaire" data-enregistrer="j13" aria-pressed="false" disabled>Enregistrer</button>
+          <a href="https://www.instagram.com/la_lanterne_de_yuna/" class="btn-secondaire" data-partager data-titre="Transfem — La lanterne de Yuna" target="_blank" rel="noopener">Partager en story</a>
         </div>
+        <p class="petite-info note-connexion">Connecte-toi avec Instagram (en haut de la page) pour enregistrer ce print.</p>
         <nav class="pagination" aria-label="Prints voisins">
           <a href="#j12">‹ Print du 12</a>
           <a href="#j14">Print du 14 ›</a>
@@ -372,10 +402,10 @@
           </div>
         </div>
         <div class="rangee-boutons">
-          <button type="button" class="btn-primaire">Enregistrer</button>
-          <button type="button" class="btn-secondaire">Partager</button>
-          <button type="button" class="btn-secondaire btn-petit">Signaler</button>
+          <button type="button" class="btn-primaire" data-enregistrer="j14" aria-pressed="false" disabled>Enregistrer</button>
+          <a href="https://www.instagram.com/la_lanterne_de_yuna/" class="btn-secondaire" data-partager data-titre="Transmasc — La lanterne de Yuna" target="_blank" rel="noopener">Partager en story</a>
         </div>
+        <p class="petite-info note-connexion">Connecte-toi avec Instagram (en haut de la page) pour enregistrer ce print.</p>
         <nav class="pagination" aria-label="Prints voisins">
           <a href="#j13">‹ Print du 13</a>
           <a href="#j15">Print du 15 ›</a>
@@ -397,10 +427,10 @@
           </div>
         </div>
         <div class="rangee-boutons">
-          <button type="button" class="btn-primaire">Enregistrer</button>
-          <button type="button" class="btn-secondaire">Partager</button>
-          <button type="button" class="btn-secondaire btn-petit">Signaler</button>
+          <button type="button" class="btn-primaire" data-enregistrer="j15" aria-pressed="false" disabled>Enregistrer</button>
+          <a href="https://www.instagram.com/la_lanterne_de_yuna/" class="btn-secondaire" data-partager data-titre="Agenre — La lanterne de Yuna" target="_blank" rel="noopener">Partager en story</a>
         </div>
+        <p class="petite-info note-connexion">Connecte-toi avec Instagram (en haut de la page) pour enregistrer ce print.</p>
         <nav class="pagination" aria-label="Prints voisins">
           <a href="#j14">‹ Print du 14</a>
           <a href="#j16">Print du 16 ›</a>
@@ -422,10 +452,10 @@
           </div>
         </div>
         <div class="rangee-boutons">
-          <button type="button" class="btn-primaire">Enregistrer</button>
-          <button type="button" class="btn-secondaire">Partager</button>
-          <button type="button" class="btn-secondaire btn-petit">Signaler</button>
+          <button type="button" class="btn-primaire" data-enregistrer="j16" aria-pressed="false" disabled>Enregistrer</button>
+          <a href="https://www.instagram.com/la_lanterne_de_yuna/" class="btn-secondaire" data-partager data-titre="Genderfluid — La lanterne de Yuna" target="_blank" rel="noopener">Partager en story</a>
         </div>
+        <p class="petite-info note-connexion">Connecte-toi avec Instagram (en haut de la page) pour enregistrer ce print.</p>
         <nav class="pagination" aria-label="Prints voisins">
           <a href="#j15">‹ Print du 15</a>
           <a href="#j17">Print du 17 ›</a>
@@ -447,10 +477,10 @@
           </div>
         </div>
         <div class="rangee-boutons">
-          <button type="button" class="btn-primaire">Enregistrer</button>
-          <button type="button" class="btn-secondaire">Partager</button>
-          <button type="button" class="btn-secondaire btn-petit">Signaler</button>
+          <button type="button" class="btn-primaire" data-enregistrer="j17" aria-pressed="false" disabled>Enregistrer</button>
+          <a href="https://www.instagram.com/la_lanterne_de_yuna/" class="btn-secondaire" data-partager data-titre="Bigenre — La lanterne de Yuna" target="_blank" rel="noopener">Partager en story</a>
         </div>
+        <p class="petite-info note-connexion">Connecte-toi avec Instagram (en haut de la page) pour enregistrer ce print.</p>
         <nav class="pagination" aria-label="Prints voisins">
           <a href="#j16">‹ Print du 16</a>
           <a href="#j18">Print du 18 ›</a>
@@ -472,10 +502,10 @@
           </div>
         </div>
         <div class="rangee-boutons">
-          <button type="button" class="btn-primaire">Enregistrer</button>
-          <button type="button" class="btn-secondaire">Partager</button>
-          <button type="button" class="btn-secondaire btn-petit">Signaler</button>
+          <button type="button" class="btn-primaire" data-enregistrer="j18" aria-pressed="false" disabled>Enregistrer</button>
+          <a href="https://www.instagram.com/la_lanterne_de_yuna/" class="btn-secondaire" data-partager data-titre="Trigenre — La lanterne de Yuna" target="_blank" rel="noopener">Partager en story</a>
         </div>
+        <p class="petite-info note-connexion">Connecte-toi avec Instagram (en haut de la page) pour enregistrer ce print.</p>
         <nav class="pagination" aria-label="Prints voisins">
           <a href="#j17">‹ Print du 17</a>
           <a href="#j19">Print du 19 ›</a>
@@ -497,10 +527,10 @@
           </div>
         </div>
         <div class="rangee-boutons">
-          <button type="button" class="btn-primaire">Enregistrer</button>
-          <button type="button" class="btn-secondaire">Partager</button>
-          <button type="button" class="btn-secondaire btn-petit">Signaler</button>
+          <button type="button" class="btn-primaire" data-enregistrer="j19" aria-pressed="false" disabled>Enregistrer</button>
+          <a href="https://www.instagram.com/la_lanterne_de_yuna/" class="btn-secondaire" data-partager data-titre="Pangenre — La lanterne de Yuna" target="_blank" rel="noopener">Partager en story</a>
         </div>
+        <p class="petite-info note-connexion">Connecte-toi avec Instagram (en haut de la page) pour enregistrer ce print.</p>
         <nav class="pagination" aria-label="Prints voisins">
           <a href="#j18">‹ Print du 18</a>
           <a href="#j20">Print du 20 ›</a>
@@ -522,10 +552,10 @@
           </div>
         </div>
         <div class="rangee-boutons">
-          <button type="button" class="btn-primaire">Enregistrer</button>
-          <button type="button" class="btn-secondaire">Partager</button>
-          <button type="button" class="btn-secondaire btn-petit">Signaler</button>
+          <button type="button" class="btn-primaire" data-enregistrer="j20" aria-pressed="false" disabled>Enregistrer</button>
+          <a href="https://www.instagram.com/la_lanterne_de_yuna/" class="btn-secondaire" data-partager data-titre="Genderqueer — La lanterne de Yuna" target="_blank" rel="noopener">Partager en story</a>
         </div>
+        <p class="petite-info note-connexion">Connecte-toi avec Instagram (en haut de la page) pour enregistrer ce print.</p>
         <nav class="pagination" aria-label="Prints voisins">
           <a href="#j19">‹ Print du 19</a>
           <a href="#j21">Print du 21 ›</a>
@@ -547,10 +577,10 @@
           </div>
         </div>
         <div class="rangee-boutons">
-          <button type="button" class="btn-primaire">Enregistrer</button>
-          <button type="button" class="btn-secondaire">Partager</button>
-          <button type="button" class="btn-secondaire btn-petit">Signaler</button>
+          <button type="button" class="btn-primaire" data-enregistrer="j21" aria-pressed="false" disabled>Enregistrer</button>
+          <a href="https://www.instagram.com/la_lanterne_de_yuna/" class="btn-secondaire" data-partager data-titre="Demi-girl — La lanterne de Yuna" target="_blank" rel="noopener">Partager en story</a>
         </div>
+        <p class="petite-info note-connexion">Connecte-toi avec Instagram (en haut de la page) pour enregistrer ce print.</p>
         <nav class="pagination" aria-label="Prints voisins">
           <a href="#j20">‹ Print du 20</a>
           <a href="#j22">Print du 22 ›</a>
@@ -572,10 +602,10 @@
           </div>
         </div>
         <div class="rangee-boutons">
-          <button type="button" class="btn-primaire">Enregistrer</button>
-          <button type="button" class="btn-secondaire">Partager</button>
-          <button type="button" class="btn-secondaire btn-petit">Signaler</button>
+          <button type="button" class="btn-primaire" data-enregistrer="j22" aria-pressed="false" disabled>Enregistrer</button>
+          <a href="https://www.instagram.com/la_lanterne_de_yuna/" class="btn-secondaire" data-partager data-titre="Demi-boy — La lanterne de Yuna" target="_blank" rel="noopener">Partager en story</a>
         </div>
+        <p class="petite-info note-connexion">Connecte-toi avec Instagram (en haut de la page) pour enregistrer ce print.</p>
         <nav class="pagination" aria-label="Prints voisins">
           <a href="#j21">‹ Print du 21</a>
           <a href="#j23">Print du 23 ›</a>
@@ -597,10 +627,10 @@
           </div>
         </div>
         <div class="rangee-boutons">
-          <button type="button" class="btn-primaire">Enregistrer</button>
-          <button type="button" class="btn-secondaire">Partager</button>
-          <button type="button" class="btn-secondaire btn-petit">Signaler</button>
+          <button type="button" class="btn-primaire" data-enregistrer="j23" aria-pressed="false" disabled>Enregistrer</button>
+          <a href="https://www.instagram.com/la_lanterne_de_yuna/" class="btn-secondaire" data-partager data-titre="Androgyne — La lanterne de Yuna" target="_blank" rel="noopener">Partager en story</a>
         </div>
+        <p class="petite-info note-connexion">Connecte-toi avec Instagram (en haut de la page) pour enregistrer ce print.</p>
         <nav class="pagination" aria-label="Prints voisins">
           <a href="#j22">‹ Print du 22</a>
           <a href="#j24">Print du 24 ›</a>
@@ -622,10 +652,10 @@
           </div>
         </div>
         <div class="rangee-boutons">
-          <button type="button" class="btn-primaire">Enregistrer</button>
-          <button type="button" class="btn-secondaire">Partager</button>
-          <button type="button" class="btn-secondaire btn-petit">Signaler</button>
+          <button type="button" class="btn-primaire" data-enregistrer="j24" aria-pressed="false" disabled>Enregistrer</button>
+          <a href="https://www.instagram.com/la_lanterne_de_yuna/" class="btn-secondaire" data-partager data-titre="Intergenre — La lanterne de Yuna" target="_blank" rel="noopener">Partager en story</a>
         </div>
+        <p class="petite-info note-connexion">Connecte-toi avec Instagram (en haut de la page) pour enregistrer ce print.</p>
         <nav class="pagination" aria-label="Prints voisins">
           <a href="#j23">‹ Print du 23</a>
           <a href="#j25">Print du 25 ›</a>
@@ -647,10 +677,10 @@
           </div>
         </div>
         <div class="rangee-boutons">
-          <button type="button" class="btn-primaire">Enregistrer</button>
-          <button type="button" class="btn-secondaire">Partager</button>
-          <button type="button" class="btn-secondaire btn-petit">Signaler</button>
+          <button type="button" class="btn-primaire" data-enregistrer="j25" aria-pressed="false" disabled>Enregistrer</button>
+          <a href="https://www.instagram.com/la_lanterne_de_yuna/" class="btn-secondaire" data-partager data-titre="Non-binaire — La lanterne de Yuna" target="_blank" rel="noopener">Partager en story</a>
         </div>
+        <p class="petite-info note-connexion">Connecte-toi avec Instagram (en haut de la page) pour enregistrer ce print.</p>
         <nav class="pagination" aria-label="Prints voisins">
           <a href="#j24">‹ Print du 24</a>
           <a href="#j26">Print du 26 ›</a>
@@ -672,10 +702,10 @@
           </div>
         </div>
         <div class="rangee-boutons">
-          <button type="button" class="btn-primaire">Enregistrer</button>
-          <button type="button" class="btn-secondaire">Partager</button>
-          <button type="button" class="btn-secondaire btn-petit">Signaler</button>
+          <button type="button" class="btn-primaire" data-enregistrer="j26" aria-pressed="false" disabled>Enregistrer</button>
+          <a href="https://www.instagram.com/la_lanterne_de_yuna/" class="btn-secondaire" data-partager data-titre="En questionnement — La lanterne de Yuna" target="_blank" rel="noopener">Partager en story</a>
         </div>
+        <p class="petite-info note-connexion">Connecte-toi avec Instagram (en haut de la page) pour enregistrer ce print.</p>
         <nav class="pagination" aria-label="Prints voisins">
           <a href="#j25">‹ Print du 25</a>
           <a href="#j27">Print du 27 ›</a>
@@ -697,10 +727,10 @@
           </div>
         </div>
         <div class="rangee-boutons">
-          <button type="button" class="btn-primaire">Enregistrer</button>
-          <button type="button" class="btn-secondaire">Partager</button>
-          <button type="button" class="btn-secondaire btn-petit">Signaler</button>
+          <button type="button" class="btn-primaire" data-enregistrer="j27" aria-pressed="false" disabled>Enregistrer</button>
+          <a href="https://www.instagram.com/la_lanterne_de_yuna/" class="btn-secondaire" data-partager data-titre="Homoromantique — La lanterne de Yuna" target="_blank" rel="noopener">Partager en story</a>
         </div>
+        <p class="petite-info note-connexion">Connecte-toi avec Instagram (en haut de la page) pour enregistrer ce print.</p>
         <nav class="pagination" aria-label="Prints voisins">
           <a href="#j26">‹ Print du 26</a>
           <a href="#j28">Print du 28 ›</a>
@@ -722,10 +752,10 @@
           </div>
         </div>
         <div class="rangee-boutons">
-          <button type="button" class="btn-primaire">Enregistrer</button>
-          <button type="button" class="btn-secondaire">Partager</button>
-          <button type="button" class="btn-secondaire btn-petit">Signaler</button>
+          <button type="button" class="btn-primaire" data-enregistrer="j28" aria-pressed="false" disabled>Enregistrer</button>
+          <a href="https://www.instagram.com/la_lanterne_de_yuna/" class="btn-secondaire" data-partager data-titre="Biromantique — La lanterne de Yuna" target="_blank" rel="noopener">Partager en story</a>
         </div>
+        <p class="petite-info note-connexion">Connecte-toi avec Instagram (en haut de la page) pour enregistrer ce print.</p>
         <nav class="pagination" aria-label="Prints voisins">
           <a href="#j27">‹ Print du 27</a>
           <a href="#j29">Print du 29 ›</a>
@@ -747,10 +777,10 @@
           </div>
         </div>
         <div class="rangee-boutons">
-          <button type="button" class="btn-primaire">Enregistrer</button>
-          <button type="button" class="btn-secondaire">Partager</button>
-          <button type="button" class="btn-secondaire btn-petit">Signaler</button>
+          <button type="button" class="btn-primaire" data-enregistrer="j29" aria-pressed="false" disabled>Enregistrer</button>
+          <a href="https://www.instagram.com/la_lanterne_de_yuna/" class="btn-secondaire" data-partager data-titre="Panromantique — La lanterne de Yuna" target="_blank" rel="noopener">Partager en story</a>
         </div>
+        <p class="petite-info note-connexion">Connecte-toi avec Instagram (en haut de la page) pour enregistrer ce print.</p>
         <nav class="pagination" aria-label="Prints voisins">
           <a href="#j28">‹ Print du 28</a>
           <a href="#j30">Print du 30 ›</a>
@@ -772,10 +802,10 @@
           </div>
         </div>
         <div class="rangee-boutons">
-          <button type="button" class="btn-primaire">Enregistrer</button>
-          <button type="button" class="btn-secondaire">Partager</button>
-          <button type="button" class="btn-secondaire btn-petit">Signaler</button>
+          <button type="button" class="btn-primaire" data-enregistrer="j30" aria-pressed="false" disabled>Enregistrer</button>
+          <a href="https://www.instagram.com/la_lanterne_de_yuna/" class="btn-secondaire" data-partager data-titre="Aromantique — La lanterne de Yuna" target="_blank" rel="noopener">Partager en story</a>
         </div>
+        <p class="petite-info note-connexion">Connecte-toi avec Instagram (en haut de la page) pour enregistrer ce print.</p>
         <nav class="pagination" aria-label="Prints voisins">
           <a href="#j29">‹ Print du 29</a>
           <span></span>

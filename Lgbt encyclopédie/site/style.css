@@ -156,14 +156,105 @@ h3 { font-size: 1.1rem; line-height: 1.25; }
   border-bottom-color: var(--jaune);
 }
 
+.zone-compte {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
 .lien-compte,
 .lien-aide {
+  min-height: 36px;
   padding: 5px 12px;
   border: 1px solid var(--color-header-muted);
   border-radius: var(--radius-btn);
   color: var(--color-header-text);
   font-size: 0.8rem;
   text-decoration: none;
+}
+
+/* Bouton de connexion : bien visible (jaune sur violet foncé) */
+.lien-compte {
+  border-color: var(--jaune);
+  background: var(--jaune);
+  color: var(--color-header);
+  font: 700 0.8rem var(--font-sans);
+  cursor: pointer;
+}
+
+.connecte .lien-compte {
+  border-color: var(--color-header-muted);
+  background: transparent;
+  color: var(--color-header-text);
+}
+
+/* ---------- Fenêtre de connexion ---------- */
+
+.fenetre {
+  width: min(440px, calc(100% - 2 * var(--space-3)));
+  margin: auto;
+  padding: var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  background: var(--color-surface);
+  color: var(--color-text);
+}
+
+.fenetre::backdrop {
+  background: rgba(42, 24, 69, 0.55);
+}
+
+.fenetre h2 {
+  margin-bottom: var(--space-2);
+}
+
+.fenetre .texte-discret {
+  margin-bottom: var(--space-3);
+}
+
+.champ-pseudo {
+  display: flex;
+  align-items: center;
+  margin-bottom: var(--space-3);
+  border: 2px solid var(--color-text-muted);
+  border-radius: var(--radius-btn);
+  background: var(--color-surface);
+}
+
+.champ-pseudo span {
+  padding-left: var(--space-3);
+  font-weight: 700;
+  color: var(--color-text-muted);
+}
+
+.champ-pseudo input {
+  flex: 1;
+  min-width: 0;
+  min-height: 44px;
+  padding: 10px var(--space-3) 10px 4px;
+  border: 0;
+  border-radius: var(--radius-btn);
+  background: transparent;
+  font: inherit;
+  color: var(--color-text);
+}
+
+.champ-pseudo:focus-within {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.champ-pseudo input:focus-visible {
+  outline: none;
+}
+
+.alerte-erreur {
+  margin-bottom: var(--space-3);
+  padding: var(--space-2);
+  border-radius: 8px;
+  background-color: var(--color-error-bg);
+  color: var(--color-error);
+  font-weight: 600;
 }
 
 /* Corps principal */
@@ -536,6 +627,17 @@ h3 { font-size: 1.1rem; line-height: 1.25; }
   background-color: var(--color-primary-hover);
 }
 
+.btn-primaire:disabled {
+  background-color: var(--color-border);
+  color: var(--color-text-muted);
+  cursor: not-allowed;
+}
+
+.btn-primaire[aria-pressed="true"] {
+  background-color: var(--vert);
+  color: var(--color-text);
+}
+
 /* ---------- Éléments communs aux pages ---------- */
 
 .visuellement-cache {
@@ -711,6 +813,14 @@ h3 { font-size: 1.1rem; line-height: 1.25; }
 .fiche-print .fil-ariane {
   grid-column: 1 / -1;
   margin-bottom: 0;
+}
+
+.note-connexion {
+  margin-top: calc(-1 * var(--space-1));
+}
+
+.connecte .note-connexion {
+  display: none;
 }
 
 .illustration {
