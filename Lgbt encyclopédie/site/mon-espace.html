@@ -26,81 +26,272 @@
       <a href="ressources.html" class="lien-nav">Ressources</a>
     </nav>
     <div class="zone-compte">
-      <button type="button" class="lien-compte" id="bouton-compte" aria-haspopup="dialog">Se connecter avec Instagram</button>
+      <button type="button" class="lien-compte" id="bouton-compte" aria-haspopup="dialog">Se connecter</button>
       <a href="ressources.html" class="lien-aide">Aide</a>
     </div>
   </header>
-  <!-- Connexion avec le nom d'utilisateur Instagram (sans mot de passe, gardé dans ce navigateur) -->
-  <dialog id="fenetre-connexion" class="fenetre" aria-label="Compte Instagram">
-    <div class="etat-deconnecte">
-      <h2>Se connecter avec Instagram</h2>
-      <p class="texte-discret">Indique ton nom d'utilisateur Instagram pour pouvoir enregistrer tes prints. Pas besoin de mot de passe.</p>
-      <form id="formulaire-connexion" novalidate>
-        <label for="pseudo-insta" class="label-recherche">Nom d'utilisateur</label>
-        <div class="champ-pseudo">
-          <span aria-hidden="true">@</span>
-          <input type="text" id="pseudo-insta" name="pseudo" autocomplete="username" autocapitalize="none" spellcheck="false" maxlength="31" required aria-describedby="erreur-connexion">
-        </div>
-        <p id="erreur-connexion" class="alerte-erreur" hidden></p>
+  <!-- Compte Prisme : connexion, inscription, mot de passe oublié -->
+  <dialog id="fenetre-connexion" class="fenetre" aria-label="Compte Prisme">
+    <section data-vue="connexion">
+      <h2>Se connecter</h2>
+      <p class="avertissement-session">Par sécurité, tu seras déconnecté·e automatiquement dès que tu fermeras l'onglet.</p>
+      <form id="formulaire-connexion" class="formulaire" novalidate>
+        <label for="connexion-email">Adresse e-mail</label>
+        <input type="email" id="connexion-email" class="champ" autocomplete="email" required>
+        <label for="connexion-mdp">Mot de passe</label>
+        <input type="password" id="connexion-mdp" class="champ" autocomplete="current-password" required>
+        <p class="alerte-erreur" data-erreur hidden></p>
         <div class="rangee-boutons">
           <button type="submit" class="btn-primaire">Se connecter</button>
           <button type="button" class="btn-secondaire" data-fermer>Annuler</button>
         </div>
       </form>
-    </div>
-    <div class="etat-connecte" hidden>
-      <h2>Connecté·e : <span data-pseudo></span></h2>
-      <p class="texte-discret">Tes prints enregistrés restent dans ce navigateur.</p>
+      <p class="liens-fenetre">
+        <button type="button" class="lien-bouton" data-vue-cible="inscription">Pas encore de compte ? Créer un compte</button>
+        <button type="button" class="lien-bouton" data-vue-cible="oubli">Mot de passe oublié ?</button>
+      </p>
+    </section>
+
+    <section data-vue="inscription" hidden>
+      <h2>Créer un compte</h2>
+      <p class="texte-discret">Gratuit. Tes favoris, tes pays et ton agenda te suivent sur tous tes appareils. Ton orientation et ta ville restent facultatives.</p>
+      <form id="formulaire-inscription" class="formulaire" novalidate>
+        <label for="inscription-pseudo">Pseudo (pas besoin de ton vrai nom)</label>
+        <input type="text" id="inscription-pseudo" class="champ" autocomplete="nickname" minlength="2" maxlength="30" required>
+        <label for="inscription-email">Adresse e-mail</label>
+        <input type="email" id="inscription-email" class="champ" autocomplete="email" required>
+        <label for="inscription-mdp">Mot de passe</label>
+        <input type="password" id="inscription-mdp" class="champ" autocomplete="new-password" minlength="8" required aria-describedby="aide-mdp">
+        <p id="aide-mdp" class="petite-info">8 caractères minimum.</p>
+        <p class="avertissement-session">Par sécurité, tu seras déconnecté·e automatiquement dès que tu fermeras l'onglet.</p>
+        <p class="alerte-erreur" data-erreur hidden></p>
+        <div class="rangee-boutons">
+          <button type="submit" class="btn-primaire">Créer mon compte</button>
+          <button type="button" class="btn-secondaire" data-fermer>Annuler</button>
+        </div>
+      </form>
+      <p class="liens-fenetre">
+        <button type="button" class="lien-bouton" data-vue-cible="connexion">J'ai déjà un compte</button>
+      </p>
+    </section>
+
+    <section data-vue="oubli" hidden>
+      <h2>Mot de passe oublié</h2>
+      <p class="texte-discret">Indique ton adresse : tu recevras un lien pour choisir un nouveau mot de passe.</p>
+      <form id="formulaire-oubli" class="formulaire" novalidate>
+        <label for="oubli-email">Adresse e-mail</label>
+        <input type="email" id="oubli-email" class="champ" autocomplete="email" required>
+        <p class="alerte-erreur" data-erreur hidden></p>
+        <div class="rangee-boutons">
+          <button type="submit" class="btn-primaire">Envoyer le lien</button>
+          <button type="button" class="btn-secondaire" data-vue-cible="connexion">Retour</button>
+        </div>
+      </form>
+    </section>
+
+    <section data-vue="message" hidden>
+      <h2 data-message-titre></h2>
+      <p class="texte-discret" data-message-texte></p>
       <div class="rangee-boutons">
-        <a href="mon-espace.html" class="btn-primaire">Mon espace</a>
-        <button type="button" class="btn-secondaire" id="bouton-deconnexion">Se déconnecter</button>
-        <button type="button" class="btn-secondaire" data-fermer>Fermer</button>
+        <button type="button" class="btn-primaire" data-fermer>Fermer</button>
       </div>
-    </div>
+    </section>
   </dialog>
 
+  <p class="bandeau-session" id="bandeau-session" hidden>
+    Connecté·e : <strong data-pseudo></strong> · Déconnexion automatique à la fermeture de l'onglet.
+    <button type="button" class="lien-bouton" data-deconnexion>Se déconnecter</button>
+  </p>
+
   <main id="contenu" class="contenu-principal">
-    <div class="mise-en-page-compte">
+    <!-- Visible sans compte -->
+    <div id="espace-deconnecte" class="pile espace-accueil">
+      <div class="pile serre">
+        <h1>Mon espace</h1>
+        <p class="chapeau">Crée un compte gratuit pour garder tes favoris, tes pays et ton agenda sur tous tes appareils.</p>
+      </div>
+      <ul class="grille-avantages">
+        <li class="carte-bloc"><h2>Prints favoris</h2><p class="texte-discret">Enregistrés sur ton téléphone, retrouvés sur ton ordinateur.</p></li>
+        <li class="carte-bloc"><h2>Pays favoris</h2><p class="texte-discret">Garde sous la main la situation des pays où tu voyages.</p></li>
+        <li class="carte-bloc"><h2>Mon agenda des manifs</h2><p class="texte-discret">Un rappel la veille et des alertes pour les manifs de ta région.</p></li>
+        <li class="carte-bloc"><h2>Print de la semaine</h2><p class="texte-discret">La dernière illustration de La lanterne de Yuna, dès ta connexion.</p></li>
+      </ul>
+      <div class="rangee-boutons">
+        <button type="button" class="btn-primaire" data-ouvrir="inscription">Créer un compte</button>
+        <button type="button" class="btn-secondaire" data-ouvrir="connexion">Se connecter</button>
+      </div>
+      <p class="petite-info">Par sécurité, tu es déconnecté·e automatiquement dès que tu fermes l'onglet. Ton orientation et ta ville sont facultatives et modifiables à tout moment.</p>
+    </div>
+
+    <!-- Visible une fois connecté·e -->
+    <div id="espace-connecte" class="mise-en-page-compte" hidden>
       <aside class="pile">
         <div class="credit">
-          <span class="logo-rond grand" aria-hidden="true"></span>
+          <span class="avatar-rond grand" id="avatar-profil" aria-hidden="true"></span>
           <div>
-            <h1 class="titre-profil">Mon profil</h1>
-            <p class="petite-info">iel · privé</p>
+            <h1 class="titre-profil" data-pseudo></h1>
+            <p class="petite-info" data-email></p>
           </div>
         </div>
         <nav class="carte-bloc menu-lateral" aria-label="Mon espace">
           <ul>
-            <li><a href="#identite">Identité</a></li>
-            <li><a href="#securite">Sécurité</a></li>
-            <li><a href="#prints">Prints enregistrés</a></li>
-            <li><a href="manifs.html">Mon agenda</a></li>
-            <li><a href="#">Notifications</a></li>
+            <li><a href="#profil">Profil</a></li>
+            <li><a href="#securite-compte">Sécurité du compte</a></li>
+            <li><a href="#favoris">Prints favoris</a></li>
+            <li><a href="#pays">Pays favoris</a></li>
+            <li><a href="#agenda">Mon agenda</a></li>
+            <li><a href="#discretion">Discrétion</a></li>
           </ul>
         </nav>
       </aside>
 
       <div class="pile">
-        <form class="carte-bloc pile" id="identite">
+        <section class="carte-bloc pile" aria-labelledby="titre-semaine">
+          <h2 id="titre-semaine" class="surtitre">Print de la semaine</h2>
+          <div id="print-semaine"></div>
+        </section>
+
+        <form id="profil" class="carte-bloc formulaire" novalidate aria-labelledby="titre-profil-form">
+          <h2 id="titre-profil-form" class="surtitre">Profil</h2>
+          <label for="profil-pseudo">Pseudo</label>
+          <input type="text" id="profil-pseudo" class="champ" minlength="2" maxlength="30" required>
           <fieldset>
-            <legend class="surtitre">Identité — visible par personne d'autre</legend>
-            <div class="filtres">
-            <label class="choix"><input type="radio" name="pronoms" value="elle"><span>elle</span></label>
-            <label class="choix"><input type="radio" name="pronoms" value="il"><span>il</span></label>
-            <label class="choix"><input type="radio" name="pronoms" value="iel" checked><span>iel</span></label>
-            <label class="choix"><input type="radio" name="pronoms" value="elle/iel"><span>elle/iel</span></label>
-            <label class="choix"><input type="radio" name="pronoms" value="il/iel"><span>il/iel</span></label>
-            <label class="choix"><input type="radio" name="pronoms" value="pas de pronom"><span>pas de pronom</span></label>
+            <legend>Avatar</legend>
+            <div class="grille-avatars">
+              <label class="choix-avatar"><input type="radio" name="avatar" value="arc-en-ciel"><span class="avatar-rond avatar-arc-en-ciel"></span><span class="visuellement-cache">Arc-en-ciel</span></label>
+              <label class="choix-avatar"><input type="radio" name="avatar" value="violet"><span class="avatar-rond avatar-violet"></span><span class="visuellement-cache">Violet</span></label>
+              <label class="choix-avatar"><input type="radio" name="avatar" value="rose"><span class="avatar-rond avatar-rose"></span><span class="visuellement-cache">Rose</span></label>
+              <label class="choix-avatar"><input type="radio" name="avatar" value="bleu"><span class="avatar-rond avatar-bleu"></span><span class="visuellement-cache">Bleu</span></label>
+              <label class="choix-avatar"><input type="radio" name="avatar" value="vert"><span class="avatar-rond avatar-vert"></span><span class="visuellement-cache">Vert</span></label>
+              <label class="choix-avatar"><input type="radio" name="avatar" value="orange"><span class="avatar-rond avatar-orange"></span><span class="visuellement-cache">Orange</span></label>
+              <label class="choix-avatar"><input type="radio" name="avatar" value="jaune"><span class="avatar-rond avatar-jaune"></span><span class="visuellement-cache">Jaune</span></label>
+              <label class="choix-avatar"><input type="radio" name="avatar" value="carpe-01"><img class="avatar-rond" src="images/prints/01-gay.jpg" alt="" draggable="false"><span class="visuellement-cache">Carpes gay</span></label>
+              <label class="choix-avatar"><input type="radio" name="avatar" value="carpe-02"><img class="avatar-rond" src="images/prints/02-lesbienne.jpg" alt="" draggable="false"><span class="visuellement-cache">Carpes lesbiennes</span></label>
+              <label class="choix-avatar"><input type="radio" name="avatar" value="carpe-03"><img class="avatar-rond" src="images/prints/03-bisexuel.jpg" alt="" draggable="false"><span class="visuellement-cache">Carpes bisexuelles</span></label>
+              <label class="choix-avatar"><input type="radio" name="avatar" value="carpe-04"><img class="avatar-rond" src="images/prints/04-polysexuel.jpg" alt="" draggable="false"><span class="visuellement-cache">Carpes polysexuelles</span></label>
+              <label class="choix-avatar"><input type="radio" name="avatar" value="carpe-05"><img class="avatar-rond" src="images/prints/05-pansexuel.jpg" alt="" draggable="false"><span class="visuellement-cache">Carpes pansexuelles</span></label>
+              <label class="choix-avatar"><input type="radio" name="avatar" value="carpe-06"><img class="avatar-rond" src="images/prints/06-omnisexuel.jpg" alt="" draggable="false"><span class="visuellement-cache">Carpes omnisexuelles</span></label>
+              <label class="choix-avatar"><input type="radio" name="avatar" value="carpe-07"><img class="avatar-rond" src="images/prints/07-skoliosexuel.jpg" alt="" draggable="false"><span class="visuellement-cache">Carpes skoliosexuelles</span></label>
+              <label class="choix-avatar"><input type="radio" name="avatar" value="carpe-08"><img class="avatar-rond" src="images/prints/08-demisexuel.jpg" alt="" draggable="false"><span class="visuellement-cache">Carpes demisexuelles</span></label>
             </div>
           </fieldset>
-          <label class="pile serre" for="pronoms-libres">
-            <span class="petite-info">Ou écrire mes pronoms</span>
-          </label>
-          <input type="text" id="pronoms-libres" class="champ-recherche" placeholder="ex. ul, ille…">
+          <label for="profil-orientation">Orientation ou identité (facultatif, visible par toi seul·e)</label>
+          <select id="profil-orientation" class="champ">
+              <option value="">Ne pas indiquer</option>
+              <option value="Agenre">Agenre</option>
+              <option value="Androgyne">Androgyne</option>
+              <option value="Aromantique">Aromantique</option>
+              <option value="Asexuel·le">Asexuel·le</option>
+              <option value="Bigenre">Bigenre</option>
+              <option value="Biromantique">Biromantique</option>
+              <option value="Bisexuel·le">Bisexuel·le</option>
+              <option value="Demi-boy">Demi-boy</option>
+              <option value="Demi-girl">Demi-girl</option>
+              <option value="Demisexuel·le">Demisexuel·le</option>
+              <option value="En questionnement">En questionnement</option>
+              <option value="Gay">Gay</option>
+              <option value="Genderfluid">Genderfluid</option>
+              <option value="Genderqueer">Genderqueer</option>
+              <option value="Graysexuel·le">Graysexuel·le</option>
+              <option value="Homoromantique">Homoromantique</option>
+              <option value="Intergenre">Intergenre</option>
+              <option value="Intersexe">Intersexe</option>
+              <option value="Lesbienne">Lesbienne</option>
+              <option value="Non-binaire">Non-binaire</option>
+              <option value="Omnisexuel·le">Omnisexuel·le</option>
+              <option value="Pangenre">Pangenre</option>
+              <option value="Panromantique">Panromantique</option>
+              <option value="Pansexuel·le">Pansexuel·le</option>
+              <option value="Polyamorie">Polyamorie</option>
+              <option value="Polysexuel·le">Polysexuel·le</option>
+              <option value="Skoliosexuel·le">Skoliosexuel·le</option>
+              <option value="Transfem">Transfem</option>
+              <option value="Transmasc">Transmasc</option>
+              <option value="Trigenre">Trigenre</option>
+          </select>
+          <label for="profil-ville">Ville (facultatif)</label>
+          <input type="text" id="profil-ville" class="champ" maxlength="80" autocomplete="address-level2">
+          <label for="profil-region">Région pour les alertes de manifs</label>
+          <select id="profil-region" class="champ">
+            <option value="">Aucune</option>
+            <option value="romande">Suisse romande</option>
+            <option value="alemanique">Suisse alémanique</option>
+            <option value="tessin">Tessin</option>
+          </select>
+          <label class="ligne-case"><input type="checkbox" id="profil-alertes"> M'avertir par e-mail des nouvelles manifs dans ma région</label>
+          <p class="alerte-erreur" data-erreur hidden></p>
+          <p class="message-statut" role="status"></p>
+          <div class="rangee-boutons">
+            <button type="submit" class="btn-primaire">Enregistrer les modifications</button>
+          </div>
         </form>
 
-        <section class="carte-bloc" id="securite" aria-labelledby="titre-secu">
-          <h2 id="titre-secu" class="surtitre">Sécurité et discrétion</h2>
+        <section id="securite-compte" class="carte-bloc pile" aria-labelledby="titre-secu-compte">
+          <h2 id="titre-secu-compte" class="surtitre">Sécurité du compte</h2>
+
+          <form id="formulaire-email" class="formulaire" novalidate>
+            <h3>Changer d'adresse e-mail</h3>
+            <p class="petite-info">Adresse actuelle : <strong data-email></strong></p>
+            <label for="nouvel-email">Nouvelle adresse</label>
+            <input type="email" id="nouvel-email" class="champ" autocomplete="email" required>
+            <p class="alerte-erreur" data-erreur hidden></p>
+            <p class="message-statut" role="status"></p>
+            <div class="rangee-boutons">
+              <button type="submit" class="btn-secondaire">Changer d'adresse</button>
+            </div>
+          </form>
+
+          <form id="formulaire-mdp" class="formulaire" novalidate>
+            <h3>Changer de mot de passe</h3>
+            <p class="petite-info">Pour ta sécurité, on t'envoie d'abord un code par e-mail.</p>
+            <div class="rangee-boutons" data-etape="code">
+              <button type="button" class="btn-secondaire" id="bouton-code">Recevoir un code par e-mail</button>
+            </div>
+            <div class="formulaire" data-etape="nouveau" hidden>
+              <label for="mdp-code" data-champ-code>Code reçu par e-mail</label>
+              <input type="text" id="mdp-code" class="champ" inputmode="numeric" autocomplete="one-time-code" data-champ-code>
+              <label for="mdp-nouveau">Nouveau mot de passe</label>
+              <input type="password" id="mdp-nouveau" class="champ" autocomplete="new-password" minlength="8" required>
+              <label for="mdp-confirmation">Confirme le nouveau mot de passe</label>
+              <input type="password" id="mdp-confirmation" class="champ" autocomplete="new-password" minlength="8" required>
+              <div class="rangee-boutons">
+                <button type="submit" class="btn-secondaire">Changer de mot de passe</button>
+              </div>
+            </div>
+            <p class="alerte-erreur" data-erreur hidden></p>
+            <p class="message-statut" role="status"></p>
+          </form>
+
+          <div class="zone-danger">
+            <h3>Supprimer mon compte</h3>
+            <p class="petite-info">Ton compte et toutes tes données (profil, favoris, pays, agenda) sont effacés définitivement.</p>
+            <button type="button" class="btn-danger" id="bouton-supprimer">Supprimer mon compte</button>
+          </div>
+        </section>
+
+        <section id="favoris" class="carte-bloc pile" aria-labelledby="titre-favoris">
+          <h2 id="titre-favoris" class="surtitre">Prints favoris</h2>
+          <ul class="prints-enregistres" id="liste-favoris"></ul>
+          <p class="petite-info" data-vide="favoris">Aucun print pour l'instant. Ouvre un print et touche « Enregistrer ».</p>
+        </section>
+
+        <section id="pays" class="carte-bloc pile" aria-labelledby="titre-pays">
+          <h2 id="titre-pays" class="surtitre">Pays favoris</h2>
+          <ul class="liste-simple" id="liste-pays-favoris"></ul>
+          <p class="petite-info" data-vide="pays">Aucun pays pour l'instant. Ajoute-en depuis la page <a href="voyager.html">Voyager</a> (☆).</p>
+        </section>
+
+        <section id="agenda" class="carte-bloc pile" aria-labelledby="titre-agenda">
+          <h2 id="titre-agenda" class="surtitre">Mon agenda</h2>
+          <ul class="liste-simple" id="liste-agenda"></ul>
+          <p class="petite-info" data-vide="agenda">Aucune manif pour l'instant. Ajoute-en depuis la page <a href="manifs.html">Manifs</a>.</p>
+        </section>
+      </div>
+    </div>
+
+    <!-- Réglages de discrétion : sur cet appareil, avec ou sans compte -->
+    <section class="carte-bloc reglages-discretion" id="discretion" aria-labelledby="titre-secu">
+      <h2 id="titre-secu" class="surtitre">Discrétion sur cet appareil</h2>
         <div class="ligne-reglage">
           <label for="mode-discret"><span>Mode discret</span><br><span class="petite-info">Icône et nom neutres sur l’écran d’accueil</span></label>
           <input type="checkbox" id="mode-discret" class="interrupteur" checked>
@@ -113,22 +304,7 @@
           <label for="sortie"><span>Sortie rapide</span><br><span class="petite-info">Un geste ferme l’app et vide l’historique</span></label>
           <input type="checkbox" id="sortie" class="interrupteur" checked>
         </div>
-        </section>
-
-        <div class="deux-colonnes colonne-etroite">
-          <section class="carte-bloc pile" id="prints" aria-labelledby="titre-enregistres">
-            <h2 id="titre-enregistres" class="surtitre">Prints enregistrés</h2>
-            <ul class="prints-enregistres"><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li></ul>
-          </section>
-          <section class="bloc-doux" aria-labelledby="titre-aide">
-            <h2 id="titre-aide" class="surtitre">Aide</h2>
-            <p>Lignes d'écoute et associations, 24h/24, sans jugement.</p>
-            <a href="ressources.html" class="btn-primaire">Voir les contacts</a>
-            <button type="button" class="sortie-rapide sombre">Sortie rapide</button>
-          </section>
-        </div>
-      </div>
-    </div>
+    </section>
   </main>
 
   <footer class="footer-site">

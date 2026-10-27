@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Préparer sa manif — Prisme</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="lien-evitement" href="#contenu">Aller au contenu</a>
+  <div class="bande-arc-en-ciel" aria-hidden="true"></div>
+
+  <header class="header-site">
+    <a href="index.html" class="logo">
+      <span class="logo-rond" aria-hidden="true"></span>Prisme
+    </a>
+    <nav class="nav-site" aria-label="Navigation principale">
+      <a href="index.html" class="lien-nav">Calendrier</a>
+      <a href="prints.html" class="lien-nav">Prints</a>
+      <a href="dico.html" class="lien-nav">Dico</a>
+      <a href="manifs.html" class="lien-nav actif">Manifs</a>
+      <a href="voyager.html" class="lien-nav">Voyager</a>
+      <a href="ressources.html" class="lien-nav">Ressources</a>
+    </nav>
+    <div class="zone-compte">
+      <button type="button" class="lien-compte" id="bouton-compte" aria-haspopup="dialog">Se connecter</button>
+      <a href="ressources.html" class="lien-aide">Aide</a>
+    </div>
+  </header>
+  <!-- Compte Prisme : connexion, inscription, mot de passe oublié -->
+  <dialog id="fenetre-connexion" class="fenetre" aria-label="Compte Prisme">
+    <section data-vue="connexion">
+      <h2>Se connecter</h2>
+      <p class="avertissement-session">Par sécurité, tu seras déconnecté·e automatiquement dès que tu fermeras l'onglet.</p>
+      <form id="formulaire-connexion" class="formulaire" novalidate>
+        <label for="connexion-email">Adresse e-mail</label>
+        <input type="email" id="connexion-email" class="champ" autocomplete="email" required>
+        <label for="connexion-mdp">Mot de passe</label>
+        <input type="password" id="connexion-mdp" class="champ" autocomplete="current-password" required>
+        <p class="alerte-erreur" data-erreur hidden></p>
+        <div class="rangee-boutons">
+          <button type="submit" class="btn-primaire">Se connecter</button>
+          <button type="button" class="btn-secondaire" data-fermer>Annuler</button>
+        </div>
+      </form>
+      <p class="liens-fenetre">
+        <button type="button" class="lien-bouton" data-vue-cible="inscription">Pas encore de compte ? Créer un compte</button>
+        <button type="button" class="lien-bouton" data-vue-cible="oubli">Mot de passe oublié ?</button>
+      </p>
+    </section>
+
+    <section data-vue="inscription" hidden>
+      <h2>Créer un compte</h2>
+      <p class="texte-discret">Gratuit. Tes favoris, tes pays et ton agenda te suivent sur tous tes appareils. Ton orientation et ta ville restent facultatives.</p>
+      <form id="formulaire-inscription" class="formulaire" novalidate>
+        <label for="inscription-pseudo">Pseudo (pas besoin de ton vrai nom)</label>
+        <input type="text" id="inscription-pseudo" class="champ" autocomplete="nickname" minlength="2" maxlength="30" required>
+        <label for="inscription-email">Adresse e-mail</label>
+        <input type="email" id="inscription-email" class="champ" autocomplete="email" required>
+        <label for="inscription-mdp">Mot de passe</label>
+        <input type="password" id="inscription-mdp" class="champ" autocomplete="new-password" minlength="8" required aria-describedby="aide-mdp">
+        <p id="aide-mdp" class="petite-info">8 caractères minimum.</p>
+        <p class="avertissement-session">Par sécurité, tu seras déconnecté·e automatiquement dès que tu fermeras l'onglet.</p>
+        <p class="alerte-erreur" data-erreur hidden></p>
+        <div class="rangee-boutons">
+          <button type="submit" class="btn-primaire">Créer mon compte</button>
+          <button type="button" class="btn-secondaire" data-fermer>Annuler</button>
+        </div>
+      </form>
+      <p class="liens-fenetre">
+        <button type="button" class="lien-bouton" data-vue-cible="connexion">J'ai déjà un compte</button>
+      </p>
+    </section>
+
+    <section data-vue="oubli" hidden>
+      <h2>Mot de passe oublié</h2>
+      <p class="texte-discret">Indique ton adresse : tu recevras un lien pour choisir un nouveau mot de passe.</p>
+      <form id="formulaire-oubli" class="formulaire" novalidate>
+        <label for="oubli-email">Adresse e-mail</label>
+        <input type="email" id="oubli-email" class="champ" autocomplete="email" required>
+        <p class="alerte-erreur" data-erreur hidden></p>
+        <div class="rangee-boutons">
+          <button type="submit" class="btn-primaire">Envoyer le lien</button>
+          <button type="button" class="btn-secondaire" data-vue-cible="connexion">Retour</button>
+        </div>
+      </form>
+    </section>
+
+    <section data-vue="message" hidden>
+      <h2 data-message-titre></h2>
+      <p class="texte-discret" data-message-texte></p>
+      <div class="rangee-boutons">
+        <button type="button" class="btn-primaire" data-fermer>Fermer</button>
+      </div>
+    </section>
+  </dialog>
+
+  <p class="bandeau-session" id="bandeau-session" hidden>
+    Connecté·e : <strong data-pseudo></strong> · Déconnexion automatique à la fermeture de l'onglet.
+    <button type="button" class="lien-bouton" data-deconnexion>Se déconnecter</button>
+  </p>
+
+  <main id="contenu" class="contenu-principal">
+    <div class="entete-page">
+      <div class="pile">
+        <p class="surtitre">Manifs</p>
+        <h1>Préparer sa manif</h1>
+        <p class="chapeau">Quoi porter, quoi prendre, ce que dit la loi et comment rester en sécurité. Pour toutes et tous, sans compte.</p>
+      </div>
+    </div>
+
+    <div class="deux-colonnes">
+      <div class="pile conseils">
+        <section class="carte-bloc pile" aria-labelledby="c-habits">
+          <h2 id="c-habits">Comment s'habiller</h2>
+          <ul class="liste-conseils">
+            <li>Des chaussures confortables, déjà portées : tu vas marcher et rester debout longtemps.</li>
+            <li>Des couches faciles à enlever et un K-way : la météo change vite en juin.</li>
+            <li>Couleurs, paillettes, drapeaux : oui ! Mais si tu ne veux pas être reconnu·e, évite les tenues trop identifiables.</li>
+            <li>Un sac banane ou un sac à dos fermé, porté devant dans la foule.</li>
+          </ul>
+        </section>
+
+        <section class="carte-bloc pile" aria-labelledby="c-loi">
+          <h2 id="c-loi">Ce que dit la loi (Suisse)</h2>
+          <ul class="liste-conseils">
+            <li>La liberté de réunion est garantie par la Constitution (art. 22). Les marches des fiertés sont des manifestations autorisées.</li>
+            <li>Garde une pièce d'identité sur toi : la police peut te demander de la montrer.</li>
+            <li>Depuis 2025, se cacher le visage dans l'espace public est interdit en Suisse. Pour une manifestation autorisée, l'autorité peut accorder une exception : renseigne-toi auprès des organisateurs·ices avant de porter un masque.</li>
+            <li>Droit à l'image : demande avant de photographier quelqu'un et floute les visages avant de publier. Une photo peut outer une personne.</li>
+            <li>Les règles changent selon les cantons et les communes : vérifie les consignes des organisateurs·ices.</li>
+          </ul>
+        </section>
+
+        <section class="carte-bloc pile" aria-labelledby="c-pancartes">
+          <h2 id="c-pancartes">Faire sa pancarte</h2>
+          <ul class="liste-conseils">
+            <li>Carton léger (format A3 ou A2) : tu vas la porter des heures.</li>
+            <li>Peu de mots, grosses lettres, fort contraste (noir sur blanc, blanc sur couleur foncée) : lisible de loin.</li>
+            <li>Un sac plastique ou du scotch large par-dessus si la pluie menace.</li>
+            <li>Pas de manche en métal ni de bâton pointu : ils peuvent être refusés pour la sécurité.</li>
+            <li>Humour et messages positifs marchent très bien. Évite les insultes, elles peuvent être punissables.</li>
+          </ul>
+        </section>
+
+        <section class="carte-bloc pile" aria-labelledby="c-age">
+          <h2 id="c-age">Selon ton âge</h2>
+          <h3>Moins de 16 ans</h3>
+          <p class="texte-discret">Viens avec un·e adulte de confiance ou un groupe de jeunes encadré (beaucoup d'associations en organisent). Convenez d'un point de rendez-vous si vous vous perdez.</p>
+          <h3>16–17 ans</h3>
+          <p class="texte-discret">Tu peux venir avec des ami·es. Dis à une personne de confiance où tu es et quand tu rentres. Si tes parents ne savent pas, pense aux photos : reste hors champ si besoin.</p>
+          <h3>18 ans et plus</h3>
+          <p class="texte-discret">Garde un œil sur les plus jeunes autour de toi, et sur les personnes qui viennent seules : une marche, c'est aussi prendre soin les un·es des autres.</p>
+        </section>
+
+        <section class="carte-bloc pile" aria-labelledby="c-place">
+          <h2 id="c-place">Sur place</h2>
+          <ul class="liste-conseils">
+            <li>Repère les stands d'aide, les secouristes et les points d'eau.</li>
+            <li>Bois régulièrement, fais des pauses à l'ombre.</li>
+            <li>Si tu te sens mal à l'aise ou en danger, éloigne-toi et appelle le 117 (police) ou le 144 (urgences).</li>
+            <li>Pour rentrer, reste en groupe et retire tes signes visibles si tu ne te sens pas en sécurité.</li>
+          </ul>
+        </section>
+      </div>
+
+      <aside class="colonne-laterale">
+        <section class="carte-bloc pile" aria-labelledby="titre-checklist">
+          <h2 id="titre-checklist" class="surtitre">Ma checklist</h2>
+          <ul class="liste-checklist">
+          <li><label class="ligne-case"><input type="checkbox" data-checklist="0"> Pièce d'identité</label></li>
+          <li><label class="ligne-case"><input type="checkbox" data-checklist="1"> Eau et un en-cas</label></li>
+          <li><label class="ligne-case"><input type="checkbox" data-checklist="2"> Téléphone chargé + batterie externe</label></li>
+          <li><label class="ligne-case"><input type="checkbox" data-checklist="3"> Numéro d'une personne de confiance (écrit sur papier aussi)</label></li>
+          <li><label class="ligne-case"><input type="checkbox" data-checklist="4"> Crème solaire / casquette ou K-way</label></li>
+          <li><label class="ligne-case"><input type="checkbox" data-checklist="5"> Bouchons d'oreilles</label></li>
+          <li><label class="ligne-case"><input type="checkbox" data-checklist="6"> Un peu d'argent liquide</label></li>
+          <li><label class="ligne-case"><input type="checkbox" data-checklist="7"> Médicaments personnels</label></li>
+          <li><label class="ligne-case"><input type="checkbox" data-checklist="8"> Pancarte</label></li>
+          </ul>
+          <p class="petite-info">Tes coches restent sur cet appareil.</p>
+        </section>
+        <section class="bloc-doux" aria-labelledby="titre-urgence-manif">
+          <h2 id="titre-urgence-manif" class="surtitre">Besoin d'aide ?</h2>
+          <p>Lignes d'écoute et associations, 24h/24, sans jugement.</p>
+          <a href="ressources.html" class="btn-secondaire btn-petit">Voir les contacts</a>
+        </section>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="footer-site">
+    <p>Mentions · Contact · Illustrations : <a href="https://www.instagram.com/la_lanterne_de_yuna/">La lanterne de Yuna</a></p>
+    <button type="button" class="sortie-rapide">Sortie rapide</button>
+  </footer>
+
+  <!-- Barre d'onglets (mobile uniquement) -->
+  <nav class="barre-onglets" aria-label="Navigation mobile">
+    <ul>
+      <li><a href="index.html"><span class="icone" aria-hidden="true"></span>Calendrier</a></li>
+      <li><a href="prints.html"><span class="icone" aria-hidden="true"></span>Prints</a></li>
+      <li><a href="dico.html"><span class="icone" aria-hidden="true"></span>Dico</a></li>
+      <li><a href="voyager.html"><span class="icone" aria-hidden="true"></span>Voyager</a></li>
+      <li><a href="mon-espace.html"><span class="icone" aria-hidden="true"></span>Moi</a></li>
+    </ul>
+  </nav>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

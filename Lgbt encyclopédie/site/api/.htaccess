@@ -1,0 +1,6 @@
+# Seul compte.php est accessible depuis le navigateur
+<FilesMatch "^(?!compte\.php$).*">
+  Require all denied
+</FilesMatch>
+
+Options -Indexes

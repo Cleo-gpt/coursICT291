@@ -26,38 +26,82 @@
       <a href="ressources.html" class="lien-nav">Ressources</a>
     </nav>
     <div class="zone-compte">
-      <button type="button" class="lien-compte" id="bouton-compte" aria-haspopup="dialog">Se connecter avec Instagram</button>
+      <button type="button" class="lien-compte" id="bouton-compte" aria-haspopup="dialog">Se connecter</button>
       <a href="ressources.html" class="lien-aide">Aide</a>
     </div>
   </header>
-  <!-- Connexion avec le nom d'utilisateur Instagram (sans mot de passe, gardé dans ce navigateur) -->
-  <dialog id="fenetre-connexion" class="fenetre" aria-label="Compte Instagram">
-    <div class="etat-deconnecte">
-      <h2>Se connecter avec Instagram</h2>
-      <p class="texte-discret">Indique ton nom d'utilisateur Instagram pour pouvoir enregistrer tes prints. Pas besoin de mot de passe.</p>
-      <form id="formulaire-connexion" novalidate>
-        <label for="pseudo-insta" class="label-recherche">Nom d'utilisateur</label>
-        <div class="champ-pseudo">
-          <span aria-hidden="true">@</span>
-          <input type="text" id="pseudo-insta" name="pseudo" autocomplete="username" autocapitalize="none" spellcheck="false" maxlength="31" required aria-describedby="erreur-connexion">
-        </div>
-        <p id="erreur-connexion" class="alerte-erreur" hidden></p>
+  <!-- Compte Prisme : connexion, inscription, mot de passe oublié -->
+  <dialog id="fenetre-connexion" class="fenetre" aria-label="Compte Prisme">
+    <section data-vue="connexion">
+      <h2>Se connecter</h2>
+      <p class="avertissement-session">Par sécurité, tu seras déconnecté·e automatiquement dès que tu fermeras l'onglet.</p>
+      <form id="formulaire-connexion" class="formulaire" novalidate>
+        <label for="connexion-email">Adresse e-mail</label>
+        <input type="email" id="connexion-email" class="champ" autocomplete="email" required>
+        <label for="connexion-mdp">Mot de passe</label>
+        <input type="password" id="connexion-mdp" class="champ" autocomplete="current-password" required>
+        <p class="alerte-erreur" data-erreur hidden></p>
         <div class="rangee-boutons">
           <button type="submit" class="btn-primaire">Se connecter</button>
           <button type="button" class="btn-secondaire" data-fermer>Annuler</button>
         </div>
       </form>
-    </div>
-    <div class="etat-connecte" hidden>
-      <h2>Connecté·e : <span data-pseudo></span></h2>
-      <p class="texte-discret">Tes prints enregistrés restent dans ce navigateur.</p>
+      <p class="liens-fenetre">
+        <button type="button" class="lien-bouton" data-vue-cible="inscription">Pas encore de compte ? Créer un compte</button>
+        <button type="button" class="lien-bouton" data-vue-cible="oubli">Mot de passe oublié ?</button>
+      </p>
+    </section>
+
+    <section data-vue="inscription" hidden>
+      <h2>Créer un compte</h2>
+      <p class="texte-discret">Gratuit. Tes favoris, tes pays et ton agenda te suivent sur tous tes appareils. Ton orientation et ta ville restent facultatives.</p>
+      <form id="formulaire-inscription" class="formulaire" novalidate>
+        <label for="inscription-pseudo">Pseudo (pas besoin de ton vrai nom)</label>
+        <input type="text" id="inscription-pseudo" class="champ" autocomplete="nickname" minlength="2" maxlength="30" required>
+        <label for="inscription-email">Adresse e-mail</label>
+        <input type="email" id="inscription-email" class="champ" autocomplete="email" required>
+        <label for="inscription-mdp">Mot de passe</label>
+        <input type="password" id="inscription-mdp" class="champ" autocomplete="new-password" minlength="8" required aria-describedby="aide-mdp">
+        <p id="aide-mdp" class="petite-info">8 caractères minimum.</p>
+        <p class="avertissement-session">Par sécurité, tu seras déconnecté·e automatiquement dès que tu fermeras l'onglet.</p>
+        <p class="alerte-erreur" data-erreur hidden></p>
+        <div class="rangee-boutons">
+          <button type="submit" class="btn-primaire">Créer mon compte</button>
+          <button type="button" class="btn-secondaire" data-fermer>Annuler</button>
+        </div>
+      </form>
+      <p class="liens-fenetre">
+        <button type="button" class="lien-bouton" data-vue-cible="connexion">J'ai déjà un compte</button>
+      </p>
+    </section>
+
+    <section data-vue="oubli" hidden>
+      <h2>Mot de passe oublié</h2>
+      <p class="texte-discret">Indique ton adresse : tu recevras un lien pour choisir un nouveau mot de passe.</p>
+      <form id="formulaire-oubli" class="formulaire" novalidate>
+        <label for="oubli-email">Adresse e-mail</label>
+        <input type="email" id="oubli-email" class="champ" autocomplete="email" required>
+        <p class="alerte-erreur" data-erreur hidden></p>
+        <div class="rangee-boutons">
+          <button type="submit" class="btn-primaire">Envoyer le lien</button>
+          <button type="button" class="btn-secondaire" data-vue-cible="connexion">Retour</button>
+        </div>
+      </form>
+    </section>
+
+    <section data-vue="message" hidden>
+      <h2 data-message-titre></h2>
+      <p class="texte-discret" data-message-texte></p>
       <div class="rangee-boutons">
-        <a href="mon-espace.html" class="btn-primaire">Mon espace</a>
-        <button type="button" class="btn-secondaire" id="bouton-deconnexion">Se déconnecter</button>
-        <button type="button" class="btn-secondaire" data-fermer>Fermer</button>
+        <button type="button" class="btn-primaire" data-fermer>Fermer</button>
       </div>
-    </div>
+    </section>
   </dialog>
+
+  <p class="bandeau-session" id="bandeau-session" hidden>
+    Connecté·e : <strong data-pseudo></strong> · Déconnexion automatique à la fermeture de l'onglet.
+    <button type="button" class="lien-bouton" data-deconnexion>Se déconnecter</button>
+  </p>
 
   <main id="contenu" class="contenu-principal">
     <!-- Un print par jour : seul celui visé par le lien (#j01 à #j30) est affiché, le 16 par défaut -->

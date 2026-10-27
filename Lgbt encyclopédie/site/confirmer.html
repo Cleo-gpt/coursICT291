@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Confirmation — Prisme</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="lien-evitement" href="#contenu">Aller au contenu</a>
+  <div class="bande-arc-en-ciel" aria-hidden="true"></div>
+
+  <header class="header-site">
+    <a href="index.html" class="logo">
+      <span class="logo-rond" aria-hidden="true"></span>Prisme
+    </a>
+    <nav class="nav-site" aria-label="Navigation principale">
+      <a href="index.html" class="lien-nav">Calendrier</a>
+      <a href="prints.html" class="lien-nav">Prints</a>
+      <a href="dico.html" class="lien-nav">Dico</a>
+      <a href="manifs.html" class="lien-nav">Manifs</a>
+      <a href="voyager.html" class="lien-nav">Voyager</a>
+      <a href="ressources.html" class="lien-nav">Ressources</a>
+    </nav>
+    <div class="zone-compte">
+      <button type="button" class="lien-compte" id="bouton-compte" aria-haspopup="dialog">Se connecter</button>
+      <a href="ressources.html" class="lien-aide">Aide</a>
+    </div>
+  </header>
+  <!-- Compte Prisme : connexion, inscription, mot de passe oublié -->
+  <dialog id="fenetre-connexion" class="fenetre" aria-label="Compte Prisme">
+    <section data-vue="connexion">
+      <h2>Se connecter</h2>
+      <p class="avertissement-session">Par sécurité, tu seras déconnecté·e automatiquement dès que tu fermeras l'onglet.</p>
+      <form id="formulaire-connexion" class="formulaire" novalidate>
+        <label for="connexion-email">Adresse e-mail</label>
+        <input type="email" id="connexion-email" class="champ" autocomplete="email" required>
+        <label for="connexion-mdp">Mot de passe</label>
+        <input type="password" id="connexion-mdp" class="champ" autocomplete="current-password" required>
+        <p class="alerte-erreur" data-erreur hidden></p>
+        <div class="rangee-boutons">
+          <button type="submit" class="btn-primaire">Se connecter</button>
+          <button type="button" class="btn-secondaire" data-fermer>Annuler</button>
+        </div>
+      </form>
+      <p class="liens-fenetre">
+        <button type="button" class="lien-bouton" data-vue-cible="inscription">Pas encore de compte ? Créer un compte</button>
+        <button type="button" class="lien-bouton" data-vue-cible="oubli">Mot de passe oublié ?</button>
+      </p>
+    </section>
+
+    <section data-vue="inscription" hidden>
+      <h2>Créer un compte</h2>
+      <p class="texte-discret">Gratuit. Tes favoris, tes pays et ton agenda te suivent sur tous tes appareils. Ton orientation et ta ville restent facultatives.</p>
+      <form id="formulaire-inscription" class="formulaire" novalidate>
+        <label for="inscription-pseudo">Pseudo (pas besoin de ton vrai nom)</label>
+        <input type="text" id="inscription-pseudo" class="champ" autocomplete="nickname" minlength="2" maxlength="30" required>
+        <label for="inscription-email">Adresse e-mail</label>
+        <input type="email" id="inscription-email" class="champ" autocomplete="email" required>
+        <label for="inscription-mdp">Mot de passe</label>
+        <input type="password" id="inscription-mdp" class="champ" autocomplete="new-password" minlength="8" required aria-describedby="aide-mdp">
+        <p id="aide-mdp" class="petite-info">8 caractères minimum.</p>
+        <p class="avertissement-session">Par sécurité, tu seras déconnecté·e automatiquement dès que tu fermeras l'onglet.</p>
+        <p class="alerte-erreur" data-erreur hidden></p>
+        <div class="rangee-boutons">
+          <button type="submit" class="btn-primaire">Créer mon compte</button>
+          <button type="button" class="btn-secondaire" data-fermer>Annuler</button>
+        </div>
+      </form>
+      <p class="liens-fenetre">
+        <button type="button" class="lien-bouton" data-vue-cible="connexion">J'ai déjà un compte</button>
+      </p>
+    </section>
+
+    <section data-vue="oubli" hidden>
+      <h2>Mot de passe oublié</h2>
+      <p class="texte-discret">Indique ton adresse : tu recevras un lien pour choisir un nouveau mot de passe.</p>
+      <form id="formulaire-oubli" class="formulaire" novalidate>
+        <label for="oubli-email">Adresse e-mail</label>
+        <input type="email" id="oubli-email" class="champ" autocomplete="email" required>
+        <p class="alerte-erreur" data-erreur hidden></p>
+        <div class="rangee-boutons">
+          <button type="submit" class="btn-primaire">Envoyer le lien</button>
+          <button type="button" class="btn-secondaire" data-vue-cible="connexion">Retour</button>
+        </div>
+      </form>
+    </section>
+
+    <section data-vue="message" hidden>
+      <h2 data-message-titre></h2>
+      <p class="texte-discret" data-message-texte></p>
+      <div class="rangee-boutons">
+        <button type="button" class="btn-primaire" data-fermer>Fermer</button>
+      </div>
+    </section>
+  </dialog>
+
+  <p class="bandeau-session" id="bandeau-session" hidden>
+    Connecté·e : <strong data-pseudo></strong> · Déconnexion automatique à la fermeture de l'onglet.
+    <button type="button" class="lien-bouton" data-deconnexion>Se déconnecter</button>
+  </p>
+
+  <main id="contenu" class="contenu-principal">
+    <section class="carte-bloc pile page-confirmation" id="confirmation-modif" aria-labelledby="titre-confirmation">
+      <p class="surtitre">Sécurité du compte</p>
+      <h1 id="titre-confirmation" data-titre>Confirmer une modification</h1>
+      <p class="chapeau" data-texte>Quelqu'un s'apprête à modifier un paramètre facultatif de ton profil. Est-ce bien toi ?</p>
+      <div class="rangee-boutons" data-actions>
+        <button type="button" class="btn-primaire" id="bouton-accepter">Oui, c'est bien moi</button>
+        <button type="button" class="btn-secondaire" id="bouton-refuser">Ce n'est pas moi</button>
+      </div>
+      <div class="pile" data-reset hidden>
+        <p>Le changement a été annulé. Par sécurité, choisis un nouveau mot de passe : on t'envoie un lien par e-mail.</p>
+        <div class="rangee-boutons">
+          <button type="button" class="btn-primaire" id="bouton-reset">Recevoir le lien</button>
+        </div>
+      </div>
+      <p class="message-statut" role="status"></p>
+    </section>
+  </main>
+
+  <footer class="footer-site">
+    <p>Mentions · Contact · Illustrations : <a href="https://www.instagram.com/la_lanterne_de_yuna/">La lanterne de Yuna</a></p>
+    <button type="button" class="sortie-rapide">Sortie rapide</button>
+  </footer>
+
+  <!-- Barre d'onglets (mobile uniquement) -->
+  <nav class="barre-onglets" aria-label="Navigation mobile">
+    <ul>
+      <li><a href="index.html"><span class="icone" aria-hidden="true"></span>Calendrier</a></li>
+      <li><a href="prints.html"><span class="icone" aria-hidden="true"></span>Prints</a></li>
+      <li><a href="dico.html"><span class="icone" aria-hidden="true"></span>Dico</a></li>
+      <li><a href="voyager.html"><span class="icone" aria-hidden="true"></span>Voyager</a></li>
+      <li><a href="mon-espace.html"><span class="icone" aria-hidden="true"></span>Moi</a></li>
+    </ul>
+  </nav>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
