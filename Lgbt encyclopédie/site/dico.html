@@ -31,7 +31,10 @@
 
   <main id="contenu" class="contenu-principal">
     <div class="entete-page">
-      <h1>Ça veut dire quoi, ça&nbsp;?</h1>
+      <div class="pile">
+        <h1>Ça veut dire quoi, ça&nbsp;?</h1>
+        <p class="chapeau">Les 30 mots du mois des fiertés, un par jour du calendrier. Choisis un terme pour lire sa définition.</p>
+      </div>
     <form class="recherche-entete" role="search">
       <label class="visuellement-cache" for="terme">Chercher un terme</label>
       <input type="search" id="terme" class="champ-recherche" placeholder="Chercher un terme…">
@@ -39,34 +42,432 @@
     </div>
 
     <nav aria-label="Index alphabétique">
-      <ul class="alphabet"><li><a href="#">A</a></li><li><a href="#">B</a></li><li><a href="#">C</a></li><li><a href="#">D</a></li><li><a href="#">E</a></li><li><a href="#">F</a></li><li><a href="#">G</a></li><li><a href="#">H</a></li><li><a href="#">I</a></li><li><a href="#">J</a></li><li><a href="#">K</a></li><li><a href="#">L</a></li><li><a href="#">M</a></li><li><a href="#">N</a></li><li><a href="#">O</a></li><li><a href="#">P</a></li><li><a href="#">Q</a></li><li><a href="#">R</a></li><li><a href="#">S</a></li><li><a href="#">T</a></li><li><a href="#">U</a></li><li><a href="#">V</a></li><li><a href="#">W</a></li><li><a href="#">X</a></li><li><a href="#">Y</a></li><li><a href="#">Z</a></li></ul>
+      <ul class="alphabet"><li><a href="#agenre">A</a></li><li><a href="#bigenre">B</a></li><li><span class="lettre-vide" aria-hidden="true">C</span></li><li><a href="#demi-boy">D</a></li><li><a href="#en-questionnement">E</a></li><li><span class="lettre-vide" aria-hidden="true">F</span></li><li><a href="#gay">G</a></li><li><a href="#homoromantique">H</a></li><li><a href="#intergenre">I</a></li><li><span class="lettre-vide" aria-hidden="true">J</span></li><li><span class="lettre-vide" aria-hidden="true">K</span></li><li><a href="#lesbienne">L</a></li><li><span class="lettre-vide" aria-hidden="true">M</span></li><li><a href="#non-binaire">N</a></li><li><a href="#omnisexuelle">O</a></li><li><a href="#pangenre">P</a></li><li><span class="lettre-vide" aria-hidden="true">Q</span></li><li><span class="lettre-vide" aria-hidden="true">R</span></li><li><a href="#skoliosexuelle">S</a></li><li><a href="#transfem">T</a></li><li><span class="lettre-vide" aria-hidden="true">U</span></li><li><span class="lettre-vide" aria-hidden="true">V</span></li><li><span class="lettre-vide" aria-hidden="true">W</span></li><li><span class="lettre-vide" aria-hidden="true">X</span></li><li><span class="lettre-vide" aria-hidden="true">Y</span></li><li><span class="lettre-vide" aria-hidden="true">Z</span></li></ul>
     </nav>
 
     <div class="mise-en-page-dico">
       <ul class="carte-bloc liste-termes">
-          <li><a href="#" aria-current="true"><span class="drapeau drapeau-vert"></span>Asexuel·le</a></li>
-          <li><a href="#"><span class="drapeau drapeau-violet"></span>Bisexuel·le</a></li>
-          <li><a href="#"><span class="drapeau drapeau-orange"></span>Intersexe</a></li>
-          <li><a href="#"><span class="drapeau drapeau-jaune"></span>Non-binaire</a></li>
-          <li><a href="#"><span class="drapeau drapeau-rose"></span>Pansexuel·le</a></li>
-          <li><a href="#"><span class="drapeau drapeau-bleu"></span>Queer</a></li>
+          <li><a href="#agenre"><span class="drapeau drapeau-agenre"></span>Agenre</a></li>
+          <li><a href="#androgyne"><span class="drapeau drapeau-androgyne"></span>Androgyne</a></li>
+          <li><a href="#aromantique"><span class="drapeau drapeau-aromantique"></span>Aromantique</a></li>
+          <li><a href="#asexuelle"><span class="drapeau drapeau-asexuelle"></span>Asexuel·le</a></li>
+          <li><a href="#bigenre"><span class="drapeau drapeau-bigenre"></span>Bigenre</a></li>
+          <li><a href="#biromantique"><span class="drapeau drapeau-biromantique"></span>Biromantique</a></li>
+          <li><a href="#bisexuelle"><span class="drapeau drapeau-bisexuelle"></span>Bisexuel·le</a></li>
+          <li><a href="#demi-boy"><span class="drapeau drapeau-demi-boy"></span>Demi-boy</a></li>
+          <li><a href="#demi-girl"><span class="drapeau drapeau-demi-girl"></span>Demi-girl</a></li>
+          <li><a href="#demisexuelle"><span class="drapeau drapeau-demisexuelle"></span>Demisexuel·le</a></li>
+          <li><a href="#en-questionnement"><span class="drapeau drapeau-en-questionnement"></span>En questionnement</a></li>
+          <li><a href="#gay"><span class="drapeau drapeau-gay"></span>Gay</a></li>
+          <li><a href="#genderfluid"><span class="drapeau drapeau-genderfluid"></span>Genderfluid</a></li>
+          <li><a href="#genderqueer"><span class="drapeau drapeau-genderqueer"></span>Genderqueer</a></li>
+          <li><a href="#graysexuelle"><span class="drapeau drapeau-graysexuelle"></span>Graysexuel·le</a></li>
+          <li><a href="#homoromantique"><span class="drapeau drapeau-homoromantique"></span>Homoromantique</a></li>
+          <li><a href="#intergenre"><span class="drapeau drapeau-intergenre"></span>Intergenre</a></li>
+          <li><a href="#intersexe"><span class="drapeau drapeau-intersexe"></span>Intersexe</a></li>
+          <li><a href="#lesbienne"><span class="drapeau drapeau-lesbienne"></span>Lesbienne</a></li>
+          <li><a href="#non-binaire"><span class="drapeau drapeau-non-binaire"></span>Non-binaire</a></li>
+          <li><a href="#omnisexuelle"><span class="drapeau drapeau-omnisexuelle"></span>Omnisexuel·le</a></li>
+          <li><a href="#pangenre"><span class="drapeau drapeau-pangenre"></span>Pangenre</a></li>
+          <li><a href="#panromantique"><span class="drapeau drapeau-panromantique"></span>Panromantique</a></li>
+          <li><a href="#pansexuelle"><span class="drapeau drapeau-pansexuelle"></span>Pansexuel·le</a></li>
+          <li><a href="#polyamorie"><span class="drapeau drapeau-polyamorie"></span>Polyamorie</a></li>
+          <li><a href="#polysexuelle"><span class="drapeau drapeau-polysexuelle"></span>Polysexuel·le</a></li>
+          <li><a href="#skoliosexuelle"><span class="drapeau drapeau-skoliosexuelle"></span>Skoliosexuel·le</a></li>
+          <li><a href="#transfem"><span class="drapeau drapeau-transfem"></span>Transfem</a></li>
+          <li><a href="#transmasc"><span class="drapeau drapeau-transmasc"></span>Transmasc</a></li>
+          <li><a href="#trigenre"><span class="drapeau drapeau-trigenre"></span>Trigenre</a></li>
       </ul>
-      <article class="carte-bloc definition">
-        <h2>Asexuel·le</h2>
-        <p class="chapeau">Définition courte du terme, en une ou deux phrases simples.</p>
-        <section>
-          <h3>À savoir</h3>
-          <p class="texte-discret">Précisions, nuances et contexte d'usage.</p>
-        </section>
-        <section>
-          <h3>Ce qu'il vaut mieux éviter de dire</h3>
-          <p class="texte-discret">Formulations blessantes ou erronées, et ce qu'on peut dire à la place.</p>
-        </section>
-        <section>
-          <h3>Voir aussi</h3>
-          <p><a href="#">Aromantique</a> · <a href="#">Spectre ace</a></p>
-        </section>
-      </article>
+
+      <!-- Une fiche par terme : seule celle choisie (#ancre) est affichée, la première par défaut -->
+      <div class="definitions">
+        <article class="carte-bloc definition" id="agenre">
+          <p class="surtitre"><span class="drapeau drapeau-agenre"></span>Mot du lundi 15 juin</p>
+          <h2>Agenre</h2>
+          <p class="chapeau">Personne qui ne se reconnaît dans aucun genre, ou qui se sent sans genre.</p>
+          <section>
+            <h3>Dans le calendrier</h3>
+            <p><a href="print.html">Voir le print du 15 juin</a></p>
+          </section>
+          <section>
+            <h3>Voir aussi</h3>
+            <p><a href="#non-binaire">Non-binaire</a> · <a href="#demi-girl">Demi-girl</a> · <a href="#demi-boy">Demi-boy</a></p>
+          </section>
+        </article>
+        <article class="carte-bloc definition" id="androgyne">
+          <p class="surtitre"><span class="drapeau drapeau-androgyne"></span>Mot du mardi 23 juin</p>
+          <h2>Androgyne</h2>
+          <p class="chapeau">Personne dont l'identité ou l'expression de genre mêle féminin et masculin, ou se situe entre les deux.</p>
+          <section>
+            <h3>Dans le calendrier</h3>
+            <p><a href="print.html">Voir le print du 23 juin</a></p>
+          </section>
+          <section>
+            <h3>Voir aussi</h3>
+            <p><a href="#non-binaire">Non-binaire</a> · <a href="#genderqueer">Genderqueer</a></p>
+          </section>
+        </article>
+        <article class="carte-bloc definition" id="aromantique">
+          <p class="surtitre"><span class="drapeau drapeau-aromantique"></span>Mot du mardi 30 juin</p>
+          <h2>Aromantique</h2>
+          <p class="chapeau">Personne qui ne ressent pas ou peu d'attirance amoureuse. Elle peut tout de même ressentir de l'attirance sexuelle ou vouloir des liens forts.</p>
+          <section>
+            <h3>Dans le calendrier</h3>
+            <p><a href="print.html">Voir le print du 30 juin</a></p>
+          </section>
+          <section>
+            <h3>Voir aussi</h3>
+            <p><a href="#asexuelle">Asexuel·le</a> · <a href="#homoromantique">Homoromantique</a> · <a href="#biromantique">Biromantique</a></p>
+          </section>
+        </article>
+        <article class="carte-bloc definition" id="asexuelle">
+          <p class="surtitre"><span class="drapeau drapeau-asexuelle"></span>Mot du mercredi 10 juin</p>
+          <h2>Asexuel·le</h2>
+          <p class="chapeau">Personne qui ne ressent pas ou peu d'attirance sexuelle. Cela ne dit rien de son envie d'avoir des relations amoureuses.</p>
+          <section>
+            <h3>Dans le calendrier</h3>
+            <p><a href="print.html">Voir le print du 10 juin</a></p>
+          </section>
+          <section>
+            <h3>Voir aussi</h3>
+            <p><a href="#demisexuelle">Demisexuel·le</a> · <a href="#graysexuelle">Graysexuel·le</a> · <a href="#aromantique">Aromantique</a></p>
+          </section>
+        </article>
+        <article class="carte-bloc definition" id="bigenre">
+          <p class="surtitre"><span class="drapeau drapeau-bigenre"></span>Mot du mercredi 17 juin</p>
+          <h2>Bigenre</h2>
+          <p class="chapeau">Personne qui a deux identités de genre, en même temps ou en alternance.</p>
+          <section>
+            <h3>Dans le calendrier</h3>
+            <p><a href="print.html">Voir le print du 17 juin</a></p>
+          </section>
+          <section>
+            <h3>Voir aussi</h3>
+            <p><a href="#trigenre">Trigenre</a> · <a href="#pangenre">Pangenre</a> · <a href="#genderfluid">Genderfluid</a></p>
+          </section>
+        </article>
+        <article class="carte-bloc definition" id="biromantique">
+          <p class="surtitre"><span class="drapeau drapeau-biromantique"></span>Mot du dimanche 28 juin</p>
+          <h2>Biromantique</h2>
+          <p class="chapeau">Personne qui ressent de l'attirance amoureuse pour plus d'un genre, indépendamment de son attirance sexuelle.</p>
+          <section>
+            <h3>Dans le calendrier</h3>
+            <p><a href="print.html">Voir le print du 28 juin</a></p>
+          </section>
+          <section>
+            <h3>Voir aussi</h3>
+            <p><a href="#bisexuelle">Bisexuel·le</a> · <a href="#panromantique">Panromantique</a></p>
+          </section>
+        </article>
+        <article class="carte-bloc definition" id="bisexuelle">
+          <p class="surtitre"><span class="drapeau drapeau-bisexuelle"></span>Mot du mercredi 3 juin</p>
+          <h2>Bisexuel·le</h2>
+          <p class="chapeau">Personne attirée par plus d'un genre, pas forcément de la même manière ni avec la même intensité.</p>
+          <section>
+            <h3>Dans le calendrier</h3>
+            <p><a href="print.html">Voir le print du 3 juin</a></p>
+          </section>
+          <section>
+            <h3>Voir aussi</h3>
+            <p><a href="#biromantique">Biromantique</a> · <a href="#pansexuelle">Pansexuel·le</a> · <a href="#polysexuelle">Polysexuel·le</a></p>
+          </section>
+        </article>
+        <article class="carte-bloc definition" id="demi-boy">
+          <p class="surtitre"><span class="drapeau drapeau-demi-boy"></span>Mot du lundi 22 juin</p>
+          <h2>Demi-boy</h2>
+          <p class="chapeau">Personne qui se reconnaît en partie seulement dans le genre masculin.</p>
+          <section>
+            <h3>Dans le calendrier</h3>
+            <p><a href="print.html">Voir le print du 22 juin</a></p>
+          </section>
+          <section>
+            <h3>Voir aussi</h3>
+            <p><a href="#demi-girl">Demi-girl</a> · <a href="#non-binaire">Non-binaire</a></p>
+          </section>
+        </article>
+        <article class="carte-bloc definition" id="demi-girl">
+          <p class="surtitre"><span class="drapeau drapeau-demi-girl"></span>Mot du dimanche 21 juin</p>
+          <h2>Demi-girl</h2>
+          <p class="chapeau">Personne qui se reconnaît en partie seulement dans le genre féminin.</p>
+          <section>
+            <h3>Dans le calendrier</h3>
+            <p><a href="print.html">Voir le print du 21 juin</a></p>
+          </section>
+          <section>
+            <h3>Voir aussi</h3>
+            <p><a href="#demi-boy">Demi-boy</a> · <a href="#non-binaire">Non-binaire</a></p>
+          </section>
+        </article>
+        <article class="carte-bloc definition" id="demisexuelle">
+          <p class="surtitre"><span class="drapeau drapeau-demisexuelle"></span>Mot du lundi 8 juin</p>
+          <h2>Demisexuel·le</h2>
+          <p class="chapeau">Personne qui ne ressent d'attirance sexuelle qu'après avoir créé un lien émotionnel fort avec quelqu'un. Fait partie du spectre asexuel.</p>
+          <section>
+            <h3>Dans le calendrier</h3>
+            <p><a href="print.html">Voir le print du 8 juin</a></p>
+          </section>
+          <section>
+            <h3>Voir aussi</h3>
+            <p><a href="#asexuelle">Asexuel·le</a> · <a href="#graysexuelle">Graysexuel·le</a></p>
+          </section>
+        </article>
+        <article class="carte-bloc definition" id="en-questionnement">
+          <p class="surtitre"><span class="drapeau drapeau-en-questionnement"></span>Mot du vendredi 26 juin</p>
+          <h2>En questionnement</h2>
+          <p class="chapeau">Personne qui s'interroge sur son orientation ou son identité de genre. Prendre le temps de se questionner est tout à fait valable.</p>
+          <section>
+            <h3>Dans le calendrier</h3>
+            <p><a href="print.html">Voir le print du 26 juin</a></p>
+          </section>
+          <section>
+            <h3>Voir aussi</h3>
+            <p><a href="#non-binaire">Non-binaire</a> · <a href="#pansexuelle">Pansexuel·le</a></p>
+          </section>
+        </article>
+        <article class="carte-bloc definition" id="gay">
+          <p class="surtitre"><span class="drapeau drapeau-gay"></span>Mot du lundi 1 juin</p>
+          <h2>Gay</h2>
+          <p class="chapeau">Personne attirée par des personnes du même genre qu'elle. Le mot désigne surtout les hommes, mais beaucoup de personnes l'utilisent quel que soit leur genre.</p>
+          <section>
+            <h3>Dans le calendrier</h3>
+            <p><a href="print.html">Voir le print du 1 juin</a></p>
+          </section>
+          <section>
+            <h3>Voir aussi</h3>
+            <p><a href="#lesbienne">Lesbienne</a> · <a href="#homoromantique">Homoromantique</a></p>
+          </section>
+        </article>
+        <article class="carte-bloc definition" id="genderfluid">
+          <p class="surtitre"><span class="drapeau drapeau-genderfluid"></span>Mot du mardi 16 juin</p>
+          <h2>Genderfluid</h2>
+          <p class="chapeau">Personne dont l'identité de genre change avec le temps, d'un jour à l'autre ou sur des périodes plus longues.</p>
+          <section>
+            <h3>Dans le calendrier</h3>
+            <p><a href="print.html">Voir le print du 16 juin</a></p>
+          </section>
+          <section>
+            <h3>Voir aussi</h3>
+            <p><a href="#non-binaire">Non-binaire</a> · <a href="#bigenre">Bigenre</a></p>
+          </section>
+        </article>
+        <article class="carte-bloc definition" id="genderqueer">
+          <p class="surtitre"><span class="drapeau drapeau-genderqueer"></span>Mot du samedi 20 juin</p>
+          <h2>Genderqueer</h2>
+          <p class="chapeau">Terme parapluie pour les personnes dont le genre sort des normes « homme » ou « femme ». Souvent proche de non-binaire.</p>
+          <section>
+            <h3>Dans le calendrier</h3>
+            <p><a href="print.html">Voir le print du 20 juin</a></p>
+          </section>
+          <section>
+            <h3>Voir aussi</h3>
+            <p><a href="#non-binaire">Non-binaire</a> · <a href="#genderfluid">Genderfluid</a></p>
+          </section>
+        </article>
+        <article class="carte-bloc definition" id="graysexuelle">
+          <p class="surtitre"><span class="drapeau drapeau-graysexuelle"></span>Mot du mardi 9 juin</p>
+          <h2>Graysexuel·le</h2>
+          <p class="chapeau">Personne qui ressent rarement de l'attirance sexuelle, faiblement ou seulement dans certaines situations. Se situe entre l'asexualité et l'allosexualité.</p>
+          <section>
+            <h3>Dans le calendrier</h3>
+            <p><a href="print.html">Voir le print du 9 juin</a></p>
+          </section>
+          <section>
+            <h3>Voir aussi</h3>
+            <p><a href="#asexuelle">Asexuel·le</a> · <a href="#demisexuelle">Demisexuel·le</a></p>
+          </section>
+        </article>
+        <article class="carte-bloc definition" id="homoromantique">
+          <p class="surtitre"><span class="drapeau drapeau-homoromantique"></span>Mot du samedi 27 juin</p>
+          <h2>Homoromantique</h2>
+          <p class="chapeau">Personne qui ressent de l'attirance amoureuse pour des personnes du même genre, indépendamment de son attirance sexuelle.</p>
+          <section>
+            <h3>Dans le calendrier</h3>
+            <p><a href="print.html">Voir le print du 27 juin</a></p>
+          </section>
+          <section>
+            <h3>Voir aussi</h3>
+            <p><a href="#gay">Gay</a> · <a href="#lesbienne">Lesbienne</a> · <a href="#aromantique">Aromantique</a></p>
+          </section>
+        </article>
+        <article class="carte-bloc definition" id="intergenre">
+          <p class="surtitre"><span class="drapeau drapeau-intergenre"></span>Mot du mercredi 24 juin</p>
+          <h2>Intergenre</h2>
+          <p class="chapeau">Identité de genre que certaines personnes intersexes utilisent pour décrire un genre situé entre ou au-delà du féminin et du masculin.</p>
+          <section>
+            <h3>Dans le calendrier</h3>
+            <p><a href="print.html">Voir le print du 24 juin</a></p>
+          </section>
+          <section>
+            <h3>Voir aussi</h3>
+            <p><a href="#intersexe">Intersexe</a> · <a href="#non-binaire">Non-binaire</a></p>
+          </section>
+        </article>
+        <article class="carte-bloc definition" id="intersexe">
+          <p class="surtitre"><span class="drapeau drapeau-intersexe"></span>Mot du vendredi 12 juin</p>
+          <h2>Intersexe</h2>
+          <p class="chapeau">Personne née avec des caractéristiques sexuelles (chromosomes, hormones, organes) qui ne correspondent pas aux définitions habituelles de « mâle » ou « femelle ».</p>
+          <section>
+            <h3>Dans le calendrier</h3>
+            <p><a href="print.html">Voir le print du 12 juin</a></p>
+          </section>
+          <section>
+            <h3>Voir aussi</h3>
+            <p><a href="#intergenre">Intergenre</a></p>
+          </section>
+        </article>
+        <article class="carte-bloc definition" id="lesbienne">
+          <p class="surtitre"><span class="drapeau drapeau-lesbienne"></span>Mot du mardi 2 juin</p>
+          <h2>Lesbienne</h2>
+          <p class="chapeau">Femme ou personne non-binaire attirée par les femmes.</p>
+          <section>
+            <h3>Dans le calendrier</h3>
+            <p><a href="print.html">Voir le print du 2 juin</a></p>
+          </section>
+          <section>
+            <h3>Voir aussi</h3>
+            <p><a href="#gay">Gay</a> · <a href="#homoromantique">Homoromantique</a></p>
+          </section>
+        </article>
+        <article class="carte-bloc definition" id="non-binaire">
+          <p class="surtitre"><span class="drapeau drapeau-non-binaire"></span>Mot du jeudi 25 juin</p>
+          <h2>Non-binaire</h2>
+          <p class="chapeau">Personne dont l'identité de genre n'est ni exclusivement homme, ni exclusivement femme. C'est aussi un terme parapluie pour beaucoup d'autres identités.</p>
+          <section>
+            <h3>Dans le calendrier</h3>
+            <p><a href="print.html">Voir le print du 25 juin</a></p>
+          </section>
+          <section>
+            <h3>Voir aussi</h3>
+            <p><a href="#genderqueer">Genderqueer</a> · <a href="#agenre">Agenre</a> · <a href="#genderfluid">Genderfluid</a></p>
+          </section>
+        </article>
+        <article class="carte-bloc definition" id="omnisexuelle">
+          <p class="surtitre"><span class="drapeau drapeau-omnisexuelle"></span>Mot du samedi 6 juin</p>
+          <h2>Omnisexuel·le</h2>
+          <p class="chapeau">Personne attirée par tous les genres, mais pour qui le genre compte et influence son attirance.</p>
+          <section>
+            <h3>Dans le calendrier</h3>
+            <p><a href="print.html">Voir le print du 6 juin</a></p>
+          </section>
+          <section>
+            <h3>Voir aussi</h3>
+            <p><a href="#pansexuelle">Pansexuel·le</a> · <a href="#polysexuelle">Polysexuel·le</a></p>
+          </section>
+        </article>
+        <article class="carte-bloc definition" id="pangenre">
+          <p class="surtitre"><span class="drapeau drapeau-pangenre"></span>Mot du vendredi 19 juin</p>
+          <h2>Pangenre</h2>
+          <p class="chapeau">Personne qui se reconnaît dans de nombreux genres, voire tous, dans la limite de ce qu'elle connaît de sa propre culture.</p>
+          <section>
+            <h3>Dans le calendrier</h3>
+            <p><a href="print.html">Voir le print du 19 juin</a></p>
+          </section>
+          <section>
+            <h3>Voir aussi</h3>
+            <p><a href="#bigenre">Bigenre</a> · <a href="#trigenre">Trigenre</a></p>
+          </section>
+        </article>
+        <article class="carte-bloc definition" id="panromantique">
+          <p class="surtitre"><span class="drapeau drapeau-panromantique"></span>Mot du lundi 29 juin</p>
+          <h2>Panromantique</h2>
+          <p class="chapeau">Personne qui peut ressentir de l'attirance amoureuse pour les autres quel que soit leur genre.</p>
+          <section>
+            <h3>Dans le calendrier</h3>
+            <p><a href="print.html">Voir le print du 29 juin</a></p>
+          </section>
+          <section>
+            <h3>Voir aussi</h3>
+            <p><a href="#pansexuelle">Pansexuel·le</a> · <a href="#biromantique">Biromantique</a></p>
+          </section>
+        </article>
+        <article class="carte-bloc definition" id="pansexuelle">
+          <p class="surtitre"><span class="drapeau drapeau-pansexuelle"></span>Mot du vendredi 5 juin</p>
+          <h2>Pansexuel·le</h2>
+          <p class="chapeau">Personne qui peut être attirée par les autres quel que soit leur genre : le genre ne joue pas de rôle dans son attirance.</p>
+          <section>
+            <h3>Dans le calendrier</h3>
+            <p><a href="print.html">Voir le print du 5 juin</a></p>
+          </section>
+          <section>
+            <h3>Voir aussi</h3>
+            <p><a href="#panromantique">Panromantique</a> · <a href="#omnisexuelle">Omnisexuel·le</a> · <a href="#bisexuelle">Bisexuel·le</a></p>
+          </section>
+        </article>
+        <article class="carte-bloc definition" id="polyamorie">
+          <p class="surtitre"><span class="drapeau drapeau-polyamorie"></span>Mot du jeudi 11 juin</p>
+          <h2>Polyamorie</h2>
+          <p class="chapeau">Fait d'avoir, ou de pouvoir avoir, plusieurs relations amoureuses en même temps, avec l'accord de toutes les personnes concernées.</p>
+          <section>
+            <h3>Dans le calendrier</h3>
+            <p><a href="print.html">Voir le print du 11 juin</a></p>
+          </section>
+        </article>
+        <article class="carte-bloc definition" id="polysexuelle">
+          <p class="surtitre"><span class="drapeau drapeau-polysexuelle"></span>Mot du jeudi 4 juin</p>
+          <h2>Polysexuel·le</h2>
+          <p class="chapeau">Personne attirée par plusieurs genres, mais pas forcément tous.</p>
+          <section>
+            <h3>Dans le calendrier</h3>
+            <p><a href="print.html">Voir le print du 4 juin</a></p>
+          </section>
+          <section>
+            <h3>Voir aussi</h3>
+            <p><a href="#bisexuelle">Bisexuel·le</a> · <a href="#omnisexuelle">Omnisexuel·le</a></p>
+          </section>
+        </article>
+        <article class="carte-bloc definition" id="skoliosexuelle">
+          <p class="surtitre"><span class="drapeau drapeau-skoliosexuelle"></span>Mot du dimanche 7 juin</p>
+          <h2>Skoliosexuel·le</h2>
+          <p class="chapeau">Personne attirée principalement par les personnes non-binaires, genderqueer ou trans.</p>
+          <section>
+            <h3>Dans le calendrier</h3>
+            <p><a href="print.html">Voir le print du 7 juin</a></p>
+          </section>
+          <section>
+            <h3>Voir aussi</h3>
+            <p><a href="#non-binaire">Non-binaire</a> · <a href="#genderqueer">Genderqueer</a></p>
+          </section>
+        </article>
+        <article class="carte-bloc definition" id="transfem">
+          <p class="surtitre"><span class="drapeau drapeau-transfem"></span>Mot du samedi 13 juin</p>
+          <h2>Transfem</h2>
+          <p class="chapeau">Personne trans ou non-binaire assignée homme à la naissance, qui se reconnaît dans une identité féminine.</p>
+          <section>
+            <h3>Dans le calendrier</h3>
+            <p><a href="print.html">Voir le print du 13 juin</a></p>
+          </section>
+          <section>
+            <h3>Voir aussi</h3>
+            <p><a href="#transmasc">Transmasc</a> · <a href="#non-binaire">Non-binaire</a></p>
+          </section>
+        </article>
+        <article class="carte-bloc definition" id="transmasc">
+          <p class="surtitre"><span class="drapeau drapeau-transmasc"></span>Mot du dimanche 14 juin</p>
+          <h2>Transmasc</h2>
+          <p class="chapeau">Personne trans ou non-binaire assignée femme à la naissance, qui se reconnaît dans une identité masculine.</p>
+          <section>
+            <h3>Dans le calendrier</h3>
+            <p><a href="print.html">Voir le print du 14 juin</a></p>
+          </section>
+          <section>
+            <h3>Voir aussi</h3>
+            <p><a href="#transfem">Transfem</a> · <a href="#non-binaire">Non-binaire</a></p>
+          </section>
+        </article>
+        <article class="carte-bloc definition" id="trigenre">
+          <p class="surtitre"><span class="drapeau drapeau-trigenre"></span>Mot du jeudi 18 juin</p>
+          <h2>Trigenre</h2>
+          <p class="chapeau">Personne qui a trois identités de genre, en même temps ou en alternance.</p>
+          <section>
+            <h3>Dans le calendrier</h3>
+            <p><a href="print.html">Voir le print du 18 juin</a></p>
+          </section>
+          <section>
+            <h3>Voir aussi</h3>
+            <p><a href="#bigenre">Bigenre</a> · <a href="#pangenre">Pangenre</a></p>
+          </section>
+        </article>
+      </div>
     </div>
   </main>
 

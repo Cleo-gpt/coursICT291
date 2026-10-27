@@ -637,6 +637,27 @@ h3 { font-size: 1.1rem; line-height: 1.25; }
   text-decoration: none;
 }
 
+/* Carpe du jour en fond de la vignette, la date reste lisible par-dessus */
+.grille-prints a {
+  position: relative;
+  overflow: hidden;
+}
+
+.grille-prints img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.grille-prints img + span {
+  position: relative;
+  padding: 2px 8px;
+  border-radius: var(--radius-btn);
+  background: var(--color-surface);
+}
+
 .grille-prints a:hover {
   border-color: var(--color-primary);
 }
@@ -705,7 +726,8 @@ h3 { font-size: 1.1rem; line-height: 1.25; }
   margin-bottom: var(--space-4);
 }
 
-.alphabet a {
+.alphabet a,
+.lettre-vide {
   display: grid;
   place-items: center;
   min-width: 36px;
@@ -719,9 +741,35 @@ h3 { font-size: 1.1rem; line-height: 1.25; }
   text-decoration: none;
 }
 
+.lettre-vide {
+  color: var(--color-border);
+  background: transparent;
+}
+
 .mise-en-page-dico {
   display: grid;
   gap: var(--space-4);
+}
+
+/* Une seule fiche visible : celle visée par le lien (#ancre), sinon la première */
+.definitions .definition {
+  display: none;
+  scroll-margin-top: var(--space-3);
+}
+
+.definitions .definition:target {
+  display: flex;
+}
+
+.definitions:not(:has(.definition:target)) .definition:first-child {
+  display: flex;
+}
+
+.definition .surtitre {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: 0;
 }
 
 .liste-termes {
@@ -755,12 +803,42 @@ h3 { font-size: 1.1rem; line-height: 1.25; }
   height: 11px;
   border-radius: 2px;
 }
-.drapeau-vert { background: var(--vert); }
-.drapeau-violet { background: var(--violet); }
-.drapeau-orange { background: var(--orange); }
-.drapeau-jaune { background: #e0c200; }
-.drapeau-rose { background: var(--rose); }
-.drapeau-bleu { background: var(--bleu); }
+/* Drapeaux des termes du dico (bandes de couleur) */
+.drapeau-agenre { background: linear-gradient(#000000 0.0% 14.3%, #bcc4c7 14.3% 28.6%, #ffffff 28.6% 42.9%, #b7f684 42.9% 57.1%, #ffffff 57.1% 71.4%, #bcc4c7 71.4% 85.7%, #000000 85.7% 100.0%); }
+.drapeau-androgyne { background: linear-gradient(90deg, #fe007f 33.3%, #9832ff 33.3% 66.6%, #00b8e7 66.6%); }
+.drapeau-aromantique { background: linear-gradient(#3da542 0.0% 20.0%, #a7d379 20.0% 40.0%, #ffffff 40.0% 60.0%, #a9a9a9 60.0% 80.0%, #000000 80.0% 100.0%); }
+.drapeau-asexuelle { background: linear-gradient(#000000 0.0% 25.0%, #a3a3a3 25.0% 50.0%, #ffffff 50.0% 75.0%, #800080 75.0% 100.0%); }
+.drapeau-bigenre { background: linear-gradient(#c479a2 0.0% 14.3%, #eda5cd 14.3% 28.6%, #d6c7e8 28.6% 42.9%, #ffffff 42.9% 57.1%, #d6c7e8 57.1% 71.4%, #9ac7e8 71.4% 85.7%, #6d82d1 85.7% 100.0%); }
+.drapeau-biromantique { background: linear-gradient(#d60270 0.0% 20.0%, #d60270 20.0% 40.0%, #9b4f96 40.0% 60.0%, #0038a8 60.0% 80.0%, #0038a8 80.0% 100.0%); }
+.drapeau-bisexuelle { background: linear-gradient(#d60270 0.0% 20.0%, #d60270 20.0% 40.0%, #9b4f96 40.0% 60.0%, #0038a8 60.0% 80.0%, #0038a8 80.0% 100.0%); }
+.drapeau-demi-boy { background: linear-gradient(#7f7f7f 0.0% 14.3%, #c4c4c4 14.3% 28.6%, #9ad9eb 28.6% 42.9%, #ffffff 42.9% 57.1%, #9ad9eb 57.1% 71.4%, #c4c4c4 71.4% 85.7%, #7f7f7f 85.7% 100.0%); }
+.drapeau-demi-girl { background: linear-gradient(#7f7f7f 0.0% 14.3%, #c4c4c4 14.3% 28.6%, #fdadc8 28.6% 42.9%, #ffffff 42.9% 57.1%, #fdadc8 57.1% 71.4%, #c4c4c4 71.4% 85.7%, #7f7f7f 85.7% 100.0%); }
+.drapeau-demisexuelle {
+  background:
+    linear-gradient(to top right, #000000 50%, transparent 50%) left top / 40% 50% no-repeat,
+    linear-gradient(to bottom right, #000000 50%, transparent 50%) left bottom / 40% 50% no-repeat,
+    linear-gradient(#ffffff 0.0% 20.0%, #ffffff 20.0% 40.0%, #6e0070 40.0% 60.0%, #d2d2d2 60.0% 80.0%, #d2d2d2 80.0% 100.0%);
+}
+.drapeau-en-questionnement { background: linear-gradient(#e40303 0.0% 16.7%, #ff8c00 16.7% 33.3%, #ffed00 33.3% 50.0%, #008026 50.0% 66.7%, #004dff 66.7% 83.3%, #750787 83.3% 100.0%); }
+.drapeau-gay { background: linear-gradient(#078d70 0.0% 14.3%, #26ceaa 14.3% 28.6%, #98e8c1 28.6% 42.9%, #ffffff 42.9% 57.1%, #7bade2 57.1% 71.4%, #5049cc 71.4% 85.7%, #3d1a78 85.7% 100.0%); }
+.drapeau-genderfluid { background: linear-gradient(#ff76a4 0.0% 20.0%, #ffffff 20.0% 40.0%, #c011d7 40.0% 60.0%, #000000 60.0% 80.0%, #2f3cbe 80.0% 100.0%); }
+.drapeau-genderqueer { background: linear-gradient(#b57edc 0.0% 33.3%, #ffffff 33.3% 66.7%, #4a8123 66.7% 100.0%); }
+.drapeau-graysexuelle { background: linear-gradient(#740194 0.0% 20.0%, #aeb1aa 20.0% 40.0%, #ffffff 40.0% 60.0%, #aeb1aa 60.0% 80.0%, #740194 80.0% 100.0%); }
+.drapeau-homoromantique { background: linear-gradient(#e40303 0.0% 16.7%, #ff8c00 16.7% 33.3%, #ffed00 33.3% 50.0%, #008026 50.0% 66.7%, #004dff 66.7% 83.3%, #750787 83.3% 100.0%); }
+.drapeau-intergenre { background: linear-gradient(#b0e0f2 0.0% 20.0%, #e2c8ef 20.0% 40.0%, #ffffff 40.0% 60.0%, #e2c8ef 60.0% 80.0%, #b0e0f2 80.0% 100.0%); }
+.drapeau-intersexe { background: radial-gradient(circle, #ffd800 22%, #7902aa 22% 38%, #ffd800 38%); }
+.drapeau-lesbienne { background: linear-gradient(#d52d00 0.0% 14.3%, #ef7627 14.3% 28.6%, #ff9a56 28.6% 42.9%, #ffffff 42.9% 57.1%, #d162a4 57.1% 71.4%, #b55690 71.4% 85.7%, #a30262 85.7% 100.0%); }
+.drapeau-non-binaire { background: linear-gradient(#fcf434 0.0% 25.0%, #ffffff 25.0% 50.0%, #9c59d1 50.0% 75.0%, #2c2c2c 75.0% 100.0%); }
+.drapeau-omnisexuelle { background: linear-gradient(#fe9ace 0.0% 20.0%, #ff53bf 20.0% 40.0%, #200044 40.0% 60.0%, #6760fe 60.0% 80.0%, #8ea6ff 80.0% 100.0%); }
+.drapeau-pangenre { background: linear-gradient(#fff798 0.0% 14.3%, #fedda5 14.3% 28.6%, #ffebfb 28.6% 42.9%, #ffffff 42.9% 57.1%, #ffebfb 57.1% 71.4%, #fedda5 71.4% 85.7%, #fff798 85.7% 100.0%); }
+.drapeau-panromantique { background: linear-gradient(#ff218c 0.0% 33.3%, #ffd800 33.3% 66.7%, #21b1ff 66.7% 100.0%); }
+.drapeau-pansexuelle { background: linear-gradient(#ff218c 0.0% 33.3%, #ffd800 33.3% 66.7%, #21b1ff 66.7% 100.0%); }
+.drapeau-polyamorie { background: linear-gradient(#0000ff 0.0% 33.3%, #ff0000 33.3% 66.7%, #000000 66.7% 100.0%); }
+.drapeau-polysexuelle { background: linear-gradient(#f714ba 0.0% 33.3%, #01d66a 33.3% 66.7%, #1594f6 66.7% 100.0%); }
+.drapeau-skoliosexuelle { background: linear-gradient(#f0da17 0.0% 25.0%, #2d9e36 25.0% 50.0%, #ffffff 50.0% 75.0%, #000000 75.0% 100.0%); }
+.drapeau-transfem { background: linear-gradient(#73deff 0.0% 14.3%, #ffe2ee 14.3% 28.6%, #ffb5d6 28.6% 42.9%, #fe8cbf 42.9% 57.1%, #ffb5d6 57.1% 71.4%, #ffe2ee 71.4% 85.7%, #73deff 85.7% 100.0%); }
+.drapeau-transmasc { background: linear-gradient(#ff8abd 0.0% 14.3%, #cdf5fe 14.3% 28.6%, #9aebff 28.6% 42.9%, #74dfff 42.9% 57.1%, #9aebff 57.1% 71.4%, #cdf5fe 71.4% 85.7%, #ff8abd 85.7% 100.0%); }
+.drapeau-trigenre { background: linear-gradient(#ff95c5 0.0% 20.0%, #9581ff 20.0% 40.0%, #67d966 40.0% 60.0%, #9581ff 60.0% 80.0%, #ff95c5 80.0% 100.0%); }
 
 .definition,
 .fiche-pays {
@@ -1257,6 +1335,14 @@ legend {
   .mise-en-page-dico {
     grid-template-columns: 260px minmax(0, 1fr);
     align-items: start;
+  }
+
+  /* 30 termes : la liste défile et reste visible à côté de la fiche */
+  .liste-termes {
+    position: sticky;
+    top: var(--space-3);
+    max-height: calc(100vh - 2 * var(--space-3));
+    overflow-y: auto;
   }
 
   .mise-en-page-compte {
