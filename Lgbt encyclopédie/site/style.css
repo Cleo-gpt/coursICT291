@@ -823,6 +823,23 @@ h3 { font-size: 1.1rem; line-height: 1.25; }
   display: none;
 }
 
+/* Les carpes ne doivent pas être enregistrables : pas de clic droit, de glisser
+   ni d'appui long « Enregistrer l'image » (dissuasif, pas une vraie protection) */
+.illustration,
+.jour .vignette img,
+.grille-prints img {
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-touch-callout: none;
+}
+
+.jour a,
+.grille-prints a {
+  -webkit-touch-callout: none;
+}
+
 .illustration {
   display: block;
   width: 100%;
