@@ -104,20 +104,24 @@
   </p>
 
   <main id="contenu" class="contenu-principal">
-    <section class="carte-bloc pile page-confirmation" id="confirmation-modif" aria-labelledby="titre-confirmation">
-      <p class="surtitre">Sécurité du compte</p>
-      <h1 id="titre-confirmation" data-titre>Confirmer une modification</h1>
-      <p class="chapeau" data-texte>Quelqu'un s'apprête à modifier un paramètre facultatif de ton profil. Est-ce bien toi ?</p>
-      <div class="rangee-boutons" data-actions>
-        <button type="button" class="btn-primaire" id="bouton-accepter">Oui, c'est bien moi</button>
-        <button type="button" class="btn-secondaire" id="bouton-refuser">Ce n'est pas moi</button>
+    <section class="carte-bloc pile page-confirmation" id="confirmation" aria-labelledby="titre-confirmation">
+      <p class="surtitre">Compte</p>
+      <h1 id="titre-confirmation" data-titre>Confirmation</h1>
+      <p class="chapeau" data-texte></p>
+      <div class="rangee-boutons">
+        <button type="button" class="btn-primaire" id="bouton-confirmer" hidden></button>
       </div>
-      <div class="pile" data-reset hidden>
-        <p>Le changement a été annulé. Par sécurité, choisis un nouveau mot de passe : on t'envoie un lien par e-mail.</p>
+      <form id="formulaire-reset" class="formulaire" novalidate hidden>
+        <label for="reset-mdp">Nouveau mot de passe</label>
+        <input type="password" id="reset-mdp" class="champ" autocomplete="new-password" minlength="8" required aria-describedby="aide-reset">
+        <p id="aide-reset" class="petite-info">8 caractères minimum.</p>
+        <label for="reset-confirmation">Confirme le nouveau mot de passe</label>
+        <input type="password" id="reset-confirmation" class="champ" autocomplete="new-password" minlength="8" required>
+        <p class="alerte-erreur" data-erreur hidden></p>
         <div class="rangee-boutons">
-          <button type="button" class="btn-primaire" id="bouton-reset">Recevoir le lien</button>
+          <button type="submit" class="btn-primaire">Enregistrer le mot de passe</button>
         </div>
-      </div>
+      </form>
       <p class="message-statut" role="status"></p>
     </section>
   </main>

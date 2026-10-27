@@ -4,16 +4,12 @@
 //
 // function async + fetch : voir e3-3 / recettes.js
 
-// ---------- Configuration Supabase ----------
-// À remplir avec les valeurs de ton projet : Supabase → Project Settings → API
-// (voir supabase/GUIDE.md). La clé « anon » est publique, elle peut être dans le code.
-const SUPABASE_URL = ""; // ex. "https://abcdefgh.supabase.co"
-const SUPABASE_CLE = ""; // clé « anon public »
-const COMPTES_ACTIFS = SUPABASE_URL !== "" && SUPABASE_CLE !== "";
+// ---------- Comptes : serveur PHP + MySQL (dossier api/) ----------
+// Le site doit être ouvert par MAMP (http://localhost:8888), pas en double-cliquant le fichier.
+const API = "api/compte.php";
 
 // sessionStorage est vidé à la fermeture de l'onglet → déconnexion automatique
 const CLE_SESSION = "prisme-session";
-const CLE_RECUPERATION = "prisme-recuperation";
 const CLE_CHECKLIST = "prisme-checklist";
 
 // ---------- Données du site ----------
@@ -41,7 +37,7 @@ const MANIFS = {
 };
 
 const etat = {
-  session: null,
+  session: null, // jeton de session donné par le serveur
   profil: null,
   favoris: new Set(),
   pays: new Set(),
@@ -70,76 +66,47 @@ function ecrireStockage(stockage, cle, valeur) {
   }
 }
 
-// ---------- Appels à Supabase avec fetch ----------
+// ---------- Appel au serveur avec fetch ----------
 
-async function requete(chemin, options = {}) {
-  const reponse = await fetch(SUPABASE_URL + chemin, {
-    method: options.methode || "GET",
-    headers: Object.assign({
-      apikey: SUPABASE_CLE,
-      "Content-Type": "application/json",
-      Authorization: "Bearer " + (options.jeton || SUPABASE_CLE)
-    }, options.entetes || {}),
-    body: options.corps ? JSON.stringify(options.corps) : undefined
-  });
+async function api(action, donnees = {}) {
+  const corps = Object.assign({ action: action }, donnees);
+  if (etat.session) {
+    corps.jeton = etat.session;
+  }
 
-  const texte = await reponse.text();
-  let donnees = null;
+  let reponse;
   try {
-    donnees = texte ? JSON.parse(texte) : null;
-  } catch (erreur) {
-    donnees = null;
-  }
-
-  if (!reponse.ok) {
-    const message = donnees && (donnees.msg || donnees.error_description || donnees.message || donnees.error);
-    const erreur = new Error(message || "Erreur " + reponse.status);
-    erreur.code = donnees && (donnees.error_code || donnees.code);
-    erreur.statut = reponse.status;
-    throw erreur;
-  }
-  return donnees;
-}
-
-// Même chose, mais en tant que personne connectée (rafraîchit le jeton si besoin)
-async function requeteConnectee(chemin, options = {}) {
-  const session = await sessionValide();
-  if (!session) {
-    throw new Error("Ta session a expiré, reconnecte-toi.");
-  }
-  return requete(chemin, Object.assign({}, options, { jeton: session.access_token }));
-}
-
-function enregistrerSession(donnees, utilisateur) {
-  etat.session = {
-    access_token: donnees.access_token,
-    refresh_token: donnees.refresh_token,
-    expires_at: Math.floor(Date.now() / 1000) + Number(donnees.expires_in || 3600),
-    id: utilisateur.id,
-    email: utilisateur.email
-  };
-  ecrireStockage(sessionStorage, CLE_SESSION, etat.session);
-}
-
-async function sessionValide() {
-  const session = etat.session;
-  if (!session) {
-    return null;
-  }
-  if (Date.now() / 1000 < session.expires_at - 60) {
-    return session;
-  }
-  try {
-    const donnees = await requete("/auth/v1/token?grant_type=refresh_token", {
-      methode: "POST",
-      corps: { refresh_token: session.refresh_token }
+    reponse = await fetch(API, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(corps)
     });
-    enregistrerSession(donnees, donnees.user);
-    return etat.session;
   } catch (erreur) {
-    oublierSession();
-    return null;
+    throw new Error("Impossible de joindre le serveur. Ouvre le site avec MAMP (http://localhost:8888).");
   }
+
+  let resultat = null;
+  try {
+    resultat = await reponse.json();
+  } catch (erreur) {
+    resultat = null;
+  }
+
+  if (!reponse.ok || resultat === null) {
+    if (reponse.status === 401 && etat.session) {
+      oublierSession();
+      afficherCompte();
+    }
+    throw new Error(resultat && resultat.erreur ? resultat.erreur : "Le serveur ne répond pas correctement. MAMP est-il démarré ?");
+  }
+  return resultat;
+}
+
+function appliquerDonnees(resultat) {
+  etat.profil = resultat.profil;
+  etat.favoris = new Set(resultat.favoris);
+  etat.pays = new Set(resultat.pays);
+  etat.agenda = new Map(resultat.agenda.map(function (ligne) { return [ligne.manif, ligne.rappel]; }));
 }
 
 function oublierSession() {
@@ -149,108 +116,6 @@ function oublierSession() {
   etat.pays.clear();
   etat.agenda.clear();
   ecrireStockage(sessionStorage, CLE_SESSION, null);
-}
-
-// Adresse de retour des liens envoyés par e-mail
-function adresseRetour(page) {
-  return encodeURIComponent(new URL(page, location.href).href);
-}
-
-// Messages d'erreur compréhensibles
-function traduireErreur(erreur) {
-  const texte = (erreur.message || "").toLowerCase();
-  if (texte.includes("invalid login")) return "E-mail ou mot de passe incorrect.";
-  if (texte.includes("not confirmed")) return "Confirme d'abord ton adresse e-mail : regarde dans ta boîte mail.";
-  if (texte.includes("already registered") || texte.includes("already been registered")) return "Un compte existe déjà avec cette adresse.";
-  if (texte.includes("password should be") || texte.includes("weak")) return "Le mot de passe doit contenir au moins 8 caractères.";
-  if (texte.includes("rate limit") || erreur.statut === 429) return "Trop de tentatives. Réessaie dans quelques minutes.";
-  if (texte.includes("nonce") || texte.includes("reauthentication")) return "Le code est incorrect ou a expiré. Demande un nouveau code.";
-  if (texte.includes("same") && texte.includes("password")) return "Choisis un mot de passe différent de l'actuel.";
-  if (texte.includes("failed to fetch")) return "Impossible de joindre le serveur. Vérifie ta connexion.";
-  return "Une erreur est survenue : " + erreur.message;
-}
-
-// ---------- Compte : connexion, inscription, déconnexion ----------
-
-async function connecter(email, motDePasse) {
-  const donnees = await requete("/auth/v1/token?grant_type=password", {
-    methode: "POST",
-    corps: { email: email, password: motDePasse }
-  });
-  enregistrerSession(donnees, donnees.user);
-  await chargerDonnees();
-}
-
-async function inscrire(pseudo, email, motDePasse) {
-  await requete("/auth/v1/signup?redirect_to=" + adresseRetour("mon-espace.html"), {
-    methode: "POST",
-    corps: { email: email, password: motDePasse, data: { pseudo: pseudo } }
-  });
-}
-
-async function deconnecter() {
-  if (etat.session) {
-    try {
-      await requete("/auth/v1/logout", { methode: "POST", jeton: etat.session.access_token });
-    } catch (erreur) {
-      // on se déconnecte quand même de ce côté
-    }
-  }
-  oublierSession();
-  afficherCompte();
-}
-
-async function chargerDonnees() {
-  const resultats = await Promise.all([
-    requeteConnectee("/rest/v1/profiles?select=*&id=eq." + etat.session.id),
-    requeteConnectee("/rest/v1/favoris?select=jour"),
-    requeteConnectee("/rest/v1/pays_favoris?select=pays"),
-    requeteConnectee("/rest/v1/agenda?select=manif,rappel")
-  ]);
-  etat.profil = resultats[0][0] || null;
-  etat.favoris = new Set(resultats[1].map(function (ligne) { return ligne.jour; }));
-  etat.pays = new Set(resultats[2].map(function (ligne) { return ligne.pays; }));
-  etat.agenda = new Map(resultats[3].map(function (ligne) { return [ligne.manif, ligne.rappel]; }));
-}
-
-// Retour depuis un lien reçu par e-mail (#access_token=… dans l'adresse)
-async function traiterRetourEmail() {
-  const parametres = new URLSearchParams(location.hash.slice(1));
-
-  if (parametres.has("error_description")) {
-    history.replaceState(null, "", location.pathname);
-    afficherMessage("Lien expiré", "Ce lien n'est plus valable. Recommence l'opération depuis le site.");
-    return;
-  }
-  if (parametres.has("message")) {
-    // changement d'e-mail : il faut aussi cliquer le lien envoyé à l'autre adresse
-    history.replaceState(null, "", location.pathname);
-    afficherMessage("Presque fini", "Clique aussi sur le lien envoyé à ton autre adresse e-mail pour terminer le changement.");
-    return;
-  }
-  if (!parametres.has("access_token")) {
-    return;
-  }
-
-  const jeton = parametres.get("access_token");
-  const utilisateur = await requete("/auth/v1/user", { jeton: jeton });
-  enregistrerSession({
-    access_token: jeton,
-    refresh_token: parametres.get("refresh_token"),
-    expires_in: parametres.get("expires_in")
-  }, utilisateur);
-  history.replaceState(null, "", location.pathname);
-  await chargerDonnees();
-
-  const type = parametres.get("type");
-  if (type === "recovery") {
-    ecrireStockage(sessionStorage, CLE_RECUPERATION, true);
-    location.href = "mon-espace.html#securite-compte";
-  } else if (type === "signup") {
-    afficherMessage("Bienvenue !", "Ton adresse est confirmée, tu es connecté·e. Pense que tu seras déconnecté·e en fermant l'onglet.");
-  } else if (type === "email_change") {
-    afficherMessage("Adresse modifiée", "Ta nouvelle adresse e-mail est enregistrée.");
-  }
 }
 
 // ---------- Fenêtre de connexion ----------
@@ -271,10 +136,6 @@ function afficherVue(nom) {
 }
 
 function ouvrirFenetre(nom) {
-  if (!COMPTES_ACTIFS) {
-    afficherMessage("Bientôt disponible", "Les comptes ne sont pas encore activés sur ce site.");
-    return;
-  }
   if (!fenetre.open) {
     fenetre.showModal();
   }
@@ -284,10 +145,7 @@ function ouvrirFenetre(nom) {
 function afficherMessage(titre, texte) {
   fenetre.querySelector("[data-message-titre]").textContent = titre;
   fenetre.querySelector("[data-message-texte]").textContent = texte;
-  if (!fenetre.open) {
-    fenetre.showModal();
-  }
-  afficherVue("message");
+  ouvrirFenetre("message");
 }
 
 function montrerErreur(formulaire, message) {
@@ -308,7 +166,7 @@ async function pendantEnvoi(formulaire, action) {
   try {
     await action();
   } catch (erreur) {
-    montrerErreur(formulaire, traduireErreur(erreur));
+    montrerErreur(formulaire, erreur.message);
   } finally {
     bouton.disabled = false;
   }
@@ -325,10 +183,14 @@ document.querySelector("#formulaire-connexion").addEventListener("submit", funct
     return;
   }
   pendantEnvoi(formulaire, async function () {
-    await connecter(email, motDePasse);
+    const resultat = await api("connexion", { email: email, mdp: motDePasse });
+    etat.session = resultat.jeton;
+    ecrireStockage(sessionStorage, CLE_SESSION, etat.session);
+    appliquerDonnees(resultat);
     formulaire.reset();
     fenetre.close();
     afficherCompte();
+    remplirProfil();
   });
 });
 
@@ -336,14 +198,14 @@ document.querySelector("#formulaire-inscription").addEventListener("submit", fun
   evenement.preventDefault();
   const formulaire = evenement.target;
   const pseudo = formulaire.querySelector("#inscription-pseudo").value.trim();
-  const email = formulaire.querySelector("#inscription-email").value.trim();
+  const champEmail = formulaire.querySelector("#inscription-email");
   const motDePasse = formulaire.querySelector("#inscription-mdp").value;
 
   if (pseudo.length < 2 || pseudo.length > 30) {
     montrerErreur(formulaire, "Ton pseudo doit faire entre 2 et 30 caractères.");
     return;
   }
-  if (!formulaire.querySelector("#inscription-email").checkValidity() || email === "") {
+  if (champEmail.value.trim() === "" || !champEmail.checkValidity()) {
     montrerErreur(formulaire, "Cette adresse e-mail n'est pas valide.");
     return;
   }
@@ -352,9 +214,9 @@ document.querySelector("#formulaire-inscription").addEventListener("submit", fun
     return;
   }
   pendantEnvoi(formulaire, async function () {
-    await inscrire(pseudo, email, motDePasse);
+    const resultat = await api("inscription", { pseudo: pseudo, email: champEmail.value.trim(), mdp: motDePasse });
     formulaire.reset();
-    afficherMessage("Vérifie ta boîte mail", "On t'a envoyé un lien pour confirmer ton adresse. Clique dessus pour activer ton compte.");
+    afficherMessage("Vérifie ta boîte mail", resultat.message);
   });
 });
 
@@ -368,37 +230,32 @@ document.querySelector("#formulaire-oubli").addEventListener("submit", function 
     return;
   }
   pendantEnvoi(formulaire, async function () {
-    await requete("/auth/v1/recover?redirect_to=" + adresseRetour("mon-espace.html"), {
-      methode: "POST",
-      corps: { email: email }
-    });
+    const resultat = await api("oubli", { email: email });
     formulaire.reset();
-    afficherMessage("E-mail envoyé", "Si un compte existe avec cette adresse, tu vas recevoir un lien pour choisir un nouveau mot de passe.");
+    afficherMessage("E-mail envoyé", resultat.message);
   });
 });
 
 // ---------- Favoris, pays, agenda ----------
 
-async function basculer(table, colonne, valeur, ensemble) {
-  if (ensemble.has(valeur)) {
-    await requeteConnectee("/rest/v1/" + table + "?" + colonne + "=eq." + encodeURIComponent(valeur), { methode: "DELETE" });
-    ensemble.delete(valeur);
-  } else {
-    const ligne = {};
-    ligne[colonne] = valeur;
-    await requeteConnectee("/rest/v1/" + table, { methode: "POST", corps: ligne, entetes: { Prefer: "return=minimal" } });
+async function basculer(table, valeur, ensemble) {
+  const resultat = await api("basculer", { table: table, valeur: valeur });
+  if (resultat.actif) {
     ensemble.set ? ensemble.set(valeur, true) : ensemble.add(valeur);
+  } else {
+    ensemble.delete(valeur);
   }
   afficherCompte();
 }
 
-async function changerRappel(manif, rappel) {
-  await requeteConnectee("/rest/v1/agenda?manif=eq." + encodeURIComponent(manif), {
-    methode: "PATCH",
-    corps: { rappel: rappel },
-    entetes: { Prefer: "return=minimal" }
-  });
-  etat.agenda.set(manif, rappel);
+async function deconnecter() {
+  try {
+    await api("deconnexion");
+  } catch (erreur) {
+    // on se déconnecte quand même de ce côté
+  }
+  oublierSession();
+  afficherCompte();
 }
 
 // Un seul écouteur pour tous les boutons de la page
@@ -423,18 +280,18 @@ document.addEventListener("click", async function (evenement) {
     } else if (cible.hasAttribute("data-deconnexion")) {
       await deconnecter();
     } else if (cible.dataset.enregistrer) {
-      await basculer("favoris", "jour", cible.dataset.enregistrer, etat.favoris);
+      await basculer("favoris", cible.dataset.enregistrer, etat.favoris);
     } else if (cible.dataset.pays) {
-      await basculer("pays_favoris", "pays", cible.dataset.pays, etat.pays);
+      await basculer("pays", cible.dataset.pays, etat.pays);
     } else if (cible.dataset.agenda) {
-      await basculer("agenda", "manif", cible.dataset.agenda, etat.agenda);
+      await basculer("agenda", cible.dataset.agenda, etat.agenda);
     } else if (cible.dataset.retirerPays) {
-      await basculer("pays_favoris", "pays", cible.dataset.retirerPays, etat.pays);
+      await basculer("pays", cible.dataset.retirerPays, etat.pays);
     } else if (cible.dataset.retirerAgenda) {
-      await basculer("agenda", "manif", cible.dataset.retirerAgenda, etat.agenda);
+      await basculer("agenda", cible.dataset.retirerAgenda, etat.agenda);
     }
   } catch (erreur) {
-    afficherMessage("Oups", traduireErreur(erreur));
+    afficherMessage("Oups", erreur.message);
   }
 });
 
@@ -444,28 +301,15 @@ document.addEventListener("change", async function (evenement) {
     return;
   }
   try {
-    await changerRappel(caseRappel.dataset.rappel, caseRappel.checked);
+    await api("rappel", { manif: caseRappel.dataset.rappel, rappel: caseRappel.checked });
+    etat.agenda.set(caseRappel.dataset.rappel, caseRappel.checked);
   } catch (erreur) {
     caseRappel.checked = !caseRappel.checked;
-    afficherMessage("Oups", traduireErreur(erreur));
+    afficherMessage("Oups", erreur.message);
   }
 });
 
 // ---------- Affichage ----------
-
-function remplirAvatar(element, valeur) {
-  element.replaceChildren();
-  element.className = "avatar-rond grand";
-  if (valeur && valeur.startsWith("carpe-")) {
-    const image = document.createElement("img");
-    image.src = "images/prints/" + IMAGES["j" + valeur.slice(6)];
-    image.alt = "";
-    image.draggable = false;
-    element.append(image);
-  } else {
-    element.classList.add("avatar-" + (valeur || "arc-en-ciel"));
-  }
-}
 
 function creerElement(balise, classe, texte) {
   const element = document.createElement(balise);
@@ -474,15 +318,33 @@ function creerElement(balise, classe, texte) {
   return element;
 }
 
+function creerImagePrint(jour) {
+  const image = creerElement("img");
+  image.src = "images/prints/" + IMAGES[jour];
+  image.alt = "";
+  image.draggable = false;
+  return image;
+}
+
+function remplirAvatar(element, valeur) {
+  element.replaceChildren();
+  element.className = "avatar-rond grand";
+  if (valeur && valeur.startsWith("carpe-")) {
+    element.append(creerImagePrint("j" + valeur.slice(6)));
+  } else {
+    element.classList.add("avatar-" + (valeur || "arc-en-ciel"));
+  }
+}
+
 function afficherCompte() {
-  const connecte = etat.session !== null;
-  const pseudo = etat.profil ? etat.profil.pseudo : "";
+  const connecte = etat.session !== null && etat.profil !== null;
+  const pseudo = connecte ? etat.profil.pseudo : "";
 
   document.body.classList.toggle("connecte", connecte);
   document.querySelector("#bouton-compte").textContent = connecte ? "@" + pseudo : "Se connecter";
   document.querySelector("#bandeau-session").hidden = !connecte;
   document.querySelectorAll("[data-pseudo]").forEach(function (zone) { zone.textContent = "@" + pseudo; });
-  document.querySelectorAll("[data-email]").forEach(function (zone) { zone.textContent = connecte ? etat.session.email : ""; });
+  document.querySelectorAll("[data-email]").forEach(function (zone) { zone.textContent = connecte ? etat.profil.email : ""; });
 
   // Boutons actifs seulement une fois connecté·e
   document.querySelectorAll("[data-enregistrer]").forEach(function (bouton) {
@@ -515,7 +377,7 @@ function afficherMonEspace(connecte) {
   }
   document.querySelector("#espace-deconnecte").hidden = connecte;
   espace.hidden = !connecte;
-  if (!connecte || !etat.profil) {
+  if (!connecte) {
     return;
   }
 
@@ -524,32 +386,22 @@ function afficherMonEspace(connecte) {
   // Print de la semaine : la dernière illustration publiée
   const jours = Object.keys(IMAGES);
   const dernier = jours[jours.length - 1];
-  const semaine = document.querySelector("#print-semaine");
-  semaine.replaceChildren();
   const lienSemaine = creerElement("a", "print-semaine");
   lienSemaine.href = "print.html#" + dernier;
-  const imageSemaine = creerElement("img");
-  imageSemaine.src = "images/prints/" + IMAGES[dernier];
-  imageSemaine.alt = "";
-  imageSemaine.draggable = false;
-  lienSemaine.append(imageSemaine, creerElement("span", "", PRINTS[dernier] + " · " + Number(dernier.slice(1)) + " juin"));
-  semaine.append(lienSemaine);
+  lienSemaine.append(creerImagePrint(dernier), creerElement("span", "", PRINTS[dernier] + " · " + Number(dernier.slice(1)) + " juin"));
+  document.querySelector("#print-semaine").replaceChildren(lienSemaine);
 
   // Prints favoris
   const listeFavoris = document.querySelector("#liste-favoris");
   listeFavoris.replaceChildren();
   Array.from(etat.favoris).sort().forEach(function (jour) {
-    const element = creerElement("li");
     const lien = creerElement("a");
     lien.href = "print.html#" + jour;
     if (IMAGES[jour]) {
-      const image = creerElement("img");
-      image.src = "images/prints/" + IMAGES[jour];
-      image.alt = "";
-      image.draggable = false;
-      lien.append(image);
+      lien.append(creerImagePrint(jour));
     }
     lien.append(creerElement("span", "visuellement-cache", PRINTS[jour] + ", " + Number(jour.slice(1)) + " juin"));
+    const element = creerElement("li");
     element.append(lien);
     listeFavoris.append(element);
   });
@@ -559,11 +411,11 @@ function afficherMonEspace(connecte) {
   const listePays = document.querySelector("#liste-pays-favoris");
   listePays.replaceChildren();
   Array.from(etat.pays).sort().forEach(function (pays) {
-    const element = creerElement("li");
     const bouton = creerElement("button", "lien-bouton", "Retirer");
     bouton.type = "button";
     bouton.dataset.retirerPays = pays;
     bouton.setAttribute("aria-label", "Retirer " + pays);
+    const element = creerElement("li");
     element.append(creerElement("span", "", pays), bouton);
     listePays.append(element);
   });
@@ -577,19 +429,19 @@ function afficherMonEspace(connecte) {
     if (!manif) {
       return;
     }
-    const element = creerElement("li");
     const texte = creerElement("div");
     texte.append(creerElement("strong", "", manif.titre), creerElement("p", "petite-info", manif.date + " · " + manif.lieu));
-    const etiquette = creerElement("label", "ligne-case");
     const caseRappel = creerElement("input");
     caseRappel.type = "checkbox";
     caseRappel.checked = rappel;
     caseRappel.dataset.rappel = id;
+    const etiquette = creerElement("label", "ligne-case");
     etiquette.append(caseRappel, " Rappel la veille");
     const bouton = creerElement("button", "lien-bouton", "Retirer");
     bouton.type = "button";
     bouton.dataset.retirerAgenda = id;
     bouton.setAttribute("aria-label", "Retirer " + manif.titre + " de mon agenda");
+    const element = creerElement("li");
     element.append(texte, etiquette, bouton);
     listeAgenda.append(element);
   });
@@ -620,8 +472,6 @@ if (formulaireProfil) {
     evenement.preventDefault();
     const pseudo = formulaireProfil.querySelector("#profil-pseudo").value.trim();
     const avatar = formulaireProfil.querySelector('[name="avatar"]:checked');
-    const orientation = formulaireProfil.querySelector("#profil-orientation").value || null;
-    const ville = formulaireProfil.querySelector("#profil-ville").value.trim() || null;
 
     if (pseudo.length < 2 || pseudo.length > 30) {
       montrerErreur(formulaireProfil, "Ton pseudo doit faire entre 2 et 30 caractères.");
@@ -630,36 +480,21 @@ if (formulaireProfil) {
     if (!confirm("Enregistrer les modifications de ton profil ?")) {
       return;
     }
-
     pendantEnvoi(formulaireProfil, async function () {
-      // Paramètres obligatoires : enregistrés tout de suite
-      const modifications = {
+      const resultat = await api("profil", {
         pseudo: pseudo,
         avatar: avatar ? avatar.value : etat.profil.avatar,
-        region: formulaireProfil.querySelector("#profil-region").value || null,
+        orientation: formulaireProfil.querySelector("#profil-orientation").value,
+        ville: formulaireProfil.querySelector("#profil-ville").value.trim(),
+        region: formulaireProfil.querySelector("#profil-region").value,
         alertes_region: formulaireProfil.querySelector("#profil-alertes").checked
-      };
-      await requeteConnectee("/rest/v1/profiles?id=eq." + etat.session.id, {
-        methode: "PATCH",
-        corps: modifications,
-        entetes: { Prefer: "return=minimal" }
       });
-      Object.assign(etat.profil, modifications);
-
-      // Paramètres facultatifs (orientation, ville) : appliqués seulement après le clic dans l'e-mail
-      const facultatifChange = orientation !== (etat.profil.orientation || null) || ville !== (etat.profil.ville || null);
-      if (facultatifChange) {
-        await requeteConnectee("/rest/v1/modifications_en_attente", {
-          methode: "POST",
-          corps: { changements: { orientation: orientation, ville: ville } },
-          entetes: { Prefer: "return=minimal" }
-        });
-        await requeteConnectee("/functions/v1/envoyer-confirmation", { methode: "POST", corps: {} });
-        montrerStatut(formulaireProfil, "Enregistré ✓ Pour ton orientation et ta ville, confirme le changement dans l'e-mail qu'on vient de t'envoyer.");
-      } else {
-        montrerStatut(formulaireProfil, "Modifications enregistrées ✓");
-      }
+      appliquerDonnees(resultat);
       afficherCompte();
+      // Orientation et ville ne changent qu'après le clic dans l'e-mail
+      montrerStatut(formulaireProfil, resultat.attente
+        ? "Enregistré ✓ Pour ton orientation et ta ville, confirme le changement dans l'e-mail qu'on vient de t'envoyer."
+        : "Modifications enregistrées ✓");
     });
   });
 }
@@ -674,42 +509,24 @@ if (formulaireEmail) {
       return;
     }
     pendantEnvoi(formulaireEmail, async function () {
-      await requeteConnectee("/auth/v1/user?redirect_to=" + adresseRetour("mon-espace.html"), {
-        methode: "PUT",
-        corps: { email: champ.value.trim() }
-      });
+      const resultat = await api("changer_email", { email: champ.value.trim() });
       formulaireEmail.reset();
-      montrerStatut(formulaireEmail, "On a envoyé un e-mail de confirmation à ton ancienne et à ta nouvelle adresse. Clique sur les deux liens pour valider.");
+      montrerStatut(formulaireEmail, resultat.message);
     });
   });
 }
 
 const formulaireMdp = document.querySelector("#formulaire-mdp");
 if (formulaireMdp) {
-  const enRecuperation = lireStockage(sessionStorage, CLE_RECUPERATION) === true;
-
-  function montrerEtapeNouveau(avecCode) {
-    formulaireMdp.querySelector('[data-etape="code"]').hidden = true;
-    formulaireMdp.querySelector('[data-etape="nouveau"]').hidden = false;
-    formulaireMdp.querySelectorAll("[data-champ-code]").forEach(function (champ) {
-      champ.hidden = !avecCode;
-    });
-  }
-
-  // Après « mot de passe oublié », le lien reçu suffit : pas besoin de code
-  if (enRecuperation) {
-    montrerEtapeNouveau(false);
-    montrerStatut(formulaireMdp, "Choisis ton nouveau mot de passe.");
-  }
-
   document.querySelector("#bouton-code").addEventListener("click", async function () {
     try {
-      await requeteConnectee("/auth/v1/reauthenticate", { methode: "GET" });
-      montrerEtapeNouveau(true);
-      montrerStatut(formulaireMdp, "Un code t'a été envoyé par e-mail.");
+      const resultat = await api("demander_code");
+      formulaireMdp.querySelector('[data-etape="code"]').hidden = true;
+      formulaireMdp.querySelector('[data-etape="nouveau"]').hidden = false;
+      montrerStatut(formulaireMdp, resultat.message);
       formulaireMdp.querySelector("#mdp-code").focus();
     } catch (erreur) {
-      montrerErreur(formulaireMdp, traduireErreur(erreur));
+      montrerErreur(formulaireMdp, erreur.message);
     }
   });
 
@@ -719,6 +536,10 @@ if (formulaireMdp) {
     const nouveau = formulaireMdp.querySelector("#mdp-nouveau").value;
     const confirmation = formulaireMdp.querySelector("#mdp-confirmation").value;
 
+    if (code === "") {
+      montrerErreur(formulaireMdp, "Indique le code reçu par e-mail.");
+      return;
+    }
     if (nouveau.length < 8) {
       montrerErreur(formulaireMdp, "Le mot de passe doit contenir au moins 8 caractères.");
       return;
@@ -727,19 +548,12 @@ if (formulaireMdp) {
       montrerErreur(formulaireMdp, "Les deux mots de passe ne sont pas identiques.");
       return;
     }
-    if (!enRecuperation && code === "") {
-      montrerErreur(formulaireMdp, "Indique le code reçu par e-mail.");
-      return;
-    }
     pendantEnvoi(formulaireMdp, async function () {
-      const corps = { password: nouveau };
-      if (code !== "") {
-        corps.nonce = code;
-      }
-      await requeteConnectee("/auth/v1/user", { methode: "PUT", corps: corps });
-      ecrireStockage(sessionStorage, CLE_RECUPERATION, null);
+      const resultat = await api("changer_mdp", { code: code, mdp: nouveau });
       formulaireMdp.reset();
-      montrerStatut(formulaireMdp, "Ton mot de passe a été changé ✓");
+      formulaireMdp.querySelector('[data-etape="code"]').hidden = false;
+      formulaireMdp.querySelector('[data-etape="nouveau"]').hidden = true;
+      montrerStatut(formulaireMdp, resultat.message);
     });
   });
 
@@ -748,79 +562,88 @@ if (formulaireMdp) {
       return;
     }
     try {
-      await requeteConnectee("/rest/v1/rpc/supprimer_mon_compte", { methode: "POST", corps: {} });
+      const resultat = await api("supprimer_compte");
       oublierSession();
       afficherCompte();
-      afficherMessage("Compte supprimé", "Ton compte et toutes tes données ont été effacés.");
+      afficherMessage("Compte supprimé", resultat.message);
     } catch (erreur) {
-      afficherMessage("Oups", traduireErreur(erreur));
+      afficherMessage("Oups", erreur.message);
     }
   });
 }
 
 // ---------- Page de confirmation (lien reçu par e-mail) ----------
+// Il faut toucher un bouton : certaines messageries ouvrent les liens toutes seules pour les vérifier.
 
-const pageConfirmation = document.querySelector("#confirmation-modif");
+const pageConfirmation = document.querySelector("#confirmation");
 if (pageConfirmation) {
   const parametres = new URLSearchParams(location.search);
-  const jetonModif = parametres.get("jeton");
+  const type = parametres.get("type");
+  const lien = parametres.get("jeton");
+  const refus = parametres.get("refus") === "1";
   const statut = pageConfirmation.querySelector(".message-statut");
-  let emailCompte = null;
+  const boutonConfirmer = document.querySelector("#bouton-confirmer");
+  const formulaireReset = document.querySelector("#formulaire-reset");
 
-  // Le lien « Ce n'est pas moi » met directement en avant le bon bouton
-  if (parametres.get("action") === "refuser") {
-    pageConfirmation.querySelector("#bouton-accepter").hidden = true;
-  } else {
-    pageConfirmation.querySelector("#bouton-refuser").hidden = true;
-  }
+  const TEXTES = {
+    inscription: ["Confirme ton adresse", "Touche le bouton pour activer ton compte.", "Activer mon compte"],
+    email: ["Confirme ta nouvelle adresse", "Touche le bouton pour utiliser cette adresse e-mail sur ton compte.", "Confirmer cette adresse"],
+    modif: ["Confirmer une modification", "Tu t'apprêtes à changer un paramètre non obligatoire de ton profil. Est-ce bien toi ?", "Oui, c'est bien moi"],
+    refus: ["Ce n'est pas toi ?", "On annule la modification, on déconnecte tous les appareils et on t'envoie un lien pour choisir un nouveau mot de passe.", "Annuler la modification"],
+    reset: ["Nouveau mot de passe", "Choisis ton nouveau mot de passe.", ""]
+  };
+  const cle = type === "modif" && refus ? "refus" : type;
 
-  function terminer(titre, texte) {
+  function afficherTexte(titre, texte) {
     pageConfirmation.querySelector("[data-titre]").textContent = titre;
     pageConfirmation.querySelector("[data-texte]").textContent = texte;
-    pageConfirmation.querySelector("[data-actions]").hidden = true;
   }
 
-  if (!jetonModif || !COMPTES_ACTIFS) {
-    terminer("Lien incomplet", "Ce lien n'est pas valable. Ouvre-le directement depuis l'e-mail reçu.");
+  function terminer(message) {
+    afficherTexte("C'est fait", message);
+    boutonConfirmer.hidden = true;
+    formulaireReset.hidden = true;
+    statut.textContent = "";
   }
 
-  document.querySelector("#bouton-accepter").addEventListener("click", async function () {
+  if (!TEXTES[cle] || !lien) {
+    afficherTexte("Lien incomplet", "Ce lien n'est pas valable. Ouvre-le directement depuis l'e-mail reçu.");
+  } else {
+    afficherTexte(TEXTES[cle][0], TEXTES[cle][1]);
+    if (type === "reset") {
+      formulaireReset.hidden = false;
+    } else {
+      boutonConfirmer.textContent = TEXTES[cle][2];
+      boutonConfirmer.hidden = false;
+    }
+  }
+
+  boutonConfirmer.addEventListener("click", async function () {
+    boutonConfirmer.disabled = true;
     try {
-      const resultat = await requete("/rest/v1/rpc/confirmer_modification", { methode: "POST", corps: { p_jeton: jetonModif } });
-      if (resultat === "ok") {
-        terminer("C'est confirmé ✓", "La modification de ton profil est enregistrée. Tu peux fermer cette page.");
-      } else {
-        terminer("Lien expiré", "Ce lien n'est plus valable (il expire après 24 heures). Refais la modification depuis ton espace.");
-      }
+      const resultat = await api("confirmer", { type: type, lien: lien, refus: refus });
+      terminer(resultat.message);
     } catch (erreur) {
-      statut.textContent = traduireErreur(erreur);
+      statut.textContent = erreur.message;
+      boutonConfirmer.disabled = false;
     }
   });
 
-  document.querySelector("#bouton-refuser").addEventListener("click", async function () {
-    try {
-      emailCompte = await requete("/rest/v1/rpc/refuser_modification", { methode: "POST", corps: { p_jeton: jetonModif } });
-      if (!emailCompte) {
-        terminer("Lien expiré", "Ce lien n'est plus valable. Si tu penses que quelqu'un utilise ton compte, utilise « Mot de passe oublié ».");
-        return;
-      }
-      terminer("Modification annulée", "Rien n'a été changé sur ton profil.");
-      pageConfirmation.querySelector("[data-reset]").hidden = false;
-    } catch (erreur) {
-      statut.textContent = traduireErreur(erreur);
+  formulaireReset.addEventListener("submit", function (evenement) {
+    evenement.preventDefault();
+    const nouveau = formulaireReset.querySelector("#reset-mdp").value;
+    if (nouveau.length < 8) {
+      montrerErreur(formulaireReset, "Le mot de passe doit contenir au moins 8 caractères.");
+      return;
     }
-  });
-
-  document.querySelector("#bouton-reset").addEventListener("click", async function () {
-    try {
-      await requete("/auth/v1/recover?redirect_to=" + adresseRetour("mon-espace.html"), {
-        methode: "POST",
-        corps: { email: emailCompte }
-      });
-      statut.textContent = "C'est envoyé : regarde ta boîte mail pour choisir un nouveau mot de passe.";
-    } catch (erreur) {
-      statut.textContent = traduireErreur(erreur);
+    if (nouveau !== formulaireReset.querySelector("#reset-confirmation").value) {
+      montrerErreur(formulaireReset, "Les deux mots de passe ne sont pas identiques.");
+      return;
     }
+    pendantEnvoi(formulaireReset, async function () {
+      const resultat = await api("confirmer", { type: "reset", lien: lien, mdp: nouveau });
+      terminer(resultat.message);
+    });
   });
 }
 
@@ -844,17 +667,12 @@ if (casesChecklist.length > 0) {
 
 async function demarrer() {
   etat.session = lireStockage(sessionStorage, CLE_SESSION);
-  if (COMPTES_ACTIFS) {
+  if (etat.session) {
     try {
-      await traiterRetourEmail();
-      if (etat.session && !etat.profil) {
-        await chargerDonnees();
-      }
+      appliquerDonnees(await api("moi"));
     } catch (erreur) {
       oublierSession();
     }
-  } else {
-    oublierSession();
   }
   afficherCompte();
   remplirProfil();
