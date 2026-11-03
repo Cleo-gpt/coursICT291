@@ -1,3 +1,4 @@
+[
 {
   "id" : 1,
   "nom" : "Taboulet",
@@ -5,4 +6,13 @@
   "minutes" : 15,
   "vegetarien" : true,
   "difficulte" : 2
+},
+{
+  "id" : 2,
+  "nom" : "Gratin de pâtes au jambon",
+  "personne" : 4,
+  "minutes" : 30,
+  "vegetarien" : false,
+  "difficulte" : 3
 }
+]
