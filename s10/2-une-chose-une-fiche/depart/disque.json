@@ -1,3 +1,4 @@
+[
 {
   "id": 1,
   "titre": "Lumières du Léman",
@@ -5,4 +6,13 @@
   "annee": 2019,
   "morceaux": 11,
   "vinyle": true
+},
+{
+  "id": 2,
+  "titre": "Take it easy",
+  "artiste": "Mika",
+  "annee": 2006,
+  "morceaux": 5,
+  "vinyle": true
 }
+]
