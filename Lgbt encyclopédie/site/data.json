@@ -1,0 +1,57 @@
+[
+  {
+    "id": 1,
+    "titre": "Marche des fiertés",
+    "date": "2026-06-13",
+    "heure": "14:00",
+    "lieu": "Place de la Riponne",
+    "ville": "Lausanne",
+    "region": "Suisse romande",
+    "type": "marche",
+    "accesPmr": true
+  },
+  {
+    "id": 2,
+    "titre": "Rassemblement contre l'homophobie et la transphobie",
+    "date": "2026-05-17",
+    "heure": "18:00",
+    "lieu": "Place de Neuve",
+    "ville": "Genève",
+    "region": "Suisse romande",
+    "type": "rassemblement",
+    "accesPmr": true
+  },
+  {
+    "id": 3,
+    "titre": "Marche des fiertés",
+    "date": "2026-06-20",
+    "heure": "13:00",
+    "lieu": "Parc des Bastions",
+    "ville": "Genève",
+    "region": "Suisse romande",
+    "type": "marche",
+    "accesPmr": true
+  },
+  {
+    "id": 4,
+    "titre": "Rassemblement Stonewall",
+    "date": "2026-06-28",
+    "heure": "17:00",
+    "lieu": "Place Georges-Python",
+    "ville": "Fribourg",
+    "region": "Suisse romande",
+    "type": "rassemblement",
+    "accesPmr": false
+  },
+  {
+    "id": 5,
+    "titre": "Zurich Pride",
+    "date": "2026-06-20",
+    "heure": "14:00",
+    "lieu": "Helvetiaplatz",
+    "ville": "Zurich",
+    "region": "Suisse alémanique",
+    "type": "marche",
+    "accesPmr": true
+  }
+]
