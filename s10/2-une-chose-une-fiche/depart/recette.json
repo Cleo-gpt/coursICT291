@@ -1,0 +1,8 @@
+{
+  "id" : 1,
+  "nom" : "Taboulet",
+  "personne" : 4,
+  "minutes" : 15,
+  "vegetarien" : true,
+  "difficulte" : 2
+}
