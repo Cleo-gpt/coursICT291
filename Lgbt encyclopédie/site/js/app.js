@@ -29,12 +29,9 @@ const IMAGES = {
   j05: "05-pansexuel.jpg", j06: "06-omnisexuel.jpg", j07: "07-skoliosexuel.jpg", j08: "08-demisexuel.jpg"
 };
 
-const MANIFS = {
-  "2026-05-17-geneve": { titre: "Rassemblement contre l’homophobie et la transphobie", date: "di 17.05 · 18h", lieu: "Genève" },
-  "2026-06-13-lausanne": { titre: "Marche des fiertés", date: "sa 13.06 · 14h", lieu: "Lausanne" },
-  "2026-06-20-geneve": { titre: "Marche des fiertés", date: "sa 20.06 · 13h", lieu: "Genève" },
-  "2026-06-28-fribourg": { titre: "Rassemblement Stonewall", date: "di 28.06 · 17h", lieu: "Fribourg" }
-};
+// Les manifs sont dans data.json (s11). Rempli par indexerManifs() :
+// identifiant d'agenda ("2026-06-13-lausanne") → fiche de data.json
+let manifsParId = new Map();
 
 const etat = {
   session: null, // jeton de session donné par le serveur
@@ -478,16 +475,24 @@ function afficherMonEspace(connecte) {
   });
   document.querySelector('[data-vide="pays"]').hidden = etat.pays.size > 0;
 
-  // Agenda
+  afficherAgenda();
+}
+
+// Agenda de Mon espace : titre et date viennent de data.json (voir indexerManifs)
+function afficherAgenda() {
   const listeAgenda = document.querySelector("#liste-agenda");
+  if (!listeAgenda) {
+    return;
+  }
   listeAgenda.replaceChildren();
   etat.agenda.forEach(function (rappel, id) {
-    const manif = MANIFS[id];
-    if (!manif) {
-      return;
-    }
+    const manif = manifsParId.get(id);
+    const titre = manif ? manif.titre : id; // data.json pas encore arrivé, ou manif retirée
     const texte = creerElement("div");
-    texte.append(creerElement("strong", "", manif.titre), creerElement("p", "petite-info", manif.date + " · " + manif.lieu));
+    texte.append(creerElement("strong", "", titre));
+    if (manif) {
+      texte.append(creerElement("p", "petite-info", resumeManif(manif)));
+    }
     const caseRappel = creerElement("input");
     caseRappel.type = "checkbox";
     caseRappel.checked = rappel;
@@ -767,9 +772,6 @@ function resumeManif(manif) {
   return date.jourSemaine + " " + manif.date.slice(8) + "." + manif.date.slice(5, 7)
     + " · " + heureCourte(manif.heure) + " · " + manif.ville;
 }
-
-// identifiant d'agenda → fiche de data.json
-let manifsParId = new Map();
 
 function indexerManifs(liste) {
   manifsParId = new Map(liste.map(function (manif) { return [identifiantAgenda(manif), manif]; }));
