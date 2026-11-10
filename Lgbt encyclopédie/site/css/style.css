@@ -1248,37 +1248,6 @@ legend {
   margin-bottom: 10px;
 }
 
-/* Choix des pronoms : boutons radio en forme de pilule */
-.choix {
-  position: relative;
-}
-
-.choix input {
-  position: absolute;
-  opacity: 0;
-}
-
-.choix span {
-  display: inline-block;
-  padding: 6px 14px;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-btn);
-  font-size: 0.85rem;
-  color: var(--color-text-muted);
-  cursor: pointer;
-}
-
-.choix input:checked + span {
-  border-color: var(--color-text);
-  background: var(--color-text);
-  color: var(--color-bg);
-}
-
-.choix input:focus-visible + span {
-  outline: 3px solid var(--color-primary);
-  outline-offset: 2px;
-}
-
 .ligne-reglage {
   display: flex;
   align-items: center;
@@ -1344,11 +1313,6 @@ legend {
 .prints-enregistres li:nth-child(7n+5) { --case: var(--cal-5); }
 .prints-enregistres li:nth-child(7n+6) { --case: var(--cal-6); }
 .prints-enregistres li:nth-child(7n+7) { --case: var(--cal-7); }
-
-.sortie-rapide.sombre {
-  border-color: var(--color-text);
-  color: var(--color-text);
-}
 
 /* ---------- Compte : formulaires, bandeau, avatars ---------- */
 
@@ -1832,10 +1796,6 @@ select.champ {
 
   .deux-colonnes.colonne-large {
     grid-template-columns: minmax(0, 1fr) 320px;
-  }
-
-  .deux-colonnes.colonne-etroite {
-    grid-template-columns: minmax(0, 1fr) 260px;
   }
 
   .cartes-grille {
