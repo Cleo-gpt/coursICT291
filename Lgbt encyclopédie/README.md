@@ -13,7 +13,8 @@ Lgbt encyclopédie/
 │   ├── mes-cartes.md      Carte HTML ↔ étiquettes (s11)
 │   ├── css/style.css      Styles (piste D, polices Nunito)
 │   ├── js/app.js          Le seul fichier JS : comptes, cartes depuis data.json…
-│   ├── images/            Illustrations (prints/ = une par jour de juin)
+│   ├── images/            Illustrations en WebP (prints/ = une par jour de juin,
+│   │                      prints/vignettes/ = 340 px pour calendrier, galerie, Mon espace)
 │   └── api/               Serveur PHP des comptes (seul compte.php est public)
 ├── serveur/               Mise en place MySQL : GUIDE.md + schema.sql
 ├── design/
