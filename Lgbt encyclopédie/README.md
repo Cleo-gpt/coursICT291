@@ -12,7 +12,7 @@ Lgbt encyclopédie/
 │   ├── etiquettes.md      Étiquettes de data.json (s10)
 │   ├── mes-cartes.md      Carte HTML ↔ étiquettes (s11)
 │   ├── css/style.css      Styles (piste D, polices Nunito)
-│   ├── js/app.js          Le seul fichier JS : comptes, cartes depuis data.json…
+│   ├── app.js             Le seul fichier JS (à la racine, fiche s11) : comptes, cartes depuis data.json…
 │   ├── images/            Illustrations (prints/ = une par jour de juin, JPEG
 │   │                      d'origine en pleine qualité, à ne pas compresser)
 │   └── api/               Serveur PHP des comptes (seul compte.php est public)
@@ -29,5 +29,5 @@ Lgbt encyclopédie/
 
 `data.json`, `etiquettes.md` et `mes-cartes.md` restent à côté de `index.html` : c'est ce que demandent les fiches s10 et s11.
 
-Dans `js/app.js`, les chemins passent par `adresse("…")`, qui part de la racine du site :
+Dans `app.js`, les chemins passent par `adresse("…")`, qui part de la racine du site :
 le même code marche depuis `index.html` et depuis `pages/`.

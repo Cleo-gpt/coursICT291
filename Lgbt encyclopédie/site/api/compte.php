@@ -37,7 +37,7 @@ function repondre(array $donnees, int $statut = 200)
 }
 
 // Identifiants d'agenda acceptés : un par fiche de data.json (s11),
-// calculés comme dans js/app.js : "2026-06-13" + "Lausanne" → "2026-06-13-lausanne"
+// calculés comme dans app.js : "2026-06-13" + "Lausanne" → "2026-06-13-lausanne"
 function manifsConnues(): array
 {
     $fiches = json_decode((string) @file_get_contents(__DIR__ . '/../data.json'), true);

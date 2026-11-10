@@ -7,8 +7,8 @@
 // ---------- Adresses ----------
 // index.html est à la racine du site, les autres pages dans pages/.
 // Un chemin comme "data.json" se lirait depuis la page ouverte ; on part donc
-// de l'adresse de ce fichier (js/app.js) pour retrouver la racine du site.
-const RACINE = new URL("../", document.currentScript.src);
+// de l'adresse de ce fichier (app.js, à la racine du site) pour la retrouver.
+const RACINE = new URL("./", document.currentScript.src);
 
 // "data.json" → http://localhost:8888/data.json, depuis n'importe quelle page
 function adresse(chemin) {
