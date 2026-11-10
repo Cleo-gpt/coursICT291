@@ -4,9 +4,20 @@
 //
 // function async + fetch : voir e3-3 / recettes.js
 
+// ---------- Adresses ----------
+// index.html est à la racine du site, les autres pages dans pages/.
+// Un chemin comme "data.json" se lirait depuis la page ouverte ; on part donc
+// de l'adresse de ce fichier (js/app.js) pour retrouver la racine du site.
+const RACINE = new URL("../", document.currentScript.src);
+
+// "data.json" → http://localhost:8888/data.json, depuis n'importe quelle page
+function adresse(chemin) {
+  return new URL(chemin, RACINE).href;
+}
+
 // ---------- Comptes : serveur PHP + MySQL (dossier api/) ----------
 // Le site doit être ouvert par MAMP (http://localhost:8888), pas en double-cliquant le fichier.
-const API = "api/compte.php";
+const API = adresse("api/compte.php");
 
 // sessionStorage est vidé à la fermeture de l'onglet → déconnexion automatique
 const CLE_SESSION = "prisme-session";
@@ -25,8 +36,8 @@ const PRINTS = {
 
 // Illustrations déjà publiées (le dernier jour = print de la semaine)
 const IMAGES = {
-  j01: "01-gay.jpg", j02: "02-lesbienne.jpg", j03: "03-bisexuel.jpg", j04: "04-polysexuel.jpg",
-  j05: "05-pansexuel.jpg", j06: "06-omnisexuel.jpg", j07: "07-skoliosexuel.jpg", j08: "08-demisexuel.jpg"
+  j01: "01-gay.webp", j02: "02-lesbienne.webp", j03: "03-bisexuel.webp", j04: "04-polysexuel.webp",
+  j05: "05-pansexuel.webp", j06: "06-omnisexuel.webp", j07: "07-skoliosexuel.webp", j08: "08-demisexuel.webp"
 };
 
 // Les manifs sont dans data.json (s11). Rempli par indexerManifs() :
@@ -321,7 +332,7 @@ document.addEventListener("click", async function (evenement) {
   try {
     if (cible.id === "bouton-compte") {
       if (etat.session) {
-        location.href = "mon-espace.html";
+        location.href = adresse("pages/mon-espace.html");
       } else {
         ouvrirFenetre("connexion");
       }
@@ -374,7 +385,7 @@ function creerElement(balise, classe, texte) {
 
 function creerImagePrint(jour) {
   const image = creerElement("img");
-  image.src = "images/prints/" + IMAGES[jour];
+  image.src = adresse("images/prints/vignettes/" + IMAGES[jour]);
   image.alt = "";
   image.draggable = false;
   return image;
@@ -441,7 +452,7 @@ function afficherMonEspace(connecte) {
   const jours = Object.keys(IMAGES);
   const dernier = jours[jours.length - 1];
   const lienSemaine = creerElement("a", "print-semaine");
-  lienSemaine.href = "print.html#" + dernier;
+  lienSemaine.href = adresse("pages/print.html#" + dernier);
   lienSemaine.append(creerImagePrint(dernier), creerElement("span", "", PRINTS[dernier] + " · " + Number(dernier.slice(1)) + " juin"));
   document.querySelector("#print-semaine").replaceChildren(lienSemaine);
 
@@ -450,7 +461,7 @@ function afficherMonEspace(connecte) {
   listeFavoris.replaceChildren();
   Array.from(etat.favoris).sort().forEach(function (jour) {
     const lien = creerElement("a");
-    lien.href = "print.html#" + jour;
+    lien.href = adresse("pages/print.html#" + jour);
     if (IMAGES[jour]) {
       lien.append(creerImagePrint(jour));
     }
@@ -864,7 +875,7 @@ function creerCarteAccueil(manif) {
   badge.textContent = manif.type.charAt(0).toUpperCase() + manif.type.slice(1);
   const lien = document.createElement("a");
   lien.className = "lien-carte";
-  lien.href = "manifs.html#" + identifiantAgenda(manif);
+  lien.href = adresse("pages/manifs.html#" + identifiantAgenda(manif));
   lien.textContent = "Voir le détail";
   lien.setAttribute("aria-label", "Voir le détail : " + manif.titre + ", " + manif.ville);
   meta.append(badge, lien);
@@ -901,7 +912,7 @@ function afficherLieux(liste) {
 if (conteneur && zoneEtat) {
   zoneEtat.textContent = "Chargement des manifestations…";
 
-  fetch("data.json")
+  fetch(adresse("data.json"))
     .then(function (reponse) {
       if (!reponse.ok) {
         throw new Error("Fichier introuvable : code " + reponse.status);
@@ -928,7 +939,7 @@ if (conteneur && zoneEtat) {
     });
 } else if (document.getElementById("liste-agenda")) {
   // Mon espace : sans data.json, l'agenda montre seulement les identifiants.
-  fetch("data.json")
+  fetch(adresse("data.json"))
     .then(function (reponse) {
       if (!reponse.ok) {
         throw new Error("Fichier introuvable : code " + reponse.status);

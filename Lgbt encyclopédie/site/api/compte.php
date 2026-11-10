@@ -228,7 +228,7 @@ function envoyerSmtp(array $config, string $destinataire, string $sujet, string 
 
 function lienConfirmation(array $config, string $type, string $jeton, string $extra = ''): string
 {
-    return $config['site_url'] . '/confirmer.html?type=' . $type . '&jeton=' . $jeton . $extra;
+    return $config['site_url'] . '/pages/confirmer.html?type=' . $type . '&jeton=' . $jeton . $extra;
 }
 
 // Crée un lien (ou un code) à usage unique, valable $duree
