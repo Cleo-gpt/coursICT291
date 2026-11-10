@@ -43,7 +43,7 @@ function afficherLieux(liste) {
 // ----- Votre code de la semaine 11 commence ici -----
 zoneEtat.textContent = "Chargement des lieux...";
 
-fetch("vide.json")
+fetch("data.json")
   .then(function (reponse) {
     if (!reponse.ok) {
       throw new Error("Fichier introuvable : code " + reponse.status);
