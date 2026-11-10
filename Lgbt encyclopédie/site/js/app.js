@@ -721,85 +721,179 @@ if (casesChecklist.length > 0) {
 }
 
 // ---------- s11 : les cartes des manifs viennent de data.json ----------
-// Seulement sur manifs.html : les autres pages n'ont pas de #liste-cartes.
+// index.html (accueil) et manifs.html ont chacune un #liste-cartes et un #etat,
+// mais pas le même modèle de carte (voir mes-cartes.md).
+// mon-espace.html lit aussi data.json, pour retrouver les manifs de l'agenda.
 
 const conteneur = document.getElementById("liste-cartes");
 const zoneEtat = document.getElementById("etat");
 const zoneNombre = document.getElementById("nombre-manifs");
+const listeAgenda = document.getElementById("liste-agenda");
 
 // La pile de toutes les manifs. Elle est vide tant que data.json n'est pas arrivé.
 let tousLesLieux = [];
 
 const MOIS = ["janv.", "févr.", "mars", "avril", "mai", "juin",
   "juil.", "août", "sept.", "oct.", "nov.", "déc."];
+const JOURS = ["di", "lu", "ma", "me", "je", "ve", "sa"];
 
-// "Genève" → "geneve", pour l'identifiant d'agenda (ex. "2026-06-20-geneve")
+// "Genève" → "geneve"
 function versIdentifiant(texte) {
   return texte.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]+/g, "-");
+}
+
+// Identifiant d'agenda, le même que dans la base MySQL : "2026-06-13-lausanne"
+// (api/compte.php le calcule de la même façon à partir de data.json)
+function identifiantAgenda(manif) {
+  return manif.date + "-" + versIdentifiant(manif.ville);
+}
+
+// "2026-06-13" → { jour: 13, mois: 6, jourSemaine: "sa" }
+function lireDate(texte) {
+  const morceaux = texte.split("-").map(Number); // [2026, 6, 13]
+  const date = new Date(Date.UTC(morceaux[0], morceaux[1] - 1, morceaux[2]));
+  return { jour: morceaux[2], mois: morceaux[1], jourSemaine: JOURS[date.getUTCDay()] };
+}
+
+// "14:00" → "14h", "17:30" → "17h30"
+function heureCourte(texte) {
+  const morceaux = texte.split(":");
+  return Number(morceaux[0]) + "h" + (morceaux[1] === "00" ? "" : morceaux[1]);
+}
+
+// "sa 13.06 · 14h · Lausanne" (liste de l'agenda dans Mon espace)
+function resumeManif(manif) {
+  const date = lireDate(manif.date);
+  return date.jourSemaine + " " + manif.date.slice(8) + "." + manif.date.slice(5, 7)
+    + " · " + heureCourte(manif.heure) + " · " + manif.ville;
+}
+
+// identifiant d'agenda → fiche de data.json
+let manifsParId = new Map();
+
+function indexerManifs(liste) {
+  manifsParId = new Map(liste.map(function (manif) { return [identifiantAgenda(manif), manif]; }));
+}
+
+// Carte de manifs.html :
+// <li id="2026-06-13-lausanne"><article class="carte-bloc manif">…</article></li>
+function creerCarteManif(manif, connecte) {
+  const date = lireDate(manif.date);
+  const idAgenda = identifiantAgenda(manif);
+
+  const element = document.createElement("li");
+  element.id = idAgenda; // cible du lien « Voir le détail » de l'accueil
+  const carte = document.createElement("article");
+  carte.className = "carte-bloc manif";
+
+  // Bloc date : <p class="bloc-date"><strong>13</strong><span>juin</span></p>
+  const blocDate = document.createElement("p");
+  blocDate.className = "bloc-date";
+  const jour = document.createElement("strong");
+  jour.textContent = date.jour;
+  const mois = document.createElement("span");
+  mois.textContent = MOIS[date.mois - 1];
+  blocDate.append(jour, mois);
+
+  const corps = document.createElement("div");
+  corps.className = "manif-corps";
+
+  const titre = document.createElement("h2");
+  titre.textContent = manif.titre;
+
+  const infos = document.createElement("p");
+  infos.className = "petite-info";
+  infos.textContent = manif.heure.replace(":", "h") + " · " + manif.lieu + ", " + manif.ville;
+
+  const etiquettes = document.createElement("ul");
+  etiquettes.className = "etiquettes";
+  const type = document.createElement("li");
+  type.textContent = manif.type;
+  etiquettes.append(type);
+  if (manif.accesPmr) {
+    const pmr = document.createElement("li");
+    pmr.textContent = "accès PMR";
+    etiquettes.append(pmr);
+  }
+
+  corps.append(titre, infos, etiquettes);
+
+  const bouton = document.createElement("button");
+  bouton.type = "button";
+  bouton.className = "btn-secondaire btn-petit";
+  bouton.dataset.agenda = idAgenda;
+  const dansAgenda = etat.agenda.has(idAgenda);
+  bouton.setAttribute("aria-pressed", dansAgenda ? "true" : "false");
+  bouton.textContent = dansAgenda ? "Dans mon agenda ✓" : "Ajouter à l'agenda";
+  bouton.disabled = !connecte;
+
+  carte.append(blocDate, corps, bouton);
+  element.append(carte);
+  return element;
+}
+
+// Carte de index.html (Manifs à venir) :
+// <article class="carte"><p class="date">Sa 13 juin · 14h</p><h3>…</h3>…</article>
+function creerCarteAccueil(manif) {
+  const date = lireDate(manif.date);
+
+  const carte = document.createElement("article");
+  carte.className = "carte";
+
+  const quand = document.createElement("p");
+  quand.className = "date";
+  const jourSemaine = date.jourSemaine.charAt(0).toUpperCase() + date.jourSemaine.slice(1);
+  quand.textContent = jourSemaine + " " + date.jour + " " + MOIS[date.mois - 1] + " · " + heureCourte(manif.heure);
+
+  const titre = document.createElement("h3");
+  titre.textContent = manif.titre;
+
+  const commune = document.createElement("p");
+  commune.className = "commune";
+  commune.textContent = manif.ville;
+
+  const description = document.createElement("p");
+  description.className = "description";
+  description.textContent = manif.lieu + (manif.accesPmr ? " · accès PMR" : "");
+
+  const meta = document.createElement("div");
+  meta.className = "meta";
+  const badge = document.createElement("span");
+  badge.className = "badge";
+  badge.textContent = manif.type.charAt(0).toUpperCase() + manif.type.slice(1);
+  const lien = document.createElement("a");
+  lien.className = "lien-carte";
+  lien.href = "manifs.html#" + identifiantAgenda(manif);
+  lien.textContent = "Voir le détail";
+  lien.setAttribute("aria-label", "Voir le détail : " + manif.titre + ", " + manif.ville);
+  meta.append(badge, lien);
+
+  carte.append(quand, titre, commune, description, meta);
+  return carte;
 }
 
 // Montre une carte par manif de la liste qu'on lui donne.
 // Elle efface d'abord les cartes déjà affichées.
 function afficherLieux(liste) {
   conteneur.textContent = "";
+  const accueil = conteneur.classList.contains("cartes-grille"); // index.html
   const connecte = etat.session !== null && etat.profil !== null;
 
   for (const manif of liste) {
-    const morceaux = manif.date.split("-"); // ["2026", "06", "13"]
-    const idAgenda = manif.date + "-" + versIdentifiant(manif.ville);
-
-    const element = document.createElement("li");
-    const carte = document.createElement("article");
-    carte.className = "carte-bloc manif";
-
-    // Bloc date : <p class="bloc-date"><strong>13</strong><span>juin</span></p>
-    const blocDate = document.createElement("p");
-    blocDate.className = "bloc-date";
-    const jour = document.createElement("strong");
-    jour.textContent = Number(morceaux[2]);
-    const mois = document.createElement("span");
-    mois.textContent = MOIS[Number(morceaux[1]) - 1];
-    blocDate.append(jour, mois);
-
-    const corps = document.createElement("div");
-    corps.className = "manif-corps";
-
-    const titre = document.createElement("h2");
-    titre.textContent = manif.titre;
-
-    const infos = document.createElement("p");
-    infos.className = "petite-info";
-    infos.textContent = manif.heure.replace(":", "h") + " · " + manif.lieu + ", " + manif.ville;
-
-    const etiquettes = document.createElement("ul");
-    etiquettes.className = "etiquettes";
-    const type = document.createElement("li");
-    type.textContent = manif.type;
-    etiquettes.append(type);
-    if (manif.accesPmr) {
-      const pmr = document.createElement("li");
-      pmr.textContent = "accès PMR";
-      etiquettes.append(pmr);
-    }
-
-    corps.append(titre, infos, etiquettes);
-
-    const bouton = document.createElement("button");
-    bouton.type = "button";
-    bouton.className = "btn-secondaire btn-petit";
-    bouton.dataset.agenda = idAgenda;
-    const dansAgenda = etat.agenda.has(idAgenda);
-    bouton.setAttribute("aria-pressed", dansAgenda ? "true" : "false");
-    bouton.textContent = dansAgenda ? "Dans mon agenda ✓" : "Ajouter à l'agenda";
-    bouton.disabled = !connecte;
-
-    carte.append(blocDate, corps, bouton);
-    element.append(carte);
-    conteneur.append(element);
+    conteneur.append(accueil ? creerCarteAccueil(manif) : creerCarteManif(manif, connecte));
   }
 
   if (zoneNombre) {
     zoneNombre.textContent = liste.length + (liste.length > 1 ? " manifestations affichées" : " manifestation affichée");
+  }
+
+  // Arrivée depuis « Voir le détail » (manifs.html#2026-06-13-lausanne) :
+  // la carte n'existait pas encore quand le navigateur a lu l'adresse.
+  if (location.hash) {
+    const cible = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+    if (cible) {
+      cible.scrollIntoView();
+    }
   }
 }
 
@@ -820,11 +914,32 @@ if (conteneur && zoneEtat) {
         zoneEtat.textContent = "Aucune manifestation annoncée pour le moment. Repasse bientôt !";
         return;
       }
+      // Dans l'ordre du calendrier (date puis heure, écrites "2026-06-13" et "14:00")
+      tousLesLieux.sort(function (a, b) {
+        return (a.date + a.heure).localeCompare(b.date + b.heure);
+      });
+      indexerManifs(tousLesLieux);
       afficherLieux(tousLesLieux);
     })
     .catch(function (erreur) {
       console.error(erreur);
       zoneEtat.textContent = "Impossible de charger les manifestations. Recharge la page dans un moment.";
+    });
+} else if (listeAgenda) {
+  // Mon espace : sans data.json, l'agenda montre seulement les identifiants.
+  fetch("data.json")
+    .then(function (reponse) {
+      if (!reponse.ok) {
+        throw new Error("Fichier introuvable : code " + reponse.status);
+      }
+      return reponse.json();
+    })
+    .then(function (donnees) {
+      indexerManifs(donnees);
+      afficherAgenda();
+    })
+    .catch(function (erreur) {
+      console.error(erreur);
     });
 }
 
