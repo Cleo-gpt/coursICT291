@@ -502,7 +502,7 @@ function afficherAgenda() {
     const bouton = creerElement("button", "lien-bouton", "Retirer");
     bouton.type = "button";
     bouton.dataset.retirerAgenda = id;
-    bouton.setAttribute("aria-label", "Retirer " + manif.titre + " de mon agenda");
+    bouton.setAttribute("aria-label", "Retirer " + titre + " de mon agenda");
     const element = creerElement("li");
     element.append(texte, etiquette, bouton);
     listeAgenda.append(element);
@@ -733,7 +733,6 @@ if (casesChecklist.length > 0) {
 const conteneur = document.getElementById("liste-cartes");
 const zoneEtat = document.getElementById("etat");
 const zoneNombre = document.getElementById("nombre-manifs");
-const listeAgenda = document.getElementById("liste-agenda");
 
 // La pile de toutes les manifs. Elle est vide tant que data.json n'est pas arrivé.
 let tousLesLieux = [];
@@ -927,7 +926,7 @@ if (conteneur && zoneEtat) {
       console.error(erreur);
       zoneEtat.textContent = "Impossible de charger les manifestations. Recharge la page dans un moment.";
     });
-} else if (listeAgenda) {
+} else if (document.getElementById("liste-agenda")) {
   // Mon espace : sans data.json, l'agenda montre seulement les identifiants.
   fetch("data.json")
     .then(function (reponse) {
