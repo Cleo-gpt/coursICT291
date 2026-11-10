@@ -41,3 +41,11 @@ function afficherLieux(liste) {
 }
 
 // ----- Votre code de la semaine 11 commence ici -----
+fetch("data.json")
+  .then(function (reponse) {
+    return reponse.json();
+  })
+  .then(function (donnees) {
+    tousLesLieux = donnees;
+    afficherLieux(tousLesLieux);
+  });
