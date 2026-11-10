@@ -36,8 +36,8 @@ const PRINTS = {
 
 // Illustrations déjà publiées (le dernier jour = print de la semaine)
 const IMAGES = {
-  j01: "01-gay.webp", j02: "02-lesbienne.webp", j03: "03-bisexuel.webp", j04: "04-polysexuel.webp",
-  j05: "05-pansexuel.webp", j06: "06-omnisexuel.webp", j07: "07-skoliosexuel.webp", j08: "08-demisexuel.webp"
+  j01: "01-gay.jpg", j02: "02-lesbienne.jpg", j03: "03-bisexuel.jpg", j04: "04-polysexuel.jpg",
+  j05: "05-pansexuel.jpg", j06: "06-omnisexuel.jpg", j07: "07-skoliosexuel.jpg", j08: "08-demisexuel.jpg"
 };
 
 // Les manifs sont dans data.json (s11). Rempli par indexerManifs() :
@@ -385,7 +385,7 @@ function creerElement(balise, classe, texte) {
 
 function creerImagePrint(jour) {
   const image = creerElement("img");
-  image.src = adresse("images/prints/vignettes/" + IMAGES[jour]);
+  image.src = adresse("images/prints/" + IMAGES[jour]);
   image.alt = "";
   image.draggable = false;
   return image;
