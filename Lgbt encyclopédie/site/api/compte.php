@@ -21,7 +21,6 @@ const TERMES = ['Agenre', 'Androgyne', 'Aromantique', 'Asexuel·le', 'Bigenre', 
     'Omnisexuel·le', 'Pangenre', 'Panromantique', 'Pansexuel·le', 'Polyamorie', 'Polysexuel·le',
     'Skoliosexuel·le', 'Transfem', 'Transmasc', 'Trigenre'];
 const PAYS = ['Canada', 'Portugal', 'Italie', 'Turquie', 'Pays — législation hostile'];
-const MANIFS = ['2026-05-17-geneve', '2026-06-13-lausanne', '2026-06-20-geneve', '2026-06-28-fribourg'];
 const DUREE_SESSION = '12 HOUR';
 
 // ---------- Outils ----------
@@ -35,6 +34,29 @@ function repondre(array $donnees, int $statut = 200)
     http_response_code($statut);
     echo json_encode($donnees, JSON_UNESCAPED_UNICODE);
     exit;
+}
+
+// Identifiants d'agenda acceptés : un par fiche de data.json (s11),
+// calculés comme dans js/app.js : "2026-06-13" + "Lausanne" → "2026-06-13-lausanne"
+function manifsConnues(): array
+{
+    $fiches = json_decode((string) @file_get_contents(__DIR__ . '/../data.json'), true);
+    if (!is_array($fiches)) {
+        return [];
+    }
+    $accents = ['à' => 'a', 'â' => 'a', 'ä' => 'a', 'á' => 'a', 'ç' => 'c', 'é' => 'e', 'è' => 'e',
+        'ê' => 'e', 'ë' => 'e', 'î' => 'i', 'ï' => 'i', 'í' => 'i', 'ô' => 'o', 'ö' => 'o', 'ó' => 'o',
+        'ù' => 'u', 'û' => 'u', 'ü' => 'u', 'ú' => 'u', 'ñ' => 'n', 'ÿ' => 'y'];
+    $ids = [];
+    foreach ($fiches as $fiche) {
+        if (!is_array($fiche) || !isset($fiche['date'], $fiche['ville'])) {
+            continue;
+        }
+        $ville = strtr(mb_strtolower((string) $fiche['ville']), $accents);
+        $ville = preg_replace('/[^a-z0-9]+/', '-', $ville);
+        $ids[] = $fiche['date'] . '-' . $ville;
+    }
+    return $ids;
 }
 
 function erreur(string $message, int $statut = 400)
@@ -556,7 +578,7 @@ switch ($action) {
         $tables = [
             'favoris' => ['favoris', 'jour', preg_match('/^j(0[1-9]|[12][0-9]|30)$/', $valeur) === 1],
             'pays' => ['pays_favoris', 'pays', in_array($valeur, PAYS, true)],
-            'agenda' => ['agenda', 'manif', in_array($valeur, MANIFS, true)],
+            'agenda' => ['agenda', 'manif', in_array($valeur, manifsConnues(), true)],
         ];
         if (!isset($tables[$table]) || !$tables[$table][2]) {
             erreur('Valeur inconnue.');
