@@ -54,3 +54,20 @@ L'élément qui contient toutes les cartes, et l'`id` que vous lui donnez :
   </article>
 </li>
 ```
+
+---
+
+## Deuxième modèle : la carte de l'accueil (`index.html`, « Manifs à venir »)
+
+Même `data.json`, même `afficherLieux` : elle choisit ce modèle quand le conteneur a la classe `cartes-grille`.
+
+Carte entière : `article.carte`. Conteneur : `section.cartes-grille`, avec `id="liste-cartes"`, et juste au-dessus `<p id="etat" role="status"></p>`.
+
+| Texte écrit à la main | Étiquette de `data.json` qui le remplace | Élément et classe |
+| --- | --- | --- |
+| Sa 13 juin · 14h | `date` (jour de la semaine, jour, mois) + `heure` ("14:00" → 14h) | `p.date` |
+| Marche des fiertés | `titre` | `h3` |
+| Lausanne | `ville` | `p.commune` |
+| Départ place de la Riponne, parcours accessible PMR. | `lieu`, puis « · accès PMR » si `accesPmr` vaut `true` | `p.description` |
+| Marche | `type` (avec une majuscule) | `div.meta` > `span.badge` |
+| Voir le détail (lien `#`) | `date` + `ville` → `manifs.html#2026-06-13-lausanne` | `div.meta` > `a.lien-carte` |
