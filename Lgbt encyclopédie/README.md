@@ -19,6 +19,9 @@ Lgbt encyclopédie/
 ├── serveur/               Mise en place MySQL : GUIDE.md + schema.sql
 ├── design/
 │   ├── wireframes/        Wireframes (.dc.html + support.js, à garder ensemble)
+│   │                      + 01-accueil-mobile.png, 02-recherche-filtre.png,
+│   │                      03-detail-mobile.png (export e2-4, version grise)
+│   ├── tests-utilisateurs.md  Fiche du test utilisateur (e2-7), à remplir pendant le test
 │   ├── propositions/      Les 4 pistes graphiques (images + maquettes HTML)
 │   ├── critique.md        Critique des 4 pistes
 │   └── audits/            Daltonisme, eCH-0059, WCAG avancé
