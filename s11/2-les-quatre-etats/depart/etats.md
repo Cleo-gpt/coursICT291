@@ -5,7 +5,7 @@ Remplissez une ligne par test, avec ce que vous **voyez**, pas ce que vous atten
 | Test | Ce que montre la page | Ce que dit la console | Onglet Réseau : fichier et code |
 | --- | --- | --- | --- |
 | 1. `data.json`, réseau lent (3G) | | | |
-| 2. `data-absent.json`, sans `.catch` | | | |
+| 2. `data-absent.json`, sans `.catch` | | | | une erreur
 | 3. `data-absent.json`, avec `.catch` | | | |
 | 4. `data-absent.json`, avec le contrôle `reponse.ok` | | | |
 | 5. `casse.json` | | | |

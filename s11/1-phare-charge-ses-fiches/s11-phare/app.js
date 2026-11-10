@@ -41,11 +41,25 @@ function afficherLieux(liste) {
 }
 
 // ----- Votre code de la semaine 11 commence ici -----
-fetch("data.json")
+zoneEtat.textContent = "Chargement des lieux...";
+
+fetch("vide.json")
   .then(function (reponse) {
+    if (!reponse.ok) {
+      throw new Error("Fichier introuvable : code " + reponse.status);
+    }
     return reponse.json();
   })
   .then(function (donnees) {
+    zoneEtat.textContent = "";
     tousLesLieux = donnees;
+  if (tousLesLieux.length === 0) {
+      zoneEtat.textContent = "Aucun lieu pour le moment.";
+      return;
+    }
     afficherLieux(tousLesLieux);
+  })
+  .catch(function (erreur) {
+    console.error(erreur);
+    zoneEtat.textContent = "Impossible de charger les lieux. Rechargez la page dans un moment.";
   });
