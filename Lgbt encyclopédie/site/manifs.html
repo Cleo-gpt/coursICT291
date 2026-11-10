@@ -117,58 +117,16 @@
     </div>
 
     <div class="deux-colonnes">
-      <ul class="liste-manifs">
-      <li>
-        <article class="carte-bloc manif">
-          <p class="bloc-date"><strong>13</strong><span>juin</span></p>
-          <div class="manif-corps">
-            <h2>Marche des fiertés</h2>
-            <p class="petite-info">14h00 · Place de la Riponne, Lausanne</p>
-            <ul class="etiquettes"><li>marche</li><li>accès PMR</li></ul>
-          </div>
-          <button type="button" class="btn-secondaire btn-petit" data-agenda="2026-06-13-lausanne" aria-pressed="false" disabled>Ajouter à l'agenda</button>
-        </article>
-      </li>
-      <li>
-        <article class="carte-bloc manif">
-          <p class="bloc-date"><strong>17</strong><span>mai</span></p>
-          <div class="manif-corps">
-            <h2>Rassemblement contre l’homophobie et la transphobie</h2>
-            <p class="petite-info">18h00 · Genève</p>
-            <ul class="etiquettes"><li>rassemblement</li><li>accès PMR</li></ul>
-          </div>
-          <button type="button" class="btn-secondaire btn-petit" data-agenda="2026-05-17-geneve" aria-pressed="false" disabled>Ajouter à l'agenda</button>
-        </article>
-      </li>
-      <li>
-        <article class="carte-bloc manif">
-          <p class="bloc-date"><strong>20</strong><span>juin</span></p>
-          <div class="manif-corps">
-            <h2>Marche des fiertés</h2>
-            <p class="petite-info">13h00 · Genève</p>
-            <ul class="etiquettes"><li>marche</li><li>accès PMR</li></ul>
-          </div>
-          <button type="button" class="btn-secondaire btn-petit" data-agenda="2026-06-20-geneve" aria-pressed="false" disabled>Ajouter à l'agenda</button>
-        </article>
-      </li>
-      <li>
-        <article class="carte-bloc manif">
-          <p class="bloc-date"><strong>28</strong><span>juin</span></p>
-          <div class="manif-corps">
-            <h2>Rassemblement Stonewall</h2>
-            <p class="petite-info">17h00 · Fribourg</p>
-            <ul class="etiquettes"><li>rassemblement</li><li>accès PMR</li></ul>
-          </div>
-          <button type="button" class="btn-secondaire btn-petit" data-agenda="2026-06-28-fribourg" aria-pressed="false" disabled>Ajouter à l'agenda</button>
-        </article>
-      </li>
-      </ul>
+      <div>
+        <p id="etat" role="status"></p>
+        <ul class="liste-manifs" id="liste-cartes"></ul>
+      </div>
 
       <aside class="colonne-laterale">
         <p class="petite-info note-connexion">Connecte-toi pour ajouter des manifs à ton agenda et recevoir un rappel la veille.</p>
         <div class="carte-bloc bloc-carte-geo">
           <div class="image-attente carte-geo" role="img" aria-label="Carte des manifestations">carte des manifestations</div>
-          <p class="petite-info">4 manifestations affichées</p>
+          <p class="petite-info" id="nombre-manifs"></p>
         </div>
         <section class="bloc-doux" aria-labelledby="titre-securite">
           <h2 id="titre-securite" class="surtitre">Y aller en sécurité</h2>

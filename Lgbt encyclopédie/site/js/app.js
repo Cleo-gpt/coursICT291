@@ -720,6 +720,114 @@ if (casesChecklist.length > 0) {
   });
 }
 
+// ---------- s11 : les cartes des manifs viennent de data.json ----------
+// Seulement sur manifs.html : les autres pages n'ont pas de #liste-cartes.
+
+const conteneur = document.getElementById("liste-cartes");
+const zoneEtat = document.getElementById("etat");
+const zoneNombre = document.getElementById("nombre-manifs");
+
+// La pile de toutes les manifs. Elle est vide tant que data.json n'est pas arrivé.
+let tousLesLieux = [];
+
+const MOIS = ["janv.", "févr.", "mars", "avril", "mai", "juin",
+  "juil.", "août", "sept.", "oct.", "nov.", "déc."];
+
+// "Genève" → "geneve", pour l'identifiant d'agenda (ex. "2026-06-20-geneve")
+function versIdentifiant(texte) {
+  return texte.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]+/g, "-");
+}
+
+// Montre une carte par manif de la liste qu'on lui donne.
+// Elle efface d'abord les cartes déjà affichées.
+function afficherLieux(liste) {
+  conteneur.textContent = "";
+  const connecte = etat.session !== null && etat.profil !== null;
+
+  for (const manif of liste) {
+    const morceaux = manif.date.split("-"); // ["2026", "06", "13"]
+    const idAgenda = manif.date + "-" + versIdentifiant(manif.ville);
+
+    const element = document.createElement("li");
+    const carte = document.createElement("article");
+    carte.className = "carte-bloc manif";
+
+    // Bloc date : <p class="bloc-date"><strong>13</strong><span>juin</span></p>
+    const blocDate = document.createElement("p");
+    blocDate.className = "bloc-date";
+    const jour = document.createElement("strong");
+    jour.textContent = Number(morceaux[2]);
+    const mois = document.createElement("span");
+    mois.textContent = MOIS[Number(morceaux[1]) - 1];
+    blocDate.append(jour, mois);
+
+    const corps = document.createElement("div");
+    corps.className = "manif-corps";
+
+    const titre = document.createElement("h2");
+    titre.textContent = manif.titre;
+
+    const infos = document.createElement("p");
+    infos.className = "petite-info";
+    infos.textContent = manif.heure.replace(":", "h") + " · " + manif.lieu + ", " + manif.ville;
+
+    const etiquettes = document.createElement("ul");
+    etiquettes.className = "etiquettes";
+    const type = document.createElement("li");
+    type.textContent = manif.type;
+    etiquettes.append(type);
+    if (manif.accesPmr) {
+      const pmr = document.createElement("li");
+      pmr.textContent = "accès PMR";
+      etiquettes.append(pmr);
+    }
+
+    corps.append(titre, infos, etiquettes);
+
+    const bouton = document.createElement("button");
+    bouton.type = "button";
+    bouton.className = "btn-secondaire btn-petit";
+    bouton.dataset.agenda = idAgenda;
+    const dansAgenda = etat.agenda.has(idAgenda);
+    bouton.setAttribute("aria-pressed", dansAgenda ? "true" : "false");
+    bouton.textContent = dansAgenda ? "Dans mon agenda ✓" : "Ajouter à l'agenda";
+    bouton.disabled = !connecte;
+
+    carte.append(blocDate, corps, bouton);
+    element.append(carte);
+    conteneur.append(element);
+  }
+
+  if (zoneNombre) {
+    zoneNombre.textContent = liste.length + (liste.length > 1 ? " manifestations affichées" : " manifestation affichée");
+  }
+}
+
+if (conteneur && zoneEtat) {
+  zoneEtat.textContent = "Chargement des manifestations…";
+
+  fetch("data.json")
+    .then(function (reponse) {
+      if (!reponse.ok) {
+        throw new Error("Fichier introuvable : code " + reponse.status);
+      }
+      return reponse.json();
+    })
+    .then(function (donnees) {
+      zoneEtat.textContent = "";
+      tousLesLieux = donnees;
+      if (tousLesLieux.length === 0) {
+        zoneEtat.textContent = "Aucune manifestation annoncée pour le moment. Repasse bientôt !";
+        return;
+      }
+      afficherLieux(tousLesLieux);
+    })
+    .catch(function (erreur) {
+      console.error(erreur);
+      zoneEtat.textContent = "Impossible de charger les manifestations. Recharge la page dans un moment.";
+    });
+}
+
 // ---------- Démarrage ----------
 
 async function demarrer() {

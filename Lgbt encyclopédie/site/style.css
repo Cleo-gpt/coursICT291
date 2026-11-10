@@ -986,6 +986,10 @@ h3 { font-size: 1.1rem; line-height: 1.25; }
 
 /* ---------- Manifs ---------- */
 
+#etat:empty {
+  display: none;
+}
+
 .liste-manifs {
   list-style: none;
   display: flex;
