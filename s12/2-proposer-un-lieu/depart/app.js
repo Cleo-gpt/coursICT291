@@ -44,7 +44,33 @@ const formulaire = document.getElementById("proposer");
 formulaire.addEventListener("submit", function (event) {
   event.preventDefault();
   const donnees = new FormData(formulaire);
-const nom = donnees.get("nom").trim();
-const quartier = donnees.get("quartier").trim();
-console.log(nom, quartier);
+  const nom = donnees.get("nom").trim();
+  const quartier = donnees.get("quartier").trim();
+
+  const erreurs = [];
+  if (nom.length < 2) {
+    erreurs.push("Le nom doit avoir au moins 2 caractères.");
+  }
+  if (quartier === "") {
+    erreurs.push("Indiquez le quartier.");
+  }
+
+  const zoneErreurs = document.getElementById("erreurs");
+  if (erreurs.length > 0) {
+    zoneErreurs.textContent = "Erreur : " + erreurs.join(" ");
+    return;
+  }
+  zoneErreurs.textContent = "";
+
+  tousLesLieux.unshift({
+    id: tousLesLieux.length + 1,
+    nom: nom,
+    quartier: quartier,
+    ouvert: true,
+    bruit: 3,
+    resume: "Proposé par un visiteur, à vérifier.",
+    horaire: "À confirmer"
+  });
+  afficherLieux(tousLesLieux);
+  formulaire.reset();
 });
