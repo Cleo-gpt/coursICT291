@@ -39,6 +39,15 @@ function afficherLieux(liste) {
 afficherLieux(tousLesLieux);
 
 // ----- Votre code de la semaine 12 commence ici -----
+function appliquerFiltres() {
+  const texte = champRecherche.value.trim().toLowerCase();
+  const resultats = tousLesLieux.filter(function (lieu) {
+    return lieu.nom.toLowerCase().includes(texte)
+      || lieu.quartier.toLowerCase().includes(texte);
+  });
+  afficherLieux(resultats);
+}
+
 const champRecherche = document.getElementById("recherche");
 champRecherche.addEventListener("input", function () {
   console.log(champRecherche.value);
