@@ -1,8 +1,6 @@
-// s9 : laissez ce fichier presque vide.
-// s11 : vous collerez ici la recette fetch (e3-3).
-// Ne créez pas un deuxième fichier JS. Ne passez pas en type="module".
-//
-// function async + fetch : voir e3-3 / recettes.js
+// Prisme : le seul fichier JS du site (pas de type="module").
+// s11 : les cartes des manifs sont chargées par fetch depuis data.json
+// (voir « s11 : les cartes des manifs viennent de data.json », plus bas).
 
 // ---------- Adresses ----------
 // index.html est à la racine du site, les autres pages dans pages/.

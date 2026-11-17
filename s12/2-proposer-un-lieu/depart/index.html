@@ -22,7 +22,15 @@
   </header>
 
   <main>
-    <!-- Exercice 2 : le formulaire viendra ici -->
+    <form id="proposer">
+  <h2>Proposer un lieu</h2>
+  <label for="champ-nom">Nom du lieu</label>
+  <input type="text" id="champ-nom" name="nom">
+  <label for="champ-quartier">Quartier</label>
+  <input type="text" id="champ-quartier" name="quartier">
+  <p id="erreurs" aria-live="polite"></p>
+  <button type="submit">Proposer</button>
+    </form>
 
     <section id="liste-cartes" aria-label="Lieux"></section>
   </main>

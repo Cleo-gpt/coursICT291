@@ -39,3 +39,12 @@ function afficherLieux(liste) {
 afficherLieux(tousLesLieux);
 
 // ----- Votre code de la semaine 12 commence ici -----
+const formulaire = document.getElementById("proposer");
+
+formulaire.addEventListener("submit", function (event) {
+  event.preventDefault();
+  const donnees = new FormData(formulaire);
+const nom = donnees.get("nom").trim();
+const quartier = donnees.get("quartier").trim();
+console.log(nom, quartier);
+});
