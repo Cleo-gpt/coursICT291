@@ -48,7 +48,9 @@ function appliquerFiltres() {
   afficherLieux(resultats);
 }
 
+document.getElementById("aucun-resultat").hidden = resultats.length > 0;
+
 const champRecherche = document.getElementById("recherche");
 champRecherche.addEventListener("input", function () {
-  console.log(champRecherche.value);
+  appliquerFiltres();
 });
