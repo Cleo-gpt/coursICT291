@@ -698,6 +698,25 @@ h3 { font-size: 1.1rem; line-height: 1.25; }
   flex: 1 1 100%;
 }
 
+/* Dico : le champ et son bouton « Rechercher » sur une ligne */
+.champ-et-bouton {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.champ-et-bouton .champ-recherche {
+  flex: 1;
+  min-width: 0;
+}
+
+#dico-aucun:empty {
+  display: none;
+}
+
+#dico-aucun {
+  margin: var(--space-1) 0 0;
+}
+
 /* Filtres (boutons « pilule ») */
 .filtres {
   list-style: none;
@@ -1829,6 +1848,10 @@ select.champ {
 
   .recherche-entete {
     flex: 0 1 320px;
+  }
+
+  #recherche-dico {
+    flex-basis: 440px;
   }
 
   .fiche-print {

@@ -753,6 +753,42 @@ if (casesChecklist.length > 0) {
   });
 }
 
+// ---------- Dico : recherche d'un terme ----------
+// Le bouton « Rechercher » ouvre la fiche du terme tapé (dico.html#ancre).
+// Vu dans : s12/2-proposer-un-lieu (submit + preventDefault) et s12/1-la-recherche-de-phare (simplifier)
+
+const formulaireDico = document.getElementById("recherche-dico");
+
+if (formulaireDico) {
+  formulaireDico.addEventListener("submit", function (event) {
+    event.preventDefault();
+    const texte = simplifier(formulaireDico.querySelector("#terme").value.trim().replace(/·/g, ""));
+    const zoneMessage = document.getElementById("dico-aucun");
+    if (texte === "") {
+      zoneMessage.textContent = "Tape un terme, par exemple « agenre ».";
+      return;
+    }
+
+    // Les termes de la liste : « Asexuel·le » est comparé comme « asexuelle »
+    const liens = Array.from(document.querySelectorAll(".liste-termes a"));
+    const nom = function (lien) { return simplifier(lien.textContent.trim().replace(/·/g, "")); };
+    const trouve = liens.find(function (lien) { return nom(lien) === texte; })
+      || liens.find(function (lien) { return nom(lien).startsWith(texte); })
+      || liens.find(function (lien) { return nom(lien).includes(texte); });
+
+    if (!trouve) {
+      zoneMessage.textContent = "Aucun terme ne correspond à « " + formulaireDico.querySelector("#terme").value.trim() + " ».";
+      return;
+    }
+    zoneMessage.textContent = "";
+    location.hash = trouve.hash; // affiche la fiche (:target) et la fait défiler
+    // Le focus va sur la fiche : un lecteur d'écran lit la définition trouvée
+    const fiche = document.querySelector(trouve.hash);
+    fiche.setAttribute("tabindex", "-1");
+    fiche.focus({ preventScroll: true });
+  });
+}
+
 // ---------- Accueil : print du jour ----------
 // Le jour du mois donne le print : le 5 → j05 (Pansexuel·le), quel que soit le mois.
 // Si ce print n'est pas encore publié (ou le 31), on prend à tour de rôle

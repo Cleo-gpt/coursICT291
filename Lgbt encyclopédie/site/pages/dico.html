@@ -111,10 +111,14 @@
         <p class="chapeau">Les 30 mots du mois des fiertés, un par jour du calendrier. Choisis un terme pour lire sa définition.</p>
       </div>
     <!-- Champ de recherche : même balisage que s12/1-la-recherche-de-phare (label + input type="search").
-         Pas encore branché dans app.js. -->
-    <form class="recherche-entete" role="search">
+         Le bouton ouvre la fiche du terme (app.js, « Dico : recherche »), comme le submit de s12/2-proposer-un-lieu. -->
+    <form class="recherche-entete" role="search" id="recherche-dico">
       <label class="visuellement-cache" for="terme">Chercher un terme</label>
-      <input type="search" id="terme" class="champ-recherche" placeholder="Chercher un terme…">
+      <div class="champ-et-bouton">
+        <input type="search" id="terme" name="terme" class="champ-recherche" placeholder="Chercher un terme…" autocomplete="off">
+        <button type="submit" class="btn-primaire">Rechercher</button>
+      </div>
+      <p id="dico-aucun" class="message-vide" role="status"></p>
     </form>
     </div>
 
