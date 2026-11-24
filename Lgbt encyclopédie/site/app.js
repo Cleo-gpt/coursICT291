@@ -886,6 +886,120 @@ brancherRecherche("recherche-prints", ".grille-prints > li", "Aucun print", {
   }
 });
 
+// ---------- Voyager : carte du monde ----------
+// images/carte-monde.svg contient un <path id="pays-CA" data-nom="Canada"> par pays.
+// La couleur de chaque pays vient de la liste de voyager.html (<li data-code="CA">, barre niveau-1) :
+// pour ajouter un pays, il suffit d'ajouter une ligne à la liste.
+// Vu dans : s11/1-phare-charge-ses-fiches (fetch, .then, .catch) et s11/2-les-quatre-etats (chargement, erreur)
+
+const zoneCarteMonde = document.getElementById("carte-monde");
+const NIVEAUX = { 1: "Accueil favorable", 2: "Vigilance normale", 3: "Vigilance renforcée", 4: "Zone à risque" };
+
+// Niveau (1 à 4) d'une ligne de la liste, lu dans la classe de sa barre de couleur
+function niveauDeLigne(ligne) {
+  const barre = ligne.querySelector(".barre");
+  const trouve = barre ? barre.className.match(/niveau-(\d)/) : null;
+  return trouve ? Number(trouve[1]) : 0;
+}
+
+// Remplit la fiche de droite et marque le pays choisi sur la carte et dans la liste
+function afficherFichePays(nom, niveau, code) {
+  document.getElementById("fiche-pays-nom").textContent = nom;
+  document.getElementById("fiche-pays-niveau").textContent = niveau
+    ? NIVEAUX[niveau]
+    : "Pas encore renseigné : la fiche de ce pays reste à écrire.";
+
+  document.querySelectorAll(".carte-monde .choisi").forEach(function (pays) { pays.classList.remove("choisi"); });
+  if (code) {
+    const pays = document.getElementById("pays-" + code);
+    if (pays) {
+      pays.classList.add("choisi");
+      pays.parentNode.append(pays); // passe devant ses voisins : son contour se voit en entier
+    }
+  }
+  document.querySelectorAll(".liste-pays li").forEach(function (ligne) {
+    const lien = ligne.querySelector("a");
+    if (code && ligne.dataset.code === code) {
+      lien.setAttribute("aria-current", "true");
+    } else {
+      lien.removeAttribute("aria-current");
+    }
+  });
+}
+
+if (zoneCarteMonde) {
+  // Les pays connus : code → { nom, niveau }
+  const paysConnus = new Map();
+  document.querySelectorAll(".liste-pays li[data-code]").forEach(function (ligne) {
+    const nom = ligne.querySelector("a").firstChild.nextSibling.textContent.trim();
+    paysConnus.set(ligne.dataset.code, { nom: nom, niveau: niveauDeLigne(ligne) });
+  });
+
+  fetch(adresse("images/carte-monde.svg"))
+    .then(function (reponse) {
+      if (!reponse.ok) {
+        throw new Error("Carte introuvable : code " + reponse.status);
+      }
+      return reponse.text();
+    })
+    .then(function (texte) {
+      // Le fichier SVG est lu comme un document, puis ajouté à la page (sans innerHTML)
+      const document_svg = new DOMParser().parseFromString(texte, "image/svg+xml");
+      const carte = document.importNode(document_svg.documentElement, true);
+      carte.setAttribute("role", "group");
+      carte.setAttribute("aria-label", "Carte du monde par niveau de vigilance. Les pays coloriés se choisissent avec Tab puis Entrée.");
+
+      carte.querySelectorAll("path[data-nom]").forEach(function (pays) {
+        const connu = paysConnus.get(pays.dataset.code);
+        const titre = document.createElementNS("http://www.w3.org/2000/svg", "title");
+        titre.textContent = pays.dataset.nom + (connu ? " · " + NIVEAUX[connu.niveau].toLowerCase() : "");
+        pays.append(titre);
+        if (connu) {
+          pays.classList.add("niveau-" + connu.niveau);
+          pays.setAttribute("tabindex", "0");
+          pays.setAttribute("role", "button");
+          pays.setAttribute("aria-label", connu.nom + ", " + NIVEAUX[connu.niveau].toLowerCase());
+        }
+      });
+
+      function choisir(pays) {
+        const connu = paysConnus.get(pays.dataset.code);
+        afficherFichePays(connu ? connu.nom : pays.dataset.nom, connu ? connu.niveau : 0, pays.dataset.code);
+      }
+
+      carte.addEventListener("click", function (event) {
+        const pays = event.target.closest("path[data-nom]");
+        if (pays) {
+          choisir(pays);
+        }
+      });
+      carte.addEventListener("keydown", function (event) {
+        const pays = event.target.closest("path[data-nom]");
+        if (pays && (event.key === "Enter" || event.key === " ")) {
+          event.preventDefault();
+          choisir(pays);
+        }
+      });
+
+      zoneCarteMonde.replaceWith(carte);
+    })
+    .catch(function (erreur) {
+      console.error(erreur);
+      zoneCarteMonde.textContent = "Impossible de charger la carte. La liste des pays reste disponible.";
+    });
+
+  // Un clic dans la liste ouvre aussi la fiche du pays
+  document.querySelectorAll(".liste-pays li").forEach(function (ligne) {
+    const lien = ligne.querySelector("a");
+    lien.addEventListener("click", function (event) {
+      event.preventDefault();
+      const nom = lien.firstChild.nextSibling.textContent.trim();
+      afficherFichePays(nom, niveauDeLigne(ligne), ligne.dataset.code);
+      document.getElementById("fiche-pays").scrollIntoView({ block: "nearest" });
+    });
+  });
+}
+
 // ---------- Accueil : print du jour ----------
 // Le jour du mois donne le print : le 5 → j05 (Pansexuel·le), quel que soit le mois.
 // Si ce print n'est pas encore publié (ou le 31), on prend à tour de rôle

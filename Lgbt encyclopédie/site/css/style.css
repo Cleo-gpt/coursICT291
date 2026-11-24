@@ -1184,6 +1184,48 @@ h3 { font-size: 1.1rem; line-height: 1.25; }
 .niveau-2 { background: var(--jaune); }
 .niveau-3 { background: var(--orange); }
 .niveau-4 { background: var(--rouge); }
+.niveau-vide { background: #d6d0e0; }
+
+/* Carte du monde (images/carte-monde.svg, chargée par app.js) */
+.carte-monde {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-card);
+  background: #e6eef8;              /* océan */
+}
+
+.carte-monde path {
+  fill: #d6d0e0;                    /* pas encore renseigné */
+  stroke: #ffffff;
+  stroke-width: 0.5;
+  stroke-linejoin: round;
+  transition: fill 0.2s ease;
+}
+
+.carte-monde path.niveau-1 { fill: var(--vert); }
+.carte-monde path.niveau-2 { fill: var(--jaune); }
+.carte-monde path.niveau-3 { fill: var(--orange); }
+.carte-monde path.niveau-4 { fill: var(--rouge); }
+
+.carte-monde path:hover {
+  cursor: pointer;
+  stroke: var(--color-text);
+  stroke-width: 1;
+}
+
+/* Pays choisi, ou atteint au clavier */
+.carte-monde path.choisi,
+.carte-monde path:focus-visible {
+  outline: none;
+  stroke: var(--color-text);
+  stroke-width: 2;
+}
+
+.liste-pays a[aria-current="true"] {
+  background: var(--color-soft);
+  font-weight: 700;
+}
 
 .liste-pays {
   list-style: none;

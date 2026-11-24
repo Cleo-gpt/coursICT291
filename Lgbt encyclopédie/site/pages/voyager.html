@@ -125,27 +125,30 @@
     <div class="deux-colonnes colonne-large">
       <div class="pile">
         <section class="carte-bloc">
-          <div class="image-attente carte-geo" role="img" aria-label="Carte du monde par niveau de vigilance">carte du monde cliquable</div>
-          <ul class="legende"><li><span class="echantillon niveau-1"></span>accueil favorable</li><li><span class="echantillon niveau-2"></span>vigilance normale</li><li><span class="echantillon niveau-3"></span>vigilance renforcée</li><li><span class="echantillon niveau-4"></span>zone à risque</li></ul>
+          <!-- Remplacée par app.js (« Voyager : carte du monde ») : images/carte-monde.svg chargée avec fetch,
+               comme data.json en s11/1-phare-charge-ses-fiches. Les couleurs viennent de la liste des pays ci-dessous. -->
+          <div class="image-attente carte-geo" id="carte-monde" role="img" aria-label="Carte du monde par niveau de vigilance">Chargement de la carte…</div>
+          <ul class="legende"><li><span class="echantillon niveau-1"></span>accueil favorable</li><li><span class="echantillon niveau-2"></span>vigilance normale</li><li><span class="echantillon niveau-3"></span>vigilance renforcée</li><li><span class="echantillon niveau-4"></span>zone à risque</li><li><span class="echantillon niveau-vide"></span>pas encore renseigné</li></ul>
         </section>
         <section class="carte-bloc" aria-label="Liste des pays">
-          <!-- Étoiles « pays favori » avec aria-pressed (app.js, afficherCompte) : vu dans s12/1-la-recherche-de-phare -->
+          <!-- data-code : code ISO du pays, le même que dans images/carte-monde.svg (id="pays-CA")
+          Étoiles « pays favori » avec aria-pressed (app.js, afficherCompte) : vu dans s12/1-la-recherche-de-phare -->
           <ul class="liste-pays">
-          <li><a href="#"><span class="barre niveau-1"></span>Canada<small>accueil favorable</small></a><button type="button" class="btn-etoile" data-pays="Canada" aria-pressed="false" aria-label="Ajouter Canada à mes pays favoris" disabled>☆</button></li>
-          <li><a href="#"><span class="barre niveau-1"></span>Portugal<small>accueil favorable</small></a><button type="button" class="btn-etoile" data-pays="Portugal" aria-pressed="false" aria-label="Ajouter Portugal à mes pays favoris" disabled>☆</button></li>
-          <li><a href="#"><span class="barre niveau-2"></span>Italie<small>vigilance normale</small></a><button type="button" class="btn-etoile" data-pays="Italie" aria-pressed="false" aria-label="Ajouter Italie à mes pays favoris" disabled>☆</button></li>
-          <li><a href="#"><span class="barre niveau-3"></span>Turquie<small>vigilance renforcée</small></a><button type="button" class="btn-etoile" data-pays="Turquie" aria-pressed="false" aria-label="Ajouter Turquie à mes pays favoris" disabled>☆</button></li>
+          <li data-code="CA"><a href="#"><span class="barre niveau-1"></span>Canada<small>accueil favorable</small></a><button type="button" class="btn-etoile" data-pays="Canada" aria-pressed="false" aria-label="Ajouter Canada à mes pays favoris" disabled>☆</button></li>
+          <li data-code="PT"><a href="#"><span class="barre niveau-1"></span>Portugal<small>accueil favorable</small></a><button type="button" class="btn-etoile" data-pays="Portugal" aria-pressed="false" aria-label="Ajouter Portugal à mes pays favoris" disabled>☆</button></li>
+          <li data-code="IT"><a href="#"><span class="barre niveau-2"></span>Italie<small>vigilance normale</small></a><button type="button" class="btn-etoile" data-pays="Italie" aria-pressed="false" aria-label="Ajouter Italie à mes pays favoris" disabled>☆</button></li>
+          <li data-code="TR"><a href="#"><span class="barre niveau-3"></span>Turquie<small>vigilance renforcée</small></a><button type="button" class="btn-etoile" data-pays="Turquie" aria-pressed="false" aria-label="Ajouter Turquie à mes pays favoris" disabled>☆</button></li>
           <li><a href="#"><span class="barre niveau-4"></span>Pays — législation hostile<small>zone à risque</small></a><button type="button" class="btn-etoile" data-pays="Pays — législation hostile" aria-pressed="false" aria-label="Ajouter Pays — législation hostile à mes pays favoris" disabled>☆</button></li>
           </ul>
           <p class="petite-info note-connexion">Connecte-toi pour mettre des pays dans tes favoris (☆).</p>
         </section>
       </div>
 
-      <article class="carte-bloc fiche-pays">
-        <h2>Nom du pays</h2>
+      <article class="carte-bloc fiche-pays" id="fiche-pays" aria-live="polite">
+        <h2 id="fiche-pays-nom">Choisis un pays</h2>
         <div class="vigilance">
           <p class="petite-info">Niveau de vigilance</p>
-          <p>Vigilance renforcée</p>
+          <p id="fiche-pays-niveau">Sur la carte ou dans la liste</p>
         </div>
         <section><h3>Cadre légal</h3><p class="texte-discret">Lois en vigueur, reconnaissance des couples, identité de genre.</p></section>
         <section><h3>Attitudes et société</h3><p class="texte-discret">Perception générale, différences entre villes et campagnes.</p></section>
