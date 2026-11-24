@@ -181,11 +181,14 @@
       </aside>
     </div>
 
-    <!-- Zone de recherche (rendue dynamique en semaine 12) -->
+    <!-- s12 : recherche sur titre et ville (app.js, appliquerFiltres)
+         s13 : suggestions au clavier (flèches, Entrée, Échap) -->
     <div class="barre-recherche">
-      <label for="recherche" class="label-recherche">Rechercher une manif :</label>
-      <input type="search" id="recherche" placeholder="Ex : Lausanne, Genève, marche…" class="champ-recherche">
-      <p id="recherche-vide" class="message-vide" hidden>Aucune manif ne correspond à ta recherche.</p>
+      <label for="recherche" class="label-recherche">Chercher une manif ou une ville</label>
+      <input type="search" id="recherche" placeholder="Ex : Lausanne, Genève, marche…" class="champ-recherche"
+        role="combobox" aria-expanded="false" aria-controls="suggestions" aria-autocomplete="list" autocomplete="off">
+      <ul id="suggestions" role="listbox" aria-label="Suggestions" hidden></ul>
+      <p id="aucun-resultat" class="message-vide" hidden>Aucune manif ne correspond à ta recherche.</p>
     </div>
 
     <h2 class="titre-section">Manifs à venir</h2>

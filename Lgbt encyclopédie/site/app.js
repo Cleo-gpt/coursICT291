@@ -899,13 +899,17 @@ function afficherLieux(liste) {
 
   // Arrivée depuis « Voir le détail » (manifs.html#2026-06-13-lausanne) :
   // la carte n'existait pas encore quand le navigateur a lu l'adresse.
-  if (location.hash) {
+  // Une seule fois : sinon chaque filtre ferait sauter la page.
+  if (location.hash && !dejaDefile) {
+    dejaDefile = true;
     const cible = document.getElementById(decodeURIComponent(location.hash.slice(1)));
     if (cible) {
       cible.scrollIntoView();
     }
   }
 }
+
+let dejaDefile = false;
 
 if (conteneur && zoneEtat) {
   zoneEtat.textContent = "Chargement des manifestations…";
@@ -951,6 +955,162 @@ if (conteneur && zoneEtat) {
     .catch(function (erreur) {
       console.error(erreur);
     });
+}
+
+// ---------- s12 : recherche (accueil) et filtre par région (manifs) ----------
+// Une seule fonction pour les deux pages : chaque page n'a que ses propres champs.
+
+const champRecherche = document.getElementById("recherche");
+const boutonsRegion = document.querySelectorAll("[data-region]");
+const zoneAucunResultat = document.getElementById("aucun-resultat");
+let regionActive = ""; // "" = toutes les régions
+
+// "Genève" → "geneve" : la recherche marche avec ou sans accents
+function simplifier(texte) {
+  return texte.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
+}
+
+function appliquerFiltres() {
+  const texte = champRecherche ? simplifier(champRecherche.value.trim()) : "";
+
+  const resultats = tousLesLieux.filter(function (manif) {
+    const texteOk = simplifier(manif.titre).includes(texte)
+      || simplifier(manif.ville).includes(texte);
+    const regionOk = regionActive === "" || manif.region === regionActive;
+    return texteOk && regionOk;
+  });
+
+  afficherLieux(resultats);
+  if (zoneAucunResultat) {
+    zoneAucunResultat.hidden = resultats.length > 0;
+  }
+}
+
+boutonsRegion.forEach(function (bouton) {
+  bouton.addEventListener("click", function () {
+    regionActive = bouton.dataset.region;
+    boutonsRegion.forEach(function (autre) {
+      autre.setAttribute("aria-pressed", autre === bouton ? "true" : "false");
+    });
+    appliquerFiltres();
+  });
+});
+
+// ---------- s13 : suggestions au clavier sous la recherche ----------
+// ↓ ↑ pour parcourir, Entrée pour choisir, Échap pour fermer.
+
+const listeSuggestions = document.getElementById("suggestions");
+let indexActif = -1;
+let minuteur;
+
+if (champRecherche && listeSuggestions) {
+  // On attend 200 ms après la dernière lettre avant de filtrer
+  champRecherche.addEventListener("input", function () {
+    clearTimeout(minuteur);
+    minuteur = setTimeout(function () {
+      appliquerFiltres();
+      afficherSuggestions();
+    }, 200);
+  });
+
+  champRecherche.addEventListener("keydown", function (event) {
+    if (listeSuggestions.hidden) {
+      return;
+    }
+    const nombre = listeSuggestions.children.length;
+
+    if (event.key === "Enter" && indexActif >= 0) {
+      event.preventDefault();
+      choisir(listeSuggestions.children[indexActif].textContent);
+    }
+    if (event.key === "Escape") {
+      event.preventDefault();
+      fermerSuggestions();
+    }
+    if (event.key === "ArrowDown") {
+      event.preventDefault();
+      indexActif = Math.min(indexActif + 1, nombre - 1);
+      marquerActive();
+    }
+    if (event.key === "ArrowUp") {
+      event.preventDefault();
+      indexActif = Math.max(indexActif - 1, 0);
+      marquerActive();
+    }
+  });
+
+  // Clic ou toucher sur une suggestion
+  listeSuggestions.addEventListener("click", function (event) {
+    const option = event.target.closest("li");
+    if (option) {
+      choisir(option.textContent);
+    }
+  });
+
+  // On referme la liste quand le focus quitte la recherche
+  champRecherche.addEventListener("blur", function () {
+    setTimeout(fermerSuggestions, 150); // laisse le temps au clic sur une suggestion
+  });
+}
+
+// Jusqu'à 5 titres ou villes, sans doublon ("Marche des fiertés" revient souvent)
+function afficherSuggestions() {
+  const texte = simplifier(champRecherche.value.trim());
+  listeSuggestions.textContent = "";
+  indexActif = -1;
+  champRecherche.removeAttribute("aria-activedescendant");
+
+  if (texte === "") {
+    fermerSuggestions();
+    return;
+  }
+
+  const trouves = [];
+  for (const manif of tousLesLieux) {
+    for (const valeur of [manif.ville, manif.titre]) {
+      if (simplifier(valeur).includes(texte) && !trouves.includes(valeur)) {
+        trouves.push(valeur);
+      }
+    }
+  }
+
+  trouves.slice(0, 5).forEach(function (valeur, numero) {
+    const option = document.createElement("li");
+    option.id = "suggestion-" + numero;
+    option.setAttribute("role", "option");
+    option.setAttribute("aria-selected", "false");
+    option.textContent = valeur;
+    listeSuggestions.append(option);
+  });
+
+  const ouverte = trouves.length > 0;
+  listeSuggestions.hidden = !ouverte;
+  champRecherche.setAttribute("aria-expanded", ouverte ? "true" : "false");
+}
+
+function fermerSuggestions() {
+  listeSuggestions.hidden = true;
+  champRecherche.setAttribute("aria-expanded", "false");
+  champRecherche.removeAttribute("aria-activedescendant");
+  indexActif = -1;
+}
+
+function marquerActive() {
+  const options = listeSuggestions.querySelectorAll("li");
+  for (const option of options) {
+    option.setAttribute("aria-selected", "false");
+  }
+  const active = options[indexActif];
+  active.setAttribute("aria-selected", "true");
+  active.scrollIntoView({ block: "nearest" });
+  champRecherche.setAttribute("aria-activedescendant", active.id);
+}
+
+function choisir(valeur) {
+  champRecherche.value = valeur;
+  clearTimeout(minuteur);
+  appliquerFiltres();
+  fermerSuggestions();
 }
 
 // ---------- Démarrage ----------

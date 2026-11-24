@@ -1831,3 +1831,45 @@ select.champ {
     transform: none;
   }
 }
+
+/* ---------- s12 : recherche, filtre et formulaire ---------- */
+
+/* Message « aucun résultat » de la recherche et du filtre par région */
+.message-vide {
+  margin-bottom: var(--space-3);
+  color: var(--color-text-muted);
+  font-weight: 600;
+}
+
+/* ---------- s13 : suggestions au clavier sous la recherche ---------- */
+
+#suggestions {
+  list-style: none;
+  max-width: 480px;
+  margin: var(--space-1) 0 0;
+  padding: 4px;
+  border: 2px solid var(--color-text-muted);
+  border-radius: var(--radius-card);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-hover);
+}
+
+#suggestions li {
+  display: flex;
+  align-items: center;
+  min-height: 44px;                 /* cible tactile WCAG 2.5.5 */
+  padding: 8px var(--space-3);
+  border-radius: var(--radius-petit);
+  cursor: pointer;
+}
+
+#suggestions li:hover {
+  background: var(--color-soft);
+}
+
+/* L'option choisie au clavier : texte blanc sur violet, 6.4:1 */
+#suggestions li[aria-selected="true"] {
+  background: var(--color-primary);
+  color: #ffffff;
+}
+

@@ -109,16 +109,19 @@
         <h1>Manifestations</h1>
         <p class="chapeau">Marches et rassemblements. Filtre par région, puis ajoute à ton agenda.</p>
       </div>
+    <!-- s12 : filtre sur l'étiquette region (app.js, appliquerFiltres) -->
     <ul class="filtres" aria-label="Filtrer par région">
-      <li><button type="button" class="filtre" aria-pressed="true">Suisse romande</button></li>
-      <li><button type="button" class="filtre" aria-pressed="false">Suisse alémanique</button></li>
-      <li><button type="button" class="filtre" aria-pressed="false">Tessin</button></li>
+      <li><button type="button" class="filtre" data-region="" aria-pressed="true">Toutes</button></li>
+      <li><button type="button" class="filtre" data-region="Suisse romande" aria-pressed="false">Suisse romande</button></li>
+      <li><button type="button" class="filtre" data-region="Suisse alémanique" aria-pressed="false">Suisse alémanique</button></li>
+      <li><button type="button" class="filtre" data-region="Tessin" aria-pressed="false">Tessin</button></li>
     </ul>
     </div>
 
     <div class="deux-colonnes">
       <div>
         <p id="etat" role="status"></p>
+        <p id="aucun-resultat" class="message-vide" hidden>Aucune manif dans cette région pour le moment.</p>
         <ul class="liste-manifs" id="liste-cartes"></ul>
       </div>
 

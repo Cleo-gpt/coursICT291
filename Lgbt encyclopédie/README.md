@@ -34,3 +34,13 @@ Lgbt encyclopédie/
 
 Dans `app.js`, les chemins passent par `adresse("…")`, qui part de la racine du site :
 le même code marche depuis `index.html` et depuis `pages/`.
+
+## Recherche et filtre (s12)
+
+- **Accueil** : la recherche porte sur les étiquettes `titre` et `ville`, avec ou sans accents. Un mot absent affiche un message.
+- **Manifs** : les boutons de région filtrent sur l'étiquette `region` (« Toutes » par défaut).
+
+## Suggestions au clavier (s13)
+
+Sous la recherche de l'accueil, jusqu'à 5 titres ou villes sont proposés. ↓ et ↑ pour les parcourir, Entrée pour choisir, Échap pour fermer. La recherche attend 200 ms après la dernière lettre.
+
