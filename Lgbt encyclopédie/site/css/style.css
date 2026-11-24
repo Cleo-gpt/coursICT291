@@ -275,6 +275,25 @@ h3 { font-size: 1.1rem; line-height: 1.25; }
   border-radius: var(--radius-card) var(--radius-card) 0 0;
 }
 
+/* Le print du jour (accueil), au même format que la zone d'attente */
+.print-du-jour .lien-print-jour {
+  display: block;
+  overflow: hidden;
+  border-radius: var(--radius-card) var(--radius-card) 0 0;
+}
+
+.print-du-jour .lien-print-jour img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 5 / 4;
+  object-fit: cover;
+}
+
+.print-du-jour .titre-print-jour {
+  color: var(--color-text);
+  font-size: 0.85rem;
+}
+
 .print-du-jour figcaption {
   padding: 10px 12px;
   background: var(--color-soft);

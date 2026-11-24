@@ -111,11 +111,12 @@
         <h1 id="titre-jour">Une illustration par jour, tout le mois des fiertés.</h1>
         <p class="hero-intro">Chaque date du calendrier ouvre le print correspondant, avec son titre, son contexte et le crédit de l'artiste.</p>
         <div class="rangee-boutons">
-          <a href="pages/print.html#j16" class="btn-primaire">Ouvrir le print</a>
+          <a href="pages/print.html#j16" class="btn-primaire" id="lien-print-jour">Ouvrir le print</a>
           <a href="pages/prints.html" class="btn-secondaire">Voir la collection</a>
         </div>
       </div>
-      <figure class="print-du-jour">
+      <!-- Rempli par app.js (afficherPrintDuJour) : un print par jour, quel que soit le mois -->
+      <figure class="print-du-jour" id="print-du-jour">
         <div class="image-attente" role="img" aria-label="Print du jour">print du jour</div>
         <figcaption>Illustration · <a href="https://www.instagram.com/la_lanterne_de_yuna/">La lanterne de Yuna</a> (@la_lanterne_de_yuna)</figcaption>
       </figure>

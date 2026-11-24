@@ -753,6 +753,47 @@ if (casesChecklist.length > 0) {
   });
 }
 
+// ---------- Accueil : print du jour ----------
+// Le jour du mois donne le print : le 5 → j05 (Pansexuel·le), quel que soit le mois.
+// Si ce print n'est pas encore publié (ou le 31), on prend à tour de rôle
+// un des prints publiés : il y a toujours une illustration, et elle change chaque jour.
+
+function choisirPrintDuJour(date) {
+  const jour = date.getDate(); // 1 à 31
+  const cle = "j" + String(jour).padStart(2, "0");
+  if (IMAGES[cle]) {
+    return cle;
+  }
+  const publies = Object.keys(IMAGES);
+  return publies[(jour - 1) % publies.length];
+}
+
+function afficherPrintDuJour() {
+  const figure = document.getElementById("print-du-jour");
+  if (!figure) {
+    return;
+  }
+  const cle = choisirPrintDuJour(new Date());
+  const titre = PRINTS[cle] + " · " + Number(cle.slice(1)) + " juin";
+
+  const lien = creerElement("a", "lien-print-jour");
+  lien.href = adresse("pages/print.html#" + cle);
+  const image = creerImagePrint(cle);
+  image.alt = "Print du jour : " + titre;
+  lien.append(image);
+  figure.querySelector(".image-attente").replaceWith(lien);
+
+  const legende = figure.querySelector("figcaption");
+  legende.prepend(creerElement("strong", "titre-print-jour", titre), document.createElement("br"));
+
+  const bouton = document.getElementById("lien-print-jour");
+  if (bouton) {
+    bouton.href = lien.href;
+  }
+}
+
+afficherPrintDuJour();
+
 // ---------- s11 : les cartes des manifs viennent de data.json ----------
 // Vu dans : s11/1-phare-charge-ses-fiches (fetch, .then, .catch, tousLesLieux, afficherLieux)
 //           s11/2-les-quatre-etats (chargement, erreur, liste vide dans #etat)
