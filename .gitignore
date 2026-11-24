@@ -1,0 +1,3 @@
+# Fichiers sources Procreate : trop lourds pour GitHub (jusqu’à 50 Mo chacun)
+# et ce sont des fichiers de travail, pas des images du site.
+*.procreate
