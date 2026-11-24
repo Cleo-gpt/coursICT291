@@ -1,5 +1,7 @@
 # Mes étiquettes
 
+> Vu dans : `s10/4-ma-base-json` (modèle `depart/etiquettes.md`)
+
 Projet : Prisme — les manifestations (écran Manifs, `manifs.html`)
 
 Une ligne par étiquette. Chaque étiquette, sauf `id`, doit servir à afficher, filtrer ou trier sur au moins un écran de votre brief (méthode en 6 questions, exercice 3).

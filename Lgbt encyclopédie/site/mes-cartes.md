@@ -1,5 +1,7 @@
 # Mes cartes
 
+> Vu dans : `s11/3-dans-votre-projet` (modèle `depart/mes-cartes.md`)
+
 Une ligne par texte écrit à la main dans **une** carte de votre `index.html` (semaine 9). Prenez les étiquettes dans `etiquettes.md` (semaine 10).
 
 Page de Prisme qui montre les cartes : `manifs.html` (écran Manifs).

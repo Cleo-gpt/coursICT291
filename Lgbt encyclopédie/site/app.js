@@ -322,6 +322,8 @@ async function deconnecter() {
 }
 
 // Un seul écouteur pour tous les boutons de la page
+// Vu dans : e1-7-l-ia-a-tort (compteur.html) et e1-8-la-caisse-du-kiosque (caisse.html) :
+//           addEventListener("click", function () { … }) et textContent
 document.addEventListener("click", async function (evenement) {
   const cible = evenement.target.closest("button");
   if (!cible) {
@@ -735,6 +737,9 @@ if (casesChecklist.length > 0) {
 }
 
 // ---------- s11 : les cartes des manifs viennent de data.json ----------
+// Vu dans : s11/1-phare-charge-ses-fiches (fetch, .then, .catch, tousLesLieux, afficherLieux)
+//           s11/2-les-quatre-etats (chargement, erreur, liste vide dans #etat)
+//           s11/3-dans-votre-projet (cartes refaites avec createElement et textContent, mes-cartes.md)
 // index.html (accueil) et manifs.html ont chacune un #liste-cartes et un #etat,
 // mais pas le même modèle de carte (voir mes-cartes.md).
 // mon-espace.html lit aussi data.json, pour retrouver les manifs de l'agenda.
@@ -894,6 +899,7 @@ function creerCarteAccueil(manif) {
   return carte;
 }
 
+// Vu dans : s11/1-phare-charge-ses-fiches (même fonction, adaptée aux cartes de Prisme)
 // Montre une carte par manif de la liste qu'on lui donne.
 // Elle efface d'abord les cartes déjà affichées.
 function afficherLieux(liste) {
@@ -923,6 +929,7 @@ function afficherLieux(liste) {
 
 let dejaDefile = false;
 
+// Vu dans : s11/2-les-quatre-etats : chargement → erreur (.catch) → liste vide → cartes
 if (conteneur && zoneEtat) {
   zoneEtat.textContent = "Chargement des manifestations…";
 
@@ -971,6 +978,7 @@ if (conteneur && zoneEtat) {
 
 // ---------- s12 : recherche (accueil) et filtre par région (manifs) ----------
 // Une seule fonction pour les deux pages : chaque page n'a que ses propres champs.
+// Vu dans : s12/1-la-recherche-de-phare (champRecherche, appliquerFiltres, filter, includes, #aucun-resultat)
 
 const champRecherche = document.getElementById("recherche");
 const boutonsRegion = document.querySelectorAll("[data-region]");
@@ -978,6 +986,7 @@ const zoneAucunResultat = document.getElementById("aucun-resultat");
 let regionActive = ""; // "" = toutes les régions
 
 // "Genève" → "geneve" : la recherche marche avec ou sans accents
+// Vu dans : s12/1-la-recherche-de-phare (fiche, « Pour les rapides » : la fonction simplifier)
 function simplifier(texte) {
   return texte.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
 }
@@ -998,6 +1007,7 @@ function appliquerFiltres() {
   }
 }
 
+// Vu dans : s12/1-la-recherche-de-phare (bouton « Ouvert maintenant » avec aria-pressed)
 boutonsRegion.forEach(function (bouton) {
   bouton.addEventListener("click", function () {
     regionActive = bouton.dataset.region;
@@ -1010,6 +1020,7 @@ boutonsRegion.forEach(function (bouton) {
 
 // ---------- s13 : suggestions au clavier sous la recherche ----------
 // ↓ ↑ pour parcourir, Entrée pour choisir, Échap pour fermer.
+// Vu dans : s13/3-les-suggestions-au-clavier (minuteur, role="combobox", aria-activedescendant, keydown)
 
 const listeSuggestions = document.getElementById("suggestions");
 let indexActif = -1;
@@ -1127,6 +1138,7 @@ function choisir(valeur) {
 
 // ---------- s12 : formulaire « Proposer une manif » (manifs.html) ----------
 // Pas de serveur pour l'enregistrer : la manif reste jusqu'au rechargement.
+// Vu dans : s12/2-proposer-un-lieu (submit, preventDefault, FormData, erreurs dans #erreurs, unshift)
 
 const formulaire = document.getElementById("proposer");
 
