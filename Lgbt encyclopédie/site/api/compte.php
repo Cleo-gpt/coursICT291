@@ -228,7 +228,13 @@ function envoyerSmtp(array $config, string $destinataire, string $sujet, string 
 
 function lienConfirmation(array $config, string $type, string $jeton, string $extra = ''): string
 {
-    return $config['site_url'] . '/pages/confirmer.html?type=' . $type . '&jeton=' . $jeton . $extra;
+    // Mode démo (seulement sur ton Mac) : le lien reprend l'adresse ouverte dans le navigateur
+    // (ex. http://127.0.0.1:8891), pour marcher quel que soit le port. En ligne : site_url.
+    $site = $config['site_url'];
+    if ($config['mode_email'] === 'popup' && preg_match('/^(localhost|127\.0\.0\.1|\[::1\])(:\d+)?$/', $_SERVER['HTTP_HOST'] ?? '')) {
+        $site = 'http://' . $_SERVER['HTTP_HOST'];
+    }
+    return $site . '/pages/confirmer.html?type=' . $type . '&jeton=' . $jeton . $extra;
 }
 
 // Crée un lien (ou un code) à usage unique, valable $duree
