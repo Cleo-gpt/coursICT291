@@ -51,7 +51,6 @@ boutonOuvert.addEventListener("click", function () {
 });
 
 function appliquerFiltres() {
-  console.log("Recherche lancée :", champRecherche.value);
 
   const texte = champRecherche.value.trim().toLowerCase();
 
@@ -70,5 +69,100 @@ let minuteur;
 
 champRecherche.addEventListener("input", function () {
   clearTimeout(minuteur);
-  minuteur = setTimeout(appliquerFiltres, 200);
+ minuteur = setTimeout(function () {
+  appliquerFiltres();
+  afficherSuggestions();
+}, 200);
+
 });
+
+const listeSuggestions = document.getElementById("suggestions");
+let indexActif = -1;
+
+function afficherSuggestions() {
+  const texte = champRecherche.value.trim().toLowerCase();
+  listeSuggestions.textContent = "";
+  indexActif = -1;
+  champRecherche.removeAttribute("aria-activedescendant");
+
+  if (texte === "") {
+    fermerSuggestions();
+    return;
+  }
+
+  const trouves = tousLesLieux.filter(function (lieu) {
+    return lieu.nom.toLowerCase().includes(texte);
+  }).slice(0, 5);
+
+  for (const lieu of trouves) {
+    const option = document.createElement("li");
+    option.id = "suggestion-" + lieu.id;
+    option.setAttribute("role", "option");
+    option.setAttribute("aria-selected", "false");
+    option.textContent = lieu.nom;
+    listeSuggestions.append(option);
+  }
+
+  const ouverte = trouves.length > 0;
+  listeSuggestions.hidden = !ouverte;
+  champRecherche.setAttribute("aria-expanded", ouverte);
+}
+
+function fermerSuggestions() {
+  listeSuggestions.hidden = true;
+  champRecherche.setAttribute("aria-expanded", "false");
+  champRecherche.removeAttribute("aria-activedescendant");
+  indexActif = -1;
+}
+
+function marquerActive() {
+  const options = listeSuggestions.querySelectorAll("li");
+  for (const option of options) {
+    option.setAttribute("aria-selected", "false");
+  }
+  const active = options[indexActif];
+  active.setAttribute("aria-selected", "true");
+  champRecherche.setAttribute("aria-activedescendant", active.id);
+}
+
+function choisir(nom) {
+  champRecherche.value = nom;
+  appliquerFiltres();
+  fermerSuggestions();
+}
+
+champRecherche.addEventListener("keydown", function (event) {
+  if (listeSuggestions.hidden) {
+    return;
+  }
+  const nombre = listeSuggestions.children.length;
+
+  if (event.key === "Enter" && indexActif >= 0) {
+  event.preventDefault();
+  choisir(listeSuggestions.children[indexActif].textContent);
+  }
+
+  if (event.key === "Escape") {
+  event.preventDefault();
+  fermerSuggestions();
+  }
+
+  if (event.key === "ArrowDown") {
+    event.preventDefault();
+    indexActif = Math.min(indexActif + 1, nombre - 1);
+    marquerActive();
+  }
+  if (event.key === "ArrowUp") {
+    event.preventDefault();
+    indexActif = Math.max(indexActif - 1, 0);
+    marquerActive();
+  }
+});
+
+listeSuggestions.addEventListener("click", function (event) {
+  const option = event.target.closest("li");
+  if (option) {
+    choisir(option.textContent);
+  }
+});
+
