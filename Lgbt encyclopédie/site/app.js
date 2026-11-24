@@ -813,7 +813,9 @@ function creerCarteManif(manif, connecte) {
 
   const infos = document.createElement("p");
   infos.className = "petite-info";
-  infos.textContent = manif.heure.replace(":", "h") + " · " + manif.lieu + ", " + manif.ville;
+  infos.textContent = manif.proposee
+    ? "Heure et lieu à confirmer · " + manif.ville
+    : manif.heure.replace(":", "h") + " · " + manif.lieu + ", " + manif.ville;
 
   const etiquettes = document.createElement("ul");
   etiquettes.className = "etiquettes";
@@ -827,6 +829,16 @@ function creerCarteManif(manif, connecte) {
   }
 
   corps.append(titre, infos, etiquettes);
+
+  // Manif ajoutée par le formulaire : le serveur ne la connaît pas, pas d'agenda.
+  if (manif.proposee) {
+    const note = document.createElement("p");
+    note.className = "petite-info";
+    note.textContent = "Proposée, à vérifier";
+    carte.append(blocDate, corps, note);
+    element.append(carte);
+    return element;
+  }
 
   const bouton = document.createElement("button");
   bouton.type = "button";
@@ -1111,6 +1123,55 @@ function choisir(valeur) {
   clearTimeout(minuteur);
   appliquerFiltres();
   fermerSuggestions();
+}
+
+// ---------- s12 : formulaire « Proposer une manif » (manifs.html) ----------
+// Pas de serveur pour l'enregistrer : la manif reste jusqu'au rechargement.
+
+const formulaire = document.getElementById("proposer");
+
+if (formulaire) {
+  formulaire.addEventListener("submit", function (event) {
+    event.preventDefault(); // sinon le navigateur recharge la page et tout est perdu
+    const donnees = new FormData(formulaire);
+    const titre = donnees.get("titre").trim();
+    const ville = donnees.get("ville").trim();
+    const date = donnees.get("date");
+
+    const erreurs = [];
+    if (titre.length < 3) {
+      erreurs.push("Le nom de la manif doit avoir au moins 3 caractères.");
+    }
+    if (ville === "") {
+      erreurs.push("Indique la ville où elle a lieu.");
+    }
+    if (date === "") {
+      erreurs.push("Choisis la date de la manif.");
+    }
+
+    const zoneErreurs = document.getElementById("erreurs");
+    if (erreurs.length > 0) {
+      zoneErreurs.textContent = "Erreur : " + erreurs.join(" ");
+      return;
+    }
+    zoneErreurs.textContent = "";
+
+    // Toutes les étiquettes de etiquettes.md, avec une valeur par défaut
+    tousLesLieux.unshift({
+      id: tousLesLieux.length + 1,
+      titre: titre,
+      date: date,
+      heure: "",
+      lieu: "",
+      ville: ville,
+      region: regionActive || "À confirmer",
+      type: "proposée",
+      accesPmr: false,
+      proposee: true
+    });
+    appliquerFiltres();
+    formulaire.reset();
+  });
 }
 
 // ---------- Démarrage ----------

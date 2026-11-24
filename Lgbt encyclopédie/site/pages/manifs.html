@@ -126,6 +126,18 @@
       </div>
 
       <aside class="colonne-laterale">
+        <!-- s12 : formulaire du brief, erreurs dans #erreurs (app.js) -->
+        <form id="proposer" class="carte-bloc formulaire" novalidate aria-labelledby="titre-proposer">
+          <h2 id="titre-proposer" class="surtitre">Proposer une manif</h2>
+          <label for="champ-titre">Nom de la manif</label>
+          <input type="text" id="champ-titre" name="titre" class="champ" placeholder="Ex : Pique-nique des fiertés">
+          <label for="champ-ville">Ville</label>
+          <input type="text" id="champ-ville" name="ville" class="champ" placeholder="Ex : Neuchâtel">
+          <label for="champ-date">Date</label>
+          <input type="date" id="champ-date" name="date" class="champ">
+          <p id="erreurs" class="alerte-erreur" aria-live="polite"></p>
+          <button type="submit" class="btn-primaire">Proposer</button>
+        </form>
         <p class="petite-info note-connexion">Connecte-toi pour ajouter des manifs à ton agenda et recevoir un rappel la veille.</p>
         <div class="carte-bloc bloc-carte-geo">
           <div class="image-attente carte-geo" role="img" aria-label="Carte des manifestations">carte des manifestations</div>

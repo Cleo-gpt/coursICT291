@@ -35,10 +35,13 @@ Lgbt encyclopédie/
 Dans `app.js`, les chemins passent par `adresse("…")`, qui part de la racine du site :
 le même code marche depuis `index.html` et depuis `pages/`.
 
-## Recherche et filtre (s12)
+## Recherche, filtre et formulaire (s12)
 
 - **Accueil** : la recherche porte sur les étiquettes `titre` et `ville`, avec ou sans accents. Un mot absent affiche un message.
 - **Manifs** : les boutons de région filtrent sur l'étiquette `region` (« Toutes » par défaut).
+- **Proposer une manif** (page Manifs) : nom, ville et date. Le formulaire vide affiche ses erreurs dans `#erreurs`, sans `alert`.
+
+Les fiches ajoutées par le formulaire restent affichées jusqu'au rechargement de la page : il n'y a pas de serveur pour les enregistrer.
 
 ## Suggestions au clavier (s13)
 

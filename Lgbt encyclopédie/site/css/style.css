@@ -1841,6 +1841,15 @@ select.champ {
   font-weight: 600;
 }
 
+/* La zone #erreurs du formulaire ne prend de la place que s'il y a une erreur */
+#erreurs:empty {
+  display: none;
+}
+
+#erreurs {
+  margin-bottom: 0;
+}
+
 /* ---------- s13 : suggestions au clavier sous la recherche ---------- */
 
 #suggestions {
