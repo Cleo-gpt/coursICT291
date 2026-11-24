@@ -747,6 +747,15 @@ h3 { font-size: 1.1rem; line-height: 1.25; }
 
 /* ---------- Prints ---------- */
 
+.grille-prints li[hidden] {
+  display: none;
+}
+
+/* Prints : un peu d'air entre les filtres et la grille */
+.filtres + .grille-prints {
+  margin-top: var(--space-3);
+}
+
 .grille-prints {
   list-style: none;
   display: grid;
@@ -1858,7 +1867,8 @@ select.champ {
 
   #recherche-dico,
   #recherche-voyager,
-  #recherche-ressources {
+  #recherche-ressources,
+  #recherche-prints {
     flex-basis: 440px;
   }
 

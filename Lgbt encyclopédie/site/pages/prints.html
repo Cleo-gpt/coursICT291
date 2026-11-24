@@ -110,14 +110,25 @@
         <h1>Prints de juin</h1>
         <p class="chapeau">Une illustration par jour. Clique pour ouvrir, enregistre celles que tu veux garder.</p>
       </div>
-    <!-- Boutons de filtre avec aria-pressed : vu dans s12/1-la-recherche-de-phare.
-         Pas encore branchés dans app.js. -->
-    <ul class="filtres" aria-label="Filtrer les prints">
-      <li><button type="button" class="filtre" aria-pressed="true">Tous</button></li>
-      <li><button type="button" class="filtre" aria-pressed="false">Enregistrés</button></li>
-      <li><button type="button" class="filtre" aria-pressed="false">Mois précédents</button></li>
-    </ul>
+    <!-- Champ de recherche : même balisage que s12/1-la-recherche-de-phare (label + input type="search").
+         Le bouton filtre la grille (app.js, « Voyager et Ressources : recherche »), comme le submit de s12/2-proposer-un-lieu. -->
+    <form class="recherche-entete" role="search" id="recherche-prints">
+      <label class="visuellement-cache" for="print">Chercher un print</label>
+      <div class="champ-et-bouton">
+        <input type="search" id="print" name="print" class="champ-recherche" placeholder="Chercher un print, une date…" autocomplete="off">
+        <button type="submit" class="btn-primaire">Naviguer</button>
+      </div>
+      <p class="message-vide message-recherche" role="status"></p>
+    </form>
     </div>
+
+    <!-- Boutons de filtre avec aria-pressed : vu dans s12/1-la-recherche-de-phare.
+         Branchés dans app.js avec la recherche. -->
+    <ul class="filtres" aria-label="Filtrer les prints">
+      <li><button type="button" class="filtre" data-theme="" aria-pressed="true">Tous</button></li>
+      <li><button type="button" class="filtre" data-theme="enregistres" aria-pressed="false">Enregistrés</button></li>
+      <li><button type="button" class="filtre" data-theme="precedents" aria-pressed="false">Mois précédents</button></li>
+    </ul>
 
     <ol class="grille-prints">
       <li><a href="print.html#j01"><img draggable="false" src="../images/prints/01-gay.jpg" alt="" loading="lazy"><span>01.06</span></a></li>

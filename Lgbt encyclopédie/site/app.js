@@ -796,7 +796,11 @@ if (formulaireDico) {
 //           s12/2-proposer-un-lieu (submit + preventDefault)
 
 // aucun : début du message quand rien ne correspond, par exemple "Aucun pays"
-function brancherRecherche(idFormulaire, selecteurElements, aucun) {
+// options (facultatif, page Prints) :
+//   texte(element)          → le texte où chercher (sinon : tout le texte de l'élément)
+//   garder(element, theme)  → l'élément passe-t-il le filtre choisi ? (sinon : son .surtitre)
+//   videFiltre(theme)       → le message quand le filtre seul ne garde rien
+function brancherRecherche(idFormulaire, selecteurElements, aucun, options = {}) {
   const formulaireListe = document.getElementById(idFormulaire);
   if (!formulaireListe) {
     return;
@@ -812,8 +816,9 @@ function brancherRecherche(idFormulaire, selecteurElements, aucun) {
     let nombre = 0;
     for (const element of elements) {
       const surtitre = element.querySelector(".surtitre");
-      const themeOk = themeActif === "" || (surtitre && surtitre.textContent.trim() === themeActif);
-      const texteOk = simplifier(element.textContent).includes(texte);
+      const themeOk = themeActif === ""
+        || (options.garder ? options.garder(element, themeActif) : (surtitre && surtitre.textContent.trim() === themeActif));
+      const texteOk = simplifier(options.texte ? options.texte(element) : element.textContent).includes(texte);
       element.hidden = !(themeOk && texteOk);
       if (!element.hidden) {
         nombre = nombre + 1;
@@ -822,10 +827,11 @@ function brancherRecherche(idFormulaire, selecteurElements, aucun) {
     if (nombre > 0) {
       zoneMessage.textContent = "";
     } else if (texte === "") {
-      zoneMessage.textContent = aucun + " dans ce thème pour le moment.";
+      zoneMessage.textContent = options.videFiltre ? options.videFiltre(themeActif) : aucun + " dans ce thème pour le moment.";
     } else {
+      const bouton = document.querySelector("[data-theme][aria-pressed='true']");
       zoneMessage.textContent = aucun + " ne correspond à « " + champ.value.trim() + " »"
-        + (themeActif ? " dans le thème " + themeActif + "." : ".");
+        + (themeActif ? " dans « " + bouton.textContent.trim() + " »." : ".");
     }
   }
 
@@ -854,6 +860,31 @@ function brancherRecherche(idFormulaire, selecteurElements, aucun) {
 
 brancherRecherche("recherche-voyager", ".liste-pays li", "Aucun pays");
 brancherRecherche("recherche-ressources", ".grille-ressources > li", "Aucune ressource");
+
+// Prints : chaque case ne montre que la date (« 02.06 ») ; on cherche aussi dans le nom
+// du print (PRINTS), et le filtre « Enregistrés » lit les favoris du compte.
+function clePrint(element) {
+  return element.querySelector("a").hash.slice(1); // "print.html#j02" → "j02"
+}
+
+brancherRecherche("recherche-prints", ".grille-prints > li", "Aucun print", {
+  texte: function (element) {
+    const cle = clePrint(element);
+    return PRINTS[cle] + " " + element.textContent + " " + Number(cle.slice(1)) + " juin";
+  },
+  garder: function (element, filtre) {
+    if (filtre === "enregistres") {
+      return etat.favoris.has(clePrint(element));
+    }
+    return false; // « Mois précédents » : pas encore de prints avant juin 2026
+  },
+  videFiltre: function (filtre) {
+    if (filtre === "enregistres") {
+      return etat.session ? "Tu n'as pas encore enregistré de print." : "Connecte-toi pour enregistrer des prints.";
+    }
+    return "Pas encore de prints des mois précédents : la collection commence en juin 2026.";
+  }
+});
 
 // ---------- Accueil : print du jour ----------
 // Le jour du mois donne le print : le 5 → j05 (Pansexuel·le), quel que soit le mois.
