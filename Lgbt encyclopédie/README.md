@@ -47,3 +47,10 @@ Les fiches ajoutées par le formulaire restent affichées jusqu'au rechargement 
 
 Sous la recherche de l'accueil, jusqu'à 5 titres ou villes sont proposés. ↓ et ↑ pour les parcourir, Entrée pour choisir, Échap pour fermer. La recherche attend 200 ms après la dernière lettre.
 
+## Micro-interactions
+
+- Les boutons changent de couleur en douceur au survol et au clic, avec un halo lavande. Ils disent : « ceci se clique, je t'ai entendu·e ».
+- Les cartes des manifs apparaissent en fondu, au chargement, à chaque recherche et à chaque filtre. Elles disent : « la liste a changé ».
+- Les erreurs du formulaire « Proposer une manif » apparaissent en fondu. Elles disent : « regarde ici : il y a quelque chose à corriger ».
+
+Les trois sont coupés quand l'appareil demande moins d'animations (`prefers-reduced-motion: reduce`, à la fin de `css/style.css`).

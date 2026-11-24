@@ -1882,3 +1882,57 @@ select.champ {
   color: #ffffff;
 }
 
+/* ---------- s13 : trois micro-interactions ---------- */
+
+/* 1. Les boutons glissent d'une couleur à l'autre, avec un halo au survol.
+      Ils disent : « ceci se clique, je t'ai entendu·e ». */
+button {
+  transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Seulement sur les appareils qui savent survoler : pas de halo collé après un toucher */
+@media (hover: hover) {
+  button:not(:disabled):not(.lien-bouton):hover {
+    box-shadow: 0 0 0 4px var(--color-header-muted);
+  }
+}
+
+/* 2. Les cartes apparaissent en fondu, au chargement, à chaque recherche et à chaque filtre.
+      Elles disent : « la liste a changé ». */
+@keyframes apparaitre {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.carte,
+.manif {
+  animation: apparaitre 0.25s ease-out;
+}
+
+/* 3. Les erreurs du formulaire « Proposer une manif » apparaissent en fondu.
+      Elles disent : « regarde ici : il y a quelque chose à corriger ». */
+#erreurs:not(:empty) {
+  animation: apparaitre 0.25s ease-out;
+}
+
+/* Tout à la fin : on coupe ces trois mouvements si l'appareil demande moins d'animations */
+@media (prefers-reduced-motion: reduce) {
+  button {
+    transition: none;
+  }
+
+  .carte,
+  .manif {
+    animation: none;
+  }
+
+  #erreurs:not(:empty) {
+    animation: none;
+  }
+}
