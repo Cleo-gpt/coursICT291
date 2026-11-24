@@ -36,6 +36,31 @@ const L = 1000, H = 500;
 const projection = geoNaturalEarth1().rotate([-11, 0]).fitExtent([[4, 4], [L - 4, H - 4]], monde);
 const chemin = geoPath(projection).digits(1);
 
+// Cadrage de chaque zone (boutons au-dessus de la carte), en longitudes et latitudes,
+// comme les cartes régionales « Conseils aux voyageurs ». Avec le centre à 11° Est,
+// une longitude de 189 (= 171° Ouest) se place à droite de la carte, après les Fidji.
+const ZONES = {
+  europe: [-25, 33, 62, 72],
+  afrique: [-26, -36, 60, 27],
+  anmo: [-18, 12, 64, 42],
+  ameriques: [-168, -57, -28, 84],
+  "asie-oceanie": [44, -48, 189, 56]
+};
+function cadrage([ouest, sud, est, nord]) {
+  const points = [];
+  for (let i = 0; i <= 20; i++) {
+    const lon = ouest + (est - ouest) * i / 20;
+    const lat = sud + (nord - sud) * i / 20;
+    points.push([lon, sud], [lon, nord], [ouest, lat], [est, lat]);
+  }
+  const xy = points.map(p => projection(p));
+  const xs = xy.map(p => p[0]), ys = xy.map(p => p[1]);
+  const x = Math.max(0, Math.min(...xs)), y = Math.max(0, Math.min(...ys));
+  const l = Math.min(L, Math.max(...xs)) - x, h = Math.min(H, Math.max(...ys)) - y;
+  return [x, y, l, h].map(v => Math.round(v)).join(" ");
+}
+const attributsZones = Object.entries(ZONES).map(([zone, boite]) => ` data-vue-${zone}="${cadrage(boite)}"`).join("");
+
 const inconnus = [];
 const lignes = monde.features.map(f => {
   let code = f.id ? codeDepuisNumero(f.id) : undefined;
@@ -53,7 +78,7 @@ const lignes = monde.features.map(f => {
   return `<path${attributs} data-nom="${nom.replace(/"/g, "&quot;")}" d="${chemin(f)}"/>`;
 });
 
-const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${L} ${H}" class="carte-monde">\n`
+const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${L} ${H}" data-vue-monde="0 0 ${L} ${H}"${attributsZones} class="carte-monde">\n`
   + `<!-- Frontières : Natural Earth 1:110m (domaine public), via world-atlas. Projection Natural Earth centrée à 11° E. Crimée rattachée à l'Ukraine. -->\n`
   + lignes.join("\n") + "\n</svg>\n";
 fs.writeFileSync(SORTIE, svg);

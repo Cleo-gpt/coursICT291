@@ -908,6 +908,26 @@ function afficherFichePays(code, nomSurLaCarte) {
   const valeurs = pays ? [pays.criminalisation, pays.couples, pays.expression] : ["—", "—", "—"];
   faits.forEach(function (fait, numero) { fait.textContent = valeurs[numero]; });
 
+  // Attitudes (Williams Institute) et sécurité (faits ILGA + conseil de Prisme)
+  document.getElementById("fiche-pays-attitudes").textContent = pays
+    ? pays.attitudes
+    : "Pas de mesure de l'acceptation sociale pour ce territoire.";
+  const listeSecurite = document.getElementById("fiche-pays-securite");
+  listeSecurite.replaceChildren();
+  for (const fait of (pays ? pays.securite : [])) {
+    listeSecurite.append(creerElement("li", "", fait));
+  }
+  const conseil = document.getElementById("fiche-pays-conseil");
+  conseil.textContent = pays ? pays.conseil : "";
+  conseil.hidden = !pays;
+  const lienIlga = document.getElementById("fiche-pays-ilga");
+  lienIlga.hidden = !(pays && pays.ilga);
+  if (pays && pays.ilga) {
+    lienIlga.href = pays.ilga;
+    lienIlga.textContent = "Voir la fiche complète sur ILGA World (en anglais)";
+    lienIlga.setAttribute("aria-label", "Fiche complète : " + pays.nom + ", sur ILGA World (en anglais)");
+  }
+
   // Remarque propre à certains pays (par exemple la Crimée pour l'Ukraine et la Russie)
   const note = document.getElementById("fiche-pays-note");
   note.textContent = pays && pays.note ? pays.note : "";
@@ -938,6 +958,8 @@ function afficherFichePays(code, nomSurLaCarte) {
 function creerLignePays(pays) {
   const ligne = document.createElement("li");
   ligne.dataset.code = pays.code;
+  ligne.dataset.zone = pays.zone; // afrique, anmo, ameriques, asie-oceanie ou europe
+  ligne.dataset.nom = pays.nom;   // la recherche ne lit que le nom (pas « vigilance normale »)
 
   const lien = document.createElement("a");
   lien.href = "#fiche-pays";
@@ -1019,6 +1041,61 @@ function preparerCarte(carte) {
   });
 }
 
+// ---------- Voyager : choisir une zone du monde ----------
+// Chaque bouton (data-theme) zoome la carte sur sa zone et atténue les autres pays.
+// Les cadrages sont dans la carte : <svg data-vue-europe="398 50 245 126" …> (serveur/carte/generer-carte.mjs).
+// Le zoom est un mouvement utile (s13/1-le-mouvement-utile) : il montre d'où vient la nouvelle vue.
+
+let zoneActive = "monde";
+let animationZoom = null;
+
+function zoomerSur(zone, anime = true) {
+  zoneActive = zone;
+  const carte = document.querySelector("svg.carte-monde");
+  if (!carte) {
+    return; // la carte n'est pas encore chargée : elle appliquera zoneActive en arrivant
+  }
+
+  // Les pays hors de la zone sont atténués et sortent de l'ordre de tabulation
+  carte.querySelectorAll("path[data-nom]").forEach(function (forme) {
+    const pays = paysParCode.get(forme.dataset.code);
+    const dansLaZone = zone === "monde" || (pays && pays.zone === zone);
+    forme.classList.toggle("hors-zone", !dansLaZone);
+    if (pays) {
+      forme.setAttribute("tabindex", dansLaZone ? "0" : "-1");
+    }
+  });
+
+  const arrivee = (carte.getAttribute("data-vue-" + zone) || carte.getAttribute("data-vue-monde")).split(" ").map(Number);
+  const depart = carte.getAttribute("viewBox").split(" ").map(Number);
+  cancelAnimationFrame(animationZoom);
+
+  // Moins de mouvement demandé, ou premier affichage : on saute directement à la zone
+  if (!anime || matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    carte.setAttribute("viewBox", arrivee.join(" "));
+    return;
+  }
+  const duree = 450;
+  const debut = performance.now();
+  function etape(maintenant) {
+    const t = Math.min(1, (maintenant - debut) / duree);
+    const doux = t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2; // accélère puis ralentit
+    carte.setAttribute("viewBox", depart.map(function (valeur, i) {
+      return valeur + (arrivee[i] - valeur) * doux;
+    }).join(" "));
+    if (t < 1) {
+      animationZoom = requestAnimationFrame(etape);
+    }
+  }
+  animationZoom = requestAnimationFrame(etape);
+}
+
+document.querySelectorAll(".filtres-zones [data-theme]").forEach(function (bouton) {
+  bouton.addEventListener("click", function () {
+    zoomerSur(bouton.dataset.theme || "monde");
+  });
+});
+
 if (listePays && zoneCarteMonde) {
   const zoneEtatPays = document.getElementById("etat-pays");
   zoneEtatPays.textContent = "Chargement des pays…";
@@ -1041,7 +1118,11 @@ if (listePays && zoneCarteMonde) {
       for (const pays of donnees) {
         listePays.append(creerLignePays(pays));
       }
-      brancherRecherche("recherche-voyager", ".liste-pays li", "Aucun pays");
+      // Les boutons de zone (data-theme) filtrent la liste avec la recherche
+      brancherRecherche("recherche-voyager", ".liste-pays li", "Aucun pays", {
+        texte: function (ligne) { return ligne.dataset.nom; },
+        garder: function (ligne, zone) { return ligne.dataset.zone === zone; }
+      });
       afficherCompte(); // met à jour les étoiles des pays favoris
 
       // Puis la carte, qui a besoin des niveaux de pays.json
@@ -1058,6 +1139,7 @@ if (listePays && zoneCarteMonde) {
           const carte = document.importNode(documentSvg.documentElement, true);
           preparerCarte(carte);
           zoneCarteMonde.replaceWith(carte);
+          zoomerSur(zoneActive, false); // si une zone a été choisie pendant le chargement
         })
         .catch(function (erreur) {
           console.error(erreur);

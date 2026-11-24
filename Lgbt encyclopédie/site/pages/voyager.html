@@ -127,6 +127,15 @@
         <section class="carte-bloc">
           <!-- Remplacée par app.js (« Voyager : carte du monde ») : images/carte-monde.svg chargée avec fetch,
                comme data.json en s11/1-phare-charge-ses-fiches. Les couleurs viennent de pays.json (ILGA World). -->
+          <!-- Choix de la zone : zoome la carte et filtre la liste (app.js). Boutons avec aria-pressed : vu dans s12/1-la-recherche-de-phare -->
+          <ul class="filtres filtres-zones" aria-label="Choisir une zone du monde">
+            <li><button type="button" class="filtre" data-theme="" aria-pressed="true">Monde</button></li>
+            <li><button type="button" class="filtre" data-theme="afrique" aria-pressed="false">Afrique</button></li>
+            <li><button type="button" class="filtre" data-theme="anmo" aria-pressed="false">Afrique du Nord et Moyen-Orient</button></li>
+            <li><button type="button" class="filtre" data-theme="ameriques" aria-pressed="false">Amériques</button></li>
+            <li><button type="button" class="filtre" data-theme="asie-oceanie" aria-pressed="false">Asie et Océanie</button></li>
+            <li><button type="button" class="filtre" data-theme="europe" aria-pressed="false">Europe</button></li>
+          </ul>
           <div class="image-attente carte-geo" id="carte-monde" role="img" aria-label="Carte du monde par niveau de vigilance">Chargement de la carte…</div>
           <ul class="legende"><li><span class="echantillon niveau-1"></span>accueil favorable</li><li><span class="echantillon niveau-2"></span>vigilance normale</li><li><span class="echantillon niveau-3"></span>vigilance renforcée</li><li><span class="echantillon niveau-4"></span>zone à risque</li><li><span class="echantillon niveau-vide"></span>pas de données</li></ul>
           <details class="methode">
@@ -166,11 +175,24 @@
           </dl>
           <p class="note-pays" id="fiche-pays-note" hidden></p>
         </section>
-        <section><h3>Attitudes et société</h3><p class="texte-discret">Perception générale, différences entre villes et campagnes.</p></section>
-        <section><h3>Sécurité au quotidien</h3><p class="texte-discret">Précautions pratiques pendant le séjour.</p></section>
-        <section><h3>En cas de problème</h3><p class="texte-discret">Ambassade, contacts locaux, démarches.</p></section>
+        <!-- Attitudes : Williams Institute (UCLA), Global Acceptance Index 2017-2020. Sécurité : ILGA World + conseil de Prisme selon le niveau.
+             Rempli par app.js (afficherFichePays) à partir de pays.json. -->
+        <section>
+          <h3>Attitudes et société</h3>
+          <p id="fiche-pays-attitudes" class="texte-discret">Choisis un pays pour voir comment les personnes LGBTI y sont acceptées.</p>
+        </section>
+        <section>
+          <h3>Sécurité au quotidien</h3>
+          <ul class="faits-securite" id="fiche-pays-securite"></ul>
+          <p class="conseil-pays" id="fiche-pays-conseil" hidden></p>
+        </section>
+        <section>
+          <h3>En cas de problème</h3>
+          <p class="texte-discret">Contacte la représentation suisse (ambassade ou consulat) et une association LGBTI locale. Les lignes d'écoute sont sur la page Ressources.</p>
+          <p><a href="https://database.ilga.org/" id="fiche-pays-ilga" hidden>Voir la fiche complète sur ILGA World (en anglais)</a></p>
+        </section>
         <a href="ressources.html" class="btn-primaire">Numéros utiles sur place</a>
-        <p class="petite-info">Source : <a href="https://database.ilga.org/">ILGA World Database</a> · données de juin 2026</p>
+        <p class="petite-info">Sources : <a href="https://database.ilga.org/">ILGA World Database</a> (lois, juin 2026) · <a href="https://williamsinstitute.law.ucla.edu/publications/global-acceptance-index-lgbt/">Williams Institute, Global Acceptance Index</a> (attitudes, sondages 2017-2020)</p>
       </article>
     </div>
   </main>

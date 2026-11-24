@@ -1186,11 +1186,17 @@ h3 { font-size: 1.1rem; line-height: 1.25; }
 .niveau-4 { background: var(--rouge); }
 .niveau-vide { background: #d6d0e0; }
 
+/* Boutons de zone au-dessus de la carte */
+.filtres-zones {
+  margin-bottom: var(--space-2);
+}
+
 /* Carte du monde (images/carte-monde.svg, chargée par app.js) */
 .carte-monde {
   display: block;
   width: 100%;
   height: auto;
+  aspect-ratio: 16 / 10;            /* même hauteur quelle que soit la zone choisie */
   border-radius: var(--radius-card);
   background: #e6eef8;              /* océan */
 }
@@ -1200,7 +1206,13 @@ h3 { font-size: 1.1rem; line-height: 1.25; }
   stroke: #ffffff;
   stroke-width: 0.5;
   stroke-linejoin: round;
-  transition: fill 0.2s ease;
+  transition: fill 0.2s ease, opacity 0.3s ease;
+  vector-effect: non-scaling-stroke; /* même épaisseur de trait à tous les zooms */
+}
+
+/* Pays hors de la zone choisie */
+.carte-monde path.hors-zone {
+  opacity: 0.3;
 }
 
 .carte-monde path.niveau-1 { fill: var(--vert); }
@@ -1266,6 +1278,37 @@ h3 { font-size: 1.1rem; line-height: 1.25; }
 .fiche-pays .petite-info a,
 .methode a {
   color: inherit;
+}
+
+/* Fiche du pays : lien vers la fiche ILGA */
+#fiche-pays-ilga {
+  color: var(--color-primary-hover);
+  font-weight: 700;
+}
+
+/* Fiche du pays : faits de sécurité et conseil */
+.faits-securite {
+  margin: var(--space-1) 0 0;
+  padding-left: 1.2em;
+  font-size: 0.9rem;
+}
+
+.faits-securite li {
+  margin-bottom: 4px;
+}
+
+.conseil-pays {
+  margin-top: var(--space-2);
+  padding: 10px 12px;
+  border-left: 4px solid var(--color-primary);
+  border-radius: 0 8px 8px 0;
+  background: var(--color-soft);
+  font-size: 0.85rem;
+}
+
+.conseil-pays::before {
+  content: "Conseil de Prisme · ";
+  font-weight: 700;
 }
 
 /* Fiche du pays : remarque (ex. Crimée) */

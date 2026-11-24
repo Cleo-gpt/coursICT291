@@ -2,7 +2,7 @@
 
 Ces scripts refont les deux fichiers que lit la page Voyager :
 
-- `site/pays.json` : un objet par pays (code ISO, nom français, niveau 1 à 4, et trois faits ILGA traduits) ;
+- `site/pays.json` : un objet par pays (code ISO, nom français, niveau 1 à 4, faits ILGA traduits, attitudes, sécurité) ;
 - `site/images/carte-monde.svg` : la carte, avec un `<path id="pays-CA" data-nom="Canada">` par pays.
 
 Ils ne sont **pas** nécessaires pour faire tourner le site : seulement pour mettre à jour la carte ou les données.
@@ -25,6 +25,27 @@ Puis, sur la page Voyager, change la date dans la fiche
 Si `npm run pays` signale une **catégorie ILGA sans traduction**, ajoute-la dans les tables
 `CRIMINALISATION`, `COUPLES` ou `EXPRESSION` de `generer-pays.mjs`.
 
+## Ce que contient chaque fiche pays
+
+| Partie de la fiche | Source | Données |
+| --- | --- | --- |
+| Niveau, cadre légal | ILGA World | criminalisation, couples, liberté d'expression |
+| Attitudes et société | Williams Institute (UCLA), *Global Acceptance Index* | score sur 10 et rang sur 175 pays, moyenne des sondages 2017-2020 |
+| Sécurité au quotidien | ILGA World | application de la loi (pays qui criminalisent), obstacles aux associations, lois sur les crimes de haine |
+| Conseil de Prisme | Prisme | un conseil général par niveau (tableau `CONSEILS` dans `generer-pays.mjs`) : ce n'est pas une donnée ILGA |
+| Lien « fiche complète » | ILGA World | `https://database.ilga.org/<pays>-lgbti` |
+
+### Le tableau du Williams Institute
+
+`sources/acceptation-williams-2017-2020.csv` recopie le tableau A.2 (« Ranking countries and locations by their average
+LGBTI Acceptance Index score in 2017-2020 », pages 33-34) du rapport
+[*Social Acceptance of LGBTI People in 175 Countries and Locations, 1981 to 2020*](https://williamsinstitute.law.ucla.edu/publications/global-acceptance-index-lgbt/)
+(A. R. Flores, novembre 2021). Colonnes : rang, nom anglais, code ISO, score.
+Trois territoires n'ont pas de code ISO (Chypre du Nord, Haut-Karabakh, Somaliland) et ne sont pas affichés.
+
+Si une nouvelle édition paraît, remplace ce fichier par le nouveau tableau (mêmes colonnes) et lance `npm run pays`.
+La phrase de la fiche (« sondages 2017-2020 ») est dans la fonction `attitudes` de `generer-pays.mjs`.
+
 ## Les règles des couleurs (dans `generer-pays.mjs`, fonction `niveau`)
 
 | Niveau | Couleur | Règle |
@@ -33,6 +54,16 @@ Si `npm run pays` signale une **catégorie ILGA sans traduction**, ajoute-la dan
 | 3 · vigilance renforcée | orange | pas criminalisées, mais obstacles légaux à la liberté d'expression (explicites ou non) |
 | 1 · accueil favorable | vert | mariage ouvert aux couples de même sexe |
 | 2 · vigilance normale | jaune | tous les autres |
+
+## Les zones (boutons au-dessus de la carte)
+
+Comme les cartes « Conseils aux voyageurs » : Afrique, Afrique du Nord et Moyen-Orient, Amériques, Asie et Océanie, Europe.
+
+- **Zone de chaque pays** (`zone` dans `pays.json`) : d'après les régions d'ILGA, dans `generer-pays.mjs`.
+  La région « SWANA » d'ILGA devient « Afrique du Nord et Moyen-Orient », sauf la Mauritanie, le Soudan,
+  Djibouti et l'Érythrée, rangés avec l'Afrique (tableau `ZONES_AJUSTEES`). La Turquie, la Russie et le Caucase sont en Europe.
+- **Cadrage de chaque zone** : tableau `ZONES` dans `generer-carte.mjs` (longitudes et latitudes ouest, sud, est, nord).
+  Il est enregistré dans la carte : `<svg data-vue-europe="398 50 245 126" …>`, que `app.js` utilise pour zoomer.
 
 ## Refaire la carte
 
@@ -51,9 +82,10 @@ Les noms français viennent du paquet `i18n-iso-countries` ; les noms raccourcis
 
 | Fichier | Rôle |
 | --- | --- |
-| `extraire-ilga.mjs` | ouvre trois pages d'ILGA dans Chromium et enregistre leurs données (le site ILGA ne s'affiche qu'avec JavaScript) |
+| `extraire-ilga.mjs` | ouvre cinq pages d'ILGA dans Chromium et enregistre leurs données (le site ILGA ne s'affiche qu'avec JavaScript) |
 | `generer-pays.mjs` | fabrique `site/pays.json` à partir de `donnees-ilga/` |
 | `generer-carte.mjs` | fabrique `site/images/carte-monde.svg` |
 | `noms.mjs` | noms français des pays, partagés par les deux générateurs |
+| `sources/acceptation-williams-2017-2020.csv` | scores d'acceptation du Williams Institute (voir plus haut) |
 
 `node_modules/` et `donnees-ilga/` ne sont pas dans le dépôt (voir `.gitignore`) : ils se refont avec les commandes ci-dessus.

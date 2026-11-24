@@ -1,0 +1,176 @@
+rang,pays_en,code,score
+1,"Iceland",IS,9.78
+2,"Netherlands",NL,9.46
+3,"Norway",NO,9.38
+4,"Sweden",SE,9.18
+5,"Canada",CA,9.02
+6,"Spain",ES,8.77
+7,"Denmark",DK,8.69
+8,"Ireland",IE,8.41
+9,"Great Britain",GB,8.34
+10,"New Zealand",NZ,8.23
+11,"Australia",AU,8.03
+12,"Malta",MT,8.01
+13,"Switzerland",CH,8
+14,"Finland",FI,7.96
+15,"Belgium",BE,7.95
+16,"Uruguay",UY,7.9
+17,"Nepal",NP,7.84
+18,"Luxembourg",LU,7.82
+19,"France",FR,7.73
+20,"Germany",DE,7.73
+21,"Puerto Rico",PR,7.52
+22,"Andorra",AD,7.48
+23,"United States",US,7.42
+24,"Brazil",BR,7.22
+25,"Austria",AT,7.2
+26,"Argentina",AR,7.07
+27,"Italy",IT,6.94
+28,"Portugal",PT,6.87
+29,"Chile",CL,6.83
+30,"Cape Verde",CV,6.78
+31,"Mexico",MX,6.5
+32,"Hong Kong",HK,6.38
+33,"Costa Rica",CR,6.35
+34,"Slovenia",SI,6.21
+35,"Colombia",CO,6.1
+36,"Philippines",PH,6.06
+37,"South Africa",ZA,6.01
+38,"Czech Republic",CZ,5.87
+39,"Singapore",SG,5.86
+40,"Thailand",TH,5.81
+41,"Cuba",CU,5.8
+42,"Taiwan",TW,5.74
+43,"Bahrain",BH,5.73
+44,"Israel",IL,5.69
+45,"Northern Cyprus",,5.59
+46,"Nicaragua",NI,5.57
+47,"Venezuela",VE,5.51
+48,"Ecuador",EC,5.47
+49,"Greece",GR,5.44
+50,"Mauritius",MU,5.34
+51,"India",IN,5.28
+52,"Panama",PA,5.28
+53,"Japan",JP,5.26
+54,"Estonia",EE,5.25
+55,"Bolivia",BO,5.24
+56,"El Salvador",SV,5.22
+57,"Syria",SY,5.22
+58,"Cyprus",CY,5.16
+59,"Poland",PL,5.15
+60,"Honduras",HN,5.15
+61,"Peru",PE,5.15
+62,"Hungary",HU,5.08
+63,"Croatia",HR,5.05
+64,"Vietnam",VN,4.99
+65,"Dominican Republic",DO,4.98
+66,"Cambodia",KH,4.96
+67,"Namibia",NA,4.93
+68,"Mozambique",MZ,4.92
+69,"Laos",LA,4.89
+70,"Slovakia",SK,4.82
+71,"Paraguay",PY,4.74
+72,"Guatemala",GT,4.71
+73,"Trinidad and Tobago",TT,4.7
+74,"Suriname",SR,4.64
+75,"South Korea",KR,4.53
+76,"Barbados",BB,4.43
+77,"Latvia",LV,4.42
+78,"Lithuania",LT,4.38
+79,"Guyana",GY,4.36
+80,"Botswana",BW,4.3
+81,"Algeria",DZ,4.28
+82,"Bulgaria",BG,4.19
+83,"Bhutan",BT,4.18
+84,"Lesotho",LS,4.18
+85,"Belize",BZ,4.14
+86,"Myanmar",MM,4.11
+87,"Romania",RO,4.1
+88,"Bahamas",BS,4.09
+89,"Macau SAR",MO,4.01
+90,"Turkey",TR,3.94
+91,"Grenada",GD,3.88
+92,"Benin",BJ,3.88
+93,"Jamaica",JM,3.83
+94,"Iraq",IQ,3.81
+95,"Saint Lucia",LC,3.8
+96,"Libya",LY,3.78
+97,"Serbia",RS,3.71
+98,"Saint Kitts and Nevis",KN,3.71
+99,"Bangladesh",BD,3.69
+100,"China",CN,3.69
+101,"Uzbekistan",UZ,3.68
+102,"Pakistan",PK,3.66
+103,"Angola",AO,3.66
+104,"Uganda",UG,3.63
+105,"Lebanon",LB,3.63
+106,"Kenya",KE,3.62
+107,"Kuwait",KW,3.61
+108,"Saudi Arabia",SA,3.6
+109,"Dominica",DM,3.56
+110,"Cote d’Ivoire",CI,3.55
+111,"Qatar",QA,3.54
+112,"Montenegro",ME,3.53
+113,"Kosovo",XK,3.52
+114,"Antigua and Barbuda",AG,3.52
+115,"Malaysia",MY,3.48
+116,"Comoros",KM,3.47
+117,"Yemen",YE,3.41
+118,"Morocco",MA,3.39
+119,"Tunisia",TN,3.38
+120,"Belarus",BY,3.38
+121,"Madagascar",MG,3.36
+122,"Afghanistan",AF,3.32
+123,"Haiti",HT,3.32
+124,"Democratic Republic of the Congo",CD,3.32
+125,"Burundi",BI,3.3
+126,"Russia",RU,3.28
+127,"Republic of the Congo",CG,3.27
+128,"Tanzania",TZ,3.27
+129,"Sri Lanka",LK,3.23
+130,"Palestine",PS,3.2
+131,"Togo",TG,3.15
+132,"Sao Tome and Principe",ST,3.15
+133,"North Macedonia",MK,3.13
+134,"Guinea",GN,3.06
+135,"Saint Vincent and the Grenadines",VC,3.04
+136,"Swaziland",SZ,3.02
+137,"Sudan",SD,2.99
+138,"Sierra Leone",SL,2.97
+139,"Niger",NE,2.97
+140,"Burkina Faso",BF,2.96
+141,"Georgia",GE,2.94
+142,"Ukraine",UA,2.91
+143,"Djibouti",DJ,2.89
+144,"Bosnia Herzegovina",BA,2.87
+145,"Gabon",GA,2.8
+146,"Cameroon",CM,2.79
+147,"Indonesia",ID,2.79
+148,"Rwanda",RW,2.77
+149,"Mali",ML,2.74
+150,"South Sudan",SS,2.73
+151,"Chad",TD,2.72
+152,"Mongolia",MN,2.71
+153,"Kazakhstan",KZ,2.69
+154,"Ghana",GH,2.68
+155,"Albania",AL,2.65
+156,"Liberia",LR,2.65
+157,"Central African Republic",CF,2.62
+158,"Nagorno-Karabakh",,2.54
+159,"Egypt",EG,2.48
+160,"Gambia",GM,2.44
+161,"Nigeria",NG,2.18
+162,"Armenia",AM,2.17
+163,"Kyrgyzstan",KG,2.16
+164,"Iran",IR,2.11
+165,"Zambia",ZM,2.04
+166,"Moldova",MD,1.91
+167,"Jordan",JO,1.87
+168,"Senegal",SN,1.85
+169,"Mauritania",MR,1.77
+170,"Malawi",MW,1.75
+171,"Ethiopia",ET,1.63
+172,"Somaliland",,1.59
+173,"Zimbabwe",ZW,1.57
+174,"Tajikistan",TJ,1.56
+175,"Azerbaijan",AZ,1.42
