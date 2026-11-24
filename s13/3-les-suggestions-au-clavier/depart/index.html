@@ -23,7 +23,9 @@
 
   <main>
     <label for="recherche">Chercher un lieu ou un quartier</label>
-    <input type="search" id="recherche">
+    <input type="search" id="recherche" role="combobox" aria-expanded="false" aria-controls="suggestions" aria-autocomplete="list" autocomplete="off">
+<ul id="suggestions" role="listbox" aria-label="Suggestions" hidden></ul>
+
     <button type="button" id="filtre-ouvert" aria-pressed="false">Ouvert maintenant</button>
     <p id="aucun-resultat" hidden>Aucun lieu ne correspond à votre recherche.</p>
 

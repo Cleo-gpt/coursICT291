@@ -51,6 +51,8 @@ boutonOuvert.addEventListener("click", function () {
 });
 
 function appliquerFiltres() {
+  console.log("Recherche lancée :", champRecherche.value);
+
   const texte = champRecherche.value.trim().toLowerCase();
 
   const resultats = tousLesLieux.filter(function (lieu) {
@@ -64,8 +66,9 @@ function appliquerFiltres() {
   document.getElementById("aucun-resultat").hidden = resultats.length > 0;
 }
 
-champRecherche.addEventListener("input", function () {
-  appliquerFiltres();
-});
+let minuteur;
 
-// ----- Exercice 3 : votre code de la semaine 13 commence ici -----
+champRecherche.addEventListener("input", function () {
+  clearTimeout(minuteur);
+  minuteur = setTimeout(appliquerFiltres, 200);
+});
