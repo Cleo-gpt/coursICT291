@@ -1,0 +1,19 @@
+{
+  "name": "prisme-carte",
+  "private": true,
+  "description": "Refait site/pays.json (données ILGA World) et site/images/carte-monde.svg (frontières Natural Earth).",
+  "type": "module",
+  "scripts": {
+    "ilga": "node extraire-ilga.mjs",
+    "pays": "node generer-pays.mjs",
+    "carte": "node generer-carte.mjs",
+    "tout": "node extraire-ilga.mjs && node generer-pays.mjs && node generer-carte.mjs"
+  },
+  "dependencies": {
+    "d3-geo": "3.1.1",
+    "i18n-iso-countries": "7.11.0",
+    "playwright": "1.57.0",
+    "topojson-client": "3.1.0",
+    "world-atlas": "2.0.2"
+  }
+}

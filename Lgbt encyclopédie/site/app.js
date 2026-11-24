@@ -908,6 +908,11 @@ function afficherFichePays(code, nomSurLaCarte) {
   const valeurs = pays ? [pays.criminalisation, pays.couples, pays.expression] : ["—", "—", "—"];
   faits.forEach(function (fait, numero) { fait.textContent = valeurs[numero]; });
 
+  // Remarque propre à certains pays (par exemple la Crimée pour l'Ukraine et la Russie)
+  const note = document.getElementById("fiche-pays-note");
+  note.textContent = pays && pays.note ? pays.note : "";
+  note.hidden = !(pays && pays.note);
+
   // Le contour du pays choisi est un tracé à part, dessiné par-dessus tous les pays
   const contourChoisi = document.querySelector(".carte-monde .contour-choisi");
   const forme = document.getElementById("pays-" + code);

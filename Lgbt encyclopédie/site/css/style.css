@@ -1268,6 +1268,15 @@ h3 { font-size: 1.1rem; line-height: 1.25; }
   color: inherit;
 }
 
+/* Fiche du pays : remarque (ex. Crimée) */
+.note-pays {
+  margin-top: var(--space-2);
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: var(--color-soft);
+  font-size: 0.85rem;
+}
+
 /* Fiche du pays : les trois faits ILGA */
 .faits-pays dt {
   margin-top: var(--space-2);

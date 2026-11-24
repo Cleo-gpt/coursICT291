@@ -1,0 +1,3 @@
+# Outils installés par npm install, et données brutes d'ILGA (plusieurs Mo, refaites par npm run ilga)
+node_modules/
+donnees-ilga/

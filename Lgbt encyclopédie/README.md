@@ -9,6 +9,7 @@ Lgbt encyclopédie/
 │   ├── pages/             Les autres pages : manifs, preparer-manif, dico, prints,
 │   │                      print, voyager, ressources, mon-espace, confirmer
 │   ├── data.json          Les 30 fiches de manifs (s10), lues par fetch (s11)
+│   ├── pays.json          Les pays de Voyager et leur niveau (ILGA World, voir serveur/carte/)
 │   ├── etiquettes.md      Étiquettes de data.json (s10)
 │   ├── mes-cartes.md      Carte HTML ↔ étiquettes (s11)
 │   ├── css/style.css      Styles (piste D, polices Nunito)
@@ -17,6 +18,7 @@ Lgbt encyclopédie/
 │   │                      d'origine en pleine qualité, à ne pas compresser)
 │   └── api/               Serveur PHP des comptes (seul compte.php est public)
 ├── serveur/               Mise en place MySQL : GUIDE.md + schema.sql
+│   └── carte/             Scripts qui refont pays.json (ILGA World) et la carte de Voyager
 ├── design/
 │   ├── wireframes/        Wireframes (.dc.html + support.js, à garder ensemble)
 │   │                      + 01-accueil-mobile.png, 02-recherche-filtre.png,

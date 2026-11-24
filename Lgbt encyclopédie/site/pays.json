@@ -1493,7 +1493,8 @@
   "niveau": 3,
   "criminalisation": "Non criminalisées",
   "couples": "Aucune reconnaissance des couples de même sexe",
-  "expression": "Obstacles légaux explicites (lois dites « anti-propagande »)"
+  "expression": "Obstacles légaux explicites (lois dites « anti-propagande »)",
+  "note": "La Crimée, occupée par la Russie depuis 2014, est rattachée à l'Ukraine sur la carte : c'est la frontière reconnue internationalement. Dans les faits, les lois russes s'y appliquent."
  },
  {
   "code": "RW",
@@ -1845,7 +1846,8 @@
   "niveau": 2,
   "criminalisation": "Non criminalisées",
   "couples": "Aucune reconnaissance des couples de même sexe",
-  "expression": "Pas d'obstacle légal connu"
+  "expression": "Pas d'obstacle légal connu",
+  "note": "En Crimée, occupée par la Russie depuis 2014, ce sont dans les faits les lois russes qui s'appliquent, dont la loi « anti-propagande ». Le niveau de vigilance y est celui de la Russie."
  },
  {
   "code": "UY",
