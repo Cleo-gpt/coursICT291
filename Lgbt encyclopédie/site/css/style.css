@@ -1232,6 +1232,54 @@ h3 { font-size: 1.1rem; line-height: 1.25; }
   stroke-width: 2;
 }
 
+/* Voyager : la liste de tous les pays défile dans son cadre */
+.liste-pays {
+  max-height: 420px;
+  overflow-y: auto;
+}
+
+/* « Comment les couleurs sont choisies » sous la légende */
+.methode {
+  margin-top: var(--space-2);
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
+.methode summary {
+  min-height: 32px;
+  font-weight: 700;
+  color: var(--color-text);
+  cursor: pointer;
+}
+
+.methode ul {
+  margin: var(--space-1) 0;
+  padding-left: 1.2em;
+}
+
+.methode p,
+.methode li {
+  margin-bottom: 4px;
+}
+
+/* Liens de la source (ILGA) : couleur du texte, soulignés */
+.fiche-pays .petite-info a,
+.methode a {
+  color: inherit;
+}
+
+/* Fiche du pays : les trois faits ILGA */
+.faits-pays dt {
+  margin-top: var(--space-2);
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+}
+
+.faits-pays dd {
+  margin: 2px 0 0;
+  font-weight: 600;
+}
+
 .liste-pays a[aria-current="true"] {
   background: var(--color-soft);
   font-weight: 700;

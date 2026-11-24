@@ -1,0 +1,1914 @@
+[
+ {
+  "code": "AF",
+  "nom": "Afghanistan",
+  "niveau": 4,
+  "criminalisation": "Criminalisées : peine de mort possible",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Obstacles légaux non explicites (lois générales, par exemple sur la « moralité publique »)"
+ },
+ {
+  "code": "ZA",
+  "nom": "Afrique du Sud",
+  "niveau": 1,
+  "criminalisation": "Non criminalisées",
+  "couples": "Mariage et union civile",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "AL",
+  "nom": "Albanie",
+  "niveau": 2,
+  "criminalisation": "Non criminalisées",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "DZ",
+  "nom": "Algérie",
+  "niveau": 4,
+  "criminalisation": "Criminalisées : jusqu'à 8 ans de prison",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Obstacles légaux explicites (lois dites « anti-propagande »)"
+ },
+ {
+  "code": "DE",
+  "nom": "Allemagne",
+  "niveau": 1,
+  "criminalisation": "Non criminalisées",
+  "couples": "Mariage",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "AD",
+  "nom": "Andorre",
+  "niveau": 1,
+  "criminalisation": "Non criminalisées",
+  "couples": "Mariage",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "AO",
+  "nom": "Angola",
+  "niveau": 2,
+  "criminalisation": "Non criminalisées",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "AI",
+  "nom": "Anguilla",
+  "niveau": 2,
+  "criminalisation": "Non criminalisées",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "AG",
+  "nom": "Antigua-et-Barbuda",
+  "niveau": 2,
+  "criminalisation": "Non criminalisées",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "SA",
+  "nom": "Arabie Saoudite",
+  "niveau": 4,
+  "criminalisation": "Criminalisées : peine de mort",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Obstacles légaux non explicites (lois générales, par exemple sur la « moralité publique »)"
+ },
+ {
+  "code": "AR",
+  "nom": "Argentine",
+  "niveau": 3,
+  "criminalisation": "Non criminalisées",
+  "couples": "Mariage et union civile",
+  "expression": "Obstacles légaux non explicites (lois générales, par exemple sur la « moralité publique »)"
+ },
+ {
+  "code": "AM",
+  "nom": "Arménie",
+  "niveau": 2,
+  "criminalisation": "Non criminalisées",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "AW",
+  "nom": "Aruba",
+  "niveau": 1,
+  "criminalisation": "Non criminalisées",
+  "couples": "Mariage et union civile",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "AU",
+  "nom": "Australie",
+  "niveau": 1,
+  "criminalisation": "Non criminalisées",
+  "couples": "Mariage et union civile",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "AT",
+  "nom": "Autriche",
+  "niveau": 1,
+  "criminalisation": "Non criminalisées",
+  "couples": "Mariage et union civile",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "AZ",
+  "nom": "Azerbaïdjan",
+  "niveau": 2,
+  "criminalisation": "Non criminalisées",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "BS",
+  "nom": "Bahamas",
+  "niveau": 2,
+  "criminalisation": "Non criminalisées",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "BH",
+  "nom": "Bahreïn",
+  "niveau": 3,
+  "criminalisation": "Non criminalisées",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Obstacles légaux non explicites (lois générales, par exemple sur la « moralité publique »)"
+ },
+ {
+  "code": "BD",
+  "nom": "Bangladesh",
+  "niveau": 4,
+  "criminalisation": "Criminalisées : de 10 ans à la prison à vie",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "BB",
+  "nom": "Barbade",
+  "niveau": 2,
+  "criminalisation": "Non criminalisées",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "BE",
+  "nom": "Belgique",
+  "niveau": 1,
+  "criminalisation": "Non criminalisées",
+  "couples": "Mariage et union civile",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "BZ",
+  "nom": "Belize",
+  "niveau": 2,
+  "criminalisation": "Non criminalisées",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "BJ",
+  "nom": "Bénin",
+  "niveau": 2,
+  "criminalisation": "Non criminalisées",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "BM",
+  "nom": "Bermudes",
+  "niveau": 2,
+  "criminalisation": "Non criminalisées",
+  "couples": "Union civile seulement",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "BT",
+  "nom": "Bhoutan",
+  "niveau": 2,
+  "criminalisation": "Non criminalisées",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "BY",
+  "nom": "Biélorussie",
+  "niveau": 3,
+  "criminalisation": "Non criminalisées",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Obstacles légaux explicites (lois dites « anti-propagande »)"
+ },
+ {
+  "code": "BO",
+  "nom": "Bolivie",
+  "niveau": 2,
+  "criminalisation": "Non criminalisées",
+  "couples": "Union civile seulement",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "BQ",
+  "nom": "Bonaire, Saint-Eustache et Saba",
+  "niveau": 1,
+  "criminalisation": "Non criminalisées",
+  "couples": "Mariage et union civile",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "BA",
+  "nom": "Bosnie-Herzégovine",
+  "niveau": 2,
+  "criminalisation": "Non criminalisées",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "BW",
+  "nom": "Botswana",
+  "niveau": 2,
+  "criminalisation": "Non criminalisées",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "BR",
+  "nom": "Brésil",
+  "niveau": 1,
+  "criminalisation": "Non criminalisées",
+  "couples": "Mariage et union civile",
+  "expression": "Variable selon les régions du pays"
+ },
+ {
+  "code": "BN",
+  "nom": "Brunei Darussalam",
+  "niveau": 4,
+  "criminalisation": "Criminalisées : peine de mort",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "BG",
+  "nom": "Bulgarie",
+  "niveau": 3,
+  "criminalisation": "Non criminalisées",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Obstacles légaux explicites (lois dites « anti-propagande »)"
+ },
+ {
+  "code": "BF",
+  "nom": "Burkina Faso",
+  "niveau": 4,
+  "criminalisation": "Criminalisées : de 10 ans à la prison à vie",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Obstacles légaux explicites (lois dites « anti-propagande »)"
+ },
+ {
+  "code": "BI",
+  "nom": "Burundi",
+  "niveau": 4,
+  "criminalisation": "Criminalisées : jusqu'à 8 ans de prison",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Obstacles légaux non explicites (lois générales, par exemple sur la « moralité publique »)"
+ },
+ {
+  "code": "KH",
+  "nom": "Cambodge",
+  "niveau": 2,
+  "criminalisation": "Non criminalisées",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "CM",
+  "nom": "Cameroun",
+  "niveau": 4,
+  "criminalisation": "Criminalisées : jusqu'à 8 ans de prison",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Obstacles légaux explicites (lois dites « anti-propagande »)"
+ },
+ {
+  "code": "CA",
+  "nom": "Canada",
+  "niveau": 1,
+  "criminalisation": "Non criminalisées",
+  "couples": "Mariage et union civile",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "CV",
+  "nom": "Cap-Vert",
+  "niveau": 2,
+  "criminalisation": "Non criminalisées",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "CF",
+  "nom": "Centrafrique",
+  "niveau": 2,
+  "criminalisation": "Non criminalisées",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "CL",
+  "nom": "Chili",
+  "niveau": 1,
+  "criminalisation": "Non criminalisées",
+  "couples": "Mariage et union civile",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "CN",
+  "nom": "Chine",
+  "niveau": 3,
+  "criminalisation": "Non criminalisées",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Obstacles légaux explicites (lois dites « anti-propagande »)"
+ },
+ {
+  "code": "CY",
+  "nom": "Chypre",
+  "niveau": 2,
+  "criminalisation": "Non criminalisées",
+  "couples": "Union civile seulement",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "CO",
+  "nom": "Colombie",
+  "niveau": 1,
+  "criminalisation": "Non criminalisées",
+  "couples": "Mariage et union civile",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "KM",
+  "nom": "Comores",
+  "niveau": 4,
+  "criminalisation": "Criminalisées : jusqu'à 8 ans de prison",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "KP",
+  "nom": "Corée du Nord",
+  "niveau": 3,
+  "criminalisation": "Non criminalisées",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Obstacles légaux non explicites (lois générales, par exemple sur la « moralité publique »)"
+ },
+ {
+  "code": "KR",
+  "nom": "Corée du Sud",
+  "niveau": 2,
+  "criminalisation": "Non criminalisées",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "CR",
+  "nom": "Costa Rica",
+  "niveau": 1,
+  "criminalisation": "Non criminalisées",
+  "couples": "Mariage",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "CI",
+  "nom": "Côte-d'Ivoire",
+  "niveau": 3,
+  "criminalisation": "Non criminalisées",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Obstacles légaux non explicites (lois générales, par exemple sur la « moralité publique »)"
+ },
+ {
+  "code": "HR",
+  "nom": "Croatie",
+  "niveau": 2,
+  "criminalisation": "Non criminalisées",
+  "couples": "Union civile seulement",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "CU",
+  "nom": "Cuba",
+  "niveau": 1,
+  "criminalisation": "Non criminalisées",
+  "couples": "Mariage et union civile",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "CW",
+  "nom": "Curaçao",
+  "niveau": 1,
+  "criminalisation": "Non criminalisées",
+  "couples": "Mariage",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "DK",
+  "nom": "Danemark",
+  "niveau": 1,
+  "criminalisation": "Non criminalisées",
+  "couples": "Mariage",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "DJ",
+  "nom": "Djibouti",
+  "niveau": 3,
+  "criminalisation": "Non criminalisées",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Obstacles légaux non explicites (lois générales, par exemple sur la « moralité publique »)"
+ },
+ {
+  "code": "DM",
+  "nom": "Dominique",
+  "niveau": 2,
+  "criminalisation": "Non criminalisées",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "EG",
+  "nom": "Égypte",
+  "niveau": 4,
+  "criminalisation": "Criminalisées dans les faits, sans loi explicite",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Obstacles légaux explicites (lois dites « anti-propagande »)"
+ },
+ {
+  "code": "SV",
+  "nom": "El Salvador",
+  "niveau": 3,
+  "criminalisation": "Non criminalisées",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Obstacles légaux non explicites (lois générales, par exemple sur la « moralité publique »)"
+ },
+ {
+  "code": "AE",
+  "nom": "Émirats Arabes Unis",
+  "niveau": 4,
+  "criminalisation": "Criminalisées : peine de mort possible",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Obstacles légaux explicites (lois dites « anti-propagande »)"
+ },
+ {
+  "code": "EC",
+  "nom": "Équateur",
+  "niveau": 1,
+  "criminalisation": "Non criminalisées",
+  "couples": "Mariage et union civile",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "ER",
+  "nom": "Érythrée",
+  "niveau": 4,
+  "criminalisation": "Criminalisées : jusqu'à 8 ans de prison",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "ES",
+  "nom": "Espagne",
+  "niveau": 1,
+  "criminalisation": "Non criminalisées",
+  "couples": "Mariage et union civile",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "EE",
+  "nom": "Estonie",
+  "niveau": 1,
+  "criminalisation": "Non criminalisées",
+  "couples": "Mariage et union civile",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "US",
+  "nom": "États-Unis",
+  "niveau": 1,
+  "criminalisation": "Non criminalisées",
+  "couples": "Mariage",
+  "expression": "Variable selon les régions du pays"
+ },
+ {
+  "code": "ET",
+  "nom": "Éthiopie",
+  "niveau": 4,
+  "criminalisation": "Criminalisées : jusqu'à 8 ans de prison",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Obstacles légaux non explicites (lois générales, par exemple sur la « moralité publique »)"
+ },
+ {
+  "code": "FJ",
+  "nom": "Fidji",
+  "niveau": 2,
+  "criminalisation": "Non criminalisées",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "FI",
+  "nom": "Finlande",
+  "niveau": 1,
+  "criminalisation": "Non criminalisées",
+  "couples": "Mariage",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "FR",
+  "nom": "France",
+  "niveau": 1,
+  "criminalisation": "Non criminalisées",
+  "couples": "Mariage et union civile",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "GA",
+  "nom": "Gabon",
+  "niveau": 2,
+  "criminalisation": "Non criminalisées",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "GM",
+  "nom": "Gambie",
+  "niveau": 4,
+  "criminalisation": "Criminalisées : de 10 ans à la prison à vie",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "GE",
+  "nom": "Géorgie",
+  "niveau": 3,
+  "criminalisation": "Non criminalisées",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Obstacles légaux explicites (lois dites « anti-propagande »)"
+ },
+ {
+  "code": "GS",
+  "nom": "Géorgie du Sud-et-les Îles Sandwich du Sud",
+  "niveau": 1,
+  "criminalisation": "Non criminalisées",
+  "couples": "Mariage",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "GH",
+  "nom": "Ghana",
+  "niveau": 4,
+  "criminalisation": "Criminalisées : jusqu'à 8 ans de prison",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Obstacles légaux explicites (lois dites « anti-propagande »)"
+ },
+ {
+  "code": "GI",
+  "nom": "Gibraltar",
+  "niveau": 1,
+  "criminalisation": "Non criminalisées",
+  "couples": "Mariage et union civile",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "GR",
+  "nom": "Grèce",
+  "niveau": 1,
+  "criminalisation": "Non criminalisées",
+  "couples": "Mariage et union civile",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "GD",
+  "nom": "Grenade",
+  "niveau": 4,
+  "criminalisation": "Criminalisées : de 10 ans à la prison à vie",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "GL",
+  "nom": "Groenland",
+  "niveau": 1,
+  "criminalisation": "Non criminalisées",
+  "couples": "Mariage",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "GP",
+  "nom": "Guadeloupe",
+  "niveau": 1,
+  "criminalisation": "Non criminalisées",
+  "couples": "Mariage et union civile",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "GU",
+  "nom": "Guam",
+  "niveau": 1,
+  "criminalisation": "Non criminalisées",
+  "couples": "Mariage",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "GT",
+  "nom": "Guatemala",
+  "niveau": 2,
+  "criminalisation": "Non criminalisées",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "GG",
+  "nom": "Guernesey",
+  "niveau": 1,
+  "criminalisation": "Non criminalisées",
+  "couples": "Mariage",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "GN",
+  "nom": "Guinée",
+  "niveau": 4,
+  "criminalisation": "Criminalisées : jusqu'à 8 ans de prison",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "GQ",
+  "nom": "Guinée équatoriale",
+  "niveau": 2,
+  "criminalisation": "Non criminalisées",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "GW",
+  "nom": "Guinée-Bissau",
+  "niveau": 2,
+  "criminalisation": "Non criminalisées",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "GY",
+  "nom": "Guyana",
+  "niveau": 4,
+  "criminalisation": "Criminalisées : de 10 ans à la prison à vie",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "GF",
+  "nom": "Guyane française",
+  "niveau": 1,
+  "criminalisation": "Non criminalisées",
+  "couples": "Mariage et union civile",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "HT",
+  "nom": "Haïti",
+  "niveau": 2,
+  "criminalisation": "Non criminalisées",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "HN",
+  "nom": "Honduras",
+  "niveau": 2,
+  "criminalisation": "Non criminalisées",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "HK",
+  "nom": "Hong Kong",
+  "niveau": 3,
+  "criminalisation": "Non criminalisées",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Obstacles légaux explicites (lois dites « anti-propagande »)"
+ },
+ {
+  "code": "HU",
+  "nom": "Hongrie",
+  "niveau": 3,
+  "criminalisation": "Non criminalisées",
+  "couples": "Union civile seulement",
+  "expression": "Obstacles légaux explicites (lois dites « anti-propagande »)"
+ },
+ {
+  "code": "IM",
+  "nom": "Île de Man",
+  "niveau": 1,
+  "criminalisation": "Non criminalisées",
+  "couples": "Mariage et union civile",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "KY",
+  "nom": "Îles Caïmans",
+  "niveau": 2,
+  "criminalisation": "Non criminalisées",
+  "couples": "Union civile seulement",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "CK",
+  "nom": "Îles Cook",
+  "niveau": 2,
+  "criminalisation": "Non criminalisées",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "FO",
+  "nom": "Îles Féroé",
+  "niveau": 1,
+  "criminalisation": "Non criminalisées",
+  "couples": "Mariage",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "FK",
+  "nom": "Îles Malouines",
+  "niveau": 1,
+  "criminalisation": "Non criminalisées",
+  "couples": "Mariage et union civile",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "MP",
+  "nom": "Îles Mariannes du Nord",
+  "niveau": 1,
+  "criminalisation": "Non criminalisées",
+  "couples": "Mariage",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "MH",
+  "nom": "Îles Marshall",
+  "niveau": 2,
+  "criminalisation": "Non criminalisées",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "PN",
+  "nom": "Îles Pitcairn",
+  "niveau": 1,
+  "criminalisation": "Non criminalisées",
+  "couples": "Mariage et union civile",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "SB",
+  "nom": "Îles Salomon",
+  "niveau": 4,
+  "criminalisation": "Criminalisées : de 10 ans à la prison à vie",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "TC",
+  "nom": "Îles Turques-et-Caïques",
+  "niveau": 2,
+  "criminalisation": "Non criminalisées",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "VI",
+  "nom": "Îles vierges américaines",
+  "niveau": 1,
+  "criminalisation": "Non criminalisées",
+  "couples": "Mariage",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "VG",
+  "nom": "Îles vierges britanniques",
+  "niveau": 2,
+  "criminalisation": "Non criminalisées",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "IN",
+  "nom": "Inde",
+  "niveau": 2,
+  "criminalisation": "Non criminalisées",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "ID",
+  "nom": "Indonésie",
+  "niveau": 4,
+  "criminalisation": "Criminalisées dans les faits, sans loi explicite",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Obstacles légaux explicites (lois dites « anti-propagande »)"
+ },
+ {
+  "code": "IQ",
+  "nom": "Irak",
+  "niveau": 4,
+  "criminalisation": "Criminalisées : de 10 ans à la prison à vie",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Obstacles légaux explicites (lois dites « anti-propagande »)"
+ },
+ {
+  "code": "IR",
+  "nom": "Iran",
+  "niveau": 4,
+  "criminalisation": "Criminalisées : peine de mort",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Obstacles légaux non explicites (lois générales, par exemple sur la « moralité publique »)"
+ },
+ {
+  "code": "IE",
+  "nom": "Irlande",
+  "niveau": 1,
+  "criminalisation": "Non criminalisées",
+  "couples": "Mariage",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "IS",
+  "nom": "Islande",
+  "niveau": 1,
+  "criminalisation": "Non criminalisées",
+  "couples": "Mariage",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "IL",
+  "nom": "Israël",
+  "niveau": 2,
+  "criminalisation": "Non criminalisées",
+  "couples": "Union civile seulement",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "IT",
+  "nom": "Italie",
+  "niveau": 2,
+  "criminalisation": "Non criminalisées",
+  "couples": "Union civile seulement",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "JM",
+  "nom": "Jamaïque",
+  "niveau": 4,
+  "criminalisation": "Criminalisées : de 10 ans à la prison à vie",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "JP",
+  "nom": "Japon",
+  "niveau": 2,
+  "criminalisation": "Non criminalisées",
+  "couples": "Variable selon les régions du pays",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "JE",
+  "nom": "Jersey",
+  "niveau": 1,
+  "criminalisation": "Non criminalisées",
+  "couples": "Mariage et union civile",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "JO",
+  "nom": "Jordanie",
+  "niveau": 3,
+  "criminalisation": "Non criminalisées",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Obstacles légaux non explicites (lois générales, par exemple sur la « moralité publique »)"
+ },
+ {
+  "code": "KZ",
+  "nom": "Kazakhstan",
+  "niveau": 3,
+  "criminalisation": "Non criminalisées",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Obstacles légaux explicites (lois dites « anti-propagande »)"
+ },
+ {
+  "code": "KE",
+  "nom": "Kenya",
+  "niveau": 4,
+  "criminalisation": "Criminalisées : de 10 ans à la prison à vie",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Obstacles légaux explicites (lois dites « anti-propagande »)"
+ },
+ {
+  "code": "KG",
+  "nom": "Kirghizistan",
+  "niveau": 3,
+  "criminalisation": "Non criminalisées",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Obstacles légaux explicites (lois dites « anti-propagande »)"
+ },
+ {
+  "code": "KI",
+  "nom": "Kiribati",
+  "niveau": 4,
+  "criminalisation": "Criminalisées : de 10 ans à la prison à vie",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "XK",
+  "nom": "Kosovo",
+  "niveau": 2,
+  "criminalisation": "Non criminalisées",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "KW",
+  "nom": "Koweït",
+  "niveau": 4,
+  "criminalisation": "Criminalisées : jusqu'à 8 ans de prison",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Obstacles légaux non explicites (lois générales, par exemple sur la « moralité publique »)"
+ },
+ {
+  "code": "LA",
+  "nom": "Laos",
+  "niveau": 2,
+  "criminalisation": "Non criminalisées",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "LS",
+  "nom": "Lesotho",
+  "niveau": 2,
+  "criminalisation": "Non criminalisées",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "LV",
+  "nom": "Lettonie",
+  "niveau": 2,
+  "criminalisation": "Non criminalisées",
+  "couples": "Union civile seulement",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "LB",
+  "nom": "Liban",
+  "niveau": 4,
+  "criminalisation": "Criminalisées : jusqu'à 8 ans de prison",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Obstacles légaux non explicites (lois générales, par exemple sur la « moralité publique »)"
+ },
+ {
+  "code": "LR",
+  "nom": "Libéria",
+  "niveau": 4,
+  "criminalisation": "Criminalisées : jusqu'à 8 ans de prison",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "LY",
+  "nom": "Libye",
+  "niveau": 4,
+  "criminalisation": "Criminalisées : jusqu'à 8 ans de prison",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Obstacles légaux non explicites (lois générales, par exemple sur la « moralité publique »)"
+ },
+ {
+  "code": "LI",
+  "nom": "Liechtenstein",
+  "niveau": 1,
+  "criminalisation": "Non criminalisées",
+  "couples": "Mariage",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "LT",
+  "nom": "Lituanie",
+  "niveau": 2,
+  "criminalisation": "Non criminalisées",
+  "couples": "Union civile seulement",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "LU",
+  "nom": "Luxembourg",
+  "niveau": 1,
+  "criminalisation": "Non criminalisées",
+  "couples": "Mariage et union civile",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "MO",
+  "nom": "Macao",
+  "niveau": 2,
+  "criminalisation": "Non criminalisées",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "MK",
+  "nom": "Macédoine du Nord",
+  "niveau": 2,
+  "criminalisation": "Non criminalisées",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "MG",
+  "nom": "Madagascar",
+  "niveau": 2,
+  "criminalisation": "Non criminalisées",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "MY",
+  "nom": "Malaisie",
+  "niveau": 4,
+  "criminalisation": "Criminalisées : de 10 ans à la prison à vie",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Obstacles légaux explicites (lois dites « anti-propagande »)"
+ },
+ {
+  "code": "MW",
+  "nom": "Malawi",
+  "niveau": 4,
+  "criminalisation": "Criminalisées : de 10 ans à la prison à vie",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "MV",
+  "nom": "Maldives",
+  "niveau": 4,
+  "criminalisation": "Criminalisées : jusqu'à 8 ans de prison",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "ML",
+  "nom": "Mali",
+  "niveau": 4,
+  "criminalisation": "Criminalisées : jusqu'à 8 ans de prison",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Obstacles légaux explicites (lois dites « anti-propagande »)"
+ },
+ {
+  "code": "MT",
+  "nom": "Malte",
+  "niveau": 1,
+  "criminalisation": "Non criminalisées",
+  "couples": "Mariage et union civile",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "MA",
+  "nom": "Maroc",
+  "niveau": 4,
+  "criminalisation": "Criminalisées : jusqu'à 8 ans de prison",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Obstacles légaux non explicites (lois générales, par exemple sur la « moralité publique »)"
+ },
+ {
+  "code": "MQ",
+  "nom": "Martinique",
+  "niveau": 1,
+  "criminalisation": "Non criminalisées",
+  "couples": "Mariage et union civile",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "MU",
+  "nom": "Maurice",
+  "niveau": 2,
+  "criminalisation": "Non criminalisées",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "MR",
+  "nom": "Mauritanie",
+  "niveau": 4,
+  "criminalisation": "Criminalisées : peine de mort",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Obstacles légaux non explicites (lois générales, par exemple sur la « moralité publique »)"
+ },
+ {
+  "code": "YT",
+  "nom": "Mayotte",
+  "niveau": 1,
+  "criminalisation": "Non criminalisées",
+  "couples": "Mariage et union civile",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "MX",
+  "nom": "Mexique",
+  "niveau": 1,
+  "criminalisation": "Non criminalisées",
+  "couples": "Mariage",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "FM",
+  "nom": "Micronésie",
+  "niveau": 2,
+  "criminalisation": "Non criminalisées",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "MD",
+  "nom": "Moldavie",
+  "niveau": 2,
+  "criminalisation": "Non criminalisées",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Variable selon les régions du pays"
+ },
+ {
+  "code": "MC",
+  "nom": "Monaco",
+  "niveau": 2,
+  "criminalisation": "Non criminalisées",
+  "couples": "Union civile seulement",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "MN",
+  "nom": "Mongolie",
+  "niveau": 2,
+  "criminalisation": "Non criminalisées",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "ME",
+  "nom": "Monténégro",
+  "niveau": 2,
+  "criminalisation": "Non criminalisées",
+  "couples": "Union civile seulement",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "MS",
+  "nom": "Montserrat",
+  "niveau": 2,
+  "criminalisation": "Non criminalisées",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "MZ",
+  "nom": "Mozambique",
+  "niveau": 2,
+  "criminalisation": "Non criminalisées",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "MM",
+  "nom": "Myanmar",
+  "niveau": 4,
+  "criminalisation": "Criminalisées : de 10 ans à la prison à vie",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Situation incertaine"
+ },
+ {
+  "code": "NA",
+  "nom": "Namibie",
+  "niveau": 2,
+  "criminalisation": "Non criminalisées",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "NR",
+  "nom": "Nauru",
+  "niveau": 2,
+  "criminalisation": "Non criminalisées",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "NP",
+  "nom": "Népal",
+  "niveau": 2,
+  "criminalisation": "Non criminalisées",
+  "couples": "Situation incertaine",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "NI",
+  "nom": "Nicaragua",
+  "niveau": 2,
+  "criminalisation": "Non criminalisées",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "NE",
+  "nom": "Niger",
+  "niveau": 4,
+  "criminalisation": "Criminalisées : de 10 ans à la prison à vie",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Obstacles légaux explicites (lois dites « anti-propagande »)"
+ },
+ {
+  "code": "NG",
+  "nom": "Nigéria",
+  "niveau": 4,
+  "criminalisation": "Criminalisées : de 10 ans à la prison à vie",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Obstacles légaux explicites (lois dites « anti-propagande »)"
+ },
+ {
+  "code": "NU",
+  "nom": "Niué",
+  "niveau": 2,
+  "criminalisation": "Non criminalisées",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "NO",
+  "nom": "Norvège",
+  "niveau": 1,
+  "criminalisation": "Non criminalisées",
+  "couples": "Mariage",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "NC",
+  "nom": "Nouvelle-Calédonie",
+  "niveau": 1,
+  "criminalisation": "Non criminalisées",
+  "couples": "Mariage et union civile",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "NZ",
+  "nom": "Nouvelle-Zélande",
+  "niveau": 1,
+  "criminalisation": "Non criminalisées",
+  "couples": "Mariage et union civile",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "IO",
+  "nom": "Océan Indien Britannique",
+  "niveau": 1,
+  "criminalisation": "Non criminalisées",
+  "couples": "Mariage",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "OM",
+  "nom": "Oman",
+  "niveau": 4,
+  "criminalisation": "Criminalisées : jusqu'à 8 ans de prison",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Obstacles légaux non explicites (lois générales, par exemple sur la « moralité publique »)"
+ },
+ {
+  "code": "UG",
+  "nom": "Ouganda",
+  "niveau": 4,
+  "criminalisation": "Criminalisées : peine de mort",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Obstacles légaux explicites (lois dites « anti-propagande »)"
+ },
+ {
+  "code": "UZ",
+  "nom": "Ouzbékistan",
+  "niveau": 4,
+  "criminalisation": "Criminalisées : jusqu'à 8 ans de prison",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Situation incertaine"
+ },
+ {
+  "code": "PK",
+  "nom": "Pakistan",
+  "niveau": 4,
+  "criminalisation": "Criminalisées : peine de mort possible",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Obstacles légaux non explicites (lois générales, par exemple sur la « moralité publique »)"
+ },
+ {
+  "code": "PW",
+  "nom": "Palaos",
+  "niveau": 2,
+  "criminalisation": "Non criminalisées",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "PS",
+  "nom": "Palestine",
+  "niveau": 4,
+  "criminalisation": "Criminalisées dans une partie du territoire (variable selon les régions)",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "PA",
+  "nom": "Panama",
+  "niveau": 2,
+  "criminalisation": "Non criminalisées",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "PG",
+  "nom": "Papouasie-Nouvelle-Guinée",
+  "niveau": 4,
+  "criminalisation": "Criminalisées : de 10 ans à la prison à vie",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "PY",
+  "nom": "Paraguay",
+  "niveau": 3,
+  "criminalisation": "Non criminalisées",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Obstacles légaux explicites (lois dites « anti-propagande »)"
+ },
+ {
+  "code": "NL",
+  "nom": "Pays-Bas",
+  "niveau": 1,
+  "criminalisation": "Non criminalisées",
+  "couples": "Mariage et union civile",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "PE",
+  "nom": "Pérou",
+  "niveau": 3,
+  "criminalisation": "Non criminalisées",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Obstacles légaux non explicites (lois générales, par exemple sur la « moralité publique »)"
+ },
+ {
+  "code": "PH",
+  "nom": "Philippines",
+  "niveau": 2,
+  "criminalisation": "Non criminalisées",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "PL",
+  "nom": "Pologne",
+  "niveau": 2,
+  "criminalisation": "Non criminalisées",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "PF",
+  "nom": "Polynésie française",
+  "niveau": 1,
+  "criminalisation": "Non criminalisées",
+  "couples": "Mariage",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "PR",
+  "nom": "Porto Rico",
+  "niveau": 1,
+  "criminalisation": "Non criminalisées",
+  "couples": "Mariage",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "PT",
+  "nom": "Portugal",
+  "niveau": 1,
+  "criminalisation": "Non criminalisées",
+  "couples": "Mariage et union civile",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "QA",
+  "nom": "Qatar",
+  "niveau": 4,
+  "criminalisation": "Criminalisées : peine de mort possible",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Obstacles légaux non explicites (lois générales, par exemple sur la « moralité publique »)"
+ },
+ {
+  "code": "CD",
+  "nom": "République démocratique du Congo",
+  "niveau": 3,
+  "criminalisation": "Non criminalisées",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Obstacles légaux non explicites (lois générales, par exemple sur la « moralité publique »)"
+ },
+ {
+  "code": "DO",
+  "nom": "République dominicaine",
+  "niveau": 2,
+  "criminalisation": "Non criminalisées",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "CG",
+  "nom": "République du Congo",
+  "niveau": 2,
+  "criminalisation": "Non criminalisées",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "CZ",
+  "nom": "République Tchèque",
+  "niveau": 2,
+  "criminalisation": "Non criminalisées",
+  "couples": "Union civile seulement",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "RE",
+  "nom": "Réunion",
+  "niveau": 1,
+  "criminalisation": "Non criminalisées",
+  "couples": "Mariage et union civile",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "RO",
+  "nom": "Roumanie",
+  "niveau": 2,
+  "criminalisation": "Non criminalisées",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "SZ",
+  "nom": "Royaume d'Eswatini",
+  "niveau": 4,
+  "criminalisation": "Criminalisées : jusqu'à 8 ans de prison",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "GB",
+  "nom": "Royaume-Uni",
+  "niveau": 1,
+  "criminalisation": "Non criminalisées",
+  "couples": "Mariage et union civile",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "RU",
+  "nom": "Russie",
+  "niveau": 3,
+  "criminalisation": "Non criminalisées",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Obstacles légaux explicites (lois dites « anti-propagande »)"
+ },
+ {
+  "code": "RW",
+  "nom": "Rwanda",
+  "niveau": 2,
+  "criminalisation": "Non criminalisées",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "BL",
+  "nom": "Saint-Barthélemy",
+  "niveau": 1,
+  "criminalisation": "Non criminalisées",
+  "couples": "Mariage et union civile",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "KN",
+  "nom": "Saint-Christophe-et-Niévès",
+  "niveau": 2,
+  "criminalisation": "Non criminalisées",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "SM",
+  "nom": "Saint-Marin",
+  "niveau": 2,
+  "criminalisation": "Non criminalisées",
+  "couples": "Union civile seulement",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "MF",
+  "nom": "Saint-Martin (partie française)",
+  "niveau": 1,
+  "criminalisation": "Non criminalisées",
+  "couples": "Mariage et union civile",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "SX",
+  "nom": "Saint-Martin (partie néerlandaise)",
+  "niveau": 2,
+  "criminalisation": "Non criminalisées",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "PM",
+  "nom": "Saint-Pierre-et-Miquelon",
+  "niveau": 1,
+  "criminalisation": "Non criminalisées",
+  "couples": "Mariage",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "VA",
+  "nom": "Saint-Siège (Vatican)",
+  "niveau": 3,
+  "criminalisation": "Non criminalisées",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Obstacles légaux non explicites (lois générales, par exemple sur la « moralité publique »)"
+ },
+ {
+  "code": "VC",
+  "nom": "Saint-Vincent-et-les-Grenadines",
+  "niveau": 4,
+  "criminalisation": "Criminalisées : de 10 ans à la prison à vie",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "SH",
+  "nom": "Sainte-Hélène",
+  "niveau": 1,
+  "criminalisation": "Non criminalisées",
+  "couples": "Mariage",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "LC",
+  "nom": "Sainte-Lucie",
+  "niveau": 2,
+  "criminalisation": "Non criminalisées",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "WS",
+  "nom": "Samoa",
+  "niveau": 4,
+  "criminalisation": "Criminalisées : jusqu'à 8 ans de prison",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "AS",
+  "nom": "Samoa américaines",
+  "niveau": 2,
+  "criminalisation": "Non criminalisées",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "ST",
+  "nom": "São Tomé-et-Principe",
+  "niveau": 2,
+  "criminalisation": "Non criminalisées",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "SN",
+  "nom": "Sénégal",
+  "niveau": 4,
+  "criminalisation": "Criminalisées : de 10 ans à la prison à vie",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Obstacles légaux explicites (lois dites « anti-propagande »)"
+ },
+ {
+  "code": "RS",
+  "nom": "Serbie",
+  "niveau": 2,
+  "criminalisation": "Non criminalisées",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "SC",
+  "nom": "Seychelles",
+  "niveau": 2,
+  "criminalisation": "Non criminalisées",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "SL",
+  "nom": "Sierra Leone",
+  "niveau": 4,
+  "criminalisation": "Criminalisées : de 10 ans à la prison à vie",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "SG",
+  "nom": "Singapour",
+  "niveau": 3,
+  "criminalisation": "Non criminalisées",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Obstacles légaux explicites (lois dites « anti-propagande »)"
+ },
+ {
+  "code": "SK",
+  "nom": "Slovaquie",
+  "niveau": 2,
+  "criminalisation": "Non criminalisées",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "SI",
+  "nom": "Slovénie",
+  "niveau": 1,
+  "criminalisation": "Non criminalisées",
+  "couples": "Mariage",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "SO",
+  "nom": "Somalie",
+  "niveau": 4,
+  "criminalisation": "Criminalisées : peine de mort possible",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Obstacles légaux non explicites (lois générales, par exemple sur la « moralité publique »)"
+ },
+ {
+  "code": "SD",
+  "nom": "Soudan",
+  "niveau": 4,
+  "criminalisation": "Criminalisées : de 10 ans à la prison à vie",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Obstacles légaux non explicites (lois générales, par exemple sur la « moralité publique »)"
+ },
+ {
+  "code": "SS",
+  "nom": "Soudan du Sud",
+  "niveau": 4,
+  "criminalisation": "Criminalisées : de 10 ans à la prison à vie",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "LK",
+  "nom": "Sri Lanka",
+  "niveau": 4,
+  "criminalisation": "Criminalisées : de 10 ans à la prison à vie",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "SE",
+  "nom": "Suède",
+  "niveau": 1,
+  "criminalisation": "Non criminalisées",
+  "couples": "Mariage",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "CH",
+  "nom": "Suisse",
+  "niveau": 1,
+  "criminalisation": "Non criminalisées",
+  "couples": "Mariage et union civile",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "SR",
+  "nom": "Suriname",
+  "niveau": 2,
+  "criminalisation": "Non criminalisées",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "SY",
+  "nom": "Syrie",
+  "niveau": 4,
+  "criminalisation": "Criminalisées : jusqu'à 8 ans de prison",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Obstacles légaux non explicites (lois générales, par exemple sur la « moralité publique »)"
+ },
+ {
+  "code": "TJ",
+  "nom": "Tadjikistan",
+  "niveau": 2,
+  "criminalisation": "Non criminalisées",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "TW",
+  "nom": "Taïwan",
+  "niveau": 1,
+  "criminalisation": "Non criminalisées",
+  "couples": "Mariage",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "TZ",
+  "nom": "Tanzanie",
+  "niveau": 4,
+  "criminalisation": "Criminalisées : de 10 ans à la prison à vie",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Obstacles légaux non explicites (lois générales, par exemple sur la « moralité publique »)"
+ },
+ {
+  "code": "TD",
+  "nom": "Tchad",
+  "niveau": 4,
+  "criminalisation": "Criminalisées : jusqu'à 8 ans de prison",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "TH",
+  "nom": "Thaïlande",
+  "niveau": 1,
+  "criminalisation": "Non criminalisées",
+  "couples": "Mariage",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "TL",
+  "nom": "Timor-Leste",
+  "niveau": 2,
+  "criminalisation": "Non criminalisées",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "TG",
+  "nom": "Togo",
+  "niveau": 4,
+  "criminalisation": "Criminalisées : jusqu'à 8 ans de prison",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Obstacles légaux explicites (lois dites « anti-propagande »)"
+ },
+ {
+  "code": "TK",
+  "nom": "Tokelau",
+  "niveau": 2,
+  "criminalisation": "Non criminalisées",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "TO",
+  "nom": "Tonga",
+  "niveau": 4,
+  "criminalisation": "Criminalisées : de 10 ans à la prison à vie",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "TT",
+  "nom": "Trinité-et-Tobago",
+  "niveau": 4,
+  "criminalisation": "Criminalisées : jusqu'à 8 ans de prison",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "TN",
+  "nom": "Tunisie",
+  "niveau": 4,
+  "criminalisation": "Criminalisées : jusqu'à 8 ans de prison",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Obstacles légaux non explicites (lois générales, par exemple sur la « moralité publique »)"
+ },
+ {
+  "code": "TM",
+  "nom": "Turkménistan",
+  "niveau": 4,
+  "criminalisation": "Criminalisées : jusqu'à 8 ans de prison",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Obstacles légaux non explicites (lois générales, par exemple sur la « moralité publique »)"
+ },
+ {
+  "code": "TR",
+  "nom": "Turquie",
+  "niveau": 3,
+  "criminalisation": "Non criminalisées",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Obstacles légaux non explicites (lois générales, par exemple sur la « moralité publique »)"
+ },
+ {
+  "code": "TV",
+  "nom": "Tuvalu",
+  "niveau": 4,
+  "criminalisation": "Criminalisées : de 10 ans à la prison à vie",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "UA",
+  "nom": "Ukraine",
+  "niveau": 2,
+  "criminalisation": "Non criminalisées",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "UY",
+  "nom": "Uruguay",
+  "niveau": 1,
+  "criminalisation": "Non criminalisées",
+  "couples": "Mariage et union civile",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "VU",
+  "nom": "Vanuatu",
+  "niveau": 2,
+  "criminalisation": "Non criminalisées",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "VE",
+  "nom": "Venezuela",
+  "niveau": 2,
+  "criminalisation": "Non criminalisées",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "VN",
+  "nom": "Vietnam",
+  "niveau": 2,
+  "criminalisation": "Non criminalisées",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "WF",
+  "nom": "Wallis-et-Futuna",
+  "niveau": 1,
+  "criminalisation": "Non criminalisées",
+  "couples": "Mariage et union civile",
+  "expression": "Pas d'obstacle légal connu"
+ },
+ {
+  "code": "YE",
+  "nom": "Yémen",
+  "niveau": 4,
+  "criminalisation": "Criminalisées : peine de mort",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Obstacles légaux non explicites (lois générales, par exemple sur la « moralité publique »)"
+ },
+ {
+  "code": "ZM",
+  "nom": "Zambie",
+  "niveau": 4,
+  "criminalisation": "Criminalisées : de 10 ans à la prison à vie",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Obstacles légaux non explicites (lois générales, par exemple sur la « moralité publique »)"
+ },
+ {
+  "code": "ZW",
+  "nom": "Zimbabwe",
+  "niveau": 4,
+  "criminalisation": "Criminalisées : jusqu'à 8 ans de prison",
+  "couples": "Aucune reconnaissance des couples de même sexe",
+  "expression": "Obstacles légaux non explicites (lois générales, par exemple sur la « moralité publique »)"
+ }
+]

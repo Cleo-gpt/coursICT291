@@ -20,7 +20,6 @@ const TERMES = ['Agenre', 'Androgyne', 'Aromantique', 'Asexuel·le', 'Bigenre', 
     'Graysexuel·le', 'Homoromantique', 'Intergenre', 'Intersexe', 'Lesbienne', 'Non-binaire',
     'Omnisexuel·le', 'Pangenre', 'Panromantique', 'Pansexuel·le', 'Polyamorie', 'Polysexuel·le',
     'Skoliosexuel·le', 'Transfem', 'Transmasc', 'Trigenre'];
-const PAYS = ['Canada', 'Portugal', 'Italie', 'Turquie', 'Pays — législation hostile'];
 const DUREE_SESSION = '12 HOUR';
 
 // ---------- Outils ----------
@@ -34,6 +33,13 @@ function repondre(array $donnees, int $statut = 200)
     http_response_code($statut);
     echo json_encode($donnees, JSON_UNESCAPED_UNICODE);
     exit;
+}
+
+// Pays acceptés en favori : les noms de pays.json (la même liste que la page Voyager)
+function paysConnus(): array
+{
+    $pays = json_decode((string) @file_get_contents(__DIR__ . '/../pays.json'), true);
+    return is_array($pays) ? array_column($pays, 'nom') : [];
 }
 
 // Identifiants d'agenda acceptés : un par fiche de data.json (s11),
@@ -583,7 +589,7 @@ switch ($action) {
         $valeur = texte($entree, 'valeur', 80);
         $tables = [
             'favoris' => ['favoris', 'jour', preg_match('/^j(0[1-9]|[12][0-9]|30)$/', $valeur) === 1],
-            'pays' => ['pays_favoris', 'pays', in_array($valeur, PAYS, true)],
+            'pays' => ['pays_favoris', 'pays', in_array($valeur, paysConnus(), true)],
             'agenda' => ['agenda', 'manif', in_array($valeur, manifsConnues(), true)],
         ];
         if (!isset($tables[$table]) || !$tables[$table][2]) {

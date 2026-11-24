@@ -858,7 +858,7 @@ function brancherRecherche(idFormulaire, selecteurElements, aucun, options = {})
   });
 }
 
-brancherRecherche("recherche-voyager", ".liste-pays li", "Aucun pays");
+// Voyager : branchée plus bas, une fois la liste des pays fabriquée à partir de pays.json
 brancherRecherche("recherche-ressources", ".grille-ressources > li", "Aucune ressource");
 
 // Prints : chaque case ne montre que la date (« 02.06 ») ; on cherche aussi dans le nom
@@ -886,42 +886,40 @@ brancherRecherche("recherche-prints", ".grille-prints > li", "Aucun print", {
   }
 });
 
-// ---------- Voyager : carte du monde ----------
-// images/carte-monde.svg contient un <path id="pays-CA" data-nom="Canada"> par pays.
-// La couleur de chaque pays vient de la liste de voyager.html (<li data-code="CA">, barre niveau-1) :
-// pour ajouter un pays, il suffit d'ajouter une ligne à la liste.
-// Vu dans : s11/1-phare-charge-ses-fiches (fetch, .then, .catch) et s11/2-les-quatre-etats (chargement, erreur)
+// ---------- Voyager : carte du monde et liste des pays ----------
+// pays.json : un objet par pays (code ISO, nom, niveau 1 à 4, et trois faits tirés d'ILGA World).
+// images/carte-monde.svg : un <path id="pays-CA" data-nom="Canada"> par pays.
+// Les deux fichiers sont chargés avec fetch ; la liste, la carte et la fiche lisent les mêmes données.
+// Vu dans : s11/1-phare-charge-ses-fiches (fetch, .then, .catch, une liste fabriquée depuis un fichier JSON)
+//           s11/2-les-quatre-etats (chargement, erreur, liste vide)
 
 const zoneCarteMonde = document.getElementById("carte-monde");
+const listePays = document.getElementById("liste-pays");
 const NIVEAUX = { 1: "Accueil favorable", 2: "Vigilance normale", 3: "Vigilance renforcée", 4: "Zone à risque" };
-
-// Niveau (1 à 4) d'une ligne de la liste, lu dans la classe de sa barre de couleur
-function niveauDeLigne(ligne) {
-  const barre = ligne.querySelector(".barre");
-  const trouve = barre ? barre.className.match(/niveau-(\d)/) : null;
-  return trouve ? Number(trouve[1]) : 0;
-}
+let paysParCode = new Map(); // "CA" → fiche de pays.json
 
 // Remplit la fiche de droite et marque le pays choisi sur la carte et dans la liste
-function afficherFichePays(nom, niveau, code) {
-  document.getElementById("fiche-pays-nom").textContent = nom;
-  document.getElementById("fiche-pays-niveau").textContent = niveau
-    ? NIVEAUX[niveau]
-    : "Pas encore renseigné : la fiche de ce pays reste à écrire.";
+function afficherFichePays(code, nomSurLaCarte) {
+  const pays = paysParCode.get(code);
+  document.getElementById("fiche-pays-nom").textContent = pays ? pays.nom : nomSurLaCarte;
+  document.getElementById("fiche-pays-niveau").textContent = pays ? NIVEAUX[pays.niveau] : "Pas de données ILGA pour ce territoire.";
+
+  const faits = document.querySelectorAll("#fiche-pays-lois dd");
+  const valeurs = pays ? [pays.criminalisation, pays.couples, pays.expression] : ["—", "—", "—"];
+  faits.forEach(function (fait, numero) { fait.textContent = valeurs[numero]; });
 
   // Le contour du pays choisi est un tracé à part, dessiné par-dessus tous les pays
   const contourChoisi = document.querySelector(".carte-monde .contour-choisi");
-  const pays = code ? document.getElementById("pays-" + code) : null;
+  const forme = document.getElementById("pays-" + code);
   if (contourChoisi) {
-    if (pays) {
-      contourChoisi.setAttribute("d", pays.getAttribute("d"));
+    if (forme) {
+      contourChoisi.setAttribute("d", forme.getAttribute("d"));
     } else {
       contourChoisi.removeAttribute("d");
     }
   }
-  document.querySelectorAll(".liste-pays li").forEach(function (ligne) {
-    const lien = ligne.querySelector("a");
-    if (code && ligne.dataset.code === code) {
+  document.querySelectorAll(".liste-pays a").forEach(function (lien) {
+    if (lien.parentElement.dataset.code === code) {
       lien.setAttribute("aria-current", "true");
     } else {
       lien.removeAttribute("aria-current");
@@ -929,104 +927,143 @@ function afficherFichePays(nom, niveau, code) {
   });
 }
 
-if (zoneCarteMonde) {
-  // Les pays connus : code → { nom, niveau }
-  const paysConnus = new Map();
-  document.querySelectorAll(".liste-pays li[data-code]").forEach(function (ligne) {
-    const nom = ligne.querySelector("a").firstChild.nextSibling.textContent.trim();
-    paysConnus.set(ligne.dataset.code, { nom: nom, niveau: niveauDeLigne(ligne) });
+// Une ligne de la liste :
+// <li data-code="CA"><a href="#"><span class="barre niveau-1"></span>Canada<small>accueil favorable</small></a>
+//   <button class="btn-etoile" data-pays="Canada" aria-pressed="false">☆</button></li>
+function creerLignePays(pays) {
+  const ligne = document.createElement("li");
+  ligne.dataset.code = pays.code;
+
+  const lien = document.createElement("a");
+  lien.href = "#fiche-pays";
+  lien.append(creerElement("span", "barre niveau-" + pays.niveau), pays.nom, creerElement("small", "", NIVEAUX[pays.niveau].toLowerCase()));
+  lien.addEventListener("click", function (event) {
+    event.preventDefault();
+    afficherFichePays(pays.code);
+    document.getElementById("fiche-pays").scrollIntoView({ block: "nearest" });
   });
 
-  fetch(adresse("images/carte-monde.svg"))
+  const etoile = creerElement("button", "btn-etoile", "☆");
+  etoile.type = "button";
+  etoile.dataset.pays = pays.nom;
+  etoile.setAttribute("aria-pressed", "false");
+  etoile.setAttribute("aria-label", "Ajouter " + pays.nom + " à mes pays favoris");
+  etoile.disabled = true; // afficherCompte() l'active une fois connecté·e
+
+  ligne.append(lien, etoile);
+  return ligne;
+}
+
+// La carte : chaque pays prend la couleur de son niveau, et s'ouvre au clic ou au clavier
+function preparerCarte(carte) {
+  carte.setAttribute("role", "group");
+  carte.setAttribute("aria-label", "Carte du monde par niveau de vigilance. Chaque pays se choisit avec Tab puis Entrée.");
+
+  carte.querySelectorAll("path[data-nom]").forEach(function (forme) {
+    const pays = paysParCode.get(forme.dataset.code);
+    const titre = document.createElementNS("http://www.w3.org/2000/svg", "title");
+    titre.textContent = (pays ? pays.nom + " · " + NIVEAUX[pays.niveau].toLowerCase() : forme.dataset.nom + " · pas de données");
+    forme.append(titre);
+    if (pays) {
+      forme.classList.add("niveau-" + pays.niveau);
+      forme.setAttribute("tabindex", "0");
+      forme.setAttribute("role", "button");
+      forme.setAttribute("aria-label", pays.nom + ", " + NIVEAUX[pays.niveau].toLowerCase());
+    }
+  });
+
+  // En SVG, le dernier dessiné passe devant : un pays survolé aurait son contour
+  // caché par ses voisins. On dessine donc deux contours vides tout à la fin,
+  // qui copient la forme (d) du pays survolé et du pays choisi.
+  function creerContour(classe) {
+    const contour = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    contour.setAttribute("class", classe);
+    contour.setAttribute("aria-hidden", "true");
+    carte.append(contour);
+    return contour;
+  }
+  creerContour("contour-choisi");
+  const contourSurvol = creerContour("contour-survol");
+
+  function survoler(event) {
+    const forme = event.target.closest("path[data-nom]");
+    if (forme) {
+      contourSurvol.setAttribute("d", forme.getAttribute("d"));
+    }
+  }
+  function quitter() {
+    contourSurvol.removeAttribute("d");
+  }
+  carte.addEventListener("mouseover", survoler);
+  carte.addEventListener("focusin", survoler);
+  carte.addEventListener("mouseleave", quitter);
+  carte.addEventListener("focusout", quitter);
+
+  carte.addEventListener("click", function (event) {
+    const forme = event.target.closest("path[data-nom]");
+    if (forme) {
+      afficherFichePays(forme.dataset.code, forme.dataset.nom);
+    }
+  });
+  carte.addEventListener("keydown", function (event) {
+    const forme = event.target.closest("path[data-nom]");
+    if (forme && (event.key === "Enter" || event.key === " ")) {
+      event.preventDefault();
+      afficherFichePays(forme.dataset.code, forme.dataset.nom);
+    }
+  });
+}
+
+if (listePays && zoneCarteMonde) {
+  const zoneEtatPays = document.getElementById("etat-pays");
+  zoneEtatPays.textContent = "Chargement des pays…";
+
+  fetch(adresse("pays.json"))
     .then(function (reponse) {
       if (!reponse.ok) {
-        throw new Error("Carte introuvable : code " + reponse.status);
+        throw new Error("Fichier introuvable : code " + reponse.status);
       }
-      return reponse.text();
+      return reponse.json();
     })
-    .then(function (texte) {
-      // Le fichier SVG est lu comme un document, puis ajouté à la page (sans innerHTML)
-      const document_svg = new DOMParser().parseFromString(texte, "image/svg+xml");
-      const carte = document.importNode(document_svg.documentElement, true);
-      carte.setAttribute("role", "group");
-      carte.setAttribute("aria-label", "Carte du monde par niveau de vigilance. Les pays coloriés se choisissent avec Tab puis Entrée.");
-
-      carte.querySelectorAll("path[data-nom]").forEach(function (pays) {
-        const connu = paysConnus.get(pays.dataset.code);
-        const titre = document.createElementNS("http://www.w3.org/2000/svg", "title");
-        titre.textContent = pays.dataset.nom + (connu ? " · " + NIVEAUX[connu.niveau].toLowerCase() : "");
-        pays.append(titre);
-        if (connu) {
-          pays.classList.add("niveau-" + connu.niveau);
-          pays.setAttribute("tabindex", "0");
-          pays.setAttribute("role", "button");
-          pays.setAttribute("aria-label", connu.nom + ", " + NIVEAUX[connu.niveau].toLowerCase());
-        }
-      });
-
-      // En SVG, le dernier dessiné passe devant : un pays survolé aurait son contour
-      // caché par ses voisins. On dessine donc deux contours vides tout à la fin,
-      // qui copient la forme (d) du pays survolé et du pays choisi.
-      function creerContour(classe) {
-        const contour = document.createElementNS("http://www.w3.org/2000/svg", "path");
-        contour.setAttribute("class", classe);
-        contour.setAttribute("aria-hidden", "true");
-        carte.append(contour);
-        return contour;
+    .then(function (donnees) {
+      zoneEtatPays.textContent = "";
+      if (donnees.length === 0) {
+        zoneEtatPays.textContent = "Aucun pays pour le moment.";
+        return;
       }
-      creerContour("contour-choisi");
-      const contourSurvol = creerContour("contour-survol");
+      paysParCode = new Map(donnees.map(function (pays) { return [pays.code, pays]; }));
 
-      function survoler(event) {
-        const pays = event.target.closest("path[data-nom]");
-        if (pays) {
-          contourSurvol.setAttribute("d", pays.getAttribute("d"));
-        }
+      for (const pays of donnees) {
+        listePays.append(creerLignePays(pays));
       }
-      function quitter() {
-        contourSurvol.removeAttribute("d");
-      }
-      carte.addEventListener("mouseover", survoler);
-      carte.addEventListener("focusin", survoler);
-      carte.addEventListener("mouseleave", quitter);
-      carte.addEventListener("focusout", quitter);
+      brancherRecherche("recherche-voyager", ".liste-pays li", "Aucun pays");
+      afficherCompte(); // met à jour les étoiles des pays favoris
 
-      function choisir(pays) {
-        const connu = paysConnus.get(pays.dataset.code);
-        afficherFichePays(connu ? connu.nom : pays.dataset.nom, connu ? connu.niveau : 0, pays.dataset.code);
-      }
-
-      carte.addEventListener("click", function (event) {
-        const pays = event.target.closest("path[data-nom]");
-        if (pays) {
-          choisir(pays);
-        }
-      });
-      carte.addEventListener("keydown", function (event) {
-        const pays = event.target.closest("path[data-nom]");
-        if (pays && (event.key === "Enter" || event.key === " ")) {
-          event.preventDefault();
-          choisir(pays);
-        }
-      });
-
-      zoneCarteMonde.replaceWith(carte);
+      // Puis la carte, qui a besoin des niveaux de pays.json
+      return fetch(adresse("images/carte-monde.svg"))
+        .then(function (reponse) {
+          if (!reponse.ok) {
+            throw new Error("Carte introuvable : code " + reponse.status);
+          }
+          return reponse.text();
+        })
+        .then(function (texte) {
+          // Le fichier SVG est lu comme un document, puis ajouté à la page (sans innerHTML)
+          const documentSvg = new DOMParser().parseFromString(texte, "image/svg+xml");
+          const carte = document.importNode(documentSvg.documentElement, true);
+          preparerCarte(carte);
+          zoneCarteMonde.replaceWith(carte);
+        })
+        .catch(function (erreur) {
+          console.error(erreur);
+          zoneCarteMonde.textContent = "Impossible de charger la carte. La liste des pays reste disponible.";
+        });
     })
     .catch(function (erreur) {
       console.error(erreur);
-      zoneCarteMonde.textContent = "Impossible de charger la carte. La liste des pays reste disponible.";
+      zoneEtatPays.textContent = "Impossible de charger les pays. Recharge la page dans un moment.";
+      zoneCarteMonde.textContent = "Carte indisponible sans la liste des pays.";
     });
-
-  // Un clic dans la liste ouvre aussi la fiche du pays
-  document.querySelectorAll(".liste-pays li").forEach(function (ligne) {
-    const lien = ligne.querySelector("a");
-    lien.addEventListener("click", function (event) {
-      event.preventDefault();
-      const nom = lien.firstChild.nextSibling.textContent.trim();
-      afficherFichePays(nom, niveauDeLigne(ligne), ligne.dataset.code);
-      document.getElementById("fiche-pays").scrollIntoView({ block: "nearest" });
-    });
-  });
 }
 
 // ---------- Accueil : print du jour ----------

@@ -126,20 +126,27 @@
       <div class="pile">
         <section class="carte-bloc">
           <!-- Remplacée par app.js (« Voyager : carte du monde ») : images/carte-monde.svg chargée avec fetch,
-               comme data.json en s11/1-phare-charge-ses-fiches. Les couleurs viennent de la liste des pays ci-dessous. -->
+               comme data.json en s11/1-phare-charge-ses-fiches. Les couleurs viennent de pays.json (ILGA World). -->
           <div class="image-attente carte-geo" id="carte-monde" role="img" aria-label="Carte du monde par niveau de vigilance">Chargement de la carte…</div>
-          <ul class="legende"><li><span class="echantillon niveau-1"></span>accueil favorable</li><li><span class="echantillon niveau-2"></span>vigilance normale</li><li><span class="echantillon niveau-3"></span>vigilance renforcée</li><li><span class="echantillon niveau-4"></span>zone à risque</li><li><span class="echantillon niveau-vide"></span>pas encore renseigné</li></ul>
+          <ul class="legende"><li><span class="echantillon niveau-1"></span>accueil favorable</li><li><span class="echantillon niveau-2"></span>vigilance normale</li><li><span class="echantillon niveau-3"></span>vigilance renforcée</li><li><span class="echantillon niveau-4"></span>zone à risque</li><li><span class="echantillon niveau-vide"></span>pas de données</li></ul>
+          <details class="methode">
+            <summary>Comment les couleurs sont choisies</summary>
+            <p>D'après la base de données <a href="https://database.ilga.org/">ILGA World</a> (données de juin 2026), qui recense les lois de chaque pays :</p>
+            <ul>
+              <li><strong>Zone à risque</strong> : les relations entre personnes de même sexe sont criminalisées, par la loi ou dans les faits.</li>
+              <li><strong>Vigilance renforcée</strong> : pas criminalisées, mais des lois limitent la liberté d'expression sur l'orientation sexuelle et l'identité de genre.</li>
+              <li><strong>Accueil favorable</strong> : le mariage est ouvert aux couples de même sexe.</li>
+              <li><strong>Vigilance normale</strong> : les autres pays.</li>
+            </ul>
+            <p>Ces couleurs décrivent les lois, pas l'ambiance au quotidien : renseigne-toi aussi sur place.</p>
+          </details>
         </section>
         <section class="carte-bloc" aria-label="Liste des pays">
-          <!-- data-code : code ISO du pays, le même que dans images/carte-monde.svg (id="pays-CA")
-          Étoiles « pays favori » avec aria-pressed (app.js, afficherCompte) : vu dans s12/1-la-recherche-de-phare -->
-          <ul class="liste-pays">
-          <li data-code="CA"><a href="#"><span class="barre niveau-1"></span>Canada<small>accueil favorable</small></a><button type="button" class="btn-etoile" data-pays="Canada" aria-pressed="false" aria-label="Ajouter Canada à mes pays favoris" disabled>☆</button></li>
-          <li data-code="PT"><a href="#"><span class="barre niveau-1"></span>Portugal<small>accueil favorable</small></a><button type="button" class="btn-etoile" data-pays="Portugal" aria-pressed="false" aria-label="Ajouter Portugal à mes pays favoris" disabled>☆</button></li>
-          <li data-code="IT"><a href="#"><span class="barre niveau-2"></span>Italie<small>vigilance normale</small></a><button type="button" class="btn-etoile" data-pays="Italie" aria-pressed="false" aria-label="Ajouter Italie à mes pays favoris" disabled>☆</button></li>
-          <li data-code="TR"><a href="#"><span class="barre niveau-3"></span>Turquie<small>vigilance renforcée</small></a><button type="button" class="btn-etoile" data-pays="Turquie" aria-pressed="false" aria-label="Ajouter Turquie à mes pays favoris" disabled>☆</button></li>
-          <li><a href="#"><span class="barre niveau-4"></span>Pays — législation hostile<small>zone à risque</small></a><button type="button" class="btn-etoile" data-pays="Pays — législation hostile" aria-pressed="false" aria-label="Ajouter Pays — législation hostile à mes pays favoris" disabled>☆</button></li>
-          </ul>
+          <!-- s11 : la liste est fabriquée par app.js à partir de pays.json (comme les cartes de data.json).
+               data-code : code ISO du pays, le même que dans images/carte-monde.svg (id="pays-CA").
+               Étoiles « pays favori » avec aria-pressed (app.js, afficherCompte) : vu dans s12/1-la-recherche-de-phare -->
+          <p id="etat-pays" role="status"></p>
+          <ul class="liste-pays" id="liste-pays"></ul>
           <p class="petite-info note-connexion">Connecte-toi pour mettre des pays dans tes favoris (☆).</p>
         </section>
       </div>
@@ -150,12 +157,19 @@
           <p class="petite-info">Niveau de vigilance</p>
           <p id="fiche-pays-niveau">Sur la carte ou dans la liste</p>
         </div>
-        <section><h3>Cadre légal</h3><p class="texte-discret">Lois en vigueur, reconnaissance des couples, identité de genre.</p></section>
+        <section>
+          <h3>Cadre légal</h3>
+          <dl class="faits-pays" id="fiche-pays-lois">
+            <dt>Relations entre personnes de même sexe</dt><dd>—</dd>
+            <dt>Couples de même sexe</dt><dd>—</dd>
+            <dt>Liberté d'expression</dt><dd>—</dd>
+          </dl>
+        </section>
         <section><h3>Attitudes et société</h3><p class="texte-discret">Perception générale, différences entre villes et campagnes.</p></section>
         <section><h3>Sécurité au quotidien</h3><p class="texte-discret">Précautions pratiques pendant le séjour.</p></section>
         <section><h3>En cas de problème</h3><p class="texte-discret">Ambassade, contacts locaux, démarches.</p></section>
         <a href="ressources.html" class="btn-primaire">Numéros utiles sur place</a>
-        <p class="petite-info">Source officielle · dernière mise à jour</p>
+        <p class="petite-info">Source : <a href="https://database.ilga.org/">ILGA World Database</a> · données de juin 2026</p>
       </article>
     </div>
   </main>
