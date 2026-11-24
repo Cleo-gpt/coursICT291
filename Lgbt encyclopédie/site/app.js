@@ -754,7 +754,7 @@ if (casesChecklist.length > 0) {
 }
 
 // ---------- Dico : recherche d'un terme ----------
-// Le bouton « Rechercher » ouvre la fiche du terme tapé (dico.html#ancre).
+// Le bouton « Naviguer » ouvre la fiche du terme tapé (dico.html#ancre).
 // Vu dans : s12/2-proposer-un-lieu (submit + preventDefault) et s12/1-la-recherche-de-phare (simplifier)
 
 const formulaireDico = document.getElementById("recherche-dico");
@@ -788,6 +788,72 @@ if (formulaireDico) {
     fiche.focus({ preventScroll: true });
   });
 }
+
+// ---------- Voyager et Ressources : recherche ----------
+// Le bouton « Naviguer » garde les éléments de la liste qui contiennent le texte tapé
+// (sans accents) et cache les autres. Sur Ressources, le thème choisi s'ajoute à la recherche.
+// Vu dans : s12/1-la-recherche-de-phare (filtrer une liste, aria-pressed, simplifier)
+//           s12/2-proposer-un-lieu (submit + preventDefault)
+
+// aucun : début du message quand rien ne correspond, par exemple "Aucun pays"
+function brancherRecherche(idFormulaire, selecteurElements, aucun) {
+  const formulaireListe = document.getElementById(idFormulaire);
+  if (!formulaireListe) {
+    return;
+  }
+  const champ = formulaireListe.querySelector("input[type='search']");
+  const zoneMessage = formulaireListe.querySelector(".message-recherche");
+  const elements = Array.from(document.querySelectorAll(selecteurElements));
+  const boutonsTheme = document.querySelectorAll("[data-theme]");
+  let themeActif = "";
+
+  function filtrer() {
+    const texte = simplifier(champ.value.trim());
+    let nombre = 0;
+    for (const element of elements) {
+      const surtitre = element.querySelector(".surtitre");
+      const themeOk = themeActif === "" || (surtitre && surtitre.textContent.trim() === themeActif);
+      const texteOk = simplifier(element.textContent).includes(texte);
+      element.hidden = !(themeOk && texteOk);
+      if (!element.hidden) {
+        nombre = nombre + 1;
+      }
+    }
+    if (nombre > 0) {
+      zoneMessage.textContent = "";
+    } else if (texte === "") {
+      zoneMessage.textContent = aucun + " dans ce thème pour le moment.";
+    } else {
+      zoneMessage.textContent = aucun + " ne correspond à « " + champ.value.trim() + " »"
+        + (themeActif ? " dans le thème " + themeActif + "." : ".");
+    }
+  }
+
+  formulaireListe.addEventListener("submit", function (event) {
+    event.preventDefault();
+    filtrer();
+  });
+
+  // Champ vidé (croix ou effacement) : toute la liste revient
+  champ.addEventListener("input", function () {
+    if (champ.value.trim() === "") {
+      filtrer();
+    }
+  });
+
+  boutonsTheme.forEach(function (bouton) {
+    bouton.addEventListener("click", function () {
+      themeActif = bouton.dataset.theme;
+      boutonsTheme.forEach(function (autre) {
+        autre.setAttribute("aria-pressed", autre === bouton ? "true" : "false");
+      });
+      filtrer();
+    });
+  });
+}
+
+brancherRecherche("recherche-voyager", ".liste-pays li", "Aucun pays");
+brancherRecherche("recherche-ressources", ".grille-ressources > li", "Aucune ressource");
 
 // ---------- Accueil : print du jour ----------
 // Le jour du mois donne le print : le 5 → j05 (Pansexuel·le), quel que soit le mois.

@@ -709,11 +709,13 @@ h3 { font-size: 1.1rem; line-height: 1.25; }
   min-width: 0;
 }
 
-#dico-aucun:empty {
+#dico-aucun:empty,
+.message-recherche:empty {
   display: none;
 }
 
-#dico-aucun {
+#dico-aucun,
+.message-recherche {
   margin: var(--space-1) 0 0;
 }
 
@@ -1685,6 +1687,10 @@ select.champ {
 }
 
 /* Étoile « pays favori » */
+.liste-pays li[hidden] {
+  display: none;
+}
+
 .liste-pays li {
   display: flex;
   align-items: center;
@@ -1850,7 +1856,9 @@ select.champ {
     flex: 0 1 320px;
   }
 
-  #recherche-dico {
+  #recherche-dico,
+  #recherche-voyager,
+  #recherche-ressources {
     flex-basis: 440px;
   }
 

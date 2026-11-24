@@ -111,10 +111,14 @@
         <p class="chapeau">Cadre légal, attitudes, sécurité : sélectionne un pays sur la carte ou dans la liste.</p>
       </div>
     <!-- Champ de recherche : même balisage que s12/1-la-recherche-de-phare (label + input type="search").
-         Pas encore branché dans app.js. -->
-    <form class="recherche-entete" role="search">
+         Le bouton filtre la liste (app.js, « Voyager et Ressources : recherche »), comme le submit de s12/2-proposer-un-lieu. -->
+    <form class="recherche-entete" role="search" id="recherche-voyager">
       <label class="visuellement-cache" for="pays">Chercher un pays</label>
-      <input type="search" id="pays" class="champ-recherche" placeholder="Chercher un pays, une ville…">
+      <div class="champ-et-bouton">
+        <input type="search" id="pays" name="pays" class="champ-recherche" placeholder="Chercher un pays…" autocomplete="off">
+        <button type="submit" class="btn-primaire">Naviguer</button>
+      </div>
+      <p class="message-vide message-recherche" role="status"></p>
     </form>
     </div>
 
