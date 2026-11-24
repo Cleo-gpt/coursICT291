@@ -1208,17 +1208,27 @@ h3 { font-size: 1.1rem; line-height: 1.25; }
 .carte-monde path.niveau-3 { fill: var(--orange); }
 .carte-monde path.niveau-4 { fill: var(--rouge); }
 
-.carte-monde path:hover {
+.carte-monde path[data-nom] {
   cursor: pointer;
-  stroke: var(--color-text);
-  stroke-width: 1;
 }
 
-/* Pays choisi, ou atteint au clavier */
-.carte-monde path.choisi,
 .carte-monde path:focus-visible {
-  outline: none;
+  outline: none;                    /* le contour-survol le remplace */
+}
+
+/* Contours dessinés par-dessus tous les pays (app.js) : jamais cachés par un voisin */
+.carte-monde .contour-survol,
+.carte-monde .contour-choisi {
+  fill: none;
   stroke: var(--color-text);
+  pointer-events: none;
+}
+
+.carte-monde .contour-survol {
+  stroke-width: 1.2;
+}
+
+.carte-monde .contour-choisi {
   stroke-width: 2;
 }
 

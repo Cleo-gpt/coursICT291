@@ -909,12 +909,14 @@ function afficherFichePays(nom, niveau, code) {
     ? NIVEAUX[niveau]
     : "Pas encore renseigné : la fiche de ce pays reste à écrire.";
 
-  document.querySelectorAll(".carte-monde .choisi").forEach(function (pays) { pays.classList.remove("choisi"); });
-  if (code) {
-    const pays = document.getElementById("pays-" + code);
+  // Le contour du pays choisi est un tracé à part, dessiné par-dessus tous les pays
+  const contourChoisi = document.querySelector(".carte-monde .contour-choisi");
+  const pays = code ? document.getElementById("pays-" + code) : null;
+  if (contourChoisi) {
     if (pays) {
-      pays.classList.add("choisi");
-      pays.parentNode.append(pays); // passe devant ses voisins : son contour se voit en entier
+      contourChoisi.setAttribute("d", pays.getAttribute("d"));
+    } else {
+      contourChoisi.removeAttribute("d");
     }
   }
   document.querySelectorAll(".liste-pays li").forEach(function (ligne) {
@@ -961,6 +963,33 @@ if (zoneCarteMonde) {
           pays.setAttribute("aria-label", connu.nom + ", " + NIVEAUX[connu.niveau].toLowerCase());
         }
       });
+
+      // En SVG, le dernier dessiné passe devant : un pays survolé aurait son contour
+      // caché par ses voisins. On dessine donc deux contours vides tout à la fin,
+      // qui copient la forme (d) du pays survolé et du pays choisi.
+      function creerContour(classe) {
+        const contour = document.createElementNS("http://www.w3.org/2000/svg", "path");
+        contour.setAttribute("class", classe);
+        contour.setAttribute("aria-hidden", "true");
+        carte.append(contour);
+        return contour;
+      }
+      creerContour("contour-choisi");
+      const contourSurvol = creerContour("contour-survol");
+
+      function survoler(event) {
+        const pays = event.target.closest("path[data-nom]");
+        if (pays) {
+          contourSurvol.setAttribute("d", pays.getAttribute("d"));
+        }
+      }
+      function quitter() {
+        contourSurvol.removeAttribute("d");
+      }
+      carte.addEventListener("mouseover", survoler);
+      carte.addEventListener("focusin", survoler);
+      carte.addEventListener("mouseleave", quitter);
+      carte.addEventListener("focusout", quitter);
 
       function choisir(pays) {
         const connu = paysConnus.get(pays.dataset.code);
