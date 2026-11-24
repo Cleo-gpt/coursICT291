@@ -394,9 +394,9 @@ function creerImagePrint(jour) {
   return image;
 }
 
-function remplirAvatar(element, valeur) {
+function remplirAvatar(element, valeur, taille = "grand") {
   element.replaceChildren();
-  element.className = "avatar-rond grand";
+  element.className = "avatar-rond " + taille;
   if (valeur && valeur.startsWith("carpe-")) {
     element.append(creerImagePrint("j" + valeur.slice(6)));
   } else {
@@ -409,7 +409,20 @@ function afficherCompte() {
   const pseudo = connecte ? etat.profil.pseudo : "";
 
   document.body.classList.toggle("connecte", connecte);
-  document.querySelector("#bouton-compte").textContent = connecte ? "@" + pseudo : "Se connecter";
+  // Connecté·e : la photo de profil à la place du pseudo (le pseudo reste lu par les lecteurs d'écran)
+  const boutonCompte = document.querySelector("#bouton-compte");
+  if (connecte) {
+    const avatar = creerElement("span");
+    avatar.setAttribute("aria-hidden", "true");
+    remplirAvatar(avatar, etat.profil.avatar, "mini");
+    boutonCompte.replaceChildren(avatar);
+    boutonCompte.setAttribute("aria-label", "Mon espace (@" + pseudo + ")");
+    boutonCompte.title = "@" + pseudo;
+  } else {
+    boutonCompte.textContent = "Se connecter";
+    boutonCompte.removeAttribute("aria-label");
+    boutonCompte.removeAttribute("title");
+  }
   document.querySelector("#bandeau-session").hidden = !connecte;
   document.querySelectorAll("[data-pseudo]").forEach(function (zone) { zone.textContent = "@" + pseudo; });
   document.querySelectorAll("[data-email]").forEach(function (zone) { zone.textContent = connecte ? etat.profil.email : ""; });

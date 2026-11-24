@@ -193,6 +193,24 @@ h3 { font-size: 1.1rem; line-height: 1.25; }
   color: var(--color-header-text);
 }
 
+/* Connecté·e : le bouton devient la photo de profil, dans un anneau */
+.connecte #bouton-compte {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;                     /* cible tactile WCAG 2.5.5 */
+  height: 44px;
+  min-height: 0;
+  padding: 2px;
+  border: 2px solid var(--color-header-muted);
+  border-radius: 50%;
+}
+
+.avatar-rond.mini {
+  width: 36px;
+  height: 36px;
+}
+
 /* ---------- Fenêtre de connexion ---------- */
 
 .fenetre {
