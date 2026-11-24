@@ -30,7 +30,8 @@
       <a href="ressources.html" class="lien-aide">Aide</a>
     </div>
   </header>
-  <!-- Compte Prisme : connexion, inscription, mot de passe oublié -->
+  <!-- Compte Prisme : connexion, inscription, mot de passe oublié
+       Vu dans : s12/2-proposer-un-lieu (label for + id, zone d'erreur dans la page, submit dans app.js) -->
   <dialog id="fenetre-connexion" class="fenetre" aria-label="Compte Prisme">
     <section data-vue="connexion">
       <h2>Se connecter</h2>
@@ -109,6 +110,8 @@
         <h1>Ressources à contacter</h1>
         <p class="chapeau">Écoute, santé, droits et associations. Anonyme et gratuit quand c'est indiqué.</p>
       </div>
+    <!-- Champ de recherche : même balisage que s12/1-la-recherche-de-phare (label + input type="search").
+         Pas encore branché dans app.js. -->
     <form class="recherche-entete" role="search">
       <label class="visuellement-cache" for="ressource">Chercher une ressource</label>
       <input type="search" id="ressource" class="champ-recherche" placeholder="Chercher une ressource…">
@@ -122,6 +125,8 @@
       <a href="tel:112">112</a>
     </section>
 
+    <!-- Boutons de filtre avec aria-pressed : vu dans s12/1-la-recherche-de-phare.
+         Pas encore branchés dans app.js. -->
     <ul class="filtres" aria-label="Filtrer par thème">
       <li><button type="button" class="filtre" aria-pressed="true">Tout</button></li>
       <li><button type="button" class="filtre" aria-pressed="false">Écoute</button></li>

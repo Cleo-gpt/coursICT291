@@ -30,7 +30,8 @@
       <a href="ressources.html" class="lien-aide">Aide</a>
     </div>
   </header>
-  <!-- Compte Prisme : connexion, inscription, mot de passe oublié -->
+  <!-- Compte Prisme : connexion, inscription, mot de passe oublié
+       Vu dans : s12/2-proposer-un-lieu (label for + id, zone d'erreur dans la page, submit dans app.js) -->
   <dialog id="fenetre-connexion" class="fenetre" aria-label="Compte Prisme">
     <section data-vue="connexion">
       <h2>Se connecter</h2>
@@ -109,6 +110,8 @@
         <h1>Voyager en sécurité</h1>
         <p class="chapeau">Cadre légal, attitudes, sécurité : sélectionne un pays sur la carte ou dans la liste.</p>
       </div>
+    <!-- Champ de recherche : même balisage que s12/1-la-recherche-de-phare (label + input type="search").
+         Pas encore branché dans app.js. -->
     <form class="recherche-entete" role="search">
       <label class="visuellement-cache" for="pays">Chercher un pays</label>
       <input type="search" id="pays" class="champ-recherche" placeholder="Chercher un pays, une ville…">
@@ -122,6 +125,7 @@
           <ul class="legende"><li><span class="echantillon niveau-1"></span>accueil favorable</li><li><span class="echantillon niveau-2"></span>vigilance normale</li><li><span class="echantillon niveau-3"></span>vigilance renforcée</li><li><span class="echantillon niveau-4"></span>zone à risque</li></ul>
         </section>
         <section class="carte-bloc" aria-label="Liste des pays">
+          <!-- Étoiles « pays favori » avec aria-pressed (app.js, afficherCompte) : vu dans s12/1-la-recherche-de-phare -->
           <ul class="liste-pays">
           <li><a href="#"><span class="barre niveau-1"></span>Canada<small>accueil favorable</small></a><button type="button" class="btn-etoile" data-pays="Canada" aria-pressed="false" aria-label="Ajouter Canada à mes pays favoris" disabled>☆</button></li>
           <li><a href="#"><span class="barre niveau-1"></span>Portugal<small>accueil favorable</small></a><button type="button" class="btn-etoile" data-pays="Portugal" aria-pressed="false" aria-label="Ajouter Portugal à mes pays favoris" disabled>☆</button></li>

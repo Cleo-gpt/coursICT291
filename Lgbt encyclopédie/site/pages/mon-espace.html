@@ -30,7 +30,8 @@
       <a href="ressources.html" class="lien-aide">Aide</a>
     </div>
   </header>
-  <!-- Compte Prisme : connexion, inscription, mot de passe oublié -->
+  <!-- Compte Prisme : connexion, inscription, mot de passe oublié
+       Vu dans : s12/2-proposer-un-lieu (label for + id, zone d'erreur dans la page, submit dans app.js) -->
   <dialog id="fenetre-connexion" class="fenetre" aria-label="Compte Prisme">
     <section data-vue="connexion">
       <h2>Se connecter</h2>
@@ -151,6 +152,8 @@
           <div id="print-semaine"></div>
         </section>
 
+        <!-- Formulaires du compte : erreurs dans [data-erreur] (vu dans s12/2-proposer-un-lieu),
+             messages dans role="status" (vu dans s11/3-dans-votre-projet, #etat) -->
         <form id="profil" class="carte-bloc formulaire" novalidate aria-labelledby="titre-profil-form">
           <h2 id="titre-profil-form" class="surtitre">Profil</h2>
           <label for="profil-pseudo">Pseudo</label>
@@ -283,6 +286,7 @@
 
         <section id="agenda" class="carte-bloc pile" aria-labelledby="titre-agenda">
           <h2 id="titre-agenda" class="surtitre">Mon agenda</h2>
+          <!-- Titres et dates lus dans data.json par fetch (app.js) : vu dans s11/1-phare-charge-ses-fiches -->
           <ul class="liste-simple" id="liste-agenda"></ul>
           <p class="petite-info" data-vide="agenda">Aucune manif pour l'instant. Ajoute-en depuis la page <a href="manifs.html">Manifs</a>.</p>
         </section>

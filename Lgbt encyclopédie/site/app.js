@@ -211,6 +211,7 @@ function afficherMessage(titre, texte) {
   ouvrirFenetre("message");
 }
 
+// Vu dans : s12/2-proposer-un-lieu (l'erreur s'écrit dans une zone de la page, pas dans un alert)
 function montrerErreur(formulaire, message) {
   const zone = formulaire.querySelector("[data-erreur]");
   zone.textContent = message;
@@ -235,6 +236,8 @@ async function pendantEnvoi(formulaire, action) {
   }
 }
 
+// Formulaires du compte (toutes les pages, mon-espace.html, confirmer.html)
+// Vu dans : s12/2-proposer-un-lieu (écouteur submit, preventDefault, règles puis return si erreur)
 document.querySelector("#formulaire-connexion").addEventListener("submit", function (evenement) {
   evenement.preventDefault();
   const formulaire = evenement.target;
@@ -412,6 +415,7 @@ function afficherCompte() {
   document.querySelectorAll("[data-email]").forEach(function (zone) { zone.textContent = connecte ? etat.profil.email : ""; });
 
   // Boutons actifs seulement une fois connecté·e
+  // aria-pressed vrai/faux : vu dans s12/1-la-recherche-de-phare (bouton « Ouvert maintenant »)
   document.querySelectorAll("[data-enregistrer]").forEach(function (bouton) {
     const actif = etat.favoris.has(bouton.dataset.enregistrer);
     bouton.disabled = !connecte;

@@ -30,7 +30,8 @@
       <a href="ressources.html" class="lien-aide">Aide</a>
     </div>
   </header>
-  <!-- Compte Prisme : connexion, inscription, mot de passe oublié -->
+  <!-- Compte Prisme : connexion, inscription, mot de passe oublié
+       Vu dans : s12/2-proposer-un-lieu (label for + id, zone d'erreur dans la page, submit dans app.js) -->
   <dialog id="fenetre-connexion" class="fenetre" aria-label="Compte Prisme">
     <section data-vue="connexion">
       <h2>Se connecter</h2>
@@ -111,6 +112,7 @@
       <div class="rangee-boutons">
         <button type="button" class="btn-primaire" id="bouton-confirmer" hidden></button>
       </div>
+      <!-- Erreurs dans [data-erreur] (vu dans s12/2-proposer-un-lieu), message dans role="status" (vu dans s11/3-dans-votre-projet) -->
       <form id="formulaire-reset" class="formulaire" novalidate hidden>
         <label for="reset-mdp">Nouveau mot de passe</label>
         <input type="password" id="reset-mdp" class="champ" autocomplete="new-password" minlength="8" required aria-describedby="aide-reset">

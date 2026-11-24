@@ -30,7 +30,8 @@
       <a href="ressources.html" class="lien-aide">Aide</a>
     </div>
   </header>
-  <!-- Compte Prisme : connexion, inscription, mot de passe oublié -->
+  <!-- Compte Prisme : connexion, inscription, mot de passe oublié
+       Vu dans : s12/2-proposer-un-lieu (label for + id, zone d'erreur dans la page, submit dans app.js) -->
   <dialog id="fenetre-connexion" class="fenetre" aria-label="Compte Prisme">
     <section data-vue="connexion">
       <h2>Se connecter</h2>
@@ -109,6 +110,8 @@
         <h1>Ça veut dire quoi, ça&nbsp;?</h1>
         <p class="chapeau">Les 30 mots du mois des fiertés, un par jour du calendrier. Choisis un terme pour lire sa définition.</p>
       </div>
+    <!-- Champ de recherche : même balisage que s12/1-la-recherche-de-phare (label + input type="search").
+         Pas encore branché dans app.js. -->
     <form class="recherche-entete" role="search">
       <label class="visuellement-cache" for="terme">Chercher un terme</label>
       <input type="search" id="terme" class="champ-recherche" placeholder="Chercher un terme…">

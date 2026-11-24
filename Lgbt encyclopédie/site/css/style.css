@@ -217,6 +217,7 @@ h3 { font-size: 1.1rem; line-height: 1.25; }
   margin-bottom: var(--space-3);
 }
 
+/* Vu dans : s12/2-proposer-un-lieu (style de #erreurs) */
 .alerte-erreur {
   margin-bottom: var(--space-3);
   padding: var(--space-2);
@@ -499,7 +500,7 @@ h3 { font-size: 1.1rem; line-height: 1.25; }
   border-radius: var(--radius-card);
   padding: var(--space-3);
   box-shadow: var(--shadow-sm);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease; /* vu dans s13/1-le-mouvement-utile */
 }
 
 /* Chaque carte a une couleur de l'arc-en-ciel (décoratif) */
@@ -602,6 +603,7 @@ h3 { font-size: 1.1rem; line-height: 1.25; }
   cursor: not-allowed;
 }
 
+/* Vu dans : s12/1-la-recherche-de-phare (button[aria-pressed="true"]) */
 .btn-primaire[aria-pressed="true"] {
   background-color: var(--vert);
   color: var(--color-text);
@@ -678,6 +680,7 @@ h3 { font-size: 1.1rem; line-height: 1.25; }
   cursor: pointer;
 }
 
+/* Vu dans : s12/1-la-recherche-de-phare (button[aria-pressed="true"]) */
 .filtre[aria-pressed="true"] {
   border-color: var(--color-text);
   background: var(--color-surface);
@@ -1302,7 +1305,7 @@ legend {
   height: 18px;
   border-radius: 50%;
   background: var(--color-surface);
-  transition: transform 0.15s;
+  transition: transform 0.15s; /* vu dans s13/1-le-mouvement-utile */
 }
 
 .interrupteur:checked {
